@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pet_test?serverTimezone=Asia/Seoul
+    username: root
+    password: lms*!$Ms0828
+
+#  application:
+#    name: user-service
+#  main:
+#    allow-circular-references: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    defer-datasource-initialization: true
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+jwt:
+    secret: AAAABBBBCCCCDDDDEEEEFFFFGGGG123!@#
+
+
+
+
+
