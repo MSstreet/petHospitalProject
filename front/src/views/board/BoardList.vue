@@ -370,7 +370,7 @@ export default {
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
 
-        // console.log(res.data.data);
+        console.log(res.data.data);
         // console.log(res.data.pagination);
 
       }).catch((err) => {

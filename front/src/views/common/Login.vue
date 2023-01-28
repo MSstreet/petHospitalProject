@@ -1,3 +1,4 @@
+
 <template>
   <section class="bg-light">
     <div class="mt-10">
@@ -126,8 +127,8 @@ export default {
       try {
         let loginResult = await this.login({user_id: this.user_id, user_pw: this.user_pw})
         if (loginResult) {
-          this.goToPages()
-            // alert('로그인 결과 : ' + loginResult)
+           this.goToPages()
+           // alert('로그인 결과 : ' + loginResult)
         }
 
       } catch (err) {

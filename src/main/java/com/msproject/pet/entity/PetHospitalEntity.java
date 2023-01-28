@@ -39,4 +39,11 @@ public class PetHospitalEntity {
     //private BigDecimal longitude;
 
     private float hospitalScore;
+
+    public void change(String hospitalName, String hospitalNum, String hospitalAddr, String sigunName){
+        this.hospitalName = hospitalName;
+        this.hospitalNum = hospitalNum;
+        this.hospitalAddr = hospitalAddr;
+        this.sigunName = sigunName;
+    }
 }

@@ -17,16 +17,11 @@ public class Pagination {
     //현재 페이지
     int page;
 
-
-
     //현재 블럭
     int block;
 
-
-
     //총 게시글 수
     int totalListCnt;
-
 
 
     //총 페이지 수
@@ -40,9 +35,6 @@ public class Pagination {
     //시작 페이지
     int startPage;
 
-
-
-
     //마지막 페이지
     int endPage;
 
@@ -54,8 +46,6 @@ public class Pagination {
 
     // 인덱스
     int startIndex;
-
-
 
 
     public Pagination(Integer totalListCnt, Integer page, Integer pageSize, Integer blockSize) {

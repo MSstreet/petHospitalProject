@@ -39,6 +39,7 @@ public class BoardController {
     {
         return boardService.getBoardList(pageable, searchCondition);
     }
+
     @GetMapping("/board/{id}")
     public BoardDto getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
@@ -58,4 +59,6 @@ public class BoardController {
     public void delete(@PathVariable Long id) {
         boardService.delete(id);
     }
+
+
 }

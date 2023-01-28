@@ -34,9 +34,16 @@ public class TokenRequestFilter extends OncePerRequestFilter {
 
             if ("/user/login".equals(request.getRequestURI())) {
                 doFilter(request, response, filterChain);
-            } else if ("/user/join".equals(request.getRequestURI())) {
+            }else if ("/user/join".equals(request.getRequestURI())) {
                 doFilter(request, response, filterChain);
-            } else {
+            }else if ("/board/list".equals(request.getRequestURI())) {
+                doFilter(request, response, filterChain);
+            }else if ("/hospital/list".equals(request.getRequestURI())) {
+                doFilter(request, response, filterChain);
+            }
+
+
+            else {
                 String token = parseJwt(request);
                 if (token == null) {
                     response.sendError(403);    //accessDenied

@@ -5,6 +5,7 @@ import BoardDetail from '@/views/board/BoardDetail.vue'
 import BoardWrite from '@/views/board/BoardWrite.vue'
 import Login from "@/views/common/Login"
 import Join from "@/views/common/Join"
+import HospitalList from '@/views/hospital/HospitalList'
 
 // import {store} from "@/vuex/store";
 
@@ -62,7 +63,11 @@ const routes = [
         name: 'BoardWrite',
         component: BoardWrite,
         beforeEnter: requireAuth()
-    },
+    },{
+        path: '/hospital/list',
+        name: 'HospitalList',
+        component: HospitalList
+    }
 ]
 
 const router = createRouter({
