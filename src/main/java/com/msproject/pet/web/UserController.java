@@ -64,4 +64,41 @@ public class UserController {
 
         return ResponseEntity.ok(result);
     }
+
+
+    @GetMapping("/{id}")
+    public UserDto getUser(@PathVariable Long id){
+        return userService.getUser(id);
+    }
+
+    @PatchMapping("/")
+    public UserEntity update(@RequestBody UserDto userDto){
+        return userService.update(userDto);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id){
+        userService.delete(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

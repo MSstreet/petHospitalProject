@@ -24,6 +24,7 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     //private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -36,7 +37,6 @@ public class UserService implements UserDetailsService {
         if (userEntity.getUserId().equals(username)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         }
-
         return new User(userEntity.getUserId(), userEntity.getUserPw(), authorities);
     }
 
@@ -59,6 +59,36 @@ public class UserService implements UserDetailsService {
             throw new DuplicateUserIdException();
         }
 
+    }
+
+    //, get, update, delete
+    public UserEntity update(UserDto userDto){
+        UserEntity entity = userRepository.findByUserId(userDto.getUserId()).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
+
+        entity.change(userDto.getUserName(),userDto.getPhoneNum(),userDto.getZipCode(), userDto.getAddr(), userDto.getDetailAddr());
+
+        return userRepository.save(entity);
+    }
+
+    public void delete(Long id){
+        UserEntity entity = userRepository.findById(id).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
+
+        userRepository.delete(entity);
+    }
+
+    public UserDto getUser(Long id){
+        UserEntity entity = userRepository.findById(id).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
+
+        return UserDto.builder()
+                .idx(entity.getIdx())
+                .userId(entity.getUserId())
+                .userPw(entity.getUserPw())
+                .userName(entity.getUserName())
+                .phoneNum(entity.getPhoneNum())
+                .zipCode(entity.getZipCode())
+                .addr(entity.getAddr())
+                .detailAddr(entity.getDetailAddr())
+                .build();
     }
 
 

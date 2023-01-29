@@ -19,9 +19,9 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public static final QUserEntity userEntity = new QUserEntity("userEntity");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
-
     public final StringPath addr = createString("addr");
+
+    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
 
     public final BooleanPath deleteYn = createBoolean("deleteYn");
 
@@ -29,13 +29,9 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final NumberPath<Long> idx = createNumber("idx", Long.class);
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modDate = _super.modDate;
-
     public final StringPath phoneNum = createString("phoneNum");
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> regDate = _super.regDate;
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public final StringPath userId = createString("userId");
 

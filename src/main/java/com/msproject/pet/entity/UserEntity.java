@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder 
 @Table(name="TB_USER")
 @Entity
-public class UserEntity {
+public class UserEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,16 +36,20 @@ public class UserEntity {
 
     private boolean deleteYn;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
+//    private LocalDateTime createdAt;
+//
+//    private LocalDateTime updatedAt;
 
 
     public void changePassword(String userPw){
         this.userPw = userPw;
     }
 
-    public void change(String userName){
-
+    public void change(String userName, String phoneNum, String zipCode, String addr, String detailAddr){
+        this.userName =userName;
+        this.phoneNum = phoneNum;
+        this.zipCode = zipCode;
+        this.addr = addr;
+        this.detailAddr = detailAddr;
     }
 }

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,18 @@ public class UserDto {
     private String userId;
     private String userPw;
     private String userName;
+
+    private String phoneNum;
+
+    private String zipCode;
+
+    private String addr;
+
+    private String detailAddr;
+
+    private boolean deleteYn;
+//
+//    private LocalDateTime createdAt;
+//
+//    private LocalDateTime updatedAt;
 }

@@ -20,99 +20,40 @@
           <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id">
         </div>
 
-
-
-
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">비밀번호</label>
           <input type="password" class="form-control is-valid" id="inputValid" v-model="user_pw">
           <div class="valid-feedback"></div>
         </div>
 
-<!--        <div class="form-group">-->
-<!--          <label class="form-label mt-4" for="inputValid">비밀번호</label>-->
-<!--          <input type="password" class="form-control" id="inputValid">-->
-<!--          <div class="valid-feedback"></div>-->
-<!--        </div>-->
-
-<!--        <div class="form-group has-danger">-->
-<!--          <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>-->
-<!--          <input type="password" class="form-control is-invalid" id="inputInvalid">-->
-<!--          <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>-->
-<!--        </div>-->
-
-<!--        <div class="form-group has-danger">-->
-<!--          <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>-->
-<!--          <input type="password" class="form-control is-invalid" id="inputInvalid">-->
-<!--          <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>-->
-<!--        </div>-->
-
-        <div class="form-group">
-          <label for="exampleInputEmail1" class="form-label mt-4">이름</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_name">
+        <div class="form-group has-danger">
+          <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>
+          <input type="password" class="form-control is-invalid" id="inputInvalid" v-model="pwd_check">
+          <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
         </div>
 
+        <div class="form-group">
+          <label for="exampleInputName" class="form-label mt-4">이름</label>
+          <input type="text" class="form-control" id="exampleInputName" v-model="user_name">
+        </div>
 
-<!--        <div class ="bir_wrap">-->
-<!--          <label class="form-label mt-4">생년월일</label>-->
-<!--          <div class="bir_yy">-->
-<!--                		<span class="ps_box">-->
-<!--                			<input type="text" class="form-control" id="yy" placeholder="년(4자)" maxlength="4">-->
-<!--                		</span>-->
-<!--          </div>-->
+        <div class="form-group">
+          <label for="exampleInputNum" class="form-label mt-4">전화번호</label>
+          <input type="text" class="form-control" id="exampleInputNum" v-model="user_num">
+        </div>
 
-<!--          <div class="bir_mm">-->
-<!--                		<span class="ps_box focus">-->
-<!--                      <select class="form-select" id="mm" id="exampleSelect1">-->
-<!--                        <option>월</option>-->
-<!--                        <option>1</option>-->
-<!--                        <option>2</option>-->
-<!--                        <option>3</option>-->
-<!--                        <option>4</option>-->
-<!--                        <option>5</option>-->
-<!--                        <option>6</option>-->
-<!--                        <option>7</option>-->
-<!--                        <option>8</option>-->
-<!--                        <option>9</option>-->
-<!--                        <option>10</option>-->
-<!--                        <option>11</option>-->
-<!--                        <option>12</option>-->
-<!--						          </select>-->
-<!--                		</span>-->
-<!--          </div>-->
+        <div class="form-group">
+          <label for="exampleInputAddr" class="form-label mt-4">주소</label>
+          <input type="text" class="form-control mb-4" id="exampleInputAddr" v-model="user_addr">
+        </div>
 
-
-<!--          <div class="bir_dd">-->
-<!--                		<span class="ps_box">-->
-<!--                			<input type ="text" class="form-control" id ="dd" placeholder="일" maxlength="2">-->
-<!--                		</span>-->
-<!--          </div>-->
-
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--          <label for="exampleSelect1" class="form-label mt-4">성별</label>-->
-<!--          <select class="form-select" id="exampleSelect1">-->
-<!--            <option>남자</option>-->
-<!--            <option>여자</option>-->
-<!--            <option>거북</option>-->
-<!--          </select>-->
-<!--        </div>-->
-
-
-<!--        <div class="form-group">-->
-<!--          <label for="exampleInputEmail1" class="form-label mt-4">본인 확인 이메일</label>-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="선택입력">-->
-<!--        </div>-->
 
         <div class="d-grid gap-2">
           <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
         </div>
       </form>
     </div>
-
   </section>
-
 </template>
 
 <script>
@@ -123,7 +64,11 @@ export default {
     return {
       user_id: '',
       user_pw: '',
-      user_name: ''
+      pwd_check: '',
+      user_name: '',
+      user_num:'',
+      user_addr:''
+
     }
   },
 
@@ -141,17 +86,31 @@ export default {
         return
       }
 
+      if (this.pwd_check != this.user_pw) {
+        alert('비밀번호가 일치하지 않습니다.')
+        return
+      }
+
       if (this.user_name === '') {
         alert('이름을 입력하세요.')
         return
       }
 
+      if (this.user_num === '') {
+        alert('번호를 입력하세요.')
+        return
+      }
+
+      if (this.user_addr === '') {
+        alert('주소를 입력하세요.')
+        return
+      }
+
       try {
-        let joinResult = await this.join({user_id: this.user_id, user_pw: this.user_pw, user_name: this.user_name})
+        let joinResult = await this.join({user_id: this.user_id, user_pw: this.user_pw, user_name: this.user_name, user_num: this.user_num, user_addr: this.user_addr})
         if (joinResult) {
           this.goToPages1()
         }
-
       } catch (err) {
         if (err.message.indexOf('Network Error') > -1) {
           alert('서버에 접속할 수 없습니다. 상태를 확인해주세요.')
@@ -167,7 +126,8 @@ export default {
         name: 'Login'
       })
     }
-  },
+  }
+  ,
 
   computed: {
     ...mapGetters({

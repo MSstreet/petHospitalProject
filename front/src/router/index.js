@@ -6,6 +6,8 @@ import BoardWrite from '@/views/board/BoardWrite.vue'
 import Login from "@/views/common/Login"
 import Join from "@/views/common/Join"
 import HospitalList from '@/views/hospital/HospitalList'
+import MyPage from '@/views/common/MyPage'
+import EditPassword from '@/views/common/EditPassword'
 
 // import {store} from "@/vuex/store";
 
@@ -21,6 +23,18 @@ const requireAuth = () => (from, to, next) => {
         return next()
     } // isLogin === true면 페이지 이동
     next('/login') // isLogin === false면 다시 로그인 화면으로 이동
+
+
+}
+
+const requireAuth1 = () => (from, to, next) => {
+
+    const token = localStorage.getItem('user_token')
+
+    if (token) {
+        store.state.isLogin = true
+        return next()
+    }
 }
 
 const routes = [
@@ -39,6 +53,16 @@ const routes = [
         name: 'Login',
         component: Login  //로그인 컴포넌트 추가
     },
+    {
+        path: '/mypage',
+        name: 'MyPage',
+        component: MyPage  //로그인 컴포넌트 추가
+    },
+    {
+        path: '/pw_edit',
+        name: 'EditPassword',
+        component: EditPassword
+    },
     // {
     //     path: '/about',
     //     name: 'About',
@@ -51,13 +75,13 @@ const routes = [
         path: '/board/list',
         name: 'BoardList',
         component: BoardList,
-        // beforeEnter: requireAuth()
+        beforeEnter: requireAuth1()
     },
     {
         path: '/board/detail',
         name: 'BoardDetail',
         component: BoardDetail,
-        beforeEnter: requireAuth()
+        beforeEnter: requireAuth1()
     },{
         path: '/board/write',
         name: 'BoardWrite',
