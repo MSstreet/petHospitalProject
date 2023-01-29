@@ -8,7 +8,7 @@
       <router-link to="/hospital/list">동물병원</router-link> |
 
       <router-link to="/login" v-if="!this.$store.state.isLogin">로그인 | </router-link>
-      <router-link to="/mypage" v-if="this.$store.state.isLogin" >내 정보</router-link> |
+      <router-link to="/mypage" v-if="this.$store.state.isLogin" >내 정보</router-link>
 
       <a v-if="this.$store.state.isLogin" @click="fnLogout">로그아웃</a>
 

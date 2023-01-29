@@ -1,16 +1,17 @@
 <template>
-
-  <div class="container px-4" v-for="(row, idx) in list" :key="idx">
+<div class="container center-block">
+  <div class="container px-4 test-class" v-for="(row, idx) in list" :key="idx">
     <div  class="row mt-5">
-      <div class="col-6">
+
+      <div class="col-12">
           <div class="card mb-3" style="max-width: 450px;">
             <div class="row g-0">
 
-              <div class="col-md-4">
-                <img src="" class="img-fluid rounded-start" alt="">
-              </div>
+<!--              <div class="col-md-4">-->
+<!--                <img src="" class="img-fluid rounded-start" alt="">-->
+<!--              </div>-->
 
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="card-body">
                   <h5 class="card-title">{{ row.hospital_id}}</h5>
                   <p class="card-text mb-1">{{ row.hospital_num }}</p>
@@ -22,29 +23,30 @@
             </div>
           </div>
         </div>
-      <div class="col-6">
-        <div class="card mb-3" style="max-width: 450px;">
-          <div class="row g-0">
 
-            <div class="col-md-4">
-              <img src="" class="img-fluid rounded-start" alt="">
-            </div>
+<!--      <div class="col-6">-->
+<!--        <div class="card mb-3" style="max-width: 450px;">-->
+<!--          <div class="row g-0">-->
 
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ row.hospital_id}}</h5>
-                <p class="card-text mb-1">{{ row.hospital_num }}</p>
-                <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>
-                <p class="card-text mb-1">{{ row.hospital_addr }}</p>
-                <p class="card-text mb-1">{{ row.hospital_score }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!--            <div class="col-md-4">-->
+<!--              <img src="" class="img-fluid rounded-start" alt="">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-8">-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">{{ row.hospital_id}}</h5>-->
+<!--                <p class="card-text mb-1">{{ row.hospital_num }}</p>-->
+<!--                <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>-->
+<!--                <p class="card-text mb-1">{{ row.hospital_addr }}</p>-->
+<!--                <p class="card-text mb-1">{{ row.hospital_score }}</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
    </div>
   </div>
-
+</div>
 
 
 
@@ -225,6 +227,11 @@ export default {
     padding: 0 0 0 0;
     border : 0;
     float: left;
+  }
+
+  .test-class {
+    display: inline-block;
+    width: 35rem !important;;
   }
 
 </style>

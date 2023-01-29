@@ -75,7 +75,7 @@ const routes = [
         path: '/board/list',
         name: 'BoardList',
         component: BoardList,
-        beforeEnter: requireAuth1()
+        // beforeEnter: requireAuth1()
     },
     {
         path: '/board/detail',
