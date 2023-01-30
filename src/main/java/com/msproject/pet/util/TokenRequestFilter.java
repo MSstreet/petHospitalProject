@@ -42,7 +42,6 @@ public class TokenRequestFilter extends OncePerRequestFilter {
                 doFilter(request, response, filterChain);
             }
 
-
             else {
                 String token = parseJwt(request);
                 if (token == null) {

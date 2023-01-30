@@ -1,5 +1,11 @@
 <template>
-<div class="container center-block">
+<div class="container text-center mb-5">
+  <div >
+    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center">Animal Hospital List</h1>
+<!--    <i class="fas fa-sheep"></i>-->
+<!--    <i class="fas fa-squirrel"></i>-->
+<!--    <i class="fas fa-pig"></i>-->
+  </div>
   <div class="container px-4 test-class" v-for="(row, idx) in list" :key="idx">
     <div  class="row mt-5">
 
@@ -46,13 +52,10 @@
 <!--      </div>-->
    </div>
   </div>
+
+
+
 </div>
-
-
-
-
-
-
 
 
 
@@ -79,40 +82,33 @@
 <!--      </tr>-->
 <!--      </tbody>-->
 <!--    </table>-->
+  <div style="position: center">
+    <div >
+      <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
+        <span class="center">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
 
+<!--             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
+            <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
+            <template v-for=" (n,index) in paginavigation()">
+                <template v-if="paging.page==n">
+                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+                </template>
 
-
-
-
-
-
-
-
-
-
-  <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
-    <span class="center">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
-
-         <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
-
-        <template v-for=" (n,index) in paginavigation()">
-            <template v-if="paging.page==n">
-              <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+                <template v-else>
+                   <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
+                </template>
             </template>
 
-            <template v-else>
-               <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
-            </template>
-        </template>
-
-         <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
-            @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
-        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
-      </ul>
-    </span>
-  </nav>
+             <a href="javascript:;" class="page-link" v-if="paging.total_page_cnt > paging.end_page"
+                @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
+            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
+          </ul>
+        </span>
+      </nav>
+    </div>
+  </div>
 
 </template>
 
@@ -234,4 +230,7 @@ export default {
     width: 35rem !important;;
   }
 
+  /*.item-justify{*/
+  /*  align-items: center !important;*/
+  /*}*/
 </style>

@@ -34,18 +34,58 @@
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            부천시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                범안로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                중동로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                역곡로
+              </div>
+            </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                상일로
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                소향로
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                송내대로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                부일로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                원종로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                상동로
               </div>
             </div>
           </div>
@@ -55,20 +95,33 @@
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            수원시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                권선구
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                영통구
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                장안구
+              </div>
+            </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
-              </div>
-              <div class="purple-link mb-1">
-                강남구
-              </div>
-              <div class="purple-link mb-1">
-                강남구
+                팔달구
               </div>
             </div>
+
           </div>
         </div>
 
@@ -76,90 +129,164 @@
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            성남시
           </div>
+
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                수정구
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                분당구
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                중원구
               </div>
             </div>
           </div>
+
         </div>
 
-      </div>
-
-
-      <div class="row text-left px-3" style="margin-top: 48px;">
-
-        <div class="col-4 px-2">
+        <div class="col-4 px-2 mt-5">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            용인시
           </div>
+
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                수지구
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                기흥구
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                처안구
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-4 px-2">
+        <div class="col-4 px-2 mt-5">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            시흥시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                수인로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                배곧로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                일곶중앙로
+              </div>
+            </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                수인로
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                승지로
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                은행로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                함송로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                정왕대로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                호현로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                대야로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                정왕천로
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1">
+                대은로
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-4 px-2">
+        <div class="col-4 px-2 mt-5">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            서울
+            안산시
           </div>
+
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
+                단원구
               </div>
+            </div>
+            <div class="col-4 p-0">
               <div class="purple-link mb-1">
-                강남구
-              </div>
-              <div class="purple-link mb-1">
-                강남구
+                상록구
               </div>
             </div>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
 
       </div>
 

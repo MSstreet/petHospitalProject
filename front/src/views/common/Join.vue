@@ -15,10 +15,13 @@
       <form @submit.prevent="fnJoin" ref="form">
 
 
+
         <div class="form-group">
           <label for="exampleInputEmail1" class="form-label mt-4">아이디</label>
           <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id" @change="validCheck">
         </div>
+
+
 
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">비밀번호</label>

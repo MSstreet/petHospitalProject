@@ -3,7 +3,8 @@
   <div class="container-fluid px-4">
 
     <div >
-      <h2 class="mt-4">communication</h2>
+      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">Communication</h1>
+
     </div>
 
 <!--    <div class="board-list">-->
