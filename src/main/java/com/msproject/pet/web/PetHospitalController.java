@@ -5,6 +5,7 @@ import com.msproject.pet.model.Header;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.service.PetHospitalService;
 import com.msproject.pet.web.dtos.PetHospitalDto;
+import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -26,12 +27,21 @@ public class PetHospitalController {
     }
 
     @GetMapping("/hospital/list")
-    public Header<List<PetHospitalDto>> hospitalList(
+    public Header<List<PetHospitalListReviewCountDto>> hospitalList(
             @PageableDefault(sort = {"idx"}) Pageable pageable,
             SearchCondition searchCondition)
     {
-        return petHospitalService.getHospitalList(pageable, searchCondition);
+        return petHospitalService.getHospitalListWithReviewCount(pageable, searchCondition);
     }
+
+
+//    @GetMapping("/hospital/list")
+//    public Header<List<PetHospitalDto>> hospitalList(
+//            @PageableDefault(sort = {"idx"}) Pageable pageable,
+//            SearchCondition searchCondition)
+//    {
+//        return petHospitalService.getHospitalList(pageable, searchCondition);
+//    }
 
     @GetMapping("/hospital/{id}")
     public PetHospitalDto getPetHospital(@PathVariable Long id){

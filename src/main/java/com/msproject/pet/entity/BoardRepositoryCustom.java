@@ -21,6 +21,7 @@ public class BoardRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     public Page<BoardEntity> findAllBySearchCondition(Pageable pageable, SearchCondition searchCondition) {
+
         JPAQuery<BoardEntity> query = queryFactory.selectFrom(boardEntity)
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
 

@@ -4,34 +4,18 @@ import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
-import com.msproject.pet.repository.PetHospitalRepositortCustom;
+import com.msproject.pet.repository.PetHospitalRepositoryCustom;
 import com.msproject.pet.repository.PetHospitalRepository;
 
 import com.msproject.pet.web.dtos.PetHospitalDto;
+import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.json.JSONException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import org.json.simple.parser.ParseException;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +27,8 @@ public class PetHospitalService {
 
     private final PetHospitalRepository petHospitalRepository;
 
-    private final PetHospitalRepositortCustom petHospitalRepositortCustom;
+    private final PetHospitalRepositoryCustom petHospitalRepositoryCustom;
+
 
     public PetHospitalEntity create(PetHospitalDto petHospitalDto) {
 
@@ -94,13 +79,51 @@ public class PetHospitalService {
 
     }
 
+    public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount(Pageable pageable, SearchCondition searchCondition) {
+
+        List<PetHospitalListReviewCountDto> dtos = new ArrayList<>();
+
+        Page<PetHospitalListReviewCountDto> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchConditionWithReviewCount(pageable, searchCondition);
+
+        System.out.println(hospitalEntities.getTotalElements());
+
+
+        for (PetHospitalListReviewCountDto entity : hospitalEntities) {
+
+            PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
+                    .hospitalId(entity.getHospitalId())
+                    .hospitalName(entity.getHospitalName())
+                    .sigunName(entity.getSigunName())
+                    .hospitalNum(entity.getHospitalNum())
+                    .hospitalAddr(entity.getHospitalAddr())
+                    .hospitalScore(entity.getHospitalScore())
+                    .operState(entity.getOperState())
+                    .reviewCount(entity.getReviewCount())
+                    .build();
+
+            if(dto.getOperState().equals("정상")) {
+//                System.out.println(oper);
+                dtos.add(dto);
+            }
+        }
+
+        Pagination pagination = new Pagination(
+                (int) hospitalEntities.getTotalElements()
+                , pageable.getPageNumber() + 1
+                , pageable.getPageSize()
+                , 10
+        );
+
+        return Header.OK(dtos, pagination);
+
+    }
 
     public Header<List<PetHospitalDto>> getHospitalList(Pageable pageable, SearchCondition searchCondition) {
         List<PetHospitalDto> dtos = new ArrayList<>();
 
-        Page<PetHospitalEntity> hospitalEntities = petHospitalRepositortCustom.findAllBySearchCondition(pageable, searchCondition);
+        Page<PetHospitalEntity> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchCondition(pageable, searchCondition);
 
-
+//        System.out.println(hospitalEntities.getTotalElements());
 
         for (PetHospitalEntity entity : hospitalEntities) {
 
@@ -113,22 +136,6 @@ public class PetHospitalService {
                     .hospitalScore(entity.getPetHospitalScore())
                     .operState(entity.getOperState())
                     .build();
-
-//            String oper = entity.getOperState();
-//
-//            System.out.println(oper);
-//
-
-
-//            PetHospitalDto dto = PetHospitalDto.builder()
-//                    .hospitalId(entity.getHospitalId())
-//                    .hospitalName(entity.getHospitalName())
-//                    .sigunName(entity.getSigunName())
-//                    .hospitalNum(entity.getHospitalNum())
-//                    .hospitalAddr(entity.getHospitalAddr())
-//                    .build();
-
-//            String oper = entity.getOperState();
 
             if(dto.getOperState().equals("정상")) {
 //                System.out.println(oper);

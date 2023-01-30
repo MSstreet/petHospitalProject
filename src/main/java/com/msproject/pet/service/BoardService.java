@@ -75,6 +75,7 @@ public class BoardService {
 
 
     public Header<List<BoardDto>> getBoardList(Pageable pageable, SearchCondition searchCondition) {
+
         List<BoardDto> dtos = new ArrayList<>();
 
         Page<BoardEntity> boardEntities = boardRepositoryCustom.findAllBySearchCondition(pageable, searchCondition);
@@ -91,9 +92,9 @@ public class BoardService {
             dtos.add(dto);
         }
 
-        System.out.println("pageable.getPageSize() : " + pageable.getPageSize());
-        System.out.println("pageable.getPageNumber() : " + pageable.getPageNumber());
-        System.out.println("boardEntities.getTotalElements() : " + (int) boardEntities.getTotalElements());
+//        System.out.println("pageable.getPageSize() : " + pageable.getPageSize());
+//        System.out.println("pageable.getPageNumber() : " + pageable.getPageNumber());
+//        System.out.println("boardEntities.getTotalElements() : " + (int) boardEntities.getTotalElements());
 
         Pagination pagination = new Pagination(
                 (int) boardEntities.getTotalElements()

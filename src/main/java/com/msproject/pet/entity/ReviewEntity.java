@@ -12,7 +12,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Builder
-
+@Table(name = "ReviewEntity", indexes = {
+        @Index(name = "idx_review_hospital_id", columnList = "pet_hospital_entity_hospital_id")
+})
 @Entity
 public class ReviewEntity extends BaseEntity{
 
