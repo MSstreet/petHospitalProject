@@ -20,7 +20,7 @@ public class PetHospitalEntity {
 
     private String hospitalName;
 
-   // private String operationYn;
+    private String operState;
 
     private String hospitalNum;
 
@@ -38,7 +38,13 @@ public class PetHospitalEntity {
 
     //private BigDecimal longitude;
 
-    private float hospitalScore;
+    //private float hospitalScore;
+
+    private float petHospitalScore;
+
+    @Column(nullable = false)
+    private Integer wishScore;
+
 
     public void change(String hospitalName, String hospitalNum, String hospitalAddr, String sigunName){
         this.hospitalName = hospitalName;

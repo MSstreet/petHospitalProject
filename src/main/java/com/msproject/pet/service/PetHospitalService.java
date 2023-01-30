@@ -52,8 +52,15 @@ public class PetHospitalService {
                .hospitalName(petHospitalDto.getHospitalName())
                .hospitalNum(petHospitalDto.getHospitalNum())
                .hospitalAddr(petHospitalDto.getHospitalAddr())
-               .hospitalScore(petHospitalDto.getHospitalScore())
+               .petHospitalScore(petHospitalDto.getHospitalScore())
                .build();
+
+//        PetHospitalEntity entity = PetHospitalEntity.builder()
+//                .sigunName(petHospitalDto.getSigunName())
+//                .hospitalName(petHospitalDto.getHospitalName())
+//                .hospitalNum(petHospitalDto.getHospitalNum())
+//                .hospitalAddr(petHospitalDto.getHospitalAddr())
+//                .build();
 
         return petHospitalRepository.save(entity);
     }
@@ -93,6 +100,8 @@ public class PetHospitalService {
 
         Page<PetHospitalEntity> hospitalEntities = petHospitalRepositortCustom.findAllBySearchCondition(pageable, searchCondition);
 
+
+
         for (PetHospitalEntity entity : hospitalEntities) {
 
             PetHospitalDto dto = PetHospitalDto.builder()
@@ -101,10 +110,30 @@ public class PetHospitalService {
                     .sigunName(entity.getSigunName())
                     .hospitalNum(entity.getHospitalNum())
                     .hospitalAddr(entity.getHospitalAddr())
-                    .hospitalScore(entity.getHospitalScore())
+                    .hospitalScore(entity.getPetHospitalScore())
+                    .operState(entity.getOperState())
                     .build();
 
-            dtos.add(dto);
+//            String oper = entity.getOperState();
+//
+//            System.out.println(oper);
+//
+
+
+//            PetHospitalDto dto = PetHospitalDto.builder()
+//                    .hospitalId(entity.getHospitalId())
+//                    .hospitalName(entity.getHospitalName())
+//                    .sigunName(entity.getSigunName())
+//                    .hospitalNum(entity.getHospitalNum())
+//                    .hospitalAddr(entity.getHospitalAddr())
+//                    .build();
+
+//            String oper = entity.getOperState();
+
+            if(dto.getOperState().equals("정상")) {
+//                System.out.println(oper);
+                dtos.add(dto);
+            }
         }
 
         Pagination pagination = new Pagination(

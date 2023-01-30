@@ -30,7 +30,7 @@ public class PetHospitalRepositortCustom {
         long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
 
         List<PetHospitalEntity> results = query
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(petHospitalEntity.hospitalId.desc())

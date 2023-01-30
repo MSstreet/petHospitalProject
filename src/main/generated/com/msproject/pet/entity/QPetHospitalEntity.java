@@ -27,9 +27,13 @@ public class QPetHospitalEntity extends EntityPathBase<PetHospitalEntity> {
 
     public final StringPath hospitalNum = createString("hospitalNum");
 
-    public final NumberPath<Float> hospitalScore = createNumber("hospitalScore", Float.class);
+    public final StringPath operState = createString("operState");
+
+    public final NumberPath<Float> petHospitalScore = createNumber("petHospitalScore", Float.class);
 
     public final StringPath sigunName = createString("sigunName");
+
+    public final NumberPath<Integer> wishScore = createNumber("wishScore", Integer.class);
 
     public QPetHospitalEntity(String variable) {
         super(PetHospitalEntity.class, forVariable(variable));

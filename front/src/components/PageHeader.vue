@@ -38,11 +38,15 @@
             </li>
             <li class="nav-item">
               <router-link to="/login"  class="nav-link" v-if="!this.$store.state.isLogin">로그인</router-link>
-              <a v-if="this.$store.state.isLogin" class="nav-link" @click="fnLogout">로그아웃</a>
             </li>
 
             <li class="nav-item">
               <router-link to="/mypage"  class="nav-link" v-if="this.$store.state.isLogin" >내 정보</router-link>
+
+            </li>
+
+            <li class="nav-item">
+              <a v-if="this.$store.state.isLogin" class="nav-link" @click="fnLogout">로그아웃</a>
             </li>
 
             <li class="nav-item">
@@ -52,9 +56,7 @@
 
         </div>
       </div>
-
       <!--      <router-link to="/about">About</router-link> |-->
-
     </nav>
 
 

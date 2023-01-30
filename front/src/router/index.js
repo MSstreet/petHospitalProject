@@ -9,6 +9,9 @@ import HospitalList from '@/views/hospital/HospitalList'
 import MyPage from '@/views/common/MyPage'
 import EditPassword from '@/views/common/EditPassword'
 
+import HospitalDetail from '@/views/hospital/HospitalDetail'
+
+
 // import {store} from "@/vuex/store";
 
 import store from "@/vuex/store";
@@ -75,7 +78,7 @@ const routes = [
         path: '/board/list',
         name: 'BoardList',
         component: BoardList,
-        // beforeEnter: requireAuth1()
+         beforeEnter: requireAuth1()
     },
     {
         path: '/board/detail',
@@ -91,6 +94,10 @@ const routes = [
         path: '/hospital/list',
         name: 'HospitalList',
         component: HospitalList
+    },{
+        path: '/hospital/detail',
+        name: 'HospitalDetail',
+        component: HospitalDetail
     }
 ]
 

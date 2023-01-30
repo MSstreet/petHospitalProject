@@ -19,7 +19,7 @@
 
               <div class="col-md-12">
                 <div class="card-body">
-                  <h5 class="card-title">{{ row.hospital_id}}</h5>
+                  <h5 class="card-title"><a v-on:click="fnView(`${row.hospital_id}`)">{{ row.hospital_name}}</a></h5>
                   <p class="card-text mb-1">{{ row.hospital_num }}</p>
                   <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>
                   <p class="card-text mb-1">{{ row.hospital_addr }}</p>
@@ -184,15 +184,14 @@ export default {
         }
       })
     },
+    fnView(idx) {
+      this.requestBody.idx = idx
+      this.$router.push({
+        path: './detail',
+        query: this.requestBody
+      })
+    },
 
-    // fnView(idx) {
-    //   this.requestBody.idx = idx
-    //   this.$router.push({
-    //     path: './detail',
-    //     query: this.requestBody
-    //   })
-    // },
-    //
     // fnWrite() {
     //   this.$router.push({
     //     path: './write'

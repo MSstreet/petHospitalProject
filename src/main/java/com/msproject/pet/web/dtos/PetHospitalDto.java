@@ -17,7 +17,9 @@ public class PetHospitalDto {
 
     private String hospitalName;
 
-    // private String operationYn;
+    //private String operationYn;
+
+    private String operState;
 
     private String hospitalNum;
 
