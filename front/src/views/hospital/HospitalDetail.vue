@@ -1,5 +1,7 @@
 <template>
 
+
+<div class="text-center">
   <div style="width: 960px; display: inline-block">
     <div class="row p-3">
       <div class="col-12 border-0">
@@ -21,29 +23,28 @@
           </div>
         </div>
 
-        <div class="pb-2 pt-2">
-          <button type="button" class="btn btn-primary btn-lg">Primary</button>
+        <div class="pb-2 pt-2 btn-pos">
+          <button type="button" class="btn btn-primary btn-lg">리뷰 남기기</button>
         </div>
 
-        <div class="text-left ">
-          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">
-            여기다가 주소를 입력하면 되겠어
-          </div>
-          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">
-            여기다가 전화번호 입력하면 되겠어
-          </div>
-        </div>
-
+<!--        <div class="text-left info-pos">-->
+<!--          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">-->
+<!--            여기다가 주소를 입력하면 되겠어-->
+<!--          </div>-->
+<!--          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">-->
+<!--            여기다가 전화번호 입력하면 되겠어-->
+<!--          </div>-->
+<!--        </div>-->
 
       </div>
     </div>
 
 
-    <div class="row border-top border-bottom px-3 middle-tab" style="top:72px !important;">
-      <div>
-        <button class="btn" @click="changeComponent('BoardDetail')">follower
+    <div class="row border-top border-bottom text-center px-3 middle-tab" style="top:72px !important;">
+      <div class="position">
+        <button class="btn fs-3" @click="changeComponent('HospitalInfo')">병원 정보
         </button>
-        <button class="btn" @click="changeComponent('BoardList')">follow
+        <button class="btn fs-3" @click="changeComponent('ReviewDetail')">리뷰
         </button>
       </div>
       <keep-alive>
@@ -53,19 +54,21 @@
 
 
   </div>
-
+</div>
 </template>
 
 <script>
-import BoardDetail from "@/views/board/BoardDetail";
-import BoardList from "@/views/board/BoardList";
+import ReviewDetail from "@/views/review/ReviewDetail";
+import HospitalInfo from "@/views/hospital/HospitalInfo";
+
+
 export default {
   components:{
-    BoardDetail,
-    BoardList
+    ReviewDetail,
+    HospitalInfo
   },
   data(){
-    return {comp:'BoardList'}
+    return {comp:'HospitalInfo'}
   },
   methods:{
     changeComponent: function (componentName){
@@ -86,6 +89,17 @@ export default {
     position: relative;
     right: 0.5rem;
     top: 0.2rem;
+  }
+  .position{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+  }
+  .btn-pos{
+    text-align: left;
+  }
+  .info-pos{
+    text-align: left;
   }
 
 </style>

@@ -10,7 +10,10 @@ import MyPage from '@/views/common/MyPage'
 import EditPassword from '@/views/common/EditPassword'
 
 import HospitalDetail from '@/views/hospital/HospitalDetail'
+import ReviewWrite from '@/views/review/ReviewWrite'
+import ReviewDetail from '@/views/review/ReviewDetail'
 
+import HospitalInfo from '@/views/hospital/HospitalInfo'
 
 // import {store} from "@/vuex/store";
 
@@ -98,7 +101,20 @@ const routes = [
         path: '/hospital/detail',
         name: 'HospitalDetail',
         component: HospitalDetail
+    },{
+        path: '/hospital/info',
+        name: 'HospitalInfo',
+        component: HospitalInfo
+    },{
+        path: '/review/write',
+        name: 'ReviewWrite',
+        component: ReviewWrite
+    },{
+        path: '/review/detail',
+        name: 'ReviewDetail',
+        component: ReviewDetail
     }
+
 ]
 
 const router = createRouter({

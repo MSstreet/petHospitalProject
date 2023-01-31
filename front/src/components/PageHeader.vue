@@ -36,6 +36,11 @@
             <li class="nav-item">
               <router-link to="/hospital/list" class="nav-link">동물병원</router-link>
             </li>
+
+            <li class="nav-item">
+              <router-link v-if="this.$store.state.isLogin" to="/review/write" class="nav-link">리뷰 작성</router-link>
+            </li>
+
             <li class="nav-item">
               <router-link to="/login"  class="nav-link" v-if="!this.$store.state.isLogin">로그인</router-link>
             </li>
@@ -73,9 +78,10 @@ export default {
     fnLogout() {
       localStorage.removeItem("user_token")
       localStorage.removeItem("user_role")
-      location.reload()
+      //location.reload()
       //setTimeout(()=>  {this.goToPages1(),1000})
-
+      this.$store.state.isLogin = false
+      this.goToPages1()
     },
     goToPages1() {
       this.$router.push({
