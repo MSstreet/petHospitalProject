@@ -12,5 +12,4 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     @Query("select r from ReviewEntity r where r.petHospitalEntity.hospitalId =:hospital_id")
     Page<ReviewEntity> listOfReview(@Param("hospital_id") Long hospital_id, Pageable pageable);
 
-
 }

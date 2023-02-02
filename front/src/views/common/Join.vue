@@ -14,36 +14,47 @@
 
       <form @submit.prevent="fnJoin" ref="form">
 
-
+<!--        <div class="form-group">-->
+<!--          <label for="exampleInputEmail1" class="form-label mt-4">아이디</label>-->
+<!--          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id" @change="validCheck">-->
+<!--        </div>-->
 
         <div class="form-group">
           <label for="exampleInputEmail1" class="form-label mt-4">아이디</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id" @change="validCheck">
+          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id" @change ="validIdCheck">
         </div>
 
 
 
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">비밀번호</label>
-          <input type="password" class="form-control" id="inputValid" v-model="user_pw" @change="validCheck">
+          <input type="password" class="form-control" id="inputValid" v-model="user_pw" @change="validPasswordCheck">
           <div class="valid-feedback"></div>
         </div>
 
+
+
         <div class="form-group has-danger">
           <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>
-          <input type="password" class="form-control" id="inputInvalid" v-model="pwd_check" @change="validCheck">
+          <input type="password" class="form-control" id="inputInvalid" v-model="pwd_check" @change="validSamePasswordCheck">
           <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
         </div>
 
+
+
         <div class="form-group">
           <label for="exampleInputName" class="form-label mt-4">이름</label>
-          <input type="text" class="form-control" id="exampleInputName" v-model="user_name" @change="validCheck">
+          <input type="text" class="form-control" id="exampleInputName" v-model="user_name" @change="validNameCheck">
         </div>
+
+
 
         <div class="form-group">
           <label for="exampleInputNum" class="form-label mt-4">전화번호</label>
-          <input type="text" class="form-control" id="exampleInputNum" v-model="user_num" @change="validCheck">
+          <input type="text" class="form-control" id="exampleInputNum" v-model="user_num" @change="validPhoneNumCheck">
         </div>
+
+
 
         <div class="form-group">
           <label for="exampleInputAddr" class="form-label mt-4">주소</label>
@@ -65,22 +76,28 @@ import {mapActions, mapGetters} from 'vuex'   //vuex 추가
 export default {
   data() {
     return {
+      check : false,
+
       user_id: '',
       user_pw: '',
       pwd_check: '',
       user_name: '',
       user_num: '',
       user_addr: ''
-
     }
   },
-
   methods: {
     ...mapActions(['join']),     //vuex/actions에 있는 login 함수
 
     async fnJoin() {       //async 함수로 변경
 
       this.submitCheck()
+
+      console.log(this.check)
+
+      if(!(this.check)){
+        return false
+      }
       try {
         let joinResult = await this.join({
           user_id: this.user_id,
@@ -92,7 +109,8 @@ export default {
         if (joinResult) {
           this.goToPages1()
         }
-      } catch (err) {
+      }
+      catch (err) {
         if (err.message.indexOf('Network Error') > -1) {
           alert('서버에 접속할 수 없습니다. 상태를 확인해주세요.')
         } else {
@@ -100,65 +118,165 @@ export default {
         }
       }
     }
+    ,validIdCheck(){
+      if (this.user_id !== '' && this.user_id.length < 5) {
+        alert('ID는 최소한 5글자 이상이어야 합니다.')
+        this.check = false
+        return
+      }else{
+        this.check = true
+        console.log("1" + this.check)
+        return
+      }
+    }
+    ,validPasswordCheck(){
+      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+
+      if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
+        alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        this.check = false
+        return
+      }else{
+        this.check = true
+        return
+      }
+    }
+    ,validSamePasswordCheck(){
+      if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
+        alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
+        this.check = false
+        return
+      }else{
+        this.check = true
+        return
+      }
+    }
+    ,validNameCheck(){
+      //const nameCheck = new RegExp("^[가-힣]+$");
+      if (this.user_name == '') {
+        alert('이름을 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+        return
+      }
+    }
+
+    // ,validPhoneNumCheck(){
+    //   const phoneCheck = new RegExp("^[0-9\\-]{11,13}$");
+    //
+    //   if (this.user_num !== '') {
+    //     alert('번호를 입력하세요.')
+    //     this.check = false
+    //     return
+    //   }else if(!phoneCheck.test(this.user_num)){
+    //     // this.check = false
+    //     return
+    //   }else{
+    //     this.check = true
+    //     return
+    //   }
+    // }
+
     , validCheck() {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$");
       const nameCheck = "^[가-힣]+$";
-      const phoneCheck = "^[0-9\\-]{11,13}$";
+      const phoneCheck = new RegExp("^[0-9\\-]{11,13}$");
+
+      // if (this.user_id !== '' && this.user_id.length < 5) {
+      //   alert('ID는 최소한 5글자 이상이어야 합니다.')
+      //   this.check = false
+      //   return
+      // }else{
+      //   this.check = true
+      //   console.log("1" + this.check)
+      // }
+
+      // if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
+      //   alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+      //   return
+      // }
+
+      // 필요 없음 두 개 같은지 확인하면 됨
+      // if (this.pwd_check !== '' && !pwCheck.test(this.pwd_check)) {
+      //   alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+      //   this.check = false
+      //   return
+      //  }else{
+      //   this.check = true
+      //   return
+      // }
+
+      // if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
+      //   alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
+      //   return
+      // }else{
+      //   this.check = true
+      //   return
+      // }
+
+    }
+
+    , submitCheck() {
+      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
 
       if (this.user_id !== '' && this.user_id.length < 5) {
         alert('ID는 최소한 5글자 이상이어야 합니다.')
+        this.check = false
         return
+      }else{
+        this.check = true
+        console.log("1" + this.check)
+        //return
       }
 
       if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
         alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        this.check = false
         return
-      }
-
-      if (this.pwd_check !== '' && !pwCheck.test(this.pwd_check)) {
-        alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
-        return
+      }else{
+        this.check = true
+        //return
       }
 
       if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
         alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
-
-
+        this.check = false
         return
+      }else{
+        this.check = true
+        //return
+      }
+
+      if (this.user_name == '') {
+        alert('이름을 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+        //return
+      }
+
+      if(this.user_num == ''){
+        alert('전화번호를 입력하세요')
+        this.check = false
+        return
+      }else{
+        this.check = true
+        //return
+      }
+
+      if(this.user_addr == ''){
+        alert('주소를 입력하세요')
+        this.user_addr = false
+        return
+      }else{
+        this.check = true
+        //return
       }
     }
-    , submitCheck() {
-      if (this.user_id === '') {
-        alert('ID를 입력하세요.')
-        return
-      }
-
-      if (this.user_pw === '') {
-        alert('비밀번호를 입력하세요.')
-        return
-      }
-
-      if (this.pwd_check !== this.user_pw) {
-        alert('비밀번호가 일치하지 않습니다.')
-        return
-      }
-
-      if (this.user_name === '') {
-        alert('이름을 입력하세요.')
-        return
-      }
-
-      if (this.user_num === '') {
-        alert('번호를 입력하세요.')
-        return
-      }
-
-      if (this.user_addr === '') {
-        alert('주소를 입력하세요.')
-        return
-      }
-    },
-    goToPages1() {
+    ,goToPages1() {
       this.$router.push({
         // path: './write',
         name: 'Login'

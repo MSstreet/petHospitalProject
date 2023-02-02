@@ -73,7 +73,6 @@ public class BoardService {
 //        return Header.OK(dtos, pagination);
 //    }
 
-
     public Header<List<BoardDto>> getBoardList(Pageable pageable, SearchCondition searchCondition) {
 
         List<BoardDto> dtos = new ArrayList<>();

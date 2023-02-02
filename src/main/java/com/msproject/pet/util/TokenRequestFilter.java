@@ -40,6 +40,8 @@ public class TokenRequestFilter extends OncePerRequestFilter {
                 doFilter(request, response, filterChain);
             }else if ("/hospital/list".equals(request.getRequestURI())) {
                 doFilter(request, response, filterChain);
+            }else if ("/hospital/detail".equals(request.getRequestURI())) {
+                doFilter(request, response, filterChain);
             }
 
             else {

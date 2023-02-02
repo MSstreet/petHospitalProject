@@ -29,7 +29,6 @@ public class PetHospitalService {
 
     private final PetHospitalRepositoryCustom petHospitalRepositoryCustom;
 
-
     public PetHospitalEntity create(PetHospitalDto petHospitalDto) {
 
        PetHospitalEntity entity = PetHospitalEntity.builder()
@@ -76,8 +75,15 @@ public class PetHospitalService {
                 .hospitalNum(entity.getHospitalNum())
                 .hospitalAddr(entity.getHospitalAddr())
                 .build();
-
     }
+
+    public PetHospitalListReviewCountDto getPetHospitalWithReviewCount(Long id) {
+        PetHospitalListReviewCountDto petHospitalListReviewCountDto = petHospitalRepositoryCustom.findWithReviewCountById(id);
+
+        return petHospitalListReviewCountDto;
+    }
+
+
 
     public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount(Pageable pageable, SearchCondition searchCondition) {
 

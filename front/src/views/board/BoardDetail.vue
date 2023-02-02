@@ -54,6 +54,7 @@ export default {
 
   mounted() {
     this.fnGetView()
+    console.log(this.idx)
   },
   methods: {
     fnGetView() {
@@ -70,6 +71,7 @@ export default {
         }
       })
     },
+
     fnList() {
       delete this.requestBody.idx
 
@@ -78,6 +80,8 @@ export default {
         query: this.requestBody
       })
     },
+
+
     fnUpdate() {
       this.$router.push({
         path: './write',

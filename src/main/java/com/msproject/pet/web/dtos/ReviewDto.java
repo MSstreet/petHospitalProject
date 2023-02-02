@@ -15,7 +15,6 @@ public class ReviewDto {
 
     private Long reviewId;
 
-
     private Long petHospitalNum;
 
     private Long userNum;

@@ -25,7 +25,7 @@
 
           <div class="form-group">
             <label for="exampleInputPassword1" class="mb-1 mt-4">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"  v-model="user_pw">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="on" v-model="user_pw">
           </div>
 
 

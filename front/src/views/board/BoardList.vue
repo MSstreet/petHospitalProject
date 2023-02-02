@@ -22,6 +22,7 @@
         <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
 
         <button @click="fnPage()" class="ms-2">검색</button>
+
         <a class="btn btn-primary float-end" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
 
 <!--        <a class="btn btn-primary float-end" > &lt;!&ndash; <i class="fas fa-table me-1"></i> &ndash;&gt;-->

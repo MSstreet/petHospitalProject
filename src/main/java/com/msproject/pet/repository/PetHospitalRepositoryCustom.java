@@ -36,8 +36,7 @@ public class PetHospitalRepositoryCustom {
 
         long total = query.stream().count();
 
-        System.out.println("total : " + total);
-
+        //System.out.println("total : " + total);
 
         List<PetHospitalEntity> results = query
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
@@ -47,7 +46,6 @@ public class PetHospitalRepositoryCustom {
                 .fetch();
 
         //System.out.println("resultSize : " + results.size());
-
 
         JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
         petHospitalEntity.hospitalId,
@@ -65,6 +63,28 @@ public class PetHospitalRepositoryCustom {
         //long count = dtoJPAQuery.stream().count();
 
         return new PageImpl<>(dtoList, pageable, total);
+    }
+
+    public PetHospitalListReviewCountDto findWithReviewCountById(Long id){
+
+        JPAQuery<PetHospitalEntity> query = queryFactory.selectFrom(petHospitalEntity)
+                .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity))
+                .where(petHospitalEntity.hospitalId.eq(id));
+
+        JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
+                petHospitalEntity.hospitalId,
+                petHospitalEntity.hospitalName,
+                petHospitalEntity.sigunName,
+                petHospitalEntity.operState,
+                petHospitalEntity.hospitalNum,
+                petHospitalEntity.hospitalAddr,
+                petHospitalEntity.petHospitalScore,
+                reviewEntity.count().as("reviewCount")
+        ));
+
+        PetHospitalListReviewCountDto dto = dtoJPAQuery.fetchOne();
+
+        return dto;
     }
 
 
@@ -86,8 +106,6 @@ public class PetHospitalRepositoryCustom {
 
         return new PageImpl<>(results, pageable, total);
     }
-
-
 
     private BooleanExpression searchKeywords(String sk, String sv) {
 

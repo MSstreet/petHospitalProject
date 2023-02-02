@@ -45,8 +45,10 @@ export default {
   },
   mounted() {
     this.fnGetView()
+    console.log(this.idx)
   },
   methods: {
+
     fnGetView() {
       if (this.idx !== undefined) {
         this.$axios.get(this.$serverUrl + '/board/' + this.idx, {
@@ -56,26 +58,32 @@ export default {
           this.author = res.data.author
           this.contents = res.data.contents
           this.created_at = res.data.created_at
+
+          console.log("확인" + res.data)
+
         }).catch((err) => {
           console.log(err)
         })
       }
-    },
-    fnList() {
+    }
+
+    ,fnList() {
       delete this.requestBody.idx
       this.$router.push({
         path: './list',
         query: this.requestBody
       })
-    },
-    fnView(idx) {
+    }
+
+    ,fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
         path: './detail',
         query: this.requestBody
       })
-    },
-    fnSave() {
+    }
+
+    ,fnSave() {
       let apiUrl = this.$serverUrl + '/board'
       this.form = {
         "idx": this.idx,
@@ -108,6 +116,7 @@ export default {
         })
       }
     }
+
   }
 }
 </script>

@@ -24,11 +24,12 @@ public class PetHospitalEntity {
 
     private String hospitalNum;
 
-    //private String hospitalZip;
-
-    //private String hospitalStreetZip;
-
     private String hospitalAddr; // 도로명 주소
+
+    private float petHospitalScore;
+
+    @Column(nullable = false)
+    private Integer wishScore;
 
     //private String hospitalAddr; // 지번 주소
 
@@ -40,10 +41,9 @@ public class PetHospitalEntity {
 
     //private float hospitalScore;
 
-    private float petHospitalScore;
+    //private String hospitalStreetZip;
 
-    @Column(nullable = false)
-    private Integer wishScore;
+
 
 
     public void change(String hospitalName, String hospitalNum, String hospitalAddr, String sigunName){

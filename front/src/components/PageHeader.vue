@@ -4,8 +4,6 @@
 
   <header>
 
-
-
 <!--    <div id="nav">-->
 <!--      <router-link to="/">Home</router-link> |-->
 <!--&lt;!&ndash;      <router-link to="/about">About</router-link> |&ndash;&gt;-->
@@ -63,13 +61,7 @@
       </div>
       <!--      <router-link to="/about">About</router-link> |-->
     </nav>
-
-
-
-
   </header>
-
-
 </template>
 
 <script>
@@ -88,8 +80,13 @@ export default {
         // path: './write',
         name: 'PageHome'
       })
+    },
+    goToMyPage(){
+
     }
   }
+
+
 }
 </script>
 

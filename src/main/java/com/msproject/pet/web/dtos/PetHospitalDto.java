@@ -17,17 +17,19 @@ public class PetHospitalDto {
 
     private String hospitalName;
 
-    //private String operationYn;
-
     private String operState;
 
     private String hospitalNum;
 
+    private String hospitalAddr; // 도로명 주소
+
+    private float hospitalScore;
+
+    //private String operationYn;
+
     //private String hospitalZip;
 
     //private String hospitalStreetZip;
-
-    private String hospitalAddr; // 도로명 주소
 
     //private String hospitalAddr; // 지번 주소
 
@@ -36,6 +38,4 @@ public class PetHospitalDto {
     //private BigDecimal latitude ;
 
     //private BigDecimal longitude;
-
-    private float hospitalScore;
 }

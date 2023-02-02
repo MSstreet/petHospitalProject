@@ -15,6 +15,22 @@
       <form action="" method="">
 
         <!--      <div class="mx-quto input-group mt-5">-->
+
+        <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<!--        <select v-model="search_key">-->
+<!--          <option value="">- 선택 -</option>-->
+<!--          <option value="author">작성자</option>-->
+<!--          <option value="title">제목</option>-->
+<!--          <option value="contents">내용</option>-->
+<!--        </select>-->
+
+<!--        <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
+<!--        <button @click="fnPage()" class="ms-2">검색</button>-->
+
+        <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
         <div class="mx-auto w-50 p-3 input-group input-group-lg mt-5">
           <input name="" type="text" class="form-control input-sm" placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2">
@@ -26,6 +42,8 @@
           <!--        </mx-auto>-->
           <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
         </div>
+
+
       </form>
 
       <div class="row text-left px-3" style="margin-top: 48px;">

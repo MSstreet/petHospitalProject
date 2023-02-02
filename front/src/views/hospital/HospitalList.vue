@@ -58,30 +58,6 @@
 </div>
 
 
-
-<!--    <table class="table table-hover table-striped">-->
-
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th>글번호</th>-->
-<!--        <th>제목</th>-->
-<!--        <th>작성자</th>-->
-<!--        &lt;!&ndash;            <th>조회수</th>&ndash;&gt;-->
-<!--        <th>작성일</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-
-<!--      <tbody>-->
-<!--      <tr v-for="(row, idx) in list" :key="idx">-->
-
-<!--        <td>{{ row.hospital_id }}</td>-->
-<!--        <td><a v-on:click="fnView(`${row.idx}`)">{{ row.title }}</a></td>-->
-<!--        <td>{{ row.author }}</td>-->
-<!--        <td>{{ row.created_at }}</td>-->
-
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
   <div style="position: center">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
@@ -197,6 +173,7 @@ export default {
     //     path: './write'
     //   })
     // },
+
     fnPage(n) {
       if (this.page !== n) {
         this.page = n

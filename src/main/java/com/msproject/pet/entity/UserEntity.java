@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder 
-@Table(name="TB_USER")
+@Builder
+//@Table(name="TB_USER")
 @Entity
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,6 @@ public class UserEntity extends BaseEntity {
     private String userId;
     private String userPw;
     private String userName;
-
 
     //////////////////////////////////
     private String phoneNum;
