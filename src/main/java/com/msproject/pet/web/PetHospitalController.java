@@ -26,8 +26,6 @@ public class PetHospitalController {
         return petHospitalService.create(petHospitalDto);
     }
 
-
-
     @GetMapping("/hospital/list")
     public Header<List<PetHospitalListReviewCountDto>> hospitalList(
             @PageableDefault(sort = {"idx"}) Pageable pageable,
@@ -35,7 +33,6 @@ public class PetHospitalController {
     {
         return petHospitalService.getHospitalListWithReviewCount(pageable, searchCondition);
     }
-
 
 //    @GetMapping("/hospital/list")
 //    public Header<List<PetHospitalDto>> hospitalList(
@@ -45,7 +42,6 @@ public class PetHospitalController {
 //        return petHospitalService.getHospitalList(pageable, searchCondition);
 //    }
 
-
 //    @GetMapping("/hospital/{id}")
 //    public PetHospitalDto getPetHospital(@PathVariable Long id){
 //        return petHospitalService.getPetHospital(id);
@@ -53,7 +49,6 @@ public class PetHospitalController {
 
     @GetMapping("/hospital/{id}")
     public PetHospitalListReviewCountDto getPetHospital(@PathVariable Long id){
-
         return petHospitalService.getPetHospitalWithReviewCount(id);
     }
 

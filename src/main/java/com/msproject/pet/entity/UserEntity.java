@@ -39,7 +39,6 @@ public class UserEntity extends BaseEntity{
 //
 //    private LocalDateTime updatedAt;
 
-
     public void changePassword(String userPw){
         this.userPw = userPw;
     }

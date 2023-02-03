@@ -12,6 +12,7 @@
 <!--            <span class="text-dark h4">도시</span> <span class="text-primary h4">거북</span>-->
 <!--          </a>-->
 <!--        </div>-->
+        <h1 class="fs-1 fw-bold text-center mb-5"><b style="color: #4c1192">LOGIN</b> </h1>
 
         <form @submit.prevent="fnLogin">
 
@@ -29,7 +30,7 @@
           </div>
 
 
-          <div class="d-grid gap-2">
+          <div class="d-grid gap-2 mt-2">
           <button type="submit" class="btn btn-primary mt-3">Login</button>
           </div>
 
@@ -174,4 +175,5 @@ export default {
   margin: 0 auto;
   width : 503px;
 }
+
 </style>

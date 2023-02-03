@@ -1,7 +1,6 @@
 <template>
   <div class="board-detail">
 
-
     <div class="star-rating">
       <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />
       <label for="5-stars" class="star">&#9733;</label>
@@ -19,11 +18,8 @@
       <label for="1-star" class="star">&#9733;</label>
     </div>
 
-
-
     <div class="board-contents">
       <textarea id="" cols="30" rows="10" v-model="contents" class="" style="resize: none;">
-
 
       </textarea>
     </div>
@@ -36,7 +32,6 @@
 
 
   </div>
-
 </template>
 
 <script>
@@ -52,7 +47,7 @@ export default {
   mounted() {
     //this.GetView()
     console.log(this.idx)
-    console.log("check" + this.hospital_num)
+    console.log("check!!!!!" + this.pet_hospital_num)
   },
 
   methods:{

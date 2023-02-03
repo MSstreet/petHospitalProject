@@ -3,34 +3,54 @@
 
   <div class="board-detail">
 
-<!--    <div class="common-buttons">-->
-<!--      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnSave">저장</button>&nbsp;-->
-<!--      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>-->
+
+<!--    <div class="mb-3">-->
+<!--      <label for="title">제목</label>-->
+<!--      <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">-->
 <!--    </div>-->
-<!--   -->
+
+<!--    <div class="mb-3">-->
+<!--      <label for="reg_id">작성자</label>-->
+<!--      <input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">-->
+<!--    </div>-->
 
     <div class="board-contents">
-      <input type="text" v-model="title" class="w3-input w3-border mb-1" placeholder="제목을 입력해주세요.">
-      <input type="text" v-model="author" class="w3-input w3-border" placeholder="작성자를 입력해주세요." v-if="idx === undefined">
+      <div class="mb-3">
+        <label for="title">제목</label>
+        <input type="text" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요.">
+      </div>
+
+      <div class="mb-3" v-if="idx === undefined">
+        <label for="reg_id">작성자</label>
+        <input type="text" class="form-control" v-model="author" name="reg_id" id="reg_id" placeholder="작성자를 입력해주세요." >
+      </div>
+
+      <div class="mb-3">
+        <label for="content">내용</label>
+        <textarea class="form-control"  v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+
+      </div>
+
+<!--      <input type="text" v-model="author" class="w3-input w3-border" placeholder="작성자를 입력해주세요." v-if="idx === undefined">-->
+
+<!--      <div class="board-contents">-->
+<!--      <textarea id="" cols="30" rows="10" v-model="contents" class="w3-input w3-border" style="resize: none;">-->
+<!--      </textarea>-->
+<!--      </div>-->
+
     </div>
-
-
-    <div class="board-contents">
-      <textarea id="" cols="30" rows="10" v-model="contents" class="w3-input w3-border" style="resize: none;">
-      </textarea>
-    </div>
-
 
     <div class="common-buttons">
-      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnSave">저장</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+      <button type="button" class="btn btn-primary " v-on:click="fnSave"><i class="fas fa-edit"></i>저장</button>&nbsp;
+      <button type="button" class="btn btn-primary " v-on:click="fnList"><i class="fas fa-edit"></i>목록</button>
     </div>
-
 
   </div>
 </template>
 
 <script>
+
+
 export default {
   data() { //변수생성
     return {
@@ -38,7 +58,7 @@ export default {
       idx: this.$route.query.idx,
 
       title: '',
-      author: '',
+      author:'',
       contents: '',
       created_at: ''
     }

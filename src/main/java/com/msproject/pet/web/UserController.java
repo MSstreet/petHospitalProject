@@ -40,7 +40,6 @@ public class UserController {
         return  user.getIdx();
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> paramMap) {
         String userId = paramMap.get("user_id");
@@ -61,6 +60,8 @@ public class UserController {
         result.put("user_id", loginUser.getUsername());
         result.put("user_token", accessToken);
         result.put("user_role", loginUser.getAuthorities().stream().findFirst().get().getAuthority());
+
+        result.put("user_idx",userService.getUser(userId).getIdx());
 
         return ResponseEntity.ok(result);
     }

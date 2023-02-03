@@ -37,8 +37,7 @@ public class WishService {
 
         //WishEntity wishEntity = modelMapper.map(wishDto, WishEntity.class);
 
-
-        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(wishDto.getUserNum());
+        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(wishDto.getPetHospitalNum());
 
         PetHospitalEntity pet = petHospitalEntity.orElseThrow();
 
@@ -75,12 +74,11 @@ public class WishService {
     }
 
 
-
-    public Header<List<WishDto>> getWishList(Pageable pageable, Long uid, Long hid) {
+    public Header<List<WishDto>> getWishList(Pageable pageable, Long uid) {
 
         List<WishDto> dtos = new ArrayList<>();
 
-        Page<WishEntity> wishEntities = wishRepositoryCustom.findAllReview(pageable, uid,hid);
+        Page<WishEntity> wishEntities = wishRepositoryCustom.findAllReview(pageable, uid);
 
         for (WishEntity entity : wishEntities) {
 
@@ -90,7 +88,6 @@ public class WishService {
                   .userNum(entity.getUserEntity().getIdx())
                   .wishState(entity.isWishState())
                   .build();
-
 
             dtos.add(dto);
         }
@@ -104,4 +101,31 @@ public class WishService {
 
         return Header.OK(dtos, pagination);
     }
+
+    public WishDto getWish(Long id) {
+        WishEntity entity = wishRepository.findById(id).orElseThrow(() -> new RuntimeException("찜 리스트에 존재하지 않는 병원입니다."));
+
+        return WishDto.builder()
+                .wishId(entity.getWishId())
+                .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
+                .userNum(entity.getUserEntity().getIdx())
+                .wishState(entity.isWishState())
+                .build();
+    }
+
+    public WishDto getWish1(Long uid, Long hid) {
+        //WishEntity entity = wishRepository.findById(id).orElseThrow(() -> new RuntimeException("찜 리스트에 존재하지 않는 병원입니다."));
+
+        WishEntity entity = wishRepositoryCustom.findOneReview(uid, hid);
+
+        WishDto wishDto = WishDto.builder()
+                .wishId(entity.getWishId())
+                .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
+                .userNum(entity.getUserEntity().getIdx())
+                .wishState(entity.isWishState())
+                .build();
+
+        return wishDto;
+    }
+
 }

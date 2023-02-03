@@ -85,7 +85,7 @@
 <!--      </table>-->
 
 
-    <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
+    <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
     <span class="center">
       <ul class="pagination">
 

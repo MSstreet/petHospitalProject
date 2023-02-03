@@ -2,10 +2,14 @@ package com.msproject.pet.service;
 
 
 
+import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.entity.ReviewEntity;
+import com.msproject.pet.entity.UserEntity;
+import com.msproject.pet.entity.UserRepository;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
+import com.msproject.pet.repository.PetHospitalRepository;
 import com.msproject.pet.repository.ReviewRepository;
 
 import com.msproject.pet.repository.ReviewRepositoryCustom;
@@ -18,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -27,12 +32,35 @@ public class ReviewService {
 
     private final ModelMapper modelMapper;
 
+    private final PetHospitalRepository petHospitalRepository;
+
+    private  final UserRepository userRepository;
+
     private final ReviewRepositoryCustom reviewRepositoryCustom;
 
 
     public ReviewEntity ReviewCreate(ReviewDto reviewDto){
 
         ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
+
+//        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
+//
+//        System.out.println("병원 번호 " + reviewDto.getPetHospitalNum());
+//        System.out.println("유저번호 " + reviewDto.getUserNum());
+//        PetHospitalEntity pet = pet.orElseThrow();
+//
+//        Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
+//
+//
+//        UserEntity user = userEntity.orElseThrow();
+//
+//        ReviewEntity reviewEntity = ReviewEntity.builder()
+//                .petHospitalEntity(pet)
+//                .userEntity(user)
+//                .content(reviewDto.getContent())
+//                .score(reviewDto.getScore())
+//                .deleteYn(reviewDto.isDeleteYn())
+//                .build();
 
         return reviewRepository.save(reviewEntity);
     }

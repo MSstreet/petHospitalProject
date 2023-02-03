@@ -9,6 +9,8 @@ export default createStore({
     state: {
         user: null,
         isLogin: false,
+
+        userIdx: null
     },
     mutations,
     getters,

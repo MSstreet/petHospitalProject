@@ -27,7 +27,6 @@ public class WishEntity {
 
     private boolean wishState;
 
-
     public void changeWishState(boolean wishState){
         this.wishState = wishState;
     }

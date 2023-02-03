@@ -7,6 +7,8 @@ public class ErrorResponse {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("errorCode", errorCode);
         jsonObject.put("errorMessage", errorMessage);
+
+        System.out.println("테스트!!!!!!!!!!!!!");
         return jsonObject;
     }
 }

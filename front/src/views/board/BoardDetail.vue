@@ -9,14 +9,16 @@
 <!--    </div>-->
 
     <div class="board-contents">
+<!--      <div class="mb-3">-->
+<!--        <label for="title">제목</label>-->
+<!--        <input type="text" class="form-control" name="title" id="title">-->
+<!--      </div>-->
 
-      <h3 class="mb-3">{{ title }}</h3>
+      <h3 class=" mt-5" id="title">{{ title }}</h3>
+      <span>{{ created_at }}</span>
 
-      <div>
-        <strong class="w2-large">{{ author }}</strong>
-        <br>
-        <span>{{ created_at }}</span>
-      </div>
+<!--        <strong class="w2-large">{{ author }}</strong>-->
+
 
     </div>
 
@@ -25,17 +27,14 @@
     </div>
 
     <div class="common-buttons pt-5">
-      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+      <button type="button" class="btn btn-primary" v-on:click="fnUpdate">수정</button>&nbsp;
+      <button type="button" class="btn btn-primary" v-on:click="fnDelete">삭제</button>&nbsp;
+      <button type="button" class="btn btn-primary" v-on:click="fnList">목록</button>
     </div>
+
 
   </div>
 </template>
-
-
-
-
 
 <script>
 export default {
@@ -49,14 +48,11 @@ export default {
       contents: '',
       created_at: ''
     }
-  },
-
-
-  mounted() {
+  }
+  ,mounted() {
     this.fnGetView()
-    console.log(this.idx)
-  },
-  methods: {
+  }
+  ,methods: {
     fnGetView() {
       this.$axios.get(this.$serverUrl + '/board/' + this.idx, {
         params: this.requestBody
@@ -70,25 +66,22 @@ export default {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
-    },
-
-    fnList() {
+    }
+    ,fnList() {
       delete this.requestBody.idx
 
       this.$router.push({
         path: './list',
         query: this.requestBody
       })
-    },
-
-
-    fnUpdate() {
+    }
+    ,fnUpdate() {
       this.$router.push({
         path: './write',
         query: this.requestBody
       })
-    },
-    fnDelete() {
+    }
+    ,fnDelete() {
       if (!confirm("삭제하시겠습니까?")) return
 
       this.$axios.delete(this.$serverUrl + '/board/' + this.idx, {})

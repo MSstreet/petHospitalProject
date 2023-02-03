@@ -45,7 +45,7 @@ class ReviewRepositoryTest {
         IntStream.rangeClosed(1,100).forEach(i ->{
             ReviewEntity reviewEntity = ReviewEntity.builder()
                     .petHospitalEntity(petHospitalEntity)
-                    .userIdx(1L)
+                    .userEntity(userEntity)
                     .content("test..." + i)
                     .score(3)
                     .deleteYn(false)

@@ -43,9 +43,6 @@ public class PetHospitalEntity {
 
     //private String hospitalStreetZip;
 
-
-
-
     public void change(String hospitalName, String hospitalNum, String hospitalAddr, String sigunName){
         this.hospitalName = hospitalName;
         this.hospitalNum = hospitalNum;

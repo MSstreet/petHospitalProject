@@ -27,13 +27,25 @@ class WishServiceTest {
         WishDto wishDto = WishDto.builder()
                 .petHospitalNum(2429L)
                 .userNum(1L)
-                .wishState(true)
+                .wishState(false)
                 .build();
+
+        System.out.println("확인 : " + wishDto.getPetHospitalNum());
 
         wishService.wishCreate(wishDto);
 
        log.info( wishService.wishCreate(wishDto).getWishId());
 
     }
+
+//    @DisplayName("생성 & 업데이트 테스트")
+//    @Test
+//    public void test2(){
+//        WishDto wishDto = WishDto.builder()
+//                .petHospitalNum(2429L)
+//                .userNum(1L)
+//                .wishState(true)
+//                .build();
+//    }
 
 }

@@ -21,12 +21,11 @@ export default {
             const getUserInfoPromise = getUserInfo(userId, userPw)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
             if (userInfoResponse.data.length === 0) {
-
                 return 'notFound'
             } else {
                 localStorage.setItem('user_token', userInfoResponse.data.user_token)
                 localStorage.setItem('user_role', userInfoResponse.data.user_role)
-                console.log(userInfoResponse.data)
+                console.log( userInfoResponse.data)
                 return userInfoResponse
             }
         } catch (err) {

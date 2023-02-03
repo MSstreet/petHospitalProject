@@ -56,6 +56,7 @@ export default {
     async join (store, {user_id, user_pw, user_name, user_num, user_addr}) {
         let joinResponse = await joinAPI.doJoin(user_id, user_pw, user_name,user_num, user_addr)
         processResponse1(store,joinResponse)
+        console.log("페크!!!!!!!")
         return store.getters.getIsAuth  // 로그인 결과를 리턴한다
     }
 }

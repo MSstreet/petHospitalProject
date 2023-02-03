@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="row border-top border-bottom text-center px-3 middle-tab" style="top:72px !important;">
+    <div class="row border px-3 middle-tab" style="top:72px !important;">
 
       <div class="position">
         <button class="btn fs-3" @click="changeComponent('HospitalInfo')">병원 정보
@@ -89,13 +89,11 @@ export default {
   }
   , mounted() {
     this.fnGetView()
-    console.log(this.idx)
+    console.log("체크!!!!!!!!!" + this.idx)
   },
   methods:{
     changeComponent: function (componentName){
       this.comp = componentName
-      //this.fnView(this.idx)
-
     },
 
     // fnView(idx) {
@@ -123,7 +121,7 @@ export default {
         this.addr1 = this.hospital_addr.split(' ',3)
 
         console.log(this.hospital_name)
-        console.log(res.data)
+        console.log(this.hospital_id )
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

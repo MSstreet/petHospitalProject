@@ -25,11 +25,10 @@ public class WishRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
-
-    public Page<WishEntity> findAllReview(Pageable pageable, Long userId, Long hosId) {
+    public Page<WishEntity> findAllReview(Pageable pageable, Long userId) {
 
         JPAQuery<WishEntity> query = queryFactory.selectFrom(wishEntity)
-                .where(wishEntity.petHospitalEntity.hospitalId.eq(hosId).and(wishEntity.userEntity.idx.eq(userId)));
+                .where(wishEntity.userEntity.idx.eq(userId));
 
         long total = query.stream().count();
 
@@ -41,4 +40,15 @@ public class WishRepositoryCustom {
 
         return new PageImpl<>(results, pageable, total);
     }
+
+    public WishEntity findOneReview(Long userId, Long hosId) {
+
+        JPAQuery<WishEntity> query = queryFactory.selectFrom(wishEntity)
+                .where(wishEntity.userEntity.idx.eq(userId).and(wishEntity.petHospitalEntity.hospitalId.eq(hosId)));
+
+        WishEntity results = query.fetchOne();
+
+        return results;
+    }
+
 }

@@ -23,6 +23,7 @@ export default {
         try {
             const getUserInfoPromise = getUserInfo1(userId, userPw, userName,userNum,userAddr)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
+            console.log(userInfoResponse)
             if (userInfoResponse.data.length === 0) {
                 return 'notFound'
             } else {

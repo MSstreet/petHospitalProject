@@ -55,11 +55,11 @@ public class UserService implements UserDetailsService {
     }
 
     private void validateDuplicateEmail(String userId) {
-        if (userRepository.existsByUserId(userId)) {
-            throw new DuplicateUserIdException();
+        if (userRepository.existsByUserId(userId)) ;
+
+             new DuplicateUserIdException();
         }
 
-    }
 
     //, get, update, delete
     public UserEntity update(UserDto userDto){
@@ -91,5 +91,18 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    public UserDto getUser(String userId){
+        UserEntity entity = userRepository.findByUserId(userId).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
+        return UserDto.builder()
+                .idx(entity.getIdx())
+                .userId(entity.getUserId())
+                .userPw(entity.getUserPw())
+                .userName(entity.getUserName())
+                .phoneNum(entity.getPhoneNum())
+                .zipCode(entity.getZipCode())
+                .addr(entity.getAddr())
+                .detailAddr(entity.getDetailAddr())
+                .build();
+    }
 }

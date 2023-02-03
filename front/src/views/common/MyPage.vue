@@ -13,7 +13,6 @@
       <form @submit.prevent="fnJoin" ref="form">
 
 
-
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">비밀번호</label>
           <div class="d-grid gap-2">
