@@ -30,7 +30,7 @@ public class PetHospitalRepositoryCustom {
         JPAQuery<PetHospitalEntity> query = queryFactory.selectFrom(petHospitalEntity)
                 .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity));
 
-        query.where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
+        query.where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"));
 
         query.groupBy(petHospitalEntity);
 
@@ -79,6 +79,8 @@ public class PetHospitalRepositoryCustom {
                 petHospitalEntity.hospitalNum,
                 petHospitalEntity.hospitalAddr,
                 petHospitalEntity.petHospitalScore,
+                petHospitalEntity.hosLatitude,
+                petHospitalEntity.hosLongitude,
                 reviewEntity.count().as("reviewCount")
         ));
 
@@ -109,11 +111,14 @@ public class PetHospitalRepositoryCustom {
 
     private BooleanExpression searchKeywords(String sk, String sv) {
 
-        if("name".equals(sk)) {
+        System.out.println("확인!!!" + sk);
+        System.out.println("확인!!!" + sv);
+
+        if("author".equals(sk)) {
             if(StringUtils.hasLength(sv)) {
                 return petHospitalEntity.hospitalName.contains(sv);
             }
-        } else if ("addr".equals(sk)) {
+        } else if ("title".equals(sk)) {
             if (StringUtils.hasLength(sv)) {
                 return petHospitalEntity.hospitalAddr.contains(sv);
             }

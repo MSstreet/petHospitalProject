@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-const getUserInfo1 = (userId, userPw, userName, userNum,userAddr) => {
+const getUserInfo1 = (userId, userPw, userName,phoneNum,zipCode,addr,detailAddress ) => {
     const reqData = {
         'user_id': userId,
         'user_pw': userPw,
         'user_name' : userName,
-        'user_num' : userNum,
-        'user_addr' : userAddr
+        'phone_num' : phoneNum,
+        'zip_code' : zipCode,
+        'addr':addr,
+        'detail_address':detailAddress
     }
 
     let serverUrl = '//localhost:8081'
@@ -19,11 +21,11 @@ const getUserInfo1 = (userId, userPw, userName, userNum,userAddr) => {
 }
 
 export default {
-    async doJoin(userId, userPw, userName,userNum,userAddr) {
+    async doJoin(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress) {
         try {
-            const getUserInfoPromise = getUserInfo1(userId, userPw, userName,userNum,userAddr)
+            const getUserInfoPromise = getUserInfo1(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
-            console.log(userInfoResponse)
+            console.log(userInfoResponse.data.errorCode)
             if (userInfoResponse.data.length === 0) {
                 return 'notFound'
             } else {

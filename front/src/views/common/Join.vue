@@ -56,10 +56,26 @@
 
 
         <div class="form-group">
+          <label for="exampleInputZip" class="form-label mt-4">우편번호</label>
+          <input type="text" v-model="postcode"  class="form-control mb-1" id="exampleInputZip">
+          <!--          <div id="addrCheck" class=""></div>-->
+        </div>
+
+        <input type="button" class="btn btn-secondary" @click="execDaumPostcode()" value="우편번호 찾기"><br>
+
+
+        <div class="form-group">
           <label for="exampleInputAddr" class="form-label mt-4">주소</label>
-          <input type="text" class="form-control mb-4" id="exampleInputAddr" v-model="user_addr">
+          <input type="text" class="form-control mb-4" id="exampleInputAddr" v-model="address">
 <!--          <div id="addrCheck" class=""></div>-->
         </div>
+
+        <div class="form-group">
+          <label for="exampleInputAddr" class="form-label mt-4">상세주소</label>
+          <input type="text" class="form-control mb-4" id="exampleInputAddr" v-model="extra_address">
+          <!--          <div id="addrCheck" class=""></div>-->
+        </div>
+
 
 
         <div class="d-grid gap-2">
@@ -82,18 +98,25 @@ export default {
       pwd_check: '',
       user_name: '',
       user_num: '',
-      user_addr: ''
+
+      user_addr: '',
+
+      postcode:'',
+      address: '',
+      extra_address: ''
+
+
     }
   },
   methods: {
     ...mapActions(['join']),     //vuex/actions에 있는 login 함수
 
     async fnJoin() {       //async 함수로 변경
-
       this.submitCheck()
-
       console.log(this.check)
-
+      console.log("!!!!!!!!!"+ this.user_num)
+      console.log("!!!!!!!!!"+ this.postcode)
+      console.log("!!!!!!!!!"+ this.address)
       if(!(this.check)){
         return false
       }
@@ -102,8 +125,13 @@ export default {
           user_id: this.user_id,
           user_pw: this.user_pw,
           user_name: this.user_name,
-          user_num: this.user_num,
-          user_addr: this.user_addr
+          // user_num: this.user_num,
+          // user_addr: this.user_addr
+
+          phone_num: this.user_num,
+          zip_code: this.postcode,
+          addr:this.address,
+          detail_address:this.extra_address
         })
         if (joinResult) {
           this.goToPages1()
@@ -129,10 +157,38 @@ export default {
         document.getElementById('checkId').innerHTML = "";
         this.check = true
 
-        console.log("1" + this.check)
+        this.validIdDuplicationCheck()
+        // console.log("1" + this.check)
         return
       }
     }
+
+    ,validIdDuplicationCheck(){
+      console.log("들어오는가?")
+      let apiUrl = this.$serverUrl + '/user/check?userId=' + this.user_id
+
+      this.$axios.get(apiUrl, {
+        params:{
+          user_id:this.user_id
+        }
+      }).then((res) => {
+        console.log(res.data)
+            if(res.data === true){
+              document.getElementById('checkId').style.color="red"
+              document.getElementById('checkId').innerHTML = "중복된 ID 입니다.";
+              this.check = false
+            }else{
+              document.getElementById('checkId').style.color="black"
+              document.getElementById('checkId').innerHTML = "";
+              this.check = true
+            }
+          }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1){
+            alert('네크워크가 원활하지 않습니다. \n잠시 후 다시 시도해주세요.')
+          }
+      })
+    }
+
     ,validPasswordCheck(){
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
 
@@ -197,6 +253,52 @@ export default {
         return
       }
     }
+    ,execDaumPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          if (this.extra_address !== "") {
+            this.extra_address = "";
+          }
+          // console.log("화깅!!!"+data.userSelectedType)
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            this.address = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            this.address = data.jibunAddress;
+          }
+
+
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if (data.userSelectedType === "R") {
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              this.extra_address += data.bname;
+            }
+
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              this.extra_address +=
+                  this.extra_address !== ""
+                      ? `, ${data.buildingName}`
+                      : data.buildingName;
+            }
+
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (this.extra_address !== "") {
+              this.extra_address = `(${this.extra_address})`;
+            }
+          } else {
+            this.extra_address = "";
+          }
+
+          // 우편번호를 입력한다.
+          this.postcode = data.zonecode;
+        },
+      }).open();
+    }
+
 
     // ,validAddrCheck(){
     //   if (this.user_addr == '') {
@@ -317,7 +419,7 @@ export default {
         //return
       }
 
-      if(this.user_addr == ''){
+      if(this.address == ''){
         alert('주소를 입력하세요')
         this.check = false
         return

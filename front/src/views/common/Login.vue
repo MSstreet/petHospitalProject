@@ -44,7 +44,6 @@
 
         </form>
       </div>
-
     </div>
   </section>
 </template>
@@ -106,9 +105,12 @@ export default {
   data() {
     return {
       user_id: '',
-      user_pw: ''
+      user_pw: '',
     }
 
+  },
+  mounted() {
+    // console.log("확인!!!!!!!" + user_idx)
   },
   methods: {
 
@@ -128,7 +130,9 @@ export default {
       //로그인 API 호출
       try {
         let loginResult = await this.login({user_id: this.user_id, user_pw: this.user_pw})
+        console.log("확인" + loginResult)
         if (loginResult) {
+
            this.goToPages()
            // alert('로그인 결과 : ' + loginResult)
         }
@@ -148,10 +152,9 @@ export default {
       })
     }
   },
-
   computed: {
     ...mapGetters({
-      errorState: 'getErrorState'
+      errorState: 'getErrorState',
     })
   }
 }

@@ -1,12 +1,14 @@
 package com.msproject.pet.service;
 
 import com.msproject.pet.entity.PetHospitalEntity;
+import com.msproject.pet.entity.ReviewEntity;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.repository.PetHospitalRepositoryCustom;
 import com.msproject.pet.repository.PetHospitalRepository;
 
+import com.msproject.pet.repository.ReviewRepository;
 import com.msproject.pet.web.dtos.PetHospitalDto;
 import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +29,10 @@ public class PetHospitalService {
 
     private final PetHospitalRepository petHospitalRepository;
 
+    private final ReviewRepository reviewRepository;
     private final PetHospitalRepositoryCustom petHospitalRepositoryCustom;
+
+
 
     public PetHospitalEntity create(PetHospitalDto petHospitalDto) {
 
@@ -78,12 +83,33 @@ public class PetHospitalService {
     }
 
     public PetHospitalListReviewCountDto getPetHospitalWithReviewCount(Long id) {
+
+//        PetHospitalListReviewCountDto petHospitalListReviewCountDto = new PetHospitalListReviewCountDto();
+//
+//        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
+//
+//        float sum = 0;
+
+//        for(int i = 0; i < reviewEntities.size(); i ++){
+//            sum = reviewEntities.get(i).getScore();
+//            System.out.println(sum);
+//        }
+
+//        if(sum == 0){
+//               petHospitalListReviewCountDto.setHospitalScore(0);
+//
+//        }else{
+
         PetHospitalListReviewCountDto petHospitalListReviewCountDto = petHospitalRepositoryCustom.findWithReviewCountById(id);
+
+        float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
+
+        avg = Math.round(avg*10) / 10;
+
+        petHospitalListReviewCountDto.setHospitalScore(avg);
 
         return petHospitalListReviewCountDto;
     }
-
-
 
     public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount(Pageable pageable, SearchCondition searchCondition) {
 
@@ -107,10 +133,10 @@ public class PetHospitalService {
                     .reviewCount(entity.getReviewCount())
                     .build();
 
-            if(dto.getOperState().equals("정상")) {
-//                System.out.println(oper);
+//            if(dto.getOperState().equals("정상")) {
+                System.out.println(entity.getOperState());
                 dtos.add(dto);
-            }
+            //}
         }
 
         Pagination pagination = new Pagination(

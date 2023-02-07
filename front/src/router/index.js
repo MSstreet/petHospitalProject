@@ -8,6 +8,7 @@ import Join from "@/views/common/Join"
 import HospitalList from '@/views/hospital/HospitalList'
 import MyPage from '@/views/common/MyPage'
 import EditPassword from '@/views/common/EditPassword'
+import EditMyInfo from '@/views/common/EditMyInfo'
 
 import HospitalDetail from '@/views/hospital/HospitalDetail'
 import ReviewWrite from '@/views/review/ReviewWrite'
@@ -68,6 +69,11 @@ const routes = [
         path: '/pw_edit',
         name: 'EditPassword',
         component: EditPassword
+    },
+    {
+        path: '/myinfo_edit',
+        name: 'EditMyInfo',
+        component: EditMyInfo
     },
     // {
     //     path: '/about',

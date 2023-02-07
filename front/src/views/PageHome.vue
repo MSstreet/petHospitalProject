@@ -32,8 +32,16 @@
 
 
         <div class="mx-auto w-50 p-3 input-group input-group-lg mt-5">
+
+          <select v-model="search_key">
+            <option value="">- 선택 -</option>
+            <option value="author">병원명</option>
+            <option value="title">지역명</option>
+            <!--      <option value="contents">내용</option>-->
+          </select>
+
           <input name="" type="text" class="form-control input-sm" placeholder="검색어 입력" aria-label="search"
-                 aria-describedby="button-addon2">
+                 aria-describedby="button-addon2" v-model="search_value" >
 
           <!--        <div class="col-xs-2">-->
           <!--          <label for="ex1">col-xs-2</label>-->
@@ -320,7 +328,39 @@ export default {
   },
   data() {
     return {
-      map: null
+      map: null,
+
+      requestBody: {}, //리스트 페이지 데이터전송
+      list: {}, //리스트 데이터
+      no: '', //게시판 숫자처리
+      paging: {
+        block: 0,
+        end_page: 0,
+        next_block: 0,
+
+        page: 0,
+
+        page_size: 0,
+        prev_block: 0,
+        start_index: 0,
+        start_page: 0,
+        total_block_cnt: 0,
+        total_list_cnt: 0,
+        total_page_cnt: 0,
+      }, //페이징 데이터
+
+      page: this.$route.query.page ? this.$route.query.page : 1,
+      size: this.$route.query.size ? this.$route.query.size : 10,
+      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_value: this.$route.query.sv ? this.$route.query.sv : '',
+
+      paginavigation: function () { //페이징 처리 for문 커스텀
+        let pageNumber = [] //;
+        let start_page = this.paging.start_page;
+        let end_page = this.paging.end_page;
+        for (let i = start_page; i <= end_page; i++) pageNumber.push(i);
+        return pageNumber;
+      }
     }
   },
   methods: {
@@ -338,8 +378,55 @@ export default {
       })
       marker.setMap(this.map)
     }
-  },
-  mounted() {
+    ,fnGetList() {
+      console.log(this.search_key)
+      console.log("벨류확인" + this.search_value)
+
+      this.requestBody = { // 데이터 전송
+        sk: this.search_key,
+        sv: this.search_value,
+        page: this.page,
+        size: this.size
+      }
+
+      this.$axios.get(this.$serverUrl + "/hospital/list", {
+        params: this.requestBody,
+        headers: {}
+      }).then((res) => {
+
+        if (res.data.result_code === "OK") {
+          this.list = res.data.data
+          this.paging = res.data.pagination
+          this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
+        }
+
+        // this.fnView()
+        console.log(res.data.data);
+        // console.log(res.data.pagination);
+
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    }
+
+    // ,fnView() {
+    //   //this.requestBody.idx = idx
+    //   this.$router.push({
+    //     path: '/hospital/list',
+    //     query: this.requestBody
+    //   })
+    // }
+    // ,fnPage(n) {
+    //   if (this.page !== n) {
+    //     this.page = n
+    //   }
+    //
+    //   this.fnGetList()
+    // }
+  }
+  ,mounted() {
     const script = document.createElement("script")
     script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
     script.addEventListener("load", () => {

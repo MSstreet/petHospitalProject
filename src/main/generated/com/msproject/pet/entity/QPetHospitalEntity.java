@@ -19,6 +19,10 @@ public class QPetHospitalEntity extends EntityPathBase<PetHospitalEntity> {
 
     public static final QPetHospitalEntity petHospitalEntity = new QPetHospitalEntity("petHospitalEntity");
 
+    public final NumberPath<java.math.BigDecimal> hosLatitude = createNumber("hosLatitude", java.math.BigDecimal.class);
+
+    public final NumberPath<java.math.BigDecimal> hosLongitude = createNumber("hosLongitude", java.math.BigDecimal.class);
+
     public final StringPath hospitalAddr = createString("hospitalAddr");
 
     public final NumberPath<Long> hospitalId = createNumber("hospitalId", Long.class);

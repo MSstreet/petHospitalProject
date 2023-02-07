@@ -1,11 +1,36 @@
 <template>
+
+
 <div class="container text-center mb-5">
   <div >
     <h1  class="mt-3 fs-1 fw-bold" style="text-align: center">Animal Hospital List</h1>
+
 <!--    <i class="fas fa-sheep"></i>-->
 <!--    <i class="fas fa-squirrel"></i>-->
 <!--    <i class="fas fa-pig"></i>-->
   </div>
+
+
+  <div class="card-header mt-5">
+
+    <select v-model="search_key">
+      <option value="">- 선택 -</option>
+      <option value="author">병원명</option>
+      <option value="title">지역명</option>
+<!--      <option value="contents">내용</option>-->
+    </select>
+
+    <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
+
+    <button @click="fnPage()" class="ms-2">검색</button>
+
+<!--    <a class="btn btn-primary float-end" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>-->
+
+    <!--        <a class="btn btn-primary float-end" > &lt;!&ndash; <i class="fas fa-table me-1"></i> &ndash;&gt;-->
+    <!--          <i class=""></i> 글 작성 </a>-->
+  </div>
+
+
   <div class="container px-4 test-class" v-for="(row, idx) in list" :key="idx">
     <div  class="row mt-5">
 
@@ -58,7 +83,7 @@
 </div>
 
 
-  <div style="position: center">
+  <div class="position-page1">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
@@ -90,6 +115,8 @@
 
 <script>
 
+import store from "@/vuex/store";
+
 export default {
   data() { //변수생성
     return {
@@ -102,6 +129,8 @@ export default {
         next_block: 0,
 
         page: 0,
+
+        // test:this.$store.state.userIdx,
 
         page_size: 0,
         prev_block: 0,
@@ -128,11 +157,15 @@ export default {
   },
   mounted() {
     this.fnGetList()
-  },
-
-
-  methods: {
+    // console.log(this.$store.state.isLogin)
+    // console.log(this.$store.state.userIdx)
+    // console.log(this.test)
+  }
+  ,methods: {
     fnGetList() {
+      console.log(this.search_key)
+      console.log("벨류확인" + this.search_value)
+
       this.requestBody = { // 데이터 전송
         sk: this.search_key,
         sv: this.search_value,
@@ -159,8 +192,8 @@ export default {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
-    },
-    fnView(idx) {
+    }
+    ,fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
         path: './detail',
@@ -200,12 +233,14 @@ export default {
     border : 0;
     float: left;
   }
-
   .test-class {
     display: inline-block;
     width: 35rem !important;;
   }
-
+  .position-page1{
+    position: relative;
+    left:42rem;
+  }
   /*.item-justify{*/
   /*  align-items: center !important;*/
   /*}*/

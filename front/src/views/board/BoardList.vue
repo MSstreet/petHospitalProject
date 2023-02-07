@@ -84,7 +84,7 @@
 <!--        </tbody>-->
 <!--      </table>-->
 
-
+  <div class="position-page2">
     <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
     <span class="center">
       <ul class="pagination">
@@ -108,13 +108,10 @@
             @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
 
         <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
-
-
-
       </ul>
     </span>
     </nav>
-
+  </div>
 
 
 
@@ -338,6 +335,7 @@ export default {
 
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
+
       search_key: this.$route.query.sk ? this.$route.query.sk : '',
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
@@ -407,4 +405,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.position-page2{
+  position: relative;
+  left:49rem;
+}
+</style>
 

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +37,7 @@ public class PetHospitalDto {
 
     //private String hospitalId;
 
-    //private BigDecimal latitude ;
+    private BigDecimal hosLatitude ;
 
-    //private BigDecimal longitude;
+    private BigDecimal hosLongitude;
 }

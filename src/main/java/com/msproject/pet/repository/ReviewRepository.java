@@ -7,9 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
 
     @Query("select r from ReviewEntity r where r.petHospitalEntity.hospitalId =:hospital_id")
     Page<ReviewEntity> listOfReview(@Param("hospital_id") Long hospital_id, Pageable pageable);
 
+    @Query("select avg(r.score) from ReviewEntity r where r.petHospitalEntity.hospitalId =:hospital_id")
+    float getReviewAvg(@Param("hospital_id") Long hospital_id);
+
+    List<ReviewEntity> findByPetHospitalEntity(Long id);
 }

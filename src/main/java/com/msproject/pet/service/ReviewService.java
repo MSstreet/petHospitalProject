@@ -94,7 +94,23 @@ public class ReviewService {
                 .build();
     }
 
+    public float getReviewAvg(Long id){
 
+        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
+        float sum = 0;
+
+        for(int i = 0; i < reviewEntities.size(); i ++){
+                  sum = reviewEntities.get(i).getScore();
+                  System.out.println(sum);
+        }
+
+        if(sum == 0){
+            return 0;
+        }else{
+            return reviewRepository.getReviewAvg(id);
+        }
+
+    }
 
 
     public Header<List<ReviewDto>> getReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {

@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +32,31 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
 
     //private final PasswordEncoder passwordEncoder;
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
+    @GetMapping("/check")
+    public Boolean checkId(@RequestParam String userId){
+
+        System.out.println(userId);
+        System.out.println("컨트롤러에 들어와?");
+        return userService.checkId(userId);
+    }
+
+
 
     @PostMapping("/join")
     public Long saveUser(@RequestBody @Valid UserDto userDto) throws Exception {
 
+        System.out.println(userDto.getUserId());
+
+        System.out.println(userDto.getAddr());
+        System.out.println(userDto.getZipCode());
+        System.out.println(userDto.getDetailAddr());
+
         UserEntity user = userService.saveUser(userDto);
+
+
 
         return  user.getIdx();
     }
@@ -62,6 +83,7 @@ public class UserController {
         result.put("user_role", loginUser.getAuthorities().stream().findFirst().get().getAuthority());
 
         result.put("user_idx",userService.getUser(userId).getIdx());
+        //result.put("user_pw",userService.getUser(userId).getUserPw());
 
         return ResponseEntity.ok(result);
     }
@@ -77,11 +99,22 @@ public class UserController {
         return userService.update(userDto);
     }
 
+
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id){
         userService.delete(id);
     }
 
+//    @GetMapping("/checkpw/{id}")
+//    public String checkPw(@PathVariable Long id, @RequestParam String beforePw){
+//
+//        passwordEncoder.encode(beforePw);
+//
+//        String encodePw = userService.getUser(id).getUserPw();
+//
+//
+//
+//    }
 
 
 

@@ -10,5 +10,8 @@ export default {
     },
     [types.IS_AUTH] (state, isAuth) {
         state.isAuth = isAuth
+    },
+    [types.USER_IDX] (state, user_idx){
+        state.userIdx = user_idx
     }
 }

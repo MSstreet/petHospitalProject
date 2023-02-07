@@ -32,7 +32,7 @@ class ReviewRepositoryTest {
     @DisplayName("리뷰 생성")
     @Test
     public void testInsert(){
-        Long hospital = 2428L;
+        Long hospital = 2425L;
         Long user = 1L;
 
         PetHospitalEntity petHospitalEntity = PetHospitalEntity.builder()
@@ -45,7 +45,7 @@ class ReviewRepositoryTest {
         IntStream.rangeClosed(1,100).forEach(i ->{
             ReviewEntity reviewEntity = ReviewEntity.builder()
                     .petHospitalEntity(petHospitalEntity)
-                    .userEntity(userEntity)
+                    .userIdx(1L)
                     .content("test..." + i)
                     .score(3)
                     .deleteYn(false)

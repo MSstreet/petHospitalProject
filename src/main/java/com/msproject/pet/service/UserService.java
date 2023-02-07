@@ -43,22 +43,32 @@ public class UserService implements UserDetailsService {
     @Transactional
     public UserEntity saveUser(UserDto userDto) throws Exception{
 
+        System.out.println(userDto.getUserId());
+
         validateDuplicateEmail(userDto.getUserId());
 
         UserEntity userEntity = UserEntity.builder()
                 .userId(userDto.getUserId())
                 .userPw(passwordEncoder.encode(userDto.getUserPw()))
                 .userName(userDto.getUserName())
+                .phoneNum(userDto.getPhoneNum())
+                .zipCode(userDto.getZipCode())
+                .addr(userDto.getAddr())
                 .build();
 
         return userRepository.save(userEntity);
     }
 
     private void validateDuplicateEmail(String userId) {
-        if (userRepository.existsByUserId(userId)) ;
 
-             new DuplicateUserIdException();
+        if (userRepository.existsByUserId(userId)) {
+            throw new DuplicateUserIdException();
         }
+    }
+
+     public Boolean checkId(String userId){
+        return userRepository.existsByUserId(userId);
+     }
 
 
     //, get, update, delete

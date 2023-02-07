@@ -10,7 +10,7 @@ export default createStore({
         user: null,
         isLogin: false,
 
-        userIdx: null
+         userIdx: null
     },
     mutations,
     getters,

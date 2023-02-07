@@ -35,9 +35,9 @@ public class PetHospitalEntity {
 
     //private String hospitalId;
 
-    //private BigDecimal latitude ;
+    private BigDecimal hosLatitude ;
 
-    //private BigDecimal longitude;
+    private BigDecimal hosLongitude;
 
     //private float hospitalScore;
 
