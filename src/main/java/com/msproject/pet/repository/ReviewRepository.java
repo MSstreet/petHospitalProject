@@ -1,5 +1,6 @@
 package com.msproject.pet.repository;
 
+import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.entity.ReviewEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,6 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     @Query("select avg(r.score) from ReviewEntity r where r.petHospitalEntity.hospitalId =:hospital_id")
     float getReviewAvg(@Param("hospital_id") Long hospital_id);
 
-    List<ReviewEntity> findByPetHospitalEntity(Long id);
+    List<ReviewEntity> findByPetHospitalEntity(PetHospitalEntity petHospitalEntity);
+
 }

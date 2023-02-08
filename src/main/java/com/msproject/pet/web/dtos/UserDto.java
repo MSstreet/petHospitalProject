@@ -26,6 +26,8 @@ public class UserDto {
 
     private String detailAddr;
 
+    private String email; //0208
+
     private boolean deleteYn;
 //
 //    private LocalDateTime createdAt;

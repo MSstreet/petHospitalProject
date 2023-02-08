@@ -41,26 +41,27 @@ public class ReviewService {
 
     public ReviewEntity ReviewCreate(ReviewDto reviewDto){
 
-        ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
+        //ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
 
-//        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
+      Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
 //
 //        System.out.println("병원 번호 " + reviewDto.getPetHospitalNum());
 //        System.out.println("유저번호 " + reviewDto.getUserNum());
-//        PetHospitalEntity pet = pet.orElseThrow();
+
+      PetHospitalEntity pet = petHospitalEntity.orElseThrow();
 //
-//        Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
+      Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
 //
 //
-//        UserEntity user = userEntity.orElseThrow();
+        UserEntity user = userEntity.orElseThrow();
 //
-//        ReviewEntity reviewEntity = ReviewEntity.builder()
-//                .petHospitalEntity(pet)
-//                .userEntity(user)
-//                .content(reviewDto.getContent())
-//                .score(reviewDto.getScore())
-//                .deleteYn(reviewDto.isDeleteYn())
-//                .build();
+        ReviewEntity reviewEntity = ReviewEntity.builder()
+                .petHospitalEntity(pet)
+                .userEntity(user)
+                .content(reviewDto.getContent())
+                .score(reviewDto.getScore())
+                .deleteYn(reviewDto.isDeleteYn())
+                .build();
 
         return reviewRepository.save(reviewEntity);
     }
@@ -88,29 +89,29 @@ public class ReviewService {
         return ReviewDto.builder()
                 .reviewId(entity.getReviewId())
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
-                .userNum(entity.getUserIdx())
+                .userNum(entity.getUserEntity().getIdx()) //수정 0207
                 .content(entity.getContent())
                 .score(entity.getScore())
                 .build();
     }
 
-    public float getReviewAvg(Long id){
-
-        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
-        float sum = 0;
-
-        for(int i = 0; i < reviewEntities.size(); i ++){
-                  sum = reviewEntities.get(i).getScore();
-                  System.out.println(sum);
-        }
-
-        if(sum == 0){
-            return 0;
-        }else{
-            return reviewRepository.getReviewAvg(id);
-        }
-
-    }
+//    public float getReviewAvg(Long id){
+//
+//        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
+//        float sum = 0;
+//
+//        for(int i = 0; i < reviewEntities.size(); i ++){
+//                  sum = reviewEntities.get(i).getScore();
+//                  System.out.println(sum);
+//        }
+//
+//        if(sum == 0){
+//            return 0;
+//        }else{
+//            return reviewRepository.getReviewAvg(id);
+//        }
+//
+//    }
 
 
     public Header<List<ReviewDto>> getReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
@@ -124,10 +125,14 @@ public class ReviewService {
             ReviewDto dto = ReviewDto.builder()
                     .reviewId(entity.getReviewId())
                     .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
-                    .userNum(entity.getUserIdx())
+                    .userNum(entity.getUserEntity().getIdx()) // 수정 0207
                     .content(entity.getContent())
                     .score(entity.getScore())
+                    .userId(entity.getUserEntity().getUserId())
                     .build();
+
+
+            System.out.println(dto.getReviewId());
 
                 dtos.add(dto);
             }
@@ -143,5 +148,34 @@ public class ReviewService {
     }
 
 
+    public Header<List<ReviewDto>> getUserReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 
+        List<ReviewDto> dtos = new ArrayList<>();
+
+        Page<ReviewEntity> reviewEntities = reviewRepositoryCustom.findAllByUserId(pageable, searchCondition, id);
+
+        for (ReviewEntity entity : reviewEntities) {
+
+            ReviewDto dto = ReviewDto.builder()
+                    .reviewId(entity.getReviewId())
+                    .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
+                    .userNum(entity.getUserEntity().getIdx()) // 수정 0207
+                    .content(entity.getContent())
+                    .score(entity.getScore())
+                    .userId(entity.getUserEntity().getUserId())
+                    .hosName(entity.getPetHospitalEntity().getHospitalName())
+                    .build();
+
+            dtos.add(dto);
+        }
+
+        Pagination pagination = new Pagination(
+                (int) reviewEntities.getTotalElements()
+                , pageable.getPageNumber() + 1
+                , pageable.getPageSize()
+                , 10
+        );
+
+        return Header.OK(dtos, pagination);
+    }
 }

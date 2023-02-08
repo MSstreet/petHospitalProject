@@ -25,14 +25,14 @@ public class ReviewEntity extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private PetHospitalEntity petHospitalEntity;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private UserEntity userEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity userEntity;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="userEntity")
 //    private UserEntity userEntity;
 
-    private Long userIdx;
+//    private Long userIdx;
 
     private String content;
 

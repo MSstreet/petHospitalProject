@@ -1,5 +1,6 @@
 <!-- PageHome.vue -->
 <template>
+  <h3 class="fs-1 fw-bold text-center mt-5 mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
       <div >
         <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">
 
@@ -11,7 +12,7 @@
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
 
     <div style="width: 960px; display: inline-block">
-      <h3 class="fs-1 fw-bold"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
+<!--      <h3 class="fs-1 fw-bold"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>-->
       <form action="" method="">
 
         <!--      <div class="mx-quto input-group mt-5">-->
@@ -329,6 +330,10 @@ export default {
   data() {
     return {
       map: null,
+      markers: [],
+
+      latitude: 0,
+      longitude: 0,
 
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
@@ -362,21 +367,79 @@ export default {
         return pageNumber;
       }
     }
-  },
-  methods: {
+  }
+  ,created(){
+    if (!("geolocation" in navigator)) {
+      return;
+    }
+
+    // get position
+    navigator.geolocation.getCurrentPosition(pos => {
+      this.latitude = pos.coords.latitude;
+      this.longitude = pos.coords.longitude;
+
+
+      if (window.kakao && window.kakao.maps) {
+
+        this.initMap();
+
+      } else {
+        const script = document.createElement("script");
+        /* global kakao */
+        script.onload = () => kakao.maps.load(this.initMap);
+        script.src = "///dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false";
+        document.head.appendChild(script);
+      }
+
+    }, err => {
+      alert(err.message);
+    })
+  }
+
+  ,methods: {
     initMap() {
       const map = document.getElementById("map")
       const options = {
-        center: new kakao.maps.LatLng(37, 131, 16),
+        //center: new kakao.maps.LatLng(37, 131, 16),
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 5
       }
       this.map = new kakao.maps.Map(map, options)
+      this.displayMarker([[this.latitude, this.longitude]]);
 
-      const marker1 = new kakao.maps.LatLng(37, 131)
-      const marker = new kakao.maps.Marker({
-        position : marker1
-      })
-      marker.setMap(this.map)
+      // const marker1 = new kakao.maps.LatLng(37, 131)
+      // const marker = new kakao.maps.Marker({
+      //   position : marker1
+      // })
+      // marker.setMap(this.map)
+
+
+    }
+    , displayMarker(markerPositions) {
+      if (this.markers.length > 0) {
+        this.markers.forEach((marker) => marker.setMap(null));
+      }
+
+      const positions = markerPositions.map(
+          (position) => new kakao.maps.LatLng(...position)
+      );
+
+      if (positions.length > 0) {
+        this.markers = positions.map(
+            (position) =>
+                new kakao.maps.Marker({
+                  map: this.map,
+                  position,
+                })
+        );
+
+        const bounds = positions.reduce(
+            (bounds, latlng) => bounds.extend(latlng),
+            new kakao.maps.LatLngBounds()
+        );
+
+        this.map.setBounds(bounds);
+      }
     }
     ,fnGetList() {
       console.log(this.search_key)
@@ -426,13 +489,14 @@ export default {
     //   this.fnGetList()
     // }
   }
+
   ,mounted() {
-    const script = document.createElement("script")
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
-    script.addEventListener("load", () => {
-      kakao.maps.load(this.initMap)
-    })
-    document.head.appendChild(script)
+    // const script = document.createElement("script")
+    // script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
+    // script.addEventListener("load", () => {
+    //   kakao.maps.load(this.initMap)
+    // })
+    // document.head.appendChild(script)
   }
 }
 

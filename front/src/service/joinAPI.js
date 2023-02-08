@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getUserInfo1 = (userId, userPw, userName,phoneNum,zipCode,addr,detailAddress ) => {
+const getUserInfo1 = (userId, userPw, userName,phoneNum,zipCode,addr,detailAddress,email ) => {
     const reqData = {
         'user_id': userId,
         'user_pw': userPw,
@@ -8,7 +8,8 @@ const getUserInfo1 = (userId, userPw, userName,phoneNum,zipCode,addr,detailAddre
         'phone_num' : phoneNum,
         'zip_code' : zipCode,
         'addr':addr,
-        'detail_address':detailAddress
+        'detail_address':detailAddress,
+        'email':email
     }
 
     let serverUrl = '//localhost:8081'
@@ -21,9 +22,9 @@ const getUserInfo1 = (userId, userPw, userName,phoneNum,zipCode,addr,detailAddre
 }
 
 export default {
-    async doJoin(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress) {
+    async doJoin(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress,email) {
         try {
-            const getUserInfoPromise = getUserInfo1(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress)
+            const getUserInfoPromise = getUserInfo1(userId, userPw, userName,phoneNum,zipCode,addr,detailAddress,email)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
             console.log(userInfoResponse.data.errorCode)
             if (userInfoResponse.data.length === 0) {

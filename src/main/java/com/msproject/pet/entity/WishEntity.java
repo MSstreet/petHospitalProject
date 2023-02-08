@@ -27,7 +27,9 @@ public class WishEntity {
 
     private boolean wishState;
 
-    public void changeWishState(boolean wishState){
-        this.wishState = wishState;
+    private int wishState1;
+
+    public void changeWishState(int wishState1){
+        this.wishState1 = wishState1;
     }
 }

@@ -9,12 +9,15 @@ import HospitalList from '@/views/hospital/HospitalList'
 import MyPage from '@/views/common/MyPage'
 import EditPassword from '@/views/common/EditPassword'
 import EditMyInfo from '@/views/common/EditMyInfo'
+import IdFind from '@/views/common/IdFind'
+import PasswordFind from '@/views/common/PasswordFind'
 
 import HospitalDetail from '@/views/hospital/HospitalDetail'
 import ReviewWrite from '@/views/review/ReviewWrite'
 import ReviewDetail from '@/views/review/ReviewDetail'
 
 import HospitalInfo from '@/views/hospital/HospitalInfo'
+import MyReview from '@/views/review/MyReview'
 
 // import {store} from "@/vuex/store";
 
@@ -75,6 +78,16 @@ const routes = [
         name: 'EditMyInfo',
         component: EditMyInfo
     },
+    {
+        path: '/id-find',
+        name: 'IdFind',
+        component: IdFind
+    },
+    {
+        path: '/password-find',
+        name: 'PasswordFind',
+        component: PasswordFind
+    },
     // {
     //     path: '/about',
     //     name: 'About',
@@ -119,6 +132,11 @@ const routes = [
         path: '/review/detail',
         name: 'ReviewDetail',
         component: ReviewDetail
+    }
+    ,{
+        path: '/review/myreview',
+        name: 'MyReview',
+        component: MyReview
     }
 
 ]

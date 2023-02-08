@@ -30,6 +30,8 @@ public class QWishEntity extends EntityPathBase<WishEntity> {
 
     public final BooleanPath wishState = createBoolean("wishState");
 
+    public final NumberPath<Integer> wishState1 = createNumber("wishState1", Integer.class);
+
     public QWishEntity(String variable) {
         this(WishEntity.class, forVariable(variable), INITS);
     }

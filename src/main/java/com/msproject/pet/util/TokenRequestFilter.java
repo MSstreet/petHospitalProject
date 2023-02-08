@@ -44,7 +44,11 @@ public class TokenRequestFilter extends OncePerRequestFilter {
                 doFilter(request, response, filterChain);
             }else if ("/user/check".equals(request.getRequestURI())) {
             doFilter(request, response, filterChain);
-        }
+            }else if ("/user/check/mail".equals(request.getRequestURI())) {
+                doFilter(request, response, filterChain);
+            }else if ("/user/find".equals(request.getRequestURI())) {
+                doFilter(request, response, filterChain);
+            }
 
             else {
                 String token = parseJwt(request);

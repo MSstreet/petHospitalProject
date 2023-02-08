@@ -19,9 +19,15 @@
 <!--        </div>-->
 
         <div class="form-group">
-          <label for="exampleInputEmail1" class="form-label mt-4">아이디</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_id" @change ="validIdCheck">
+          <label for="exampleInputId" class="form-label mt-4">아이디</label>
+          <input type="text" class="form-control" id="exampleInputId" v-model="user_id" @change ="validIdCheck">
           <div id="checkId" class="mt-1"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="form-label mt-4">Email</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" v-model="user_email" @change="validEmailCheck">
+          <div id="checkEmail" class="mt-1"></div>
         </div>
 
 
@@ -99,6 +105,8 @@ export default {
       user_name: '',
       user_num: '',
 
+      user_email:'',
+
       user_addr: '',
 
       postcode:'',
@@ -121,12 +129,14 @@ export default {
         return false
       }
       try {
-        let joinResult = await this.join({
+        let joinResult = await this.join( {
           user_id: this.user_id,
           user_pw: this.user_pw,
           user_name: this.user_name,
           // user_num: this.user_num,
           // user_addr: this.user_addr
+
+          email:this.user_email,
 
           phone_num: this.user_num,
           zip_code: this.postcode,
@@ -163,6 +173,52 @@ export default {
       }
     }
 
+    ,validEmailCheck(){
+      const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
+
+      if (this.user_email !== '' && !emailCheck.test(this.user_email)) {
+        //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        document.getElementById('checkEmail').style.color="red"
+        document.getElementById('checkEmail').innerHTML = " 올바른 이메일 형식이 아닙니다.";
+        this.check = false
+        return
+      }else{
+        document.getElementById('checkEmail').style.color="black"
+        document.getElementById('checkEmail').innerHTML = "";
+        this.check = true
+
+        this.validIdDuplicationEmailCheck()
+        return
+      }
+
+    }
+    ,validIdDuplicationEmailCheck(){
+      console.log(this.user_email)
+      let apiUrl = this.$serverUrl + '/user/check/mail?email=' + this.user_email
+
+      this.$axios.get(apiUrl, {
+        params:{
+          email:this.user_email
+        }
+      }).then((res) => {
+        console.log(res.data)
+        if(res.data === true){
+          document.getElementById('checkEmail').style.color="red"
+          document.getElementById('checkEmail').innerHTML = "이미 등록된 email입니다.";
+          this.check = false
+        }else{
+          document.getElementById('checkEmail').style.color="black"
+          document.getElementById('checkEmail').innerHTML = "";
+          this.check = true
+        }
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1){
+          alert('네크워크가 원활하지 않습니다. \n잠시 후 다시 시도해주세요.')
+        }
+      })
+    }
+
+
     ,validIdDuplicationCheck(){
       console.log("들어오는가?")
       let apiUrl = this.$serverUrl + '/user/check?userId=' + this.user_id
@@ -188,6 +244,7 @@ export default {
           }
       })
     }
+
 
     ,validPasswordCheck(){
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
@@ -335,7 +392,6 @@ export default {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$");
       const nameCheck = "^[가-힣]+$";
 
-
       // if (this.user_id !== '' && this.user_id.length < 5) {
       //   alert('ID는 최소한 5글자 이상이어야 합니다.')
       //   this.check = false
@@ -372,7 +428,6 @@ export default {
     , submitCheck() {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
 
-
       if (this.user_id !== '' && this.user_id.length < 5) {
         alert('ID는 최소한 5글자 이상이어야 합니다.')
         this.check = false
@@ -397,6 +452,15 @@ export default {
         this.check = false
         return
       }else{
+        this.check = true
+        //return
+      }
+
+      if (this.user_email == '') {
+        alert('Email을 입력하세요.')
+        this.check = false
+        return
+      } else{
         this.check = true
         //return
       }

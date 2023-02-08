@@ -51,4 +51,12 @@ public class WishRepositoryCustom {
         return results;
     }
 
+//    public Boolean checkWish(Long uid, Long hid) {
+//
+//        Boolean check = queryFactory.selectFrom(wishEntity)
+//                .where(wishEntity.userEntity.idx.eq(uid).and(wishEntity.petHospitalEntity.hospitalId.eq(hid)))
+//                .exists();
+//
+//    }
+
 }

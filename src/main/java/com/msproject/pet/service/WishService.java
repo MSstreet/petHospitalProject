@@ -51,7 +51,9 @@ public class WishService {
         WishEntity wishEntity = WishEntity.builder()
                 .petHospitalEntity(pet)
                 .userEntity(user)
-                .wishState(wishDto.isWishState()).build();
+                .wishState(wishDto.isWishState())
+                .wishState1(wishDto.getWishState1())
+                .build();
 
         return wishRepository.save(wishEntity);
     }
@@ -59,10 +61,15 @@ public class WishService {
 
     public WishEntity update(WishDto wishDto) {
 
-        WishEntity entity = wishRepository.findById(wishDto.getWishId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
+        //WishEntity entity = wishRepository.findById(wishDto.getWishId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
-        entity.changeWishState(wishDto.isWishState());
+        System.out.println("여기서나는오류인거지111111111111111111111");
+        WishEntity entity = wishRepositoryCustom.findOneReview(wishDto.getUserNum(),wishDto.getPetHospitalNum());
+        System.out.println("여기서나는오류인거지222222222222222222222222");
+//        entity.changeWishState(wishDto.isWishState());
 
+        entity.changeWishState(wishDto.getWishState1());
+        System.out.println("여기서나는오류인거지33333333333333333333333333333");
         return wishRepository.save(entity);
     }
 
@@ -87,6 +94,7 @@ public class WishService {
                   .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                   .userNum(entity.getUserEntity().getIdx())
                   .wishState(entity.isWishState())
+                  .wishState1(entity.getWishState1())
                   .build();
 
             dtos.add(dto);
@@ -110,6 +118,7 @@ public class WishService {
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                 .userNum(entity.getUserEntity().getIdx())
                 .wishState(entity.isWishState())
+                .wishState1(entity.getWishState1())
                 .build();
     }
 
@@ -118,14 +127,28 @@ public class WishService {
 
         WishEntity entity = wishRepositoryCustom.findOneReview(uid, hid);
 
+        System.out.println("들어오는지?");
+
+
+
         WishDto wishDto = WishDto.builder()
                 .wishId(entity.getWishId())
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                 .userNum(entity.getUserEntity().getIdx())
                 .wishState(entity.isWishState())
+                .wishState1(entity.getWishState1())
                 .build();
 
         return wishDto;
     }
 
+    public Boolean checkWish(Long uid, Long hid) {
+
+        if(wishRepositoryCustom.findOneReview(uid,hid) == null){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
 }

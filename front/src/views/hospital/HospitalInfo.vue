@@ -47,9 +47,29 @@ export default{
       hos_longitude:''
 
     }
-  },
-  methods: {
+  }
+  ,created(){
+    this.fnGetView()
+    // if (window.kakao && window.kakao.maps) {
+    //
+    //   this.initMap();
+    //
+    // } else {
+    //   const script = document.createElement("script");
+    //   /* global kakao */
+    //   script.onload = () => kakao.maps.load(this.initMap);
+    //   script.src = "///dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false";
+    //   document.head.appendChild(script);
+    // }
 
+    // const script = document.createElement("script")
+    // script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
+    // script.addEventListener("load", () => {
+    //   kakao.maps.load(this.initMap)
+    // })
+    // document.head.appendChild(script)
+  }
+  ,methods: {
     initMap() {
       console.log(2)
       console.log("경도 : " + this.hos_latitude)
@@ -57,17 +77,18 @@ export default{
       const map = document.getElementById("map")
 
       const options = {
-        //center: new kakao.maps.LatLng(37, 131, 16),
-        center: new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude ),
+        center: new kakao.maps.LatLng(37.83010,127.51214),
+       // center: new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude ), //경도 위도 이렇게 받으니까 흰색화면 띄어지는거야
         level: 5
       }
 
       //this.map = new kakao.maps.Map(this.hos_latitude, this.hos_longitude)
+
       this.map = new kakao.maps.Map(map, options)
 
 
-      this.displayMakers(this.hos_latitude,this.hos_longitude)
-
+      //this.displayMakers(this.hos_latitude,this.hos_longitude)
+      this.displayMakers(37.83010,127.51214)
      // const marker1 = new kakao.maps.LatLng(37.82618, 127.51352)
 
      //  const marker1 = new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude)
@@ -110,8 +131,7 @@ export default{
     }
   }
   ,mounted() {
-    this.fnGetView()
-
+    // this.fnGetView()
 
     const script = document.createElement("script")
     script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"

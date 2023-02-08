@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -84,29 +85,33 @@ public class PetHospitalService {
 
     public PetHospitalListReviewCountDto getPetHospitalWithReviewCount(Long id) {
 
-//        PetHospitalListReviewCountDto petHospitalListReviewCountDto = new PetHospitalListReviewCountDto();
-//
-//        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
+        PetHospitalListReviewCountDto petHospitalListReviewCountDto = petHospitalRepositoryCustom.findWithReviewCountById(id);
+
+        System.out.println("0나올걸?!"+petHospitalListReviewCountDto.getHospitalScore());
+
+
+        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(id);
+
+        PetHospitalEntity result = petHospitalEntity.orElseThrow();
+
+        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(result);
 //
 //        float sum = 0;
+//        System.out.println("확인한다!!!!!!!!!!!!" + reviewEntities.size());
+
 
 //        for(int i = 0; i < reviewEntities.size(); i ++){
 //            sum = reviewEntities.get(i).getScore();
 //            System.out.println(sum);
 //        }
 
-//        if(sum == 0){
-//               petHospitalListReviewCountDto.setHospitalScore(0);
-//
-//        }else{
-
-        PetHospitalListReviewCountDto petHospitalListReviewCountDto = petHospitalRepositoryCustom.findWithReviewCountById(id);
-
-        float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
-
-        avg = Math.round(avg*10) / 10;
-
-        petHospitalListReviewCountDto.setHospitalScore(avg);
+        if (reviewEntities.size() == 0) {
+            petHospitalListReviewCountDto.setHospitalScore(0);
+        } else {
+            float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
+            avg = Math.round(avg * 10) / 10;
+            petHospitalListReviewCountDto.setHospitalScore(avg);
+        }
 
         return petHospitalListReviewCountDto;
     }

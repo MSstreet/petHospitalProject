@@ -17,23 +17,31 @@
         <form @submit.prevent="fnLogin">
 
           <div class="form-group">
-            <label for="exampleInputEmail1" class="mb-1">Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" v-model="user_id">
+            <label for="exampleInputEmail1" class="mb-1">ID</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Id" v-model="user_id">
 
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your id with anyone else.</small>
           </div>
-
 
           <div class="form-group">
             <label for="exampleInputPassword1" class="mb-1 mt-4">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="on" v-model="user_pw">
           </div>
 
-
-          <div class="d-grid gap-2 mt-2">
-          <button type="submit" class="btn btn-primary mt-3">Login</button>
+        <div class="row">
+          <div class="d-grid gap-2 mt-2 col-6">
+          <button type="submit" class="btn btn-primary mt-3 fw-bold">Login</button>
           </div>
 
+          <div class="d-grid gap-2 mt-2 col-6">
+            <router-link to="/join" type="button" class="btn btn-success mt-3 fw-bold">Join</router-link>
+<!--            <button type="submit" class="btn btn-success mt-3">Join</button>-->
+          </div>
+
+          <div class="mt-2 ">
+          <span><router-link class="a" to="/id-find">ID를 잊으셨나요?&nbsp&nbsp&nbsp</router-link></span> <span><router-link class="a" to="/password-find">비밀번호를 잊으셨나요?</router-link></span>
+          </div>
+        </div>
 <!--          <p>-->
 <!--            <input class="w3-input" name="uid" placeholder="Enter your ID" v-model="user_id"><br>-->
 <!--          </p>-->
@@ -167,7 +175,9 @@ export default {
   margin: auto;
 
 }
-
+.a{
+  text-decoration-line:none;
+}
 .bg-light{
   height: 1053px;
   padding-top:55px;

@@ -1,5 +1,7 @@
 <template>
 
+
+
 <div class="text-center">
   <div style="width: 960px; display: inline-block">
     <div class="row p-3">
@@ -23,11 +25,19 @@
           </div>
         </div>
 
-
         <div class="pb-2 pt-2 btn-pos">
           <a class="btn btn-primary btn-lg" v-on:click="reviewWrite(`${hospital_id}`)"><i class="fas fa-edit"></i> 리뷰 남기기</a>
         </div>
 
+        <div>
+          <div class="" >
+            <a style="text-decoration-line: none;" id="check" @click="changeHeart(`${heartval}`)">
+<!--              <img class="heart-size" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/746px-Heart_icon_red_hollow.svg.png">-->
+              <span style="font-size: 3rem" id="heart" class="heart-position">♡</span>
+<!--              <i class="fa-regular fa-heart fa-3x"></i>-->
+            </a>
+          </div>
+        </div>
 
 <!--        <div class="text-left info-pos">-->
 <!--          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">-->
@@ -38,8 +48,10 @@
 <!--          </div>-->
 <!--        </div>-->
       </div>
-    </div>
 
+
+
+    </div>
 
     <div class="row border px-3 middle-tab" style="top:72px !important;">
 
@@ -56,6 +68,7 @@
     </div>
   </div>
 </div>
+
 </template>
 
 <script>
@@ -75,6 +88,11 @@ export default {
 
       idx: this.$route.query.idx,
 
+      user_idx : this.$store.state.userIdx,
+
+      heartval: 0,
+      clicked : 0,
+
       addr1:'',
       hospital_id:'',
       hospital_name: '',
@@ -83,12 +101,15 @@ export default {
       sigun_name: '',
       oper_state: '',
       hospital_score:'',
-      review_count:''
+      review_count:'',
 
+      wish_state: ''
     }
   }
   , mounted() {
     this.fnGetView()
+    console.log("check !!!" + this.idx)
+    console.log("check !!!" + this.user_idx)
     // this.fnGetReviewAvg()
     // console.log("체크!!!!!!!!!" + this.idx)
   },
@@ -103,8 +124,8 @@ export default {
 
             this.hospital_score = res.data
 
-            console.log("확인!!!!!!!"+res.data)
-            console.log(this.hospital_score)
+            // console.log("확인!!!!!!!"+res.data)
+            // console.log(this.hospital_score)
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
@@ -113,13 +134,72 @@ export default {
       })
     }
 
-    // fnView(idx) {
-    //   this.requestBody.idx = idx
-    //   this.$router.push({
-    //     path: '/review/detail',
-    //     query: this.requestBody
-    //   })
-    // },
+    ,changeHeart(heart){
+      // const check = document.getElementById("check")
+      //
+      // check.onclick = function (){
+      //   if(this.clicked == 1){
+      //     this.clicked = 0;
+      //   }else{
+      //     this.clicked = 1;
+      //   }
+      //   console.log(this.clicked)
+      // }
+
+      if(heart == 1){
+        this.heartval = 0
+        document.getElementById("heart").innerText = "♡";
+
+      }else{
+        this.heartval = 1
+        document.getElementById("heart").innerText = "♥"
+      }
+      console.log("체크!!" + this.heartval)
+
+      let apiUrl = this.$serverUrl + '/wish'
+
+      this.form = {
+        "user_num" : this. user_idx,
+        "pet_hospital_num": this.idx,
+        "wish_state1" : this.heartval
+      }
+
+      console.log("동물병원 " + this.pet_hospital_num)
+
+      this.$axios.post(apiUrl, this.form)
+          .then((res) => {
+            //alert('.')
+            //this.fnView(res.data.pet_hospital_entity.hospital_id)
+            //console.log("확인!!!"+res.data.pet_hospital_entity.hospital_id)
+            this.wish_state = res.data.wish_state1
+
+            console.log(this.wish_state)
+
+          }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+      //
+      // this.$axios.post(this.$serverUrl + '/wish/check/' + this.user_idx + this.idx)
+      //     .then((res) => {
+      //       this.wish_state = res.data.wish_state
+      //     }).catch((err) => {
+      //   if (err.message.indexOf('Network Error') > -1) {
+      //     alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+      //   }
+      // })
+
+
+    }
+
+    ,fnView(idx) {
+      this.requestBody.idx = idx
+      this.$router.push({
+        path: '/review/detail',
+        query: this.requestBody
+      })
+    }
 
     ,fnGetView() {
       this.$axios.get(this.$serverUrl + '/hospital/' + this.idx, {
@@ -186,5 +266,15 @@ export default {
   .info-pos{
     text-align: left;
   }
+/*.heart-size{*/
+/*  max-width: 10%;*/
+/*  max-height: 10%;*/
+/*}*/
+.heart-position{
+  position: relative;
+  right: 17rem;
+  bottom:4.2rem;
+}
+
 
 </style>

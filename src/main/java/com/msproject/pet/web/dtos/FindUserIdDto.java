@@ -9,15 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WishDto {
+public class FindUserIdDto {
 
-    private Long wishId;
+    private String userName;
 
-    private Long petHospitalNum;
+    private String email;
 
-    private Long userNum;
-
-    private boolean wishState;
-
-    private int wishState1;
 }

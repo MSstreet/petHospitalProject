@@ -23,15 +23,21 @@
 
 
         <div class="form-group">
-          <label for="exampleInputEmail1" class="form-label mt-4">아이디</label>
-         <span type="text" class="form-control" id="exampleInputEmail1">{{user_id}}</span>
+          <label for="exampleInputId" class="form-label mt-4">아이디</label>
+         <span type="text" class="form-control" id="exampleInputId">{{user_id}}</span>
 <!--          <input type="text" class="form-control" id="exampleInputEmail1">-->
         </div>
 
 
         <div class="form-group">
           <label for="exampleInputName" class="form-label mt-4">이름</label>
-          <span type="text" class="form-control" id="exampleInputEmail1">{{user_name}}</span>
+          <span type="text" class="form-control" id="exampleInputName">{{user_name}}</span>
+          <!--          <input type="text" class="form-control" id="exampleInputName" >-->
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail" class="form-label mt-4">EMAIL</label>
+          <span type="text" class="form-control" id="exampleInputEmail">{{email}}</span>
           <!--          <input type="text" class="form-control" id="exampleInputName" >-->
         </div>
 
@@ -62,6 +68,9 @@
 
         <div class="d-grid gap-2">
           <router-link to="/myinfo_edit" class="btn btn-success" role="button">Edit My Info</router-link>
+        </div>
+        <div class="mt-2 text-end" @click="fnBeforeDelete">
+          회원탈퇴
         </div>
 
       </form>
@@ -95,7 +104,8 @@ export default {
       user_num: '',
       zip_code: '',
       user_addr: '',
-      detail_addr:''
+      detail_addr:'',
+      email:''
     }
   }
   ,mounted() {
@@ -104,7 +114,15 @@ export default {
     console.log(this.user_idx)
   }
   ,methods:{
-    fnGetView() {
+    fnBeforeDelete(){
+      
+    }
+
+    ,fnDelete(){
+
+    }
+
+    ,fnGetView() {
       this.$axios.get(this.$serverUrl + '/user/' + this.user_idx, {
         params: this.requestBody
       }).then((res) => {
@@ -114,6 +132,7 @@ export default {
         this.zip_code = res.data.zip_code
         this.user_addr = res.data.addr
         this.detail_addr = res.data.detail_addr
+        this.email = res.data.email
 
         console.log(res.data)
 

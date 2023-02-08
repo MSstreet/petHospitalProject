@@ -3,7 +3,7 @@
 
 <div class="container text-center mb-5">
   <div >
-    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center">Animal Hospital List</h1>
+    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center; "><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
 
 <!--    <i class="fas fa-sheep"></i>-->
 <!--    <i class="fas fa-squirrel"></i>-->

@@ -3,6 +3,7 @@ package com.msproject.pet.service;
 import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.entity.UserRepository;
 import com.msproject.pet.exception.DuplicateUserIdException;
+import com.msproject.pet.web.dtos.FindUserIdDto;
 import com.msproject.pet.web.dtos.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -54,6 +56,7 @@ public class UserService implements UserDetailsService {
                 .phoneNum(userDto.getPhoneNum())
                 .zipCode(userDto.getZipCode())
                 .addr(userDto.getAddr())
+                .email(userDto.getEmail())
                 .build();
 
         return userRepository.save(userEntity);
@@ -75,7 +78,7 @@ public class UserService implements UserDetailsService {
     public UserEntity update(UserDto userDto){
         UserEntity entity = userRepository.findByUserId(userDto.getUserId()).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
-        entity.change(userDto.getUserName(),userDto.getPhoneNum(),userDto.getZipCode(), userDto.getAddr(), userDto.getDetailAddr());
+        entity.change(userDto.getUserName(),userDto.getPhoneNum(),userDto.getZipCode(), userDto.getAddr(), userDto.getDetailAddr(),userDto.getEmail());
 
         return userRepository.save(entity);
     }
@@ -98,6 +101,7 @@ public class UserService implements UserDetailsService {
                 .zipCode(entity.getZipCode())
                 .addr(entity.getAddr())
                 .detailAddr(entity.getDetailAddr())
+                .email(entity.getEmail())
                 .build();
     }
 
@@ -113,6 +117,21 @@ public class UserService implements UserDetailsService {
                 .zipCode(entity.getZipCode())
                 .addr(entity.getAddr())
                 .detailAddr(entity.getDetailAddr())
+                .email(entity.getEmail())
                 .build();
+    }
+
+    public Boolean checkEmail(String email) {
+
+        {
+            return userRepository.existsByEmail(email);
+        }
+    }
+
+    public UserEntity findId(FindUserIdDto findUserIdDto) {
+
+        Optional<UserEntity> user = userRepository.findByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
+        UserEntity userEntity = user.orElseThrow();
+        return userEntity;
     }
 }

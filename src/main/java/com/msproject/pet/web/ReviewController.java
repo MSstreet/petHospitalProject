@@ -26,6 +26,8 @@ public class ReviewController {
     @PostMapping("/review/join")
     public ReviewEntity create(@RequestBody ReviewDto reviewDto) throws Exception{
 
+        System.out.println(reviewDto.getUserNum());
+
         System.out.println(reviewDto.getScore());
         System.out.println(reviewDto.getPetHospitalNum());
         System.out.println("-----------------------------------------------------------");
@@ -43,16 +45,26 @@ public class ReviewController {
         return reviewService.getReviewList(pageable, searchCondition, id);
     }
 
-    @GetMapping("/review/avg/{id}")
-    public float getReviewAvg(@PathVariable Long id){
-        System.out.println(id);
+    @GetMapping("/review/user/{id}")
+    public Header<List<ReviewDto>> userReviewList(@PathVariable Long id,
+                                              @PageableDefault(sort = {"idx"}) Pageable pageable,
+                                              SearchCondition searchCondition)
+    {
         System.out.println("들어오는지 확인");
-
-        //float avg = reviewService.getReviewAvg(id);
-        //avg = Math.round(avg*10) / 10;
-
-        return reviewService.getReviewAvg(id);
+        System.out.println(id);
+        return reviewService.getUserReviewList(pageable, searchCondition, id);
     }
+
+//    @GetMapping("/review/avg/{id}")
+//    public float getReviewAvg(@PathVariable Long id){
+//        System.out.println(id);
+//        System.out.println("들어오는지 확인");
+//
+//        //float avg = reviewService.getReviewAvg(id);
+//        //avg = Math.round(avg*10) / 10;
+//
+//        return reviewService.getReviewAvg(id);
+//    }
 
 
     @GetMapping("/review/{id}")

@@ -1,6 +1,5 @@
 package com.msproject.pet.repository;
 
-
 import com.msproject.pet.entity.ReviewEntity;
 import com.msproject.pet.model.SearchCondition;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -46,6 +45,31 @@ public class ReviewRepositoryCustom {
 
         return new PageImpl<>(results, pageable, total);
     }
+
+
+    public Page<ReviewEntity> findAllByUserId(Pageable pageable, SearchCondition searchCondition, Long id) {
+
+//        JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
+//                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
+
+        JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
+                .where(reviewEntity.userEntity.idx.eq(id));
+
+        long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
+
+        List<ReviewEntity> results = query
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .orderBy(reviewEntity.reviewId.desc())
+                .fetch();
+
+//        System.out.println("222resultSize : " + results.size());
+
+        return new PageImpl<>(results, pageable, total);
+    }
+
 
     private BooleanExpression searchKeywords(String sk, String sv) {
 

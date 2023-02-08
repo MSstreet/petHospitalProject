@@ -21,6 +21,14 @@
           <div id="nameCheck" class="mt-1"></div>
         </div>
 
+      <div class="form-group">
+        <label for="exampleInputEmail" class="form-label mt-4">EMAIL</label>
+        <!--          <span type="text" class="form-control" id="exampleInputEmail1">{{user_name}}</span>-->
+        <input type="text" class="form-control" id="exampleInputEmail"
+               :placeholder="email"  v-model="email">
+        <div id="nameCheck" class="mt-1"></div>
+      </div>
+
         <div class="form-group">
           <label for="exampleInputNum" class="form-label mt-4">전화번호</label>
 <!--          <span type="text" class="form-control" id="exampleInputEmail1">{{user_num}}</span>-->
@@ -87,6 +95,8 @@ export default {
 
       user_id: '',
 
+      email:'',
+
       user_name: '',
       user_num: '',
 
@@ -117,6 +127,7 @@ export default {
         // this.detail_addr = res.data.detail_addr
         this.address = res.data.addr
         this.extra_address = res.data.detail_addr
+        this.email = res.data.email
 
         console.log(res.data)
 
@@ -181,7 +192,8 @@ export default {
         "phone_num": this.user_num,
         "zip_code": this.postcode,
         "addr": this.address,
-        "detail_addr" : this.extra_address
+        "detail_addr" : this.extra_address,
+        "email" : this.email
       }
         //UPDATE
         this.$axios.patch(apiUrl, this.form)

@@ -40,7 +40,7 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public final NumberPath<Float> score = createNumber("score", Float.class);
 
-    public final NumberPath<Long> userIdx = createNumber("userIdx", Long.class);
+    public final QUserEntity userEntity;
 
     public QReviewEntity(String variable) {
         this(ReviewEntity.class, forVariable(variable), INITS);
@@ -61,6 +61,7 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
     public QReviewEntity(Class<? extends ReviewEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.petHospitalEntity = inits.isInitialized("petHospitalEntity") ? new QPetHospitalEntity(forProperty("petHospitalEntity")) : null;
+        this.userEntity = inits.isInitialized("userEntity") ? new QUserEntity(forProperty("userEntity")) : null;
     }
 
 }

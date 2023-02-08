@@ -21,6 +21,10 @@ public class ReviewDto {
 
     private String content;
 
+    private String userId; //
+
+    private String hosName;
+
     private float score;
 
     private boolean deleteYn;

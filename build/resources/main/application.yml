@@ -22,6 +22,8 @@ spring:
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+    serialization:
+      fail-on-empty-beans: 'false'
 
 jwt:
     secret: AAAABBBBCCCCDDDDEEEEFFFFGGGG123!@#

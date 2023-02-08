@@ -1,10 +1,11 @@
 <template>
 
   <div class="wrap mt-5">
-    <span><h3>{{hospital_name}} 후기</h3></span>
+    <span><h3>{{hospital_name}} 후기후기</h3></span>
     <form name="reviewform" class="reviewform">
 
       <p class="title_star">별점과 리뷰를 남겨주세요.</p>
+
       <div class="review_rating">
         <div class="warning_msg">별점을 선택해 주세요.</div>
           <div class="star-rating col-6">
@@ -79,6 +80,8 @@ export default {
     return {
       requestBody: this.$route.query,
       pet_hospital_num: this.$route.query.idx,
+
+      user_idx: this.$store.state.userIdx,
       score: 0,
       contents:'',
 
@@ -96,7 +99,8 @@ export default {
   mounted() {
     //this.GetView()
     // console.log(this.idx)
-    console.log("check!!!!!" + this.pet_hospital_num)
+    console.log("check체크!!!!!" + this.user_idx)
+    console.log("check체크!!!!!" + this.user_idx)
     console.log(this.requestBody)
     this.fnGetView()
   },
@@ -106,6 +110,7 @@ export default {
       let apiUrl = this.$serverUrl + '/review/join'
 
       this.form = {
+        "user_num" : this.user_idx,
         "pet_hospital_num": this.pet_hospital_num,
         "content": this.contents,
         "score": this.score

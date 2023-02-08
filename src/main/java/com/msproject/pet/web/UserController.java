@@ -3,6 +3,7 @@ package com.msproject.pet.web;
 import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.service.UserService;
 import com.msproject.pet.util.JwtUtil;
+import com.msproject.pet.web.dtos.FindUserIdDto;
 import com.msproject.pet.web.dtos.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,26 @@ public class UserController {
         return userService.checkId(userId);
     }
 
+    @GetMapping("/check/mail")
+    public Boolean checkEmail(@RequestParam String email){
+
+        System.out.println("check" + email);
+        System.out.println("컨트롤러에 들어와?");
+        return userService.checkEmail(email);
+    }
+
+    @PostMapping("/find")
+    public String findId(@RequestBody FindUserIdDto findUserIdDto){
+
+        System.out.println("들어오는지확인!!!");
+        System.out.println(findUserIdDto.getUserName());
+        System.out.println(findUserIdDto.getEmail());
+
+        UserEntity user = userService.findId(findUserIdDto);
+        return user.getUserId();
+
+    }
+
 
 
     @PostMapping("/join")
@@ -55,7 +76,6 @@ public class UserController {
         System.out.println(userDto.getDetailAddr());
 
         UserEntity user = userService.saveUser(userDto);
-
 
 
         return  user.getIdx();

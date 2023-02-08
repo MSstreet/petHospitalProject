@@ -26,11 +26,33 @@ public class WishController {
     @PostMapping("/wish")
     public WishEntity createWish(@RequestBody WishDto wishDto){
 
-        if(getWish1(wishDto.getUserNum(),wishDto.getPetHospitalNum()) != null){
+        System.out.println(wishDto.isWishState());
+        System.out.println(wishDto.getUserNum());
+        System.out.println(wishDto.getPetHospitalNum());
+        System.out.println(wishDto.getWishState1());
+        System.out.println("111111111111111111111111111111일로오지");
+
+//        if(getWish1(wishDto.getUserNum(),wishDto.getPetHospitalNum()) != null){
+//
+//            System.out.println("일로오지");
+//            return update(wishDto);
+//        }
+
+        if(checkId(wishDto.getUserNum(),wishDto.getPetHospitalNum())){
+            return wishService.wishCreate(wishDto);
+        }else{
+            System.out.println("여기로온다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             return update(wishDto);
         }
 
-        return wishService.wishCreate(wishDto);
+        //return wishService.wishCreate(wishDto);
+    }
+
+    @GetMapping("/wish/check/{uid}/{hid}")
+    public Boolean checkId(@PathVariable Long uid, @PathVariable Long hid){
+
+        return wishService.checkWish(uid,hid);
     }
 
 
@@ -52,7 +74,6 @@ public class WishController {
     public WishEntity update(@RequestBody WishDto wishDto){
         return wishService.update(wishDto);
     }
-
 
     @DeleteMapping("/wish/{id}")
     public void delete(@PathVariable Long id){
