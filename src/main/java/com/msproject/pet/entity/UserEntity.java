@@ -53,4 +53,8 @@ public class UserEntity extends BaseEntity{
         this.detailAddr = detailAddr;
         this.email = email;
     }
+
+    public void changePw(String userPw){
+        this.userPw = userPw;
+    }
 }

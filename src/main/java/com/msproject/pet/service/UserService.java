@@ -4,8 +4,12 @@ import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.entity.UserRepository;
 import com.msproject.pet.exception.DuplicateUserIdException;
 import com.msproject.pet.web.dtos.FindUserIdDto;
+import com.msproject.pet.web.dtos.MailDto;
 import com.msproject.pet.web.dtos.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,6 +30,8 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    private final JavaMailSender mailSender;
 
     //private final PasswordEncoder passwordEncoder;
 
@@ -130,8 +136,102 @@ public class UserService implements UserDetailsService {
 
     public UserEntity findId(FindUserIdDto findUserIdDto) {
 
-        Optional<UserEntity> user = userRepository.findByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
-        UserEntity userEntity = user.orElseThrow();
-        return userEntity;
+        Boolean check = userRepository.existsByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
+
+        if(check){
+            Optional<UserEntity> user = userRepository.findByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
+            UserEntity userEntity = user.orElseThrow();
+            return userEntity;
+        }else{
+            return null;
+        }
+//        Optional<UserEntity> user = userRepository.findByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
+//        UserEntity userEntity = user.orElseThrow();
+
     }
+
+    public UserEntity findPw(String userEmail) {
+
+//        Boolean check = userRepository.existsByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
+        Boolean check = userRepository.existsByEmail(userEmail);
+
+        if(check){
+            Optional<UserEntity> user = userRepository.findByEmail(userEmail);
+            UserEntity userEntity = user.orElseThrow();
+
+            MailDto mailDto = createMailAndChangePassword(userEntity);
+
+            mailSend(mailDto);
+
+            return userEntity;
+
+        }else{
+            return null;
+        }
+    }
+
+
+    public MailDto createMailAndChangePassword(UserEntity userEntity) {
+
+        String str = getTempPassword();
+
+        MailDto dto = new MailDto();
+
+        dto.setAddress(userEntity.getEmail());
+        dto.setTitle("Cocolo 임시비밀번호 안내 이메일 입니다.");
+        dto.setMessage("안녕하세요. Cocolo 임시비밀번호 안내 관련 이메일 입니다." + " 회원님의 임시 비밀번호는 "
+                + str + " 입니다." + "로그인 후에 비밀번호를 변경을 해주세요");
+
+
+        userEntity.changePw(str);
+        userRepository.save(userEntity);
+
+        return dto;
+    }
+
+//    public void updatePassword(String str, String userEmail){
+//        String memberPassword = str;
+//
+//        Long memberId = mr.findByMemberEmail(userEmail).getId();
+//        mmr.updatePassword(memberId,memberPassword);
+//    }
+
+
+    private String getTempPassword() {
+
+        char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+        String str = "";
+
+        // 문자 배열 길이의 값을 랜덤으로 10개를 뽑아 구문을 작성함
+        int idx = 0;
+        for (int i = 0; i < 10; i++) {
+            idx = (int) (charSet.length * Math.random());
+            str += charSet[idx];
+        }
+        return str;
+    }
+
+
+
+
+    public void mailSend(MailDto mailDTO) {
+        System.out.println("전송 완료!");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(mailDTO.getAddress());
+        message.setSubject(mailDTO.getTitle());
+        message.setText(mailDTO.getMessage());
+        message.setFrom("cortm5pp@naver.com");
+        message.setReplyTo("cortm5pp@naver.com");
+        System.out.println("message"+message);
+        mailSender.send(message);
+    }
+
+
+
+
+
+
+
 }

@@ -55,12 +55,34 @@ public class UserController {
     @PostMapping("/find")
     public String findId(@RequestBody FindUserIdDto findUserIdDto){
 
-        System.out.println("들어오는지확인!!!");
+
         System.out.println(findUserIdDto.getUserName());
         System.out.println(findUserIdDto.getEmail());
 
         UserEntity user = userService.findId(findUserIdDto);
+
+        if(user == null){
+            return null;
+        }
+
         return user.getUserId();
+
+    }
+
+    @PostMapping("/find/pw")
+    public String findPassword(@RequestParam("userEmail") String userEmail){
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(findUserIdDto.getUserName());
+//        System.out.println(findUserIdDto.getEmail());
+
+        UserEntity user = userService.findPw(userEmail);
+
+        if(user == null){
+            return null;
+        }
+
+        return user.getEmail();
 
     }
 
