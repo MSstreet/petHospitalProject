@@ -95,6 +95,11 @@ public class WishService {
                   .userNum(entity.getUserEntity().getIdx())
                   .wishState(entity.isWishState())
                   .wishState1(entity.getWishState1())
+                  .hospitalName(entity.getPetHospitalEntity().getHospitalName())
+                  .hospitalNum(entity.getPetHospitalEntity().getHospitalNum())
+                  .hospitalSigunName(entity.getPetHospitalEntity().getSigunName())
+                  .hospitalAddr(entity.getPetHospitalEntity().getHospitalAddr())
+                  .hospitalScore(entity.getPetHospitalEntity().getPetHospitalScore())
                   .build();
 
             dtos.add(dto);

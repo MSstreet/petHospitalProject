@@ -1,5 +1,5 @@
 // src/vuex/actions.js
-import {USER_ID, IS_AUTH, ERROR_STATE, USER_IDX} from './mutation_types'
+import {USER_ID, IS_AUTH, ERROR_STATE, USER_IDX, IS_LOGIN} from './mutation_types'
 import loginAPI from '../service/loginAPI'
 import joinAPI from '../service/joinAPI'
 
@@ -19,6 +19,10 @@ let setUserIdx = ({commit}, data)=>{
     commit(USER_IDX,data)
 }
 
+let setIsLogin = ({commit}, data) => {
+    commit(IS_LOGIN, data)
+}
+
 // 백엔드에서 반환한 결과값을 가지고 로그인 성공 실패 여부를 vuex에 넣어준다.
 let processResponse = (store, loginResponse) => {
 
@@ -35,6 +39,7 @@ let processResponse = (store, loginResponse) => {
             //setUserId(store, 'check')
             setErrorState(store, '')
             setIsAuth(store, true)
+            setIsLogin(store, true)
             //setUserIdx(store, loginResponse.user_idx)
             //setUserIdx(store, 5)
     }

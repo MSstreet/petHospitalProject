@@ -26,6 +26,7 @@ public class ReviewEntity extends BaseEntity{
     private PetHospitalEntity petHospitalEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action= OnDeleteAction.CASCADE)
     private UserEntity userEntity;
 
 //    @ManyToOne(fetch = FetchType.LAZY)

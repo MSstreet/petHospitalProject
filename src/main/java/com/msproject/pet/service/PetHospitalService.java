@@ -127,6 +127,8 @@ public class PetHospitalService {
 
         for (PetHospitalListReviewCountDto entity : hospitalEntities) {
 
+
+
             PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
                     .hospitalId(entity.getHospitalId())
                     .hospitalName(entity.getHospitalName())

@@ -20,4 +20,16 @@ public class WishDto {
     private boolean wishState;
 
     private int wishState1;
+
+    private String hospitalName;
+
+    private String hospitalNum;
+
+    private String hospitalSigunName;
+
+    private String hospitalAddr;
+
+    private float hospitalScore;
+
+
 }

@@ -16,6 +16,8 @@ import HospitalDetail from '@/views/hospital/HospitalDetail'
 import ReviewWrite from '@/views/review/ReviewWrite'
 import ReviewDetail from '@/views/review/ReviewDetail'
 
+import WishList from '@/views/wish/WishList'
+
 import HospitalInfo from '@/views/hospital/HospitalInfo'
 import MyReview from '@/views/review/MyReview'
 
@@ -137,6 +139,10 @@ const routes = [
         path: '/review/myreview',
         name: 'MyReview',
         component: MyReview
+    },{
+        path: '/wish/mywish',
+        name: 'WishList',
+        component: WishList
     }
 
 ]

@@ -40,6 +40,10 @@
             </li>
 
             <li class="nav-item">
+              <router-link v-if="this.$store.state.isLogin" to="/wish/mywish" class="nav-link text-light fw-bold">찜한 병원</router-link>
+            </li>
+
+            <li class="nav-item">
               <router-link to="/login"  class="nav-link text-light fw-bold" v-if="!this.$store.state.isLogin">로그인</router-link>
             </li>
 

@@ -3,6 +3,8 @@ package com.msproject.pet.service;
 import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.entity.UserRepository;
 import com.msproject.pet.exception.DuplicateUserIdException;
+import com.msproject.pet.repository.ReviewRepository;
+import com.msproject.pet.repository.WishRepository;
 import com.msproject.pet.web.dtos.FindUserIdDto;
 import com.msproject.pet.web.dtos.MailDto;
 import com.msproject.pet.web.dtos.UserDto;
@@ -32,6 +34,10 @@ public class UserService implements UserDetailsService {
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private final JavaMailSender mailSender;
+
+    private final ReviewRepository reviewRepository;
+
+    private final WishRepository wishRepository;
 
     //private final PasswordEncoder passwordEncoder;
 

@@ -4,10 +4,6 @@
 <div class="container text-center mb-5">
   <div >
     <h1  class="mt-3 fs-1 fw-bold" style="text-align: center; "><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
-
-<!--    <i class="fas fa-sheep"></i>-->
-<!--    <i class="fas fa-squirrel"></i>-->
-<!--    <i class="fas fa-pig"></i>-->
   </div>
 
 
@@ -17,17 +13,11 @@
       <option value="">- 선택 -</option>
       <option value="author">병원명</option>
       <option value="title">지역명</option>
-<!--      <option value="contents">내용</option>-->
     </select>
-
     <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
 
     <button @click="fnPage()" class="ms-2">검색</button>
 
-<!--    <a class="btn btn-primary float-end" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>-->
-
-    <!--        <a class="btn btn-primary float-end" > &lt;!&ndash; <i class="fas fa-table me-1"></i> &ndash;&gt;-->
-    <!--          <i class=""></i> 글 작성 </a>-->
   </div>
 
 
@@ -37,44 +27,18 @@
       <div class="col-12">
           <div class="card mb-3" style="max-width: 450px;">
             <div class="row g-0">
-
-<!--              <div class="col-md-4">-->
-<!--                <img src="" class="img-fluid rounded-start" alt="">-->
-<!--              </div>-->
-
               <div class="col-md-12">
                 <div class="card-body">
                   <h5 class="card-title"><a v-on:click="fnView(`${row.hospital_id}`)">{{ row.hospital_name}}</a></h5>
                   <p class="card-text mb-1">{{ row.hospital_num }}</p>
                   <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>
                   <p class="card-text mb-1">{{ row.hospital_addr }}</p>
-                  <p class="card-text mb-1">{{ row.hospital_score }}</p>
+                  <p class="card-text mb-1"><i class="fa-solid fa-star"></i>&nbsp{{ row.hospital_score }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-<!--      <div class="col-6">-->
-<!--        <div class="card mb-3" style="max-width: 450px;">-->
-<!--          <div class="row g-0">-->
-
-<!--            <div class="col-md-4">-->
-<!--              <img src="" class="img-fluid rounded-start" alt="">-->
-<!--            </div>-->
-
-<!--            <div class="col-md-8">-->
-<!--              <div class="card-body">-->
-<!--                <h5 class="card-title">{{ row.hospital_id}}</h5>-->
-<!--                <p class="card-text mb-1">{{ row.hospital_num }}</p>-->
-<!--                <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>-->
-<!--                <p class="card-text mb-1">{{ row.hospital_addr }}</p>-->
-<!--                <p class="card-text mb-1">{{ row.hospital_score }}</p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
    </div>
   </div>
 
@@ -121,6 +85,7 @@ export default {
   data() { //변수생성
     return {
       requestBody: {}, //리스트 페이지 데이터전송
+
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
       paging: {
@@ -154,12 +119,9 @@ export default {
         return pageNumber;
       }
     }
-  },
-  mounted() {
+  }
+  ,mounted() {
     this.fnGetList()
-    // console.log(this.$store.state.isLogin)
-    // console.log(this.$store.state.userIdx)
-    // console.log(this.test)
   }
   ,methods: {
     fnGetList() {
@@ -193,29 +155,22 @@ export default {
         }
       })
     }
+
     ,fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
         path: './detail',
         query: this.requestBody
       })
-    },
+    }
 
-    // fnWrite() {
-    //   this.$router.push({
-    //     path: './write'
-    //   })
-    // },
-
-    fnPage(n) {
+    ,fnPage(n) {
       if (this.page !== n) {
         this.page = n
       }
-
       this.fnGetList()
     }
   }
-
 }
 
 </script>

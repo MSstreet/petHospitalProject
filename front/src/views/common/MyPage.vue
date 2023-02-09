@@ -1,5 +1,37 @@
 <template>
 
+  <div id="findPw" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered modal-login">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container my-auto">
+            <div class="row">
+              <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                    <h4 class="text-black font-weight-bolder text-center mt-2 mb-0">회원 탈퇴</h4>
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <p >정말로 탈퇴하실건가요?.</p>
+                  <!--                  <div class="input-group input-group-outline my-3">-->
+                  <!--&lt;!&ndash;                    <label class="form-label">이름</label>&ndash;&gt;-->
+                  <!--                    <input type="text" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>-->
+                  <!--                  </div>-->
+                  <div class="text-center">
+                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
+                            id="checkEmail" @click="fnDelete">확인</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <section class="bg-light">
 
     <div class="container py-4">
@@ -69,8 +101,9 @@
         <div class="d-grid gap-2">
           <router-link to="/myinfo_edit" class="btn btn-success" role="button">Edit My Info</router-link>
         </div>
-        <div class="mt-2 text-end" @click="fnBeforeDelete">
-          회원탈퇴
+        <div class="mt-2 text-end">
+            <span type="button" class="btn btn-link a" data-bs-toggle="modal"
+                  data-bs-target="#findPw">회원 탈퇴</span>
         </div>
 
       </form>
@@ -114,12 +147,17 @@ export default {
     console.log(this.user_idx)
   }
   ,methods:{
-    fnBeforeDelete(){
+    fnDelete(){
 
-    }
-
-    ,fnDelete(){
-
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      this.$axios.delete(this.$serverUrl + '/user/' + this.user_idx, {})
+          .then(() => {
+            alert('회원탈퇴 되었습니다.')
+            this.$store.state.isLogin = false
+            this.fnView();
+          }).catch((err) => {
+        console.log(err);
+      })
     }
 
     ,fnGetView() {
@@ -142,12 +180,15 @@ export default {
         }
       })
     }
+
+    ,fnView(){
+      this.$router.push({
+        name: 'PageHome',
+      })
+    }
   }
 
 }
-
-
-
 
 </script>
 
