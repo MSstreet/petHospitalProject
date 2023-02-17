@@ -16,7 +16,7 @@
     </select>
     <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
 
-    <button @click="fnPage()" class="ms-2">검색</button>
+    <button @click="fnPage()" class="btn btn-success ms-2">검색</button>
 
   </div>
 
@@ -47,7 +47,7 @@
 </div>
 
 
-  <div class="position-page1">
+  <div class="test-position">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
@@ -108,7 +108,9 @@ export default {
 
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
+
       search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      //search_key: '지역명',
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
       paginavigation: function () { //페이징 처리 for문 커스텀

@@ -27,8 +27,9 @@
     </div>
 
     <div class="common-buttons pt-5">
-      <button type="button" class="btn btn-primary" v-on:click="fnUpdate">수정</button>&nbsp;
-      <button type="button" class="btn btn-primary" v-on:click="fnDelete">삭제</button>&nbsp;
+      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnUpdate">수정</button>&nbsp;
+      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnDelete">삭제</button>&nbsp;
+
       <button type="button" class="btn btn-primary" v-on:click="fnList">목록</button>
     </div>
 
@@ -43,6 +44,9 @@ export default {
       requestBody: this.$route.query,
       idx: this.$route.query.idx,
 
+      logged_idx: this.$store.state.userIdx,
+      writer_idx:this.$route.query.userIdx,
+
       title: '',
       author: '',
       contents: '',
@@ -51,6 +55,8 @@ export default {
   }
   ,mounted() {
     this.fnGetView()
+    console.log(this.logged_idx)
+    console.log(this.writer_idx)
   }
   ,methods: {
     fnGetView() {

@@ -1,8 +1,6 @@
 package com.msproject.pet.service;
 
-import com.msproject.pet.entity.BoardEntity;
-import com.msproject.pet.entity.BoardRepository;
-import com.msproject.pet.entity.BoardRepositoryCustom;
+import com.msproject.pet.entity.*;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
@@ -17,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,6 +24,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardRepositoryCustom boardRepositoryCustom;
 
+    private final UserRepository userRepository;
     /**
      * 게시글 목록 가져오기
      */
@@ -83,9 +83,11 @@ public class BoardService {
             BoardDto dto = BoardDto.builder()
                     .idx(entity.getIdx())
                     .author(entity.getAuthor())
+                    .userIdx(entity.getUserEntity().getIdx())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .userId(entity.getUserEntity().getUserId())
                     .build();
 
             dtos.add(dto);
@@ -116,7 +118,9 @@ public class BoardService {
                 .title(entity.getTitle())
                 .contents(entity.getContents())
                 .author(entity.getAuthor())
+                .userIdx(entity.getUserEntity().getIdx())
                 .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                .userId(entity.getUserEntity().getUserId())
                 .build();
     }
 
@@ -125,10 +129,14 @@ public class BoardService {
      */
     public BoardEntity create(BoardDto boardDto) {
 
+        Optional<UserEntity> user = userRepository.findById(boardDto.getUserIdx());
+        UserEntity result = user.orElseThrow();
+
        BoardEntity entity = BoardEntity.builder()
                 .title(boardDto.getTitle())
                 .contents(boardDto.getContents())
                 .author(boardDto.getAuthor())
+                .userEntity(result)
                 .createdAt(LocalDateTime.now())
                 .build();
         return boardRepository.save(entity);

@@ -26,6 +26,8 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public final StringPath content = createString("content");
 
+    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
+
     public final BooleanPath deleteYn = createBoolean("deleteYn");
 
     //inherited

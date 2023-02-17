@@ -31,9 +31,10 @@
 
         <div>
           <div class="" >
-            <a style="text-decoration-line: none;" id="check" @click="changeHeart(`${heartval}`)">
+            <a style="text-decoration-line: none;" id="check" @click="changeHeart(`${wish_state}`)">
 <!--              <img class="heart-size" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/746px-Heart_icon_red_hollow.svg.png">-->
-              <span style="font-size: 3rem" id="heart" class="heart-position">♡</span>
+              <span style="font-size: 3rem" id="heart" class="heart-position" v-if="wish_state != 1">♡</span>
+              <span style="font-size: 3rem" id="heart" class="heart-position" v-else-if="wish_state == 1">♥</span>
 <!--              <i class="fa-regular fa-heart fa-3x"></i>-->
             </a>
           </div>
@@ -92,6 +93,7 @@ export default {
 
       heartval: 0,
       clicked : 0,
+      wish_check:0,
 
       addr1:'',
       hospital_id:'',
@@ -107,9 +109,11 @@ export default {
     }
   }
   , mounted() {
+    this.wishCheck()
     this.fnGetView()
     console.log("check !!!" + this.idx)
     console.log("check !!!" + this.user_idx)
+    // console.log(())
     // this.fnGetReviewAvg()
     // console.log("체크!!!!!!!!!" + this.idx)
   },
@@ -117,6 +121,8 @@ export default {
     changeComponent: function (componentName){
       this.comp = componentName
     }
+
+
 
     ,fnGetReviewAvg(){
       this.$axios.get(this.$serverUrl + '/review/avg/' +this.idx)
@@ -238,6 +244,26 @@ export default {
       this.$router.push({
         path: '/review/write',
         query: this.requestBody
+      })
+    }
+    ,wishCheck(){
+
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+      console.log(this.user_idx)
+      console.log(this.idx)
+      this.$axios.get(this.$serverUrl + "/wish/one/" + this.user_idx + "/" + this.idx,{
+        params: this.requestBody,
+        headers: {}
+      }).then((res) => {
+            console.log(res.data)
+
+        this.wish_state = res.data.wish_state1
+
+          }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
       })
     }
 

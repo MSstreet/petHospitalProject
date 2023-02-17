@@ -6,6 +6,7 @@ import BoardWrite from '@/views/board/BoardWrite.vue'
 import Login from "@/views/common/Login"
 import Join from "@/views/common/Join"
 import HospitalList from '@/views/hospital/HospitalList'
+import HospitalListFromHome from '@/views/hospital/HospitalListFromHome'
 import MyPage from '@/views/common/MyPage'
 import EditPassword from '@/views/common/EditPassword'
 import EditMyInfo from '@/views/common/EditMyInfo'
@@ -46,6 +47,8 @@ const requireAuth1 = () => (from, to, next) => {
     if (token) {
         store.state.isLogin = true
         return next()
+    }else{
+        alert("로그인 후 이용해주세요")
     }
 }
 
@@ -119,9 +122,14 @@ const routes = [
         name: 'HospitalList',
         component: HospitalList
     },{
+        path: '/hospital/list1',
+        name: 'HospitalListFromHome',
+        component: HospitalListFromHome
+    },{
         path: '/hospital/detail',
         name: 'HospitalDetail',
-        component: HospitalDetail
+        component: HospitalDetail,
+        beforeEnter: requireAuth1()
     },{
         path: '/hospital/info',
         name: 'HospitalInfo',

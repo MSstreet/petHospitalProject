@@ -99,6 +99,8 @@ export default {
     return {
       check : false,
 
+      duplicated_check: false,
+
       user_id: '',
       user_pw: '',
       pwd_check: '',
@@ -125,9 +127,16 @@ export default {
       console.log("!!!!!!!!!"+ this.user_num)
       console.log("!!!!!!!!!"+ this.postcode)
       console.log("!!!!!!!!!"+ this.address)
+
       if(!(this.check)){
         return false
       }
+      if(!(this.duplicated_check)){
+
+        alert("이미 등록된 email입니다.")
+        return false
+      }
+
       try {
         let joinResult = await this.join( {
           user_id: this.user_id,
@@ -156,10 +165,12 @@ export default {
       }
     }
     ,validIdCheck(){
-      if (this.user_id !== '' && this.user_id.length < 5) {
+
+
+      if (this.user_id !== '' && (this.user_id.length <= 5 || this.user_id.length >= 20)) {
         //lert('ID는 최소한 5글자 이상이어야 합니다.')
         document.getElementById('checkId').style.color="red"
-        document.getElementById('checkId').innerHTML = " ID는 5자 이상 입력해주세요";
+        document.getElementById('checkId').innerHTML = " ID는 5자 이상 20자리 이하로 입력해주세요";
         this.check = false
         return
       }else{
@@ -198,18 +209,21 @@ export default {
 
       this.$axios.get(apiUrl, {
         params:{
-          email:this.user_email
+          //email:this.user_email
         }
       }).then((res) => {
         console.log(res.data)
         if(res.data === true){
           document.getElementById('checkEmail').style.color="red"
           document.getElementById('checkEmail').innerHTML = "이미 등록된 email입니다.";
-          this.check = false
+          //this.check = false
+          this.duplicated_check = false
+          return
         }else{
           document.getElementById('checkEmail').style.color="black"
           document.getElementById('checkEmail').innerHTML = "";
-          this.check = true
+          //this.check = true
+          this.duplicated_check = true
         }
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1){
@@ -427,6 +441,7 @@ export default {
     }
     , submitCheck() {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+      const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
 
       if (this.user_id !== '' && this.user_id.length < 5) {
         alert('ID는 최소한 5글자 이상이어야 합니다.')
@@ -446,6 +461,23 @@ export default {
         this.check = true
         //return
       }
+
+      if (this.user_email !== '' && !emailCheck.test(this.user_email)) {
+        //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        document.getElementById('checkEmail').style.color="red"
+        document.getElementById('checkEmail').innerHTML = " 올바른 이메일 형식이 아닙니다.";
+        this.check = false
+        return
+      }else{
+        document.getElementById('checkEmail').style.color="black"
+        document.getElementById('checkEmail').innerHTML = "";
+        this.check = true
+
+        //this.validIdDuplicationEmailCheck()
+        return
+      }
+
+      this.validIdDuplicationEmailCheck()
 
       if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
         alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')

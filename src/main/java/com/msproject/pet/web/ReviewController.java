@@ -83,4 +83,9 @@ public class ReviewController {
     public void delete(@PathVariable Long id){
         reviewService.delete(id);
     }
+
+    @GetMapping("/review/hos/{id}")
+    public float GetReviewAvg(@PathVariable Long id){
+        return reviewService.GetReviewAvg(id);
+    }
 }

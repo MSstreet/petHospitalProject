@@ -16,6 +16,12 @@ public class BoardDto implements Serializable {
     private Long idx;
     private String title;
     private String contents;
+
     private String author;
+
+    private Long userIdx;
+
+    private String userId;
+
     private String createdAt;
 }

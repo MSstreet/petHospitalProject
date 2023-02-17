@@ -1,7 +1,7 @@
 
 <template>
 
-  <div id="findPw" class="modal fade">
+  <div id="findId" class="modal fade">
     <div class="modal-dialog modal-dialog-centered modal-login">
       <div class="modal-content">
         <div class="modal-body">
@@ -10,23 +10,24 @@
               <div class="card z-index-0 fadeIn3 fadeInBottom">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                   <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                    <h4 class="text-black font-weight-bolder text-center mt-2 mb-0">비밀번호 찾기</h4>
+                    <h4 class="text-black font-weight-bolder text-center mt-2 mb-0">ID 찾기</h4>
                   </div>
                 </div>
                 <div class="card-body">
-                    <p>입력한 이메일로 임시 비밀번호가 전송됩니다.</p>
+                    <p>가입 시 입력한 이름과 Email을 입력해주세요.</p>
 
-<!--                  <div class="input-group input-group-outline my-3">-->
-<!--&lt;!&ndash;                    <label class="form-label">이름</label>&ndash;&gt;-->
-<!--                    <input type="text" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>-->
-<!--                  </div>-->
+                  <div class="input-group input-group-outline my-3">
+<!--                    <label class="form-label">이름</label>-->
+                    <input type="text" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>
+                  </div>
+
                   <div class="input-group input-group-outline my-3">
 <!--                      <label class="form-label">Email</label>-->
                       <input type="email" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
                     </div>
                     <div class="text-center">
                       <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
-                              id="checkEmail" @click="checkEmail">비밀번호 발송</button>
+                              id="checkEmail" @click="fnFind">확인</button>
                     </div>
                 </div>
               </div>
@@ -113,7 +114,7 @@
 
           <div class="mt-2 ">
             <span type="button" class="btn btn-link a" data-bs-toggle="modal"
-                  data-bs-target="#findPw">ID를 잊으셨나요?</span>
+                  data-bs-target="#findId">ID를 잊으셨나요?</span>
 <!--            <span><router-link class="a" to="/id-find">ID를 잊으셨나요?&nbsp&nbsp&nbsp</router-link></span>-->
            <span type="button" class="btn btn-link a" data-bs-toggle="modal"
                  data-bs-target="#findPw">비밀번호를 잊으셨나요?</span>
@@ -194,7 +195,7 @@ export default {
     return {
       user_id: '',
       user_pw: '',
-      // user_name:'',
+      user_name:'',
       user_email: '',
     }
 
@@ -283,6 +284,38 @@ export default {
       //   }
       // })
     }
+    , fnFind(){
+      let apiUrl = this.$serverUrl + '/user/find'
+
+      console.log(this.email)
+      console.log(this.user_name)
+
+      this.form = {
+        "user_name": this.user_name,
+        "email":this.user_email,
+
+      }
+      //UPDATE
+      this.$axios.post(apiUrl, this.form)
+          .then((res) => {
+            // alert('아이디 찾았다.')
+            //this.fnView(res.data.idx)
+            console.log(res.data)
+            if(res.data == '') {
+              alert('일치하는 정보가 없습니다.')
+              console.log('일치하는 정보가 없습니다.')
+            }else{
+              alert("회원님의 ID : " + res.data)
+            }
+
+          }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+
+    }
+
   },
 
 

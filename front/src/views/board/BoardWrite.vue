@@ -20,10 +20,10 @@
         <input type="text" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요.">
       </div>
 
-<!--      <div class="mb-3" v-if="idx === undefined">-->
-<!--        <label for="reg_id">작성자</label>-->
-<!--        <input type="text" class="form-control" v-model="author" name="reg_id" id="reg_id" placeholder="작성자를 입력해주세요." >-->
-<!--      </div>-->
+<!--      <div class="mb-3" v-if="idx === undefined">
+        <label for="reg_id">작성자</label>
+        <input type="text" class="form-control" v-model="author" name="reg_id" id="reg_id" placeholder="작성자를 입력해주세요." >
+      </div>-->
 
       <div class="mb-3">
         <label for="content">내용</label>
@@ -57,6 +57,7 @@ export default {
       requestBody: this.$route.query,
       idx: this.$route.query.idx,
 
+      user_idx:this.$store.state.userIdx,
       title: '',
       author:'',
       contents: '',
@@ -109,7 +110,8 @@ export default {
         "idx": this.idx,
         "title": this.title,
         "contents": this.contents,
-        "author": this.author
+        "author": this.author,
+        "user_idx" :this.user_idx
       }
 
       if (this.idx === undefined) {

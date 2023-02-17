@@ -5,25 +5,91 @@
 
       <div class="row px-3">
 
-        <div class="col-4 px-3 pt-3 pb-0" style="border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
+        <div class="col-6 px-3 pt-3 pb-0 " style="border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
           <div style="letter-spacing: -1.05px; text-align: center; color: #9b9b9b; font-size: 18px" class="mb-2">
             평점
           </div>
         </div>
 
-          <div class="col-8 mr-3 ">
-            <div class="align-items-center justify-content-between d-flex flex-colum">
-              <div class="row my-1 text-nowrap">
-                 <div class="col-7 p-0">
-                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+        <div v-if="hos_score == 1">
+          <div class="col-6 mr-3">
+            <div class="align-items-center justify-content-between  flex-colum">
+              <div class="row my-1 ">
+                 <div class=" p-0">
+                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
+                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                    <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                  </div>
                 </div>
               </div>
             </div>
+        </div>
+
+        <div v-if="hos_score == 2">
+          <div class="col-6 mr-3">
+            <div class="align-items-center justify-content-between  flex-colum">
+              <div class="row my-1 ">
+                <div class=" p-0">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="hos_score == 3">
+          <div class="col-6 mr-3">
+            <div class="align-items-center justify-content-between  flex-colum">
+              <div class="row my-1 ">
+                <div class=" p-0">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle " >
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="hos_score == 4">
+          <div class="col-6 mr-3">
+            <div class="align-items-center justify-content-between  flex-colum">
+              <div class="row my-1 ">
+                <div class=" p-0">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="hos_score == 5">
+          <div class="col-6 mr-3">
+            <div class="align-items-center justify-content-between  flex-colum">
+              <div class="row my-1 ">
+                <div class=" p-0">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         </div>
 
@@ -31,10 +97,10 @@
 
     <div class="row mt-5 " v-for="(row, idx) in list" :key="idx">
 
-        <div class="col-4 text-center">
+        <div class="col-5 text-center ">
             <h3>{{row.user_id}}</h3>
 
-          <div v-if="row.score == 1">
+          <div v-if="row.score == 1" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
@@ -48,7 +114,7 @@
             </div>
           </div>
 
-          <div v-if="row.score == 2">
+          <div v-if="row.score == 2" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
@@ -62,7 +128,7 @@
             </div>
           </div>
 
-          <div v-if="row.score == 3">
+          <div v-if="row.score == 3" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
@@ -76,7 +142,7 @@
             </div>
           </div>
 
-          <div v-if="row.score == 4">
+          <div v-if="row.score == 4" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
@@ -90,7 +156,7 @@
             </div>
           </div>
 
-          <div v-if="row.score == 5">
+          <div v-if="row.score == 5" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
@@ -106,20 +172,21 @@
 
         </div>
 
-        <div class="col-7 position_re">
+        <div class="col-5 position_re">
 
-          <div>
-            <p>날짜</p>
+          <div class="fw-semibold">
+            <p>{{row.created_at}}</p>
 
           </div>
 
-          <div>
+          <div class="fs-5 " style="word-break: break-all">
             <p>{{row.content}}</p>
-
           </div>
-
-
         </div>
+
+      <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">
+        <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+      </div>
       </div>
 
 
@@ -150,10 +217,12 @@
 <!--        </nav>-->
 <!--      </div>-->
 <!--    </div>-->
+
   </div>
 
 
-  <div class="position-re">
+  <div class="test-position">
+
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
@@ -161,7 +230,7 @@
             <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
 
             <!--             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
-            <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
+            <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
                   <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
@@ -179,7 +248,10 @@
         </span>
       </nav>
     </div>
+
+
   </div>
+
 <!--  <div style="position: center">-->
 <!--    <div >-->
 <!--      <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">-->
@@ -219,6 +291,8 @@ export default {
     return {
 
       idx:this.$route.query.idx,
+      hos_score:'',
+      log_id: this.$store.state.userIdx,
 
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
@@ -253,6 +327,7 @@ export default {
   },
   mounted() {
     this.fnGetList()
+    this.fnGetReviewScore()
     console.log("확인" + this.idx)
   },
   methods: {
@@ -262,14 +337,13 @@ export default {
       }
 
       this.fnGetList()
-    },
-    fnGetList() {
+    }
+    ,fnGetList() {
       this.requestBody = { // 데이터 전송
         // sk: this.search_key,
         // sv: this.search_value,
         page: this.page,
         size: this.size
-
       }
 
       this.$axios.get(this.$serverUrl + '/review/list/'+ this.idx, {
@@ -283,13 +357,42 @@ export default {
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
 
-        console.log(res.data.data);
+        //console.log(res.data.data);
 
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
+      })
+    }
+
+
+    ,fnGetReviewScore() {
+      this.$axios.get(this.$serverUrl + '/review/hos/'+ this.idx, {
+        headers: {}
+      }).then((res) => {
+        console.log("!!!!!!!" + res.data);
+        this.hos_score = res.data;
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    }
+
+
+    ,fnDelete(idx){
+      console.log(idx)
+
+      if (!confirm("삭제하시겠습니까?")) return
+
+      this.$axios.delete(this.$serverUrl + '/review/' + idx, {})
+          .then(() => {
+            alert('삭제되었습니다.')
+            this.fnGetList();
+          }).catch((err) => {
+        console.log(err);
       })
     }
 }
@@ -299,6 +402,10 @@ export default {
 </script>
 
 <style>
+.star-size{
+  size:0.8rem
+}
+
  .position_re{
    text-align: left;
  }

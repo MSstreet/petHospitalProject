@@ -1,7 +1,5 @@
 package com.msproject.pet.service;
 
-
-
 import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.entity.ReviewEntity;
 import com.msproject.pet.entity.UserEntity;
@@ -20,6 +18,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +37,11 @@ public class ReviewService {
     private  final UserRepository userRepository;
 
     private final ReviewRepositoryCustom reviewRepositoryCustom;
+
+    public float GetReviewAvg(Long id) {
+
+        return  reviewRepository.getReviewAvg(id);
+    }
 
 
     public ReviewEntity ReviewCreate(ReviewDto reviewDto){
@@ -61,6 +66,7 @@ public class ReviewService {
                 .content(reviewDto.getContent())
                 .score(reviewDto.getScore())
                 .deleteYn(reviewDto.isDeleteYn())
+                .createdAt(LocalDateTime.now())
                 .build();
 
         return reviewRepository.save(reviewEntity);
@@ -92,6 +98,7 @@ public class ReviewService {
                 .userNum(entity.getUserEntity().getIdx()) //수정 0207
                 .content(entity.getContent())
                 .score(entity.getScore())
+                .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .build();
     }
 
@@ -129,6 +136,7 @@ public class ReviewService {
                     .content(entity.getContent())
                     .score(entity.getScore())
                     .userId(entity.getUserEntity().getUserId())
+                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
 
 
@@ -164,6 +172,7 @@ public class ReviewService {
                     .score(entity.getScore())
                     .userId(entity.getUserEntity().getUserId())
                     .hosName(entity.getPetHospitalEntity().getHospitalName())
+                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
 
             dtos.add(dto);

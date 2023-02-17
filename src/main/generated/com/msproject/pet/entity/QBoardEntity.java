@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -16,6 +17,8 @@ import com.querydsl.core.types.Path;
 public class QBoardEntity extends EntityPathBase<BoardEntity> {
 
     private static final long serialVersionUID = 653158997L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QBoardEntity boardEntity = new QBoardEntity("boardEntity");
 
@@ -29,16 +32,27 @@ public class QBoardEntity extends EntityPathBase<BoardEntity> {
 
     public final StringPath title = createString("title");
 
+    public final QUserEntity userEntity;
+
     public QBoardEntity(String variable) {
-        super(BoardEntity.class, forVariable(variable));
+        this(BoardEntity.class, forVariable(variable), INITS);
     }
 
     public QBoardEntity(Path<? extends BoardEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QBoardEntity(PathMetadata metadata) {
-        super(BoardEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QBoardEntity(PathMetadata metadata, PathInits inits) {
+        this(BoardEntity.class, metadata, inits);
+    }
+
+    public QBoardEntity(Class<? extends BoardEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.userEntity = inits.isInitialized("userEntity") ? new QUserEntity(forProperty("userEntity")) : null;
     }
 
 }

@@ -132,4 +132,64 @@ public class PetHospitalRepositoryCustom {
 
         return null;
     }
+
+    private BooleanExpression searchKeywords1( String sv) {
+
+
+        System.out.println("확인!!!" + sv);
+
+            if(StringUtils.hasLength(sv)) {
+                return petHospitalEntity.hospitalAddr.contains(sv);
+            }
+
+
+//        } else if ("contents".equals(sk)) {
+//            if(StringUtils.hasLength(sv)) {
+//                return petHospitalEntity.hospitalId.contents.contains(sv);
+//            }
+//        }
+
+        return null;
+    }
+
+    public Page<PetHospitalListReviewCountDto> findAllBySearchConditionWithReviewCount1(Pageable pageable, SearchCondition searchCondition) {
+
+        JPAQuery<PetHospitalEntity> query = queryFactory.selectFrom(petHospitalEntity)
+                .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity));
+
+        query.where(searchKeywords1(searchCondition.getSv()),petHospitalEntity.operState.contains("정상"));
+
+        query.groupBy(petHospitalEntity);
+
+        long total = query.stream().count();
+
+        //System.out.println("total : " + total);
+
+        List<PetHospitalEntity> results = query
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .orderBy(petHospitalEntity.hospitalId.desc())
+                .fetch();
+
+        //System.out.println("resultSize : " + results.size());
+
+        JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
+                petHospitalEntity.hospitalId,
+                petHospitalEntity.hospitalName,
+                petHospitalEntity.sigunName,
+                petHospitalEntity.operState,
+                petHospitalEntity.hospitalNum,
+                petHospitalEntity.hospitalAddr,
+                petHospitalEntity.petHospitalScore,
+                reviewEntity.count().as("reviewCount")
+        ));
+
+        List<PetHospitalListReviewCountDto> dtoList = dtoJPAQuery.fetch();
+
+        //long count = dtoJPAQuery.stream().count();
+
+        return new PageImpl<>(dtoList, pageable, total);
+
+    }
 }

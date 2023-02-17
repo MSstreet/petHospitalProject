@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +30,7 @@ public class ReviewDto {
     private float score;
 
     private boolean deleteYn;
+
+    //private LocalDateTime createdAt;
+    private String createdAt;
 }

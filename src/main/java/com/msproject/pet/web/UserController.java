@@ -49,6 +49,7 @@ public class UserController {
 
         System.out.println("check" + email);
         System.out.println("컨트롤러에 들어와?");
+
         return userService.checkEmail(email);
     }
 

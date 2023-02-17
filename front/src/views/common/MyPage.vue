@@ -21,7 +21,11 @@
                   <div class="text-center">
                     <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
                             id="checkEmail" @click="fnDelete">확인</button>
+
+                    <button type="button" class="btn-close" aria-label="Close">dd</button>
                   </div>
+
+
                 </div>
               </div>
             </div>
@@ -186,6 +190,7 @@ export default {
         name: 'PageHome',
       })
     }
+
   }
 
 }

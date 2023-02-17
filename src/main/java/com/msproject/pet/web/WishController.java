@@ -103,7 +103,11 @@ public class WishController {
 
     @GetMapping("/wish/one/{uid}/{hid}")
     public WishDto getWish1(@PathVariable Long uid,@PathVariable Long hid){
+
+        System.out.println("들어오는건가???!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return wishService.getWish1(uid,hid);
+
+
     }
 
 

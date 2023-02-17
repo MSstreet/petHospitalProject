@@ -19,9 +19,9 @@
           <option value="contents">내용</option>
         </select>
 
-        <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
+        <input type=" text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
 
-        <button @click="fnPage()" class="ms-2">검색</button>
+        <button @click="fnPage()" class="btn btn-success ms-2">검색</button>
 
         <a class="btn btn-primary float-end" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
 
@@ -47,14 +47,43 @@
           <tr v-for="(row, idx) in list" :key="idx">
 
             <td>{{ row.idx }}</td>
-            <td><a v-on:click="fnView(`${row.idx}`)">{{ row.title }}</a></td>
-            <td>{{ row.author }}</td>
+            <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>
+            <td>{{ row.user_id }}</td>
             <td>{{ row.created_at }}</td>
 
           </tr>
           </tbody>
         </table>
 
+      </div>
+
+      <div class="test-position">
+        <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
+    <span class="center">
+      <ul class="pagination">
+
+        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
+
+         <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
+
+        <template v-for=" (n,index) in paginavigation()">
+            <template v-if="paging.page==n">
+              <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+            </template>
+
+            <template v-else>
+               <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
+            </template>
+        </template>
+
+         <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
+
+            @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
+
+        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
+      </ul>
+    </span>
+        </nav>
       </div>
 
     </div>
@@ -84,34 +113,34 @@
 <!--        </tbody>-->
 <!--      </table>-->
 
-  <div class="position-page2">
-    <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
-    <span class="center">
-      <ul class="pagination">
+<!--  <div class="">-->
+<!--    <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">-->
+<!--    <span class="center">-->
+<!--      <ul class="pagination">-->
 
-        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
+<!--        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>-->
 
-         <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
+<!--         <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
 
-        <template v-for=" (n,index) in paginavigation()">
-            <template v-if="paging.page==n">
-              <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
-            </template>
+<!--        <template v-for=" (n,index) in paginavigation()">-->
+<!--            <template v-if="paging.page==n">-->
+<!--              <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>-->
+<!--            </template>-->
 
-            <template v-else>
-               <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
-            </template>
-        </template>
+<!--            <template v-else>-->
+<!--               <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>-->
+<!--            </template>-->
+<!--        </template>-->
 
-         <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
+<!--         <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"-->
 
-            @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
+<!--            @click="fnPage(`${paging.end_page+1}`)">&gt;</a>-->
 
-        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
-      </ul>
-    </span>
-    </nav>
-  </div>
+<!--        <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>-->
+<!--      </ul>-->
+<!--    </span>-->
+<!--    </nav>-->
+<!--  </div>-->
 
 
 
@@ -381,8 +410,9 @@ export default {
       })
     },
 
-    fnView(idx) {
+    fnView(idx,user_idx) {
       this.requestBody.idx = idx
+      this.requestBody.userIdx = user_idx
       this.$router.push({
         path: './detail',
         query: this.requestBody
@@ -410,6 +440,12 @@ export default {
 .position-page2{
   position: relative;
   left:49rem;
+}
+
+.test-position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 

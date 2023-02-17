@@ -28,7 +28,7 @@ public class WishRepositoryCustom {
     public Page<WishEntity> findAllReview(Pageable pageable, Long userId) {
 
         JPAQuery<WishEntity> query = queryFactory.selectFrom(wishEntity)
-                .where(wishEntity.userEntity.idx.eq(userId));
+                .where(wishEntity.userEntity.idx.eq(userId).and(wishEntity.wishState1.eq(1)));
 
         long total = query.stream().count();
 

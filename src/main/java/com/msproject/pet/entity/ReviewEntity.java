@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.sql.ordering.antlr.Factory;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,6 +39,8 @@ public class ReviewEntity extends BaseEntity{
     private String content;
 
     private float score;
+
+    private LocalDateTime createdAt;
 
     private boolean deleteYn;
 

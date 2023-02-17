@@ -32,24 +32,38 @@
 </template>
 
 <script>
-export default{
-  data(){
-    return{
+export default {
+  data() {
+    return {
 
       requestBody: this.$route.query,
-      idx:this.$route.query.idx,
+      idx: this.$route.query.idx,
 
-      map:null,
+      map: null,
 
-      addr:'',
-      number:'',
-      hos_latitude:'',
-      hos_longitude:''
+      addr: '',
+      number: '',
+      hos_latitude: '',
+      hos_longitude: ''
 
     }
   }
-  ,created(){
+  , created() {
     this.fnGetView()
+
+
+
+  }
+
+    // const script = document.createElement("script")
+    // script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
+    //
+    // script.addEventListener("load", () => {
+    //   kakao.maps.load(this.initMap)
+    // })
+    // document.head.appendChild(script)
+    //
+
     // if (window.kakao && window.kakao.maps) {
     //
     //   this.initMap();
@@ -68,17 +82,18 @@ export default{
     //   kakao.maps.load(this.initMap)
     // })
     // document.head.appendChild(script)
-  }
+
   ,methods: {
     initMap() {
       console.log(2)
       console.log("경도 : " + this.hos_latitude)
       console.log("위도 : " + this.hos_longitude)
+
       const map = document.getElementById("map")
 
       const options = {
-        center: new kakao.maps.LatLng(37.83010,127.51214),
-       // center: new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude ), //경도 위도 이렇게 받으니까 흰색화면 띄어지는거야
+        //center: new kakao.maps.LatLng(37.83010,127.51214),
+        center: new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude), //경도 위도 이렇게 받으니까 흰색화면 띄어지는거야
         level: 5
       }
 
@@ -88,7 +103,7 @@ export default{
 
 
       //this.displayMakers(this.hos_latitude,this.hos_longitude)
-      this.displayMakers(37.83010,127.51214)
+      this.displayMakers(this.hos_latitude,this.hos_longitude)
      // const marker1 = new kakao.maps.LatLng(37.82618, 127.51352)
 
      //  const marker1 = new kakao.maps.LatLng(this.hos_latitude,this.hos_longitude)
@@ -129,16 +144,22 @@ export default{
       })
       console.log(1)
     }
+
+    ,fnTest(){
+
+    }
   }
   ,mounted() {
-    // this.fnGetView()
+     // this.fnGetView()
 
     const script = document.createElement("script")
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"
+    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=2eba89360677e7a9e1a8ba734e3502d8&autoload=false"
     script.addEventListener("load", () => {
       kakao.maps.load(this.initMap)
     })
     document.head.appendChild(script)
+
+
 
 
   }

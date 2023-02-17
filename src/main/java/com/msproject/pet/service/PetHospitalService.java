@@ -127,21 +127,26 @@ public class PetHospitalService {
 
         for (PetHospitalListReviewCountDto entity : hospitalEntities) {
 
-
-
             PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
                     .hospitalId(entity.getHospitalId())
                     .hospitalName(entity.getHospitalName())
                     .sigunName(entity.getSigunName())
                     .hospitalNum(entity.getHospitalNum())
                     .hospitalAddr(entity.getHospitalAddr())
-                    .hospitalScore(entity.getHospitalScore())
+                    //.hospitalScore(entity.getHospitalScore())
                     .operState(entity.getOperState())
                     .reviewCount(entity.getReviewCount())
                     .build();
 
 //            if(dto.getOperState().equals("정상")) {
-                System.out.println(entity.getOperState());
+                //System.out.println(entity.getOperState());
+
+
+            if(dto.getReviewCount() != 0){
+                float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
+                avg = Math.round(avg * 10) / 10;
+                dto.setHospitalScore(avg);
+            }
                 dtos.add(dto);
             //}
         }
@@ -192,6 +197,45 @@ public class PetHospitalService {
         return Header.OK(dtos, pagination);
     }
 
+    public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount1(Pageable pageable, SearchCondition searchCondition) {
+
+        List<PetHospitalListReviewCountDto> dtos = new ArrayList<>();
+
+        Page<PetHospitalListReviewCountDto> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchConditionWithReviewCount1(pageable, searchCondition);
+
+        System.out.println(hospitalEntities.getTotalElements());
+
+
+        for (PetHospitalListReviewCountDto entity : hospitalEntities) {
+
+
+
+            PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
+                    .hospitalId(entity.getHospitalId())
+                    .hospitalName(entity.getHospitalName())
+                    .sigunName(entity.getSigunName())
+                    .hospitalNum(entity.getHospitalNum())
+                    .hospitalAddr(entity.getHospitalAddr())
+                    .hospitalScore(entity.getHospitalScore())
+                    .operState(entity.getOperState())
+                    .reviewCount(entity.getReviewCount())
+                    .build();
+
+//            if(dto.getOperState().equals("정상")) {
+            System.out.println(entity.getOperState());
+            dtos.add(dto);
+            //}
+        }
+
+        Pagination pagination = new Pagination(
+                (int) hospitalEntities.getTotalElements()
+                , pageable.getPageNumber() + 1
+                , pageable.getPageSize()
+                , 10
+        );
+
+        return Header.OK(dtos, pagination);
+    }
 
 
 //    public void SavePetHospital() throws Exception {

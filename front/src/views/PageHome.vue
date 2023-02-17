@@ -1,14 +1,17 @@
 <!-- PageHome.vue -->
 <template>
-  <h3 class="fs-1 fw-bold text-center mt-5 mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
+  <div class="text-center mt-5">
+    <i class="fa-regular fa-hospital fa-2xl mb-4"></i>
+      <h3 class="fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
+  </div>
+
       <div >
         <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">
-
 
         </div>
       </div>
 
-  <div class="container-fluid mt-3 pt-5" style="text-align: center">
+  <div class="container-fluid mt-3 pt-3" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
 
     <div style="width: 960px; display: inline-block">
@@ -32,16 +35,15 @@
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <div class="mx-auto w-50 p-3 input-group input-group-lg mt-5">
+        <div class=" mx-auto w-50 p-3 input-group input-group-lg">
 
           <select v-model="search_key">
             <option value="">- 선택 -</option>
             <option value="author">병원명</option>
             <option value="title">지역명</option>
-            <!--      <option value="contents">내용</option>-->
           </select>
 
-          <input name="" type="text" class="form-control input-sm" placeholder="검색어 입력" aria-label="search"
+          <input type="text" class="form-control input-sm" placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" v-model="search_value" >
 
           <!--        <div class="col-xs-2">-->
@@ -49,7 +51,8 @@
           <!--          <input class="form-control" id="ex1" type="text">-->
           <!--        </div>-->
           <!--        </mx-auto>-->
-          <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+
+          <button class="btn btn-success" id="button-addon2"  @click="fnPage1(`${search_key}`,`${search_value}`)">검색</button>
         </div>
 
 
@@ -66,34 +69,34 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage(`범안로`)">
                 범안로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('중동로')">
                 중동로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('역곡로')">
                 역곡로
               </div>
             </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('상일로')">
                 상일로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('소향로')">
                 소향로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('송내대로')">
                 송내대로
               </div>
             </div>
@@ -101,17 +104,17 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('부일로')">
                 부일로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('원종로')">
                 원종로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('상동로')">
                 상동로
               </div>
             </div>
@@ -120,31 +123,31 @@
 
         <div class="col-4 px-2">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
-            <i style="font-size: 21px;" class="fas fa-location">
+            <i style="font-size: 21px;" class="fas fa-location" >
             </i>
             수원시
           </div>
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('권선구')">
                 권선구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('영통로')">
                 영통구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('장안구')">
                 장안구
               </div>
             </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('팔달구')">
                 팔달구
               </div>
             </div>
@@ -161,17 +164,17 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('수정구')">
                 수정구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('분당구')">
                 분당구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('중원구')">
                 중원구
               </div>
             </div>
@@ -181,24 +184,24 @@
 
         <div class="col-4 px-2 mt-5">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
-            <i style="font-size: 21px;" class="fas fa-location">
+            <i style="font-size: 21px;" class="fas fa-location" >
             </i>
             용인시
           </div>
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('수지구')">
                 수지구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('기훙구')">
                 기흥구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('처안구')">
                 처안구
               </div>
             </div>
@@ -214,34 +217,34 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('수인로')">
                 수인로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('배곧로')">
                 배곧로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('일곶중앙로')">
                 일곶중앙로
               </div>
             </div>
           </div>
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('수인로')">
                 수인로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('승지로')">
                 승지로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('은행로')">
                 은행로
               </div>
             </div>
@@ -249,17 +252,17 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('함송로')">
                 함송로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('정왕대로')">
                 정왕대로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('호현로')">
                 호현로
               </div>
             </div>
@@ -267,17 +270,17 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('대야로')">
                 대야로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('정왕천로')">
                 정왕천로
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('대은로')">
                 대은로
               </div>
             </div>
@@ -293,12 +296,12 @@
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('단원구')">
                 단원구
               </div>
             </div>
             <div class="col-4 p-0">
-              <div class="purple-link mb-1">
+              <div class="purple-link mb-1" @click="fnPage('상록구')">
                 상록구
               </div>
             </div>
@@ -308,12 +311,8 @@
 
       <div class="row text-left px-3" style="margin-top: 48px;">
 
-
       </div>
-
     </div>
-
-
   </div>
 
 </template>
@@ -473,6 +472,20 @@ export default {
         }
       })
     }
+    ,fnPage(n) {
+      console.log(n)
+      this.search_value = n
+      console.log(this.search_value)
+
+      this.$router.push({
+        path: '/hospital/list1',
+        query:{
+        //sk : "지역명",
+        sv : this.search_value
+        }
+      })
+    }
+
 
     // ,fnView() {
     //   //this.requestBody.idx = idx
@@ -488,8 +501,22 @@ export default {
     //
     //   this.fnGetList()
     // }
-  }
+    ,fnPage1(n,m) {
+      console.log(n)
+      this.search_value = n
+      this.search_key = m
+      console.log(this.search_value)
 
+      this.$router.push({
+        path: '/hospital/list',
+        query:{
+          sk : this.search_value,
+          sv : this.search_key
+        }
+      })
+    }
+
+  }
   ,mounted() {
     // const script = document.createElement("script")
     // script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false"

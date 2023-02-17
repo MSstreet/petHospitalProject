@@ -28,8 +28,8 @@ public class PetHospitalEntity {
 
     private float petHospitalScore;
 
-    @Column(nullable = false)
-    private Integer wishScore;
+//    @Column(nullable = false)
+//    private Integer wishScore;
 
     //private String hospitalAddr; // 지번 주소
 

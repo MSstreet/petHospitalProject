@@ -27,9 +27,9 @@
 <!--      </div>-->
     </div>
 
-    <h3 class="fs-1 fw-bold text-center mb-4"> 나의 후기 목록</h3>
+    <h3 class="fs-1 fw-bold text-center mb-5"> 나의 후기 목록</h3>
 <div class="container">
-    <div class="row mt-3 border border-bottom-0" style="text-align: center" v-for="(row, idx) in list" :key="idx">
+    <div class="row mt-3 border border-bottom-0" style="text-align: center" v-if="list.length > 0" v-for="(row, idx) in list" :key="idx">
 
       <div class="col-5 text-center">
 
@@ -111,19 +111,28 @@
 
       </div>
 
-      <div class="col-7 position_re">
+      <div class="col-5 position_re">
 
-        <div >
-          <p>날짜</p>
+        <div  class="fw-semibold">
+          <p>{{row.created_at}}</p>
 
         </div>
 
-        <div>
+        <div class="fs-5" style="word-break: break-all">
           <p>{{row.content}}</p>
 
         </div>
+      </div>
 
+      <div class="col-2 mt-4 text-end">
+        <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+      </div>
+    </div>
 
+    <div v-else>
+<!--      <img :src="imageUrl" alt="My Image">-->
+      <div>
+        <h3>작성한 후기가 아직 없습니다. 이미지를 넣을 예정</h3>
       </div>
     </div>
 </div>
@@ -158,7 +167,7 @@
   </div>
 
 
-  <div class="position-re">
+  <div class="test-position mt-5">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
@@ -166,7 +175,7 @@
             <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
 
             <!--             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
-            <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
+            <a href="javascript:;" class="page-link" v-if="paging.start_page > 10"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
                   <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
@@ -223,7 +232,10 @@ export default {
   data() { //변수생성
     return {
 
+      imageUrl:'https://ibb.co/8zKKPQw',
+
       idx:this.$store.state.userIdx,
+      review_id : '',
 
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
@@ -287,6 +299,9 @@ export default {
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
+        this.review_id = res.data.data.review_id
+
+        console.log("!!!!!!!!!review!!!!!!!!!!" + this.review_id)
 
         console.log(res.data.data);
 
@@ -295,6 +310,17 @@ export default {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
+      })
+    }
+    ,fnDelete(n) {
+      if (!confirm("삭제하시겠습니까?")) return
+      console.log(this.review_id)
+      this.$axios.delete(this.$serverUrl + '/review/' + n, {})
+          .then(() => {
+            alert('삭제되었습니다.')
+            this.fnGetList();
+          }).catch((err) => {
+        console.log(err);
       })
     }
   }

@@ -37,9 +37,8 @@ public class UserEntity extends BaseEntity{
 
     private boolean deleteYn;
 
-//    private LocalDateTime createdAt;
-//
-//    private LocalDateTime updatedAt;
+    //private LocalDateTime createdAt;
+    //private LocalDateTime updatedAt;
 
     public void changePassword(String userPw){
         this.userPw = userPw;
@@ -52,6 +51,7 @@ public class UserEntity extends BaseEntity{
         this.addr = addr;
         this.detailAddr = detailAddr;
         this.email = email;
+        //this.updatedAt = updatedAt;
     }
 
     public void changePw(String userPw){

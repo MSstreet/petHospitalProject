@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -90,7 +91,12 @@ public class UserService implements UserDetailsService {
     public UserEntity update(UserDto userDto){
         UserEntity entity = userRepository.findByUserId(userDto.getUserId()).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
+        //userDto.setUpdatedAt(LocalDateTime.now());
+
         entity.change(userDto.getUserName(),userDto.getPhoneNum(),userDto.getZipCode(), userDto.getAddr(), userDto.getDetailAddr(),userDto.getEmail());
+
+
+
 
         return userRepository.save(entity);
     }

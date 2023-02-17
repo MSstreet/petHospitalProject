@@ -20,7 +20,8 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary"  style="background-color: #008080;">
       <div class="container-fluid">
-        <router-link to="/" class="navbar-brand fw-bold text-light">Home</router-link>
+
+        <router-link to="/" class="navbar-brand fw-bold text-light"><i class="fa-solid fa-shield-cat me-2"></i>AnimalH</router-link>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

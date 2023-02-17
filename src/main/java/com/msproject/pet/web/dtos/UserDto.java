@@ -29,8 +29,10 @@ public class UserDto {
     private String email; //0208
 
     private boolean deleteYn;
+
+    //private Long user;
 //
-//    private LocalDateTime createdAt;
+    //private LocalDateTime createdAt;
 //
-//    private LocalDateTime updatedAt;
+    //private LocalDateTime updatedAt;
 }

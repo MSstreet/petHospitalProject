@@ -1,7 +1,7 @@
 <template>
 
   <div class="wrap mt-5">
-    <span><h3>{{hospital_name}} 후기후기</h3></span>
+    <span><h3>{{hospital_name}} 후기</h3></span>
     <form name="reviewform" class="reviewform">
 
       <p class="title_star">별점과 리뷰를 남겨주세요.</p>
