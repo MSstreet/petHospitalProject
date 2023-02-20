@@ -5,28 +5,51 @@
     <div >
       <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">Communication</h1>
 
+
+
     </div>
 
-<!--    <div class="board-list">-->
-    <div class="card mb-4">
 
+
+<!--    <div class="board-list">-->
+    <div class="card mb-4 text-center">
       <div class="card-header">
 
-        <select v-model="search_key">
-          <option value="">- 선택 -</option>
-          <option value="author">작성자</option>
-          <option value="title">제목</option>
-          <option value="contents">내용</option>
-        </select>
+<!--        <select v-model="search_key">-->
+<!--          <option value="">- 선택 -</option>-->
+<!--          <option value="author">작성자</option>-->
+<!--          <option value="title">제목</option>-->
+<!--          <option value="contents">내용</option>-->
+<!--        </select>-->
 
-        <input type=" text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
+<!--        <input type=" text" maxlength="50" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
 
-        <button @click="fnPage()" class="btn btn-success ms-2">검색</button>
+<!--        <button @click="fnPage()" class="btn btn-success ms-2">검색</button>-->
 
-        <a class="btn btn-primary float-end" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
 
-<!--        <a class="btn btn-primary float-end" > &lt;!&ndash; <i class="fas fa-table me-1"></i> &ndash;&gt;-->
-<!--          <i class=""></i> 글 작성 </a>-->
+        <div class="input-group input-group-sm search-pos" >
+          <select v-model="search_key">
+            <option value="">- 선택 -</option>
+            <option value="author">작성자</option>
+            <option value="title">제목</option>
+            <option value="contents">내용</option>
+          </select>
+
+          <input type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
+                 aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
+          <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <div>
+        <a class="btn btn-primary float-end me-2 mt-2" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
       </div>
 
 
@@ -57,6 +80,10 @@
 
       </div>
 
+<!--      <div>-->
+<!--        <a class="btn btn-primary float-end me-3 mb-3" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>-->
+<!--      </div>-->
+
       <div class="test-position">
         <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
     <span class="center">
@@ -68,7 +95,7 @@
 
         <template v-for=" (n,index) in paginavigation()">
             <template v-if="paging.page==n">
-              <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+              <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
             </template>
 
             <template v-else>
@@ -440,6 +467,12 @@ export default {
 .position-page2{
   position: relative;
   left:49rem;
+}
+
+.search-pos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .test-position{

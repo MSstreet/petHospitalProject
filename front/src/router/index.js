@@ -17,6 +17,8 @@ import HospitalDetail from '@/views/hospital/HospitalDetail'
 import ReviewWrite from '@/views/review/ReviewWrite'
 import ReviewDetail from '@/views/review/ReviewDetail'
 
+import NoticeBoardList from '@/views/noticeBoard/NoticeBoardList'
+
 import WishList from '@/views/wish/WishList'
 
 import HospitalInfo from '@/views/hospital/HospitalInfo'
@@ -151,7 +153,13 @@ const routes = [
         path: '/wish/mywish',
         name: 'WishList',
         component: WishList
-    }
+    },
+    {
+        path: '/notice/list',
+        name: 'NoticeBoardList',
+        component: NoticeBoardList,
+        beforeEnter: requireAuth1()
+    },
 
 ]
 

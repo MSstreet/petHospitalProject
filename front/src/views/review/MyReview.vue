@@ -178,7 +178,7 @@
             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
-                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+                  <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
                 </template>
 
                 <template v-else>

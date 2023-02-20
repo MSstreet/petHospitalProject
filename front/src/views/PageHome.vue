@@ -43,16 +43,10 @@
             <option value="title">지역명</option>
           </select>
 
-          <input type="text" class="form-control input-sm" placeholder="검색어 입력" aria-label="search"
+          <input type="text" maxlength="50" class="form-control input-sm ms-1" placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" v-model="search_value" >
 
-          <!--        <div class="col-xs-2">-->
-          <!--          <label for="ex1">col-xs-2</label>-->
-          <!--          <input class="form-control" id="ex1" type="text">-->
-          <!--        </div>-->
-          <!--        </mx-auto>-->
-
-          <button class="btn btn-success" id="button-addon2"  @click="fnPage1(`${search_key}`,`${search_value}`)">검색</button>
+          <button class="btn btn-success ms-1" id="button-addon2"  @click="fnPage1(`${search_key}`,`${search_value}`)">검색</button>
         </div>
 
 
@@ -406,11 +400,11 @@ export default {
       this.map = new kakao.maps.Map(map, options)
       this.displayMarker([[this.latitude, this.longitude]]);
 
-      // const marker1 = new kakao.maps.LatLng(37, 131)
-      // const marker = new kakao.maps.Marker({
-      //   position : marker1
-      // })
-      // marker.setMap(this.map)
+      const marker1 = new kakao.maps.LatLng(37, 131)
+      const marker = new kakao.maps.Marker({
+        position : marker1
+      })
+      marker.setMap(this.map)
 
 
     }

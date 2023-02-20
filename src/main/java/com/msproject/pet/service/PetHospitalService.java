@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -109,7 +110,9 @@ public class PetHospitalService {
             petHospitalListReviewCountDto.setHospitalScore(0);
         } else {
             float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
-            avg = Math.round(avg * 10) / 10;
+            DecimalFormat df = new DecimalFormat("0.0");
+            avg = Float.parseFloat(df.format(avg));
+            //avg = Math.round(avg * 100) / 100;
             petHospitalListReviewCountDto.setHospitalScore(avg);
         }
 
@@ -144,7 +147,8 @@ public class PetHospitalService {
 
             if(dto.getReviewCount() != 0){
                 float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
-                avg = Math.round(avg * 10) / 10;
+                DecimalFormat df = new DecimalFormat("0.0");
+                avg = Float.parseFloat(df.format(avg));
                 dto.setHospitalScore(avg);
             }
                 dtos.add(dto);

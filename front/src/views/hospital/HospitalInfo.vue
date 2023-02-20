@@ -50,9 +50,6 @@ export default {
   }
   , created() {
     this.fnGetView()
-
-
-
   }
 
     // const script = document.createElement("script")

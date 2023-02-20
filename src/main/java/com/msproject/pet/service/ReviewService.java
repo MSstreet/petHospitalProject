@@ -40,7 +40,11 @@ public class ReviewService {
 
     public float GetReviewAvg(Long id) {
 
-        return  reviewRepository.getReviewAvg(id);
+        float reviewAvg = reviewRepository.getReviewAvg(id);
+
+        reviewAvg = Math.round(reviewAvg * 100) / 100;
+
+        return  reviewAvg;
     }
 
 

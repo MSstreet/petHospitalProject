@@ -28,12 +28,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li class="nav-item ">
               <router-link to="/board/list" class="nav-link text-light fw-bold" aria-current="page">게시판</router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
               <router-link to="/hospital/list" class="nav-link text-light fw-bold">동물병원</router-link>
+            </li>
+
+            <li class="nav-item ">
+              <router-link to="/notice/list" class="nav-link text-light fw-bold" aria-current="page">공지사항</router-link>
             </li>
 
             <li class="nav-item">
@@ -70,6 +74,13 @@
 </template>
 
 <script>
+import {IS_LOGIN} from '@/vuex/mutation_types'
+import store from "@/vuex/store";
+
+let setIsLogin = ({commit}, data) => {
+  commit(IS_LOGIN, data)
+}
+
 export default {
   methods: {
     fnLogout() {
@@ -78,6 +89,7 @@ export default {
       //location.reload()
       //setTimeout(()=>  {this.goToPages1(),1000})
       this.$store.state.isLogin = false
+      setIsLogin(store, false)
       this.goToPages1()
     },
     goToPages1() {

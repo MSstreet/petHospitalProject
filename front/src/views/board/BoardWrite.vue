@@ -17,7 +17,7 @@
     <div class="board-contents">
       <div class="mb-3">
         <label for="title">제목</label>
-        <input type="text" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요.">
+        <input type="text" maxlength="200" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요(200자 이내).">
       </div>
 
 <!--      <div class="mb-3" v-if="idx === undefined">
@@ -27,7 +27,7 @@
 
       <div class="mb-3">
         <label for="content">내용</label>
-        <textarea class="form-control"  v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+        <textarea class="form-control" maxlength="3000" v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요(3000자 이내)" ></textarea>
 
       </div>
 

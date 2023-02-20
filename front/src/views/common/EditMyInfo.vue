@@ -17,7 +17,7 @@
           <label for="exampleInputName" class="form-label mt-4">이름</label>
 <!--          <span type="text" class="form-control" id="exampleInputEmail1">{{user_name}}</span>-->
                     <input type="text" class="form-control" id="exampleInputName"
-                           :placeholder="user_name"  v-model="user_name" readonly>
+                           :placeholder="user_name"  v-model="user_name" readonly style="background-color:lightgray">
           <div id="nameCheck" class="mt-1"></div>
         </div>
 
@@ -25,7 +25,7 @@
         <label for="exampleInputEmail" class="form-label mt-4">EMAIL</label>
         <!--          <span type="text" class="form-control" id="exampleInputEmail1">{{user_name}}</span>-->
         <input type="text" class="form-control" id="exampleInputEmail"
-               :placeholder="email"  v-model="email" readonly>
+               :placeholder="email"  v-model="email" readonly style="background-color:lightgray">
         <div id="nameCheck" class="mt-1"></div>
       </div>
 

@@ -1,6 +1,6 @@
 <template>
 
-  <div id="findPw" class="modal fade">
+  <div id="findPw" class="modal fade" ref="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-login">
       <div class="modal-content">
         <div class="modal-body">
@@ -18,11 +18,11 @@
                   <!--&lt;!&ndash;                    <label class="form-label">이름</label>&ndash;&gt;-->
                   <!--                    <input type="text" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>-->
                   <!--                  </div>-->
-                  <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
-                            id="checkEmail" @click="fnDelete">확인</button>
-
-                    <button type="button" class="btn-close" aria-label="Close">dd</button>
+                  <div class="row text-center">
+                    <button type="button" class="btn btn-secondary bg-gradient-primary my-4 mb-2"
+                            data-bs-dismiss="modal" id="checkEmail" @click="fnDelete">확인</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+<!--                    <button type="button" class="btn btn-secondary" @click="closeModal">닫기</button>-->
                   </div>
 
 
@@ -133,8 +133,8 @@ export default {
   data() {
     return {
       requestBody: this.$route.query,
-
-       user_idx: this.$store.state.userIdx,
+      showModal: false,
+      user_idx: this.$store.state.userIdx,
 
       user_id: '',
       user_name: '',
@@ -151,7 +151,14 @@ export default {
     console.log(this.user_idx)
   }
   ,methods:{
-    fnDelete(){
+    closeModal() {
+      this.$refs.myModal.classList.remove('show');
+      //this.$refs.myModal.hide();
+      this.showModal = false;
+      location.reload()
+    }
+
+    ,fnDelete(){
 
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       this.$axios.delete(this.$serverUrl + '/user/' + this.user_idx, {})

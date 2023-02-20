@@ -18,12 +18,12 @@
 
                   <div class="input-group input-group-outline my-3">
 <!--                    <label class="form-label">이름</label>-->
-                    <input type="text" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>
+                    <input type="text" maxlength="50" id="userName" name="userName" class="form-control" placeholder="이름" v-model="user_name" required>
                   </div>
 
                   <div class="input-group input-group-outline my-3">
 <!--                      <label class="form-label">Email</label>-->
-                      <input type="email" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
+                      <input type="email" maxlength="50" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
                     </div>
                     <div class="text-center">
                       <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
@@ -59,7 +59,7 @@
                   <!--                  </div>-->
                   <div class="input-group input-group-outline my-3">
                     <!--                      <label class="form-label">Email</label>-->
-                    <input type="email" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
+                    <input type="email" maxlength="50" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
                   </div>
                   <div class="text-center">
                     <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
@@ -92,14 +92,14 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1" class="mb-1">ID</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Id" v-model="user_id">
+            <input type="text" maxlength="50" class="form-control" id="exampleInputEmail1" placeholder="Enter Id" v-model="user_id">
 
             <small id="emailHelp" class="form-text text-muted">We'll never share your id with anyone else.</small>
           </div>
 
           <div class="form-group">
             <label for="exampleInputPassword1" class="mb-1 mt-4">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="on" v-model="user_pw">
+            <input type="password" maxlength="50" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="on" v-model="user_pw">
           </div>
 
         <div class="row">

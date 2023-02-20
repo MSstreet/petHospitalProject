@@ -33,9 +33,12 @@
           <div class="" >
             <a style="text-decoration-line: none;" id="check" @click="changeHeart(`${wish_state}`)">
 <!--              <img class="heart-size" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/746px-Heart_icon_red_hollow.svg.png">-->
-              <span style="font-size: 3rem" id="heart" class="heart-position" v-if="wish_state != 1">♡</span>
-              <span style="font-size: 3rem" id="heart" class="heart-position" v-else-if="wish_state == 1">♥</span>
-<!--              <i class="fa-regular fa-heart fa-3x"></i>-->
+              <span style="font-size: 3rem" id="heart" class="heart-position ms-2" v-if="wish_state != 1">🤍</span>
+              <div style="font-size: 1rem" id="heart" class="heart-position ms-2" v-if="wish_state != 1">찜하기</div>
+
+              <span style="font-size: 3rem" id="heart" class="heart-position ms-2" v-else-if="wish_state == 1">🧡</span>
+              <div style="font-size: 1rem" id="heart" class="heart-position ms-2" v-else-if="wish_state == 1">찜완료!</div>
+
             </a>
           </div>
         </div>
@@ -141,24 +144,14 @@ export default {
     }
 
     ,changeHeart(heart){
-      // const check = document.getElementById("check")
-      //
-      // check.onclick = function (){
-      //   if(this.clicked == 1){
-      //     this.clicked = 0;
-      //   }else{
-      //     this.clicked = 1;
-      //   }
-      //   console.log(this.clicked)
-      // }
 
       if(heart == 1){
         this.heartval = 0
-        document.getElementById("heart").innerText = "♡";
+        document.getElementById("heart").innerText = "🤍";
 
       }else{
         this.heartval = 1
-        document.getElementById("heart").innerText = "♥"
+        document.getElementById("heart").innerText = "🧡"
       }
       console.log("체크!!" + this.heartval)
 

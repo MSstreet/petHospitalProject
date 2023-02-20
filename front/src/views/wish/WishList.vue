@@ -23,10 +23,11 @@
           </div>
         </div>
       </div>
+
     <div v-else>
       <h3>찜목록이 아직 없습니다. 이미지를 넣을 예정</h3>
+      <img v-bind:src="imageSource" alt="Image">
     </div>
-
 
     <div class="test-position">
       <div >
@@ -39,7 +40,7 @@
             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
-                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+                  <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
                 </template>
 
                 <template v-else>
@@ -64,7 +65,7 @@ export default {
   data() { //변수생성
     return {
       requestBody: {}, //리스트 페이지 데이터전송
-
+      imageSource:'https://ibb.co/r0GvW3S',
       list: {}, //리스트 데이터\
 
       user_idx: this.$store.state.userIdx,
