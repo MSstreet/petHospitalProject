@@ -5,25 +5,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BoardDto implements Serializable {
+public class NoticeBoardDto {
 
-    private Long idx;
+    private Long noticeBoardIdx;
+
     private String title;
+
     private String contents;
 
-    private String author;
-
-    private Long userIdx;
-
-    private String userId;
+    private boolean displayYn;
 
     private String createdAt;
 
-
+    private String updatedAt;
 }

@@ -8,6 +8,7 @@ import com.msproject.pet.repository.WishRepository;
 import com.msproject.pet.web.dtos.FindUserIdDto;
 import com.msproject.pet.web.dtos.MailDto;
 import com.msproject.pet.web.dtos.UserDto;
+import com.msproject.pet.web.dtos.UserPwChangeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -86,7 +87,6 @@ public class UserService implements UserDetailsService {
         return userRepository.existsByUserId(userId);
      }
 
-
     //, get, update, delete
     public UserEntity update(UserDto userDto){
         UserEntity entity = userRepository.findByUserId(userDto.getUserId()).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
@@ -94,9 +94,6 @@ public class UserService implements UserDetailsService {
         //userDto.setUpdatedAt(LocalDateTime.now());
 
         entity.change(userDto.getUserName(),userDto.getPhoneNum(),userDto.getZipCode(), userDto.getAddr(), userDto.getDetailAddr(),userDto.getEmail());
-
-
-
 
         return userRepository.save(entity);
     }
@@ -140,7 +137,6 @@ public class UserService implements UserDetailsService {
     }
 
     public Boolean checkEmail(String email) {
-
         {
             return userRepository.existsByEmail(email);
         }
@@ -159,7 +155,6 @@ public class UserService implements UserDetailsService {
         }
 //        Optional<UserEntity> user = userRepository.findByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
 //        UserEntity userEntity = user.orElseThrow();
-
     }
 
     public UserEntity findPw(String userEmail) {
@@ -172,7 +167,6 @@ public class UserService implements UserDetailsService {
             UserEntity userEntity = user.orElseThrow();
 
             MailDto mailDto = createMailAndChangePassword(userEntity);
-
             mailSend(mailDto);
 
             return userEntity;
@@ -181,7 +175,6 @@ public class UserService implements UserDetailsService {
             return null;
         }
     }
-
 
     public MailDto createMailAndChangePassword(UserEntity userEntity) {
 
@@ -195,7 +188,7 @@ public class UserService implements UserDetailsService {
                 + str + " 입니다." + "로그인 후에 비밀번호를 변경을 해주세요");
 
 
-        userEntity.changePw(str);
+        userEntity.changePw(passwordEncoder.encode(str));
         userRepository.save(userEntity);
 
         return dto;
@@ -207,7 +200,6 @@ public class UserService implements UserDetailsService {
 //        Long memberId = mr.findByMemberEmail(userEmail).getId();
 //        mmr.updatePassword(memberId,memberPassword);
 //    }
-
 
     private String getTempPassword() {
 
@@ -225,9 +217,6 @@ public class UserService implements UserDetailsService {
         return str;
     }
 
-
-
-
     public void mailSend(MailDto mailDTO) {
         System.out.println("전송 완료!");
         SimpleMailMessage message = new SimpleMailMessage();
@@ -240,10 +229,19 @@ public class UserService implements UserDetailsService {
         mailSender.send(message);
     }
 
+    public Boolean updatePw(UserPwChangeDto userPwChangeDto) {
+        Optional<UserEntity> user = userRepository.findById(userPwChangeDto.getIdx());
+        UserEntity userEntity = user.orElseThrow();
 
+        if(passwordEncoder.matches(userPwChangeDto.getPassword(),userEntity.getUserPw())){
+            userEntity.changePw(passwordEncoder.encode(userPwChangeDto.getNewPassword()));
 
+            userRepository.save(userEntity);
 
+            return true;
+        }else{
+            return false;
+        }
 
-
-
+    }
 }

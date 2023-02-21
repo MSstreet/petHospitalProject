@@ -5,6 +5,7 @@ import com.msproject.pet.service.UserService;
 import com.msproject.pet.util.JwtUtil;
 import com.msproject.pet.web.dtos.FindUserIdDto;
 import com.msproject.pet.web.dtos.UserDto;
+import com.msproject.pet.web.dtos.UserPwChangeDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -65,9 +66,7 @@ public class UserController {
         if(user == null){
             return null;
         }
-
         return user.getUserId();
-
     }
 
     @PostMapping("/find/pw")
@@ -82,9 +81,7 @@ public class UserController {
         if(user == null){
             return null;
         }
-
         return user.getEmail();
-
     }
 
 
@@ -158,6 +155,15 @@ public class UserController {
 //
 //
 //    }
+    @PatchMapping("/change-pw")
+    public Boolean updatePw(@RequestBody UserPwChangeDto userPwChangeDto){
+        System.out.println(userPwChangeDto.getPassword());
+        System.out.println(userPwChangeDto.getNewPassword());
+        return userService.updatePw(userPwChangeDto);
+
+
+    }
+
 
 
 

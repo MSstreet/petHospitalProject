@@ -3,7 +3,7 @@
   <div class="container-fluid px-4">
 
     <div >
-      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">Communication</h1>
+      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">공지사항</h1>
     </div>
 
     <div class="card mb-4 text-center">
@@ -36,8 +36,8 @@
 
           <tr v-for="(row, idx) in list" :key="idx">
 
-            <td>{{ row.idx }}</td>
-            <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>
+            <td>{{ row.notice_board_idx }}</td>
+            <td><a v-on:click="fnView(`${row.notice_board_idx}`)">{{ row.title }}</a></td>
             <td>{{ row.created_at }}</td>
 
           </tr>
@@ -152,9 +152,9 @@ export default {
       })
     },
 
-    fnView(idx,user_idx) {
+    fnView(idx) {
       this.requestBody.idx = idx
-      this.requestBody.userIdx = user_idx
+      //this.requestBody.userIdx = user_idx
       this.$router.push({
         path: './detail',
         query: this.requestBody

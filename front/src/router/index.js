@@ -18,6 +18,7 @@ import ReviewWrite from '@/views/review/ReviewWrite'
 import ReviewDetail from '@/views/review/ReviewDetail'
 
 import NoticeBoardList from '@/views/noticeBoard/NoticeBoardList'
+import NoticeBoardDetail from "@/views/noticeBoard/NoticeBoardDetail";
 
 import WishList from '@/views/wish/WishList'
 
@@ -38,7 +39,6 @@ const requireAuth = () => (from, to, next) => {
         return next()
     } // isLogin === true면 페이지 이동
     next('/login') // isLogin === false면 다시 로그인 화면으로 이동
-
 
 }
 
@@ -159,6 +159,11 @@ const routes = [
         name: 'NoticeBoardList',
         component: NoticeBoardList,
         beforeEnter: requireAuth1()
+    },
+    {
+        path: '/notice/detail',
+        name: 'NoticeBoardDetail',
+        component: NoticeBoardDetail,
     },
 
 ]

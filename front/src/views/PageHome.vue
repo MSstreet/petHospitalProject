@@ -301,6 +301,71 @@
             </div>
           </div>
         </div>
+
+        <div class="col-4 px-2 mt-5">
+          <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
+            <i style="font-size: 21px;" class="fas fa-location">
+            </i>
+            안산시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('단원구')">
+                단원구
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('상록구')">
+                상록구
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 px-2 mt-5">
+          <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
+            <i style="font-size: 21px;" class="fas fa-location">
+            </i>
+            안산시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('단원구')">
+                단원구
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('상록구')">
+                상록구
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 px-2 mt-5">
+          <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
+            <i style="font-size: 21px;" class="fas fa-location">
+            </i>
+            안산시
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('단원구')">
+                단원구
+              </div>
+            </div>
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('상록구')">
+                상록구
+              </div>
+            </div>
+          </div>
+        </div>
+
+
    </div>
 
       <div class="row text-left px-3" style="margin-top: 48px;">
