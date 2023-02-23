@@ -29,20 +29,22 @@ public class ReviewRepositoryCustom {
 //                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
 
         JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
                 .where(reviewEntity.petHospitalEntity.hospitalId.eq(id));
+
+        //System.out.println("!!!!!!!!sdfsdfsdfsdfsdfsdfsdfsdfsdfsdf!!!!!!!!!!!!!!!!!!!!!" + id);
 
         long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
 
+        System.out.println("!!!!!!!!total!!!!!!!!!!!!!!!!!!!!!" + total);
+
         List<ReviewEntity> results = query
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .orderBy(reviewEntity.reviewId.desc())
                 .fetch();
 
-//        System.out.println("222resultSize : " + results.size());
-
+       System.out.println("222resultSize : " + results.size());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ : " + pageable.getPageSize());
         return new PageImpl<>(results, pageable, total);
     }
 

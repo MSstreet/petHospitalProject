@@ -39,9 +39,14 @@ public class ReviewController {
 
     @GetMapping("/review/list/{id}")
     public Header<List<ReviewDto>> reviewList(@PathVariable Long id,
-            @PageableDefault(sort = {"idx"}) Pageable pageable,
+            @PageableDefault(sort = "review_id") Pageable pageable,
             SearchCondition searchCondition)
     {
+
+        System.out.println(pageable.getOffset());
+        System.out.println(pageable.getSort());
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return reviewService.getReviewList(pageable, searchCondition, id);
     }
 

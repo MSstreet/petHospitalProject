@@ -5,11 +5,19 @@
       <h3 class="fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
   </div>
 
-      <div >
-        <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">
+<!--      <div >-->
+<!--        <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
 
-        </div>
-      </div>
+<!--        </div>-->
+<!--      </div>-->
+
+
+
+  <div >
+    <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">
+
+    </div>
+  </div>
 
   <div class="container-fluid mt-3 pt-3" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
@@ -19,9 +27,7 @@
       <form action="" method="">
 
         <!--      <div class="mx-quto input-group mt-5">-->
-
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
-
 <!--        <select v-model="search_key">-->
 <!--          <option value="">- 선택 -</option>-->
 <!--          <option value="author">작성자</option>-->
@@ -31,15 +37,10 @@
 
 <!--        <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
 <!--        <button @click="fnPage()" class="ms-2">검색</button>-->
-
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
         <div class=" mx-auto w-50 p-3 input-group input-group-lg">
-
           <select v-model="search_key">
-            <option value="">- 선택 -</option>
-            <option value="author">병원명</option>
+            <option value="author" selected>병원명</option>
             <option value="title">지역명</option>
           </select>
 
@@ -48,11 +49,9 @@
 
           <button class="btn btn-success ms-1" id="button-addon2"  @click="fnPage1(`${search_key}`,`${search_value}`)">검색</button>
         </div>
-
-
       </form>
 
-      <div class="row text-left px-3" style="margin-top: 48px;">
+      <div class="row text-left px-3 margin-b" style="margin-top: 48px;">
 
         <div class="col-4 px-2">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
@@ -306,18 +305,25 @@
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            안산시
+            고양시
           </div>
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('단원구')">
-                단원구
+              <div class="purple-link mb-1" @click="fnPage('덕양구')">
+                덕양구
               </div>
             </div>
+
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('상록구')">
-                상록구
+              <div class="purple-link mb-1" @click="fnPage('일산동구')">
+                일산동구
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('일산서구')">
+                일산서구
               </div>
             </div>
           </div>
@@ -327,49 +333,141 @@
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            안산시
+            광명시
           </div>
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('단원구')">
-                단원구
+              <div class="purple-link mb-1" @click="fnPage('광덕산로')">
+                광덕산로
               </div>
             </div>
+
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('상록구')">
-                상록구
+              <div class="purple-link mb-1" @click="fnPage('하안로')">
+                하안로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('디지털로')">
+                디지털로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('소하로')">
+                소하로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('금하로')">
+                금하로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('오리로')">
+                오리로
               </div>
             </div>
           </div>
         </div>
+
+
 
         <div class="col-4 px-2 mt-5">
           <div class="pb-2" style="font-size: 21px; color:#494949; border-bottom: 2px solid #494949">
             <i style="font-size: 21px;" class="fas fa-location">
             </i>
-            안산시
+            평택시
           </div>
 
           <div class="row mt-3 px-3">
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('단원구')">
-                단원구
+              <div class="purple-link mb-1" @click="fnPage('송탄로')">
+                송탄로
               </div>
             </div>
+
             <div class="col-4 p-0">
-              <div class="purple-link mb-1" @click="fnPage('상록구')">
-                상록구
+              <div class="purple-link mb-1" @click="fnPage('평택로')">
+                평택로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('탄현로')">
+                탄현로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('청북읍')">
+                청북읍
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('중앙로')">
+                중앙로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('이충로')">
+                이충로
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 px-3">
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('송탄로')">
+                송탄로
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('안중읍')">
+                안중읍
+              </div>
+            </div>
+
+            <div class="col-4 p-0">
+              <div class="purple-link mb-1" @click="fnPage('서정역로')">
+                서정역로
               </div>
             </div>
           </div>
         </div>
-
-
    </div>
 
+<!--      <div id="mainslider" class="mt-3 img-container" >-->
+<!--        <splide :options="options">-->
+<!--          <splide-slide>-->
+<!--            <img  src="../assets/animal_waifu2x_art_noise1.png" alt="main1">-->
+<!--          </splide-slide>-->
+<!--          <splide-slide>-->
+<!--            <img  src="../assets/animal.png" alt="main2">-->
+<!--          </splide-slide>-->
+<!--          <splide-slide>-->
+<!--            <img  src="../assets/animal3.png" alt="main3">-->
+<!--          </splide-slide>-->
+<!--          <splide-slide>-->
+<!--            <img  src="../assets/animal4.png" alt="main3">-->
+<!--          </splide-slide>-->
+<!--          <splide-slide>-->
+<!--            <img  src="../assets/animal5.png" alt="main3">-->
+<!--          </splide-slide>-->
+<!--        </splide>-->
+<!--      </div>-->
       <div class="row text-left px-3" style="margin-top: 48px;">
-
       </div>
     </div>
   </div>
@@ -379,15 +477,30 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 export default {
   name: 'PageHome',
   components: {
-    HelloWorld
+    HelloWorld,
+    Splide,
+    SplideSlide
   },
   data() {
     return {
-      map: null,
+      options: {
+        type: 'fade',
+        rewind: true,
+        perPage: 1,
+        autoplay: true,
+        pauseOnHover: false,
+        arrows: false,
+        dots: true,
+        animatedDots: true
+      }
+
+      ,map: null,
       markers: [],
 
       latitude: 0,
@@ -427,6 +540,8 @@ export default {
     }
   }
   ,created(){
+
+
     if (!("geolocation" in navigator)) {
       return;
     }
@@ -435,7 +550,6 @@ export default {
     navigator.geolocation.getCurrentPosition(pos => {
       this.latitude = pos.coords.latitude;
       this.longitude = pos.coords.longitude;
-
 
       if (window.kakao && window.kakao.maps) {
 
@@ -448,13 +562,13 @@ export default {
         script.src = "///dapi.kakao.com/v2/maps/sdk.js?appkey=30dca95cc43c45bd292179e1c3fb6fd6&autoload=false";
         document.head.appendChild(script);
       }
-
     }, err => {
       alert(err.message);
     })
   }
 
   ,methods: {
+
     initMap() {
       const map = document.getElementById("map")
       const options = {
@@ -470,10 +584,10 @@ export default {
         position : marker1
       })
       marker.setMap(this.map)
-
-
     }
-    , displayMarker(markerPositions) {
+
+    ,displayMarker(markerPositions) {
+
       if (this.markers.length > 0) {
         this.markers.forEach((marker) => marker.setMap(null));
       }
@@ -499,6 +613,7 @@ export default {
         this.map.setBounds(bounds);
       }
     }
+
     ,fnGetList() {
       console.log(this.search_key)
       console.log("벨류확인" + this.search_value)
@@ -560,6 +675,8 @@ export default {
     //
     //   this.fnGetList()
     // }
+
+
     ,fnPage1(n,m) {
       console.log(n)
       this.search_value = n
@@ -593,8 +710,32 @@ export default {
 .home {
   text-align: center;
   margin: 10px;
+/*.img-size {*/
+/*  width: 300px;*/
+/*  height: 150px;*/
+/*  object-fit: cover;*/
+/*}*/
+
+}
+.test-position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-container{
+  height: 200px;
+  width: 100%;
+  /*margin: auto;*/
 }
 
+img{
+  width: 100%;
+  height: 50%;
+
+}
+.margin-b{
+  margin-bottom: 7rem;
+}
 .root_cacao_roughmap {
   margin: auto !important;
 }

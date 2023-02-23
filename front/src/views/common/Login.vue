@@ -29,6 +29,7 @@
                       <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
                               id="checkEmail" @click="fnFind">확인</button>
                     </div>
+
                 </div>
               </div>
             </div>
@@ -111,6 +112,10 @@
             <router-link to="/join" type="button" class="btn btn-success mt-3 fw-bold">Join</router-link>
 <!--            <button type="submit" class="btn btn-success mt-3">Join</button>-->
           </div>
+
+<!--          <div>-->
+<!--            <a href="/oauth2/authorization/kakao">KAKAO</a>-->
+<!--          </div>-->
 
           <div class="mt-2 ">
             <span type="button" class="btn btn-link a" data-bs-toggle="modal"

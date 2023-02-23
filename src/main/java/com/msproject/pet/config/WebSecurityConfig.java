@@ -60,6 +60,8 @@ public class WebSecurityConfig {
 
         http.cors();
 
+        //http.oauth2Login().loginPage("/user/login");
+
         return http.build();
     }
 //    public void configure(HttpSecurity http) throws Exception {

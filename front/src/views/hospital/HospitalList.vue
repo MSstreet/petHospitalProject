@@ -137,6 +137,8 @@ export default {
       console.log(this.search_key)
       console.log("벨류확인" + this.search_value)
 
+
+
       this.requestBody = { // 데이터 전송
         sk: this.search_key,
         sv: this.search_value,
@@ -154,6 +156,8 @@ export default {
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
+
+        console.log(res.data.pagination);
 
          console.log(res.data.data);
         // console.log(res.data.pagination);

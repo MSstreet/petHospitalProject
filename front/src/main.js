@@ -3,10 +3,12 @@ import './assets/common.css'
 import Vue from 'vue'
 import { createApp } from 'vue'
 import App from './App.vue'
+import VueSplide from '@splidejs/vue-splide'
 
 import router from './router'
 import axios from './utils/axios'
 import store from './vuex/store'  //1. store 추가
+
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
@@ -22,4 +24,5 @@ app.config.globalProperties.$store = store
 app
     .use(router)
     .use(store)   //2. store 등록
+    .use(VueSplide)
     .mount('#app')

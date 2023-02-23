@@ -3,7 +3,7 @@
   <div class="container-fluid px-4">
 
     <div >
-      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">Communication</h1>
+      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">자유게시판</h1>
 
 
 
@@ -95,6 +95,8 @@
 
         <template v-for=" (n,index) in paginavigation()">
             <template v-if="paging.page==n">
+               <div v-if="n == 2">
+               </div>
               <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
             </template>
 

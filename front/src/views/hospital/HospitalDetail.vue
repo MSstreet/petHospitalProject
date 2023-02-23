@@ -116,6 +116,7 @@ export default {
     this.fnGetView()
     console.log("check !!!" + this.idx)
     console.log("check !!!" + this.user_idx)
+    console.log(this.requestBody)
     // console.log(())
     // this.fnGetReviewAvg()
     // console.log("체크!!!!!!!!!" + this.idx)

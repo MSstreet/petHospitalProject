@@ -165,10 +165,8 @@
     </div>
 
     <div class="row mt-5 " v-for="(row, idx) in list" :key="idx">
-
         <div class="col-5 text-center ">
             <h3>{{row.user_id}}</h3>
-
           <div v-if="row.score == 1" class="test-position">
             <div class="align-items-center justify-content-between d-flex flex-colum">
               <div class="row my-1 text-nowrap">
@@ -241,11 +239,10 @@
 
         </div>
 
-        <div class="col-5 position_re">
+        <div class="col-5 position_re ">
 
           <div class="fw-semibold">
             <p>{{row.created_at}}</p>
-
           </div>
 
           <div class="fs-5 " style="word-break: break-all">
@@ -291,7 +288,6 @@
 
 
   <div class="test-position">
-
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
@@ -302,7 +298,8 @@
             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
-
+                  <div v-if="n == 2">
+                  </div>
                   <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
                 </template>
 
@@ -367,6 +364,7 @@ export default {
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
+
       paging: {
         block: 0,
         end_page: 0,
@@ -381,7 +379,8 @@ export default {
         total_page_cnt: 0,
       }, //페이징 데이터
 
-      page: this.$route.query.page ? this.$route.query.page : 1,
+      page:1,
+      //page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
       search_key: this.$route.query.sk ? this.$route.query.sk : '',
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
@@ -398,7 +397,7 @@ export default {
   mounted() {
     this.fnGetList()
     this.fnGetReviewScore()
-    console.log("확인" + this.idx)
+    console.log(this.list)
   },
   methods: {
     fnPage(n) {
@@ -427,6 +426,7 @@ export default {
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
 
+        console.log(res.data.pagination);
         //console.log(res.data.data);
 
 

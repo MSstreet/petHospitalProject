@@ -49,7 +49,8 @@ export default {
     }
   }
   , created() {
-    this.fnGetView()
+    this.fnGetView(this.settingMap)
+
   }
 
     // const script = document.createElement("script")
@@ -97,8 +98,6 @@ export default {
       //this.map = new kakao.maps.Map(this.hos_latitude, this.hos_longitude)
 
       this.map = new kakao.maps.Map(map, options)
-
-
       //this.displayMakers(this.hos_latitude,this.hos_longitude)
       this.displayMakers(this.hos_latitude,this.hos_longitude)
      // const marker1 = new kakao.maps.LatLng(37.82618, 127.51352)
@@ -115,7 +114,6 @@ export default {
 
     ,displayMakers(latitude , longitude){
       const marker1 = new kakao.maps.LatLng(latitude, longitude)
-
        const marker = new kakao.maps.Marker({
          position : marker1
        })
@@ -134,6 +132,12 @@ export default {
 
         console.log("!!!!!!!!"+res.data.hos_latitude)
         console.log(res.data.hos_longitude)
+        const script = document.createElement("script")
+        script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=2eba89360677e7a9e1a8ba734e3502d8&autoload=false"
+        script.addEventListener("load", () => {
+          kakao.maps.load(this.initMap)
+        })
+        document.head.appendChild(script)
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -149,12 +153,12 @@ export default {
   ,mounted() {
      // this.fnGetView()
 
-    const script = document.createElement("script")
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=2eba89360677e7a9e1a8ba734e3502d8&autoload=false"
-    script.addEventListener("load", () => {
-      kakao.maps.load(this.initMap)
-    })
-    document.head.appendChild(script)
+    // const script = document.createElement("script")
+    // script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=2eba89360677e7a9e1a8ba734e3502d8&autoload=false"
+    // script.addEventListener("load", () => {
+    //   kakao.maps.load(this.initMap)
+    // })
+    // document.head.appendChild(script)
 
 
 

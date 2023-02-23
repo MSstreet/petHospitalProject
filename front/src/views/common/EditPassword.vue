@@ -3,6 +3,8 @@
 
     <div class="container py-4">
 
+      <h3 class="fs-2 fw-bold text-center mb-3">Change password</h3>
+
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">현재 비밀번호</label>
           <input type="password" class="form-control" id="inputValid" v-model="password" >
@@ -26,7 +28,7 @@
 <!--      </div>-->
 
       <div>
-        <a class="btn btn-success float-end me-2 mt-2" v-on:click="fnUpdate"><i class="fas fa-edit"></i>  글 작성</a>
+        <a class="btn btn-success float-end me-2 mt-3" v-on:click="fnUpdate"><i class="fas fa-edit"></i> Confirm</a>
       </div>
 
     </div>

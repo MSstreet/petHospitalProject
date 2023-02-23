@@ -25,8 +25,10 @@
       </div>
 
     <div v-else>
-      <h3>찜목록이 아직 없습니다. 이미지를 넣을 예정</h3>
-      <img v-bind:src="imageSource" alt="Image">
+      <div class="text-center">
+        <img  class="mt-5" src="../../assets/aaaaaa.png" alt="main3">
+        <h3 class="mt-5">찜 목록이 아직 없습니다.</h3>
+      </div>
     </div>
 
     <div class="test-position">
@@ -40,6 +42,8 @@
             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
             <template v-for=" (n,index) in paginavigation()">
                 <template v-if="paging.page==n">
+                  <div v-if="n == 2">
+                  </div>
                   <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
                 </template>
 

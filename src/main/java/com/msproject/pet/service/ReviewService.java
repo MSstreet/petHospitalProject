@@ -128,8 +128,10 @@ public class ReviewService {
     public Header<List<ReviewDto>> getReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 
         List<ReviewDto> dtos = new ArrayList<>();
-
+        System.out.println("=============================");
+        System.out.println("=============================" + id);
         Page<ReviewEntity> reviewEntities = reviewRepositoryCustom.findAllBySearchCondition(pageable, searchCondition, id);
+
 
         for (ReviewEntity entity : reviewEntities) {
 
@@ -144,8 +146,9 @@ public class ReviewService {
                     .build();
 
 
-            System.out.println(dto.getReviewId());
+            System.out.println("ddd!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + dto.getReviewId());
 
+            System.out.println("=============================");
                 dtos.add(dto);
             }
 
