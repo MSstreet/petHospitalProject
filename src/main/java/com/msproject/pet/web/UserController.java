@@ -36,30 +36,20 @@ public class UserController {
     //private final PasswordEncoder passwordEncoder;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
     @GetMapping("/check")
     public Boolean checkId(@RequestParam String userId){
 
-        System.out.println(userId);
-        System.out.println("컨트롤러에 들어와?");
         return userService.checkId(userId);
     }
 
     @GetMapping("/check/mail")
     public Boolean checkEmail(@RequestParam String email){
 
-        System.out.println("check" + email);
-        System.out.println("컨트롤러에 들어와?");
-
         return userService.checkEmail(email);
     }
 
     @PostMapping("/find")
     public String findId(@RequestBody FindUserIdDto findUserIdDto){
-
-
-        System.out.println(findUserIdDto.getUserName());
-        System.out.println(findUserIdDto.getEmail());
 
         UserEntity user = userService.findId(findUserIdDto);
 
@@ -68,13 +58,8 @@ public class UserController {
         }
         return user.getUserId();
     }
-
     @PostMapping("/find/pw")
     public String findPassword(@RequestParam("userEmail") String userEmail){
-
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println(findUserIdDto.getUserName());
-//        System.out.println(findUserIdDto.getEmail());
 
         UserEntity user = userService.findPw(userEmail);
 
@@ -89,14 +74,7 @@ public class UserController {
     @PostMapping("/join")
     public Long saveUser(@RequestBody @Valid UserDto userDto) throws Exception {
 
-        System.out.println(userDto.getUserId());
-
-        System.out.println(userDto.getAddr());
-        System.out.println(userDto.getZipCode());
-        System.out.println(userDto.getDetailAddr());
-
         UserEntity user = userService.saveUser(userDto);
-
 
         return  user.getIdx();
     }
@@ -128,7 +106,6 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable Long id){
         return userService.getUser(id);
@@ -138,7 +115,6 @@ public class UserController {
     public UserEntity update(@RequestBody UserDto userDto){
         return userService.update(userDto);
     }
-
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id){
@@ -155,6 +131,7 @@ public class UserController {
 //
 //
 //    }
+
     @PatchMapping("/change-pw")
     public Boolean updatePw(@RequestBody UserPwChangeDto userPwChangeDto){
         System.out.println(userPwChangeDto.getPassword());

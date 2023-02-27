@@ -22,7 +22,7 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public static final QReviewEntity reviewEntity = new QReviewEntity("reviewEntity");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+    public final NumberPath<Integer> approveYn = createNumber("approveYn", Integer.class);
 
     public final StringPath content = createString("content");
 
@@ -30,17 +30,17 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public final BooleanPath deleteYn = createBoolean("deleteYn");
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modDate = _super.modDate;
+    public final StringPath fileName = createString("fileName");
+
+    public final StringPath hospitalName = createString("hospitalName");
 
     public final QPetHospitalEntity petHospitalEntity;
-
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> regDate = _super.regDate;
 
     public final NumberPath<Long> reviewId = createNumber("reviewId", Long.class);
 
     public final NumberPath<Float> score = createNumber("score", Float.class);
+
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public final QUserEntity userEntity;
 

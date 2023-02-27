@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -19,11 +20,13 @@ public class ReviewDto {
 
     private Long petHospitalNum;
 
+    private String petHospitalName;
+
     private Long userNum;
 
     private String content;
 
-    private String userId; //
+    private String userId;
 
     private String hosName;
 
@@ -31,6 +34,13 @@ public class ReviewDto {
 
     private boolean deleteYn;
 
-    //private LocalDateTime createdAt;
     private String createdAt;
+
+    private String updatedAt;
+
+    private MultipartFile file;
+
+    private String fileName;
+
+    private int approveYn;
 }

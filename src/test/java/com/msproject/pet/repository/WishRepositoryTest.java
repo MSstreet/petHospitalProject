@@ -39,7 +39,8 @@ class WishRepositoryTest {
         WishEntity wishEntity = WishEntity.builder()
                 .petHospitalEntity(petHospitalEntity)
                 .userEntity(userEntity)
-                .wishState(true).build();
+                .build();
+                //.wishState(true).build();
 
 
 

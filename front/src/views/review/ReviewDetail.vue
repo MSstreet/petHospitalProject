@@ -2,13 +2,92 @@
   <div class="mt-5 mb-3 pt-3 ">
 
     <div class="boarder">
+
+
       <div class="row px-3">
 
-        <div class="col-6 px-3 pt-3 pb-0 " style="border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
+        <div class="col-12 px-3 pt-3 pb-0 mb-3" style="text-align: center; border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
           <div style="letter-spacing: -1.05px; text-align: center; color: #9b9b9b; font-size: 18px" class="mb-2">
             평점
           </div>
+       <span v-if="hos_score < 1.5">
+          <i class="fa-solid fa-star fa-lg"></i>
+          <i class="fa-regular fa-star fa-lg"></i>
+          <i class="fa-regular fa-star fa-lg"></i>
+          <i class="fa-regular fa-star fa-lg"></i>
+          <i class="fa-regular fa-star fa-lg"></i>
+      </span>
+
+          <span v-if="(hos_score >= 1.5 && hos_score < 2)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 2 && hos_score < 2.5)">
+               <i class="fa-solid fa-star fa-lg"></i>
+               <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 2.5 && hos_score < 3)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+
+          </span>
+
+          <span v-if="(hos_score >= 3 && hos_score < 3.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 3.5 && hos_score < 4)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 4 && hos_score < 4.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 4.5 && hos_score < 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 4.8 && hos_score <= 5)">
+            <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+             <i class="fa-solid fa-star fa-lg"></i>
+         </span>
+
+
+
+
         </div>
+
 
         <div v-if="hos_score < 1.5">
           <div class="col-6 mr-3">
@@ -20,13 +99,11 @@
 <!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
 <!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
 <!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-
-                   <i class="fa-solid fa-star-half-stroke"></i>
-                   <i class="fa-solid fa-star-half-stroke"></i>
-                   <i class="fa-solid fa-star-half-stroke"></i>
-                   <i class="fa-solid fa-star-half-stroke"></i>
-                   <i class="fa-solid fa-star-half-stroke"></i>
-
+<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
                  </div>
                 </div>
               </div>
@@ -38,11 +115,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -54,11 +136,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle " >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle " >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -70,11 +157,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -86,11 +178,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -102,11 +199,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Half-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Half-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -118,11 +220,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -134,11 +241,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -150,11 +262,16 @@
             <div class="align-items-center justify-content-between  flex-colum">
               <div class="row my-1 ">
                 <div class=" p-0">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
+<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
                 </div>
               </div>
             </div>
@@ -164,6 +281,8 @@
         </div>
     </div>
 
+
+
     <div class="row mt-5 " v-for="(row, idx) in list" :key="idx">
         <div class="col-5 text-center ">
             <h3>{{row.user_id}}</h3>
@@ -172,8 +291,8 @@
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                 </div>
@@ -186,7 +305,7 @@
               <div class="row my-1 text-nowrap">
                 <div class="col-7 p-0">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
@@ -201,7 +320,7 @@
                 <div class="col-7 p-0">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                 </div>
@@ -216,7 +335,7 @@
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
-                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                 </div>
               </div>
@@ -236,25 +355,28 @@
               </div>
             </div>
           </div>
-
         </div>
-
-        <div class="col-5 position_re ">
-
+        <div class="col-7 position_re ">
           <div class="fw-semibold">
             <p>{{row.created_at}}</p>
           </div>
-
           <div class="fs-5 " style="word-break: break-all">
             <p>{{row.content}}</p>
           </div>
+          <div class="text-end mb-5">
+            <button class="me-2 mb-5 btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+            <button class="mb-5 btn btn-success" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
+          </div>
         </div>
-
-      <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">
-        <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+<!--      <div class="row">-->
+<!--        <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">-->
+<!--          <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>-->
+<!--        </div>-->
+<!--        <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">-->
+<!--          <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>-->
+<!--        </div>-->
+<!--      </div>-->
       </div>
-      </div>
-
 
 <!--    <div class="position-re">-->
 <!--      <div >-->
@@ -283,7 +405,6 @@
 <!--        </nav>-->
 <!--      </div>-->
 <!--    </div>-->
-
   </div>
 
 
@@ -358,7 +479,9 @@ export default {
     return {
 
       idx:this.$route.query.idx,
+
       hos_score:'',
+
       log_id: this.$store.state.userIdx,
 
       requestBody: {}, //리스트 페이지 데이터전송
@@ -436,8 +559,6 @@ export default {
         }
       })
     }
-
-
     ,fnGetReviewScore() {
       this.$axios.get(this.$serverUrl + '/review/hos/'+ this.idx, {
         headers: {}
@@ -450,8 +571,6 @@ export default {
         }
       })
     }
-
-
     ,fnDelete(idx){
       console.log(idx)
 
@@ -460,9 +579,34 @@ export default {
       this.$axios.delete(this.$serverUrl + '/review/' + idx, {})
           .then(() => {
             alert('삭제되었습니다.')
-            this.fnGetList();
+
+            this.fnGetList()
+            location.reload()
+
           }).catch((err) => {
         console.log(err);
+      })
+    }
+
+    ,fnUpdate(hos_idx,rev_idx){
+      console.log("hos_idx:" + hos_idx)
+      console.log("rev_idx:" + rev_idx)
+
+      this.requestBody.hos_idx = hos_idx
+      this.requestBody.rev_idx = rev_idx
+
+      this.$router.push({
+        path: '/review/update',
+        query: this.requestBody
+      })
+    }
+
+    ,fnDetail() {
+      this.requestBody.idx = this.idx
+
+      this.$router.push({
+        path: '/hospital/detail',
+        query: this.requestBody
       })
     }
 }

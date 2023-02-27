@@ -4,9 +4,6 @@
 
     <div >
       <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">자유게시판</h1>
-
-
-
     </div>
 
 
@@ -29,8 +26,6 @@
 
         <div class="input-group input-group-sm search-pos" >
           <select v-model="search_key">
-            <option value="">- 선택 -</option>
-            <option value="author">작성자</option>
             <option value="title">제목</option>
             <option value="contents">내용</option>
           </select>
@@ -42,11 +37,6 @@
         </div>
 
       </div>
-
-
-
-
-
 
       <div>
         <a class="btn btn-primary float-end me-2 mt-2" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
@@ -62,6 +52,7 @@
             <th>작성자</th>
 <!--            <th>조회수</th>-->
             <th>작성일</th>
+            <th>수정일</th>
           </tr>
           </thead>
 
@@ -73,7 +64,7 @@
             <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>
             <td>{{ row.user_id }}</td>
             <td>{{ row.created_at }}</td>
-
+            <td>{{ row.updated_at }}</td>
           </tr>
           </tbody>
         </table>
@@ -394,7 +385,8 @@ export default {
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
 
-      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      //search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_key:"title",
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
       paginavigation: function () { //페이징 처리 for문 커스텀

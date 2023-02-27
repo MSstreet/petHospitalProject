@@ -26,7 +26,6 @@ public class WishController {
     @PostMapping("/wish")
     public WishEntity createWish(@RequestBody WishDto wishDto){
 
-        System.out.println(wishDto.isWishState());
         System.out.println(wishDto.getUserNum());
         System.out.println(wishDto.getPetHospitalNum());
         System.out.println(wishDto.getWishState1());

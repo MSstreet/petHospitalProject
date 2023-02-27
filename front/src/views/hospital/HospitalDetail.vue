@@ -125,9 +125,6 @@ export default {
     changeComponent: function (componentName){
       this.comp = componentName
     }
-
-
-
     ,fnGetReviewAvg(){
       this.$axios.get(this.$serverUrl + '/review/avg/' +this.idx)
           .then((res) => {
@@ -143,9 +140,7 @@ export default {
         }
       })
     }
-
     ,changeHeart(heart){
-
       if(heart == 1){
         this.heartval = 0
         document.getElementById("heart").innerText = "🤍";
@@ -189,10 +184,7 @@ export default {
       //     alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
       //   }
       // })
-
-
     }
-
     ,fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
@@ -200,7 +192,6 @@ export default {
         query: this.requestBody
       })
     }
-
     ,fnGetView() {
       this.$axios.get(this.$serverUrl + '/hospital/' + this.idx, {
         params: this.requestBody
@@ -242,9 +233,6 @@ export default {
     }
     ,wishCheck(){
 
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-      console.log(this.user_idx)
-      console.log(this.idx)
       this.$axios.get(this.$serverUrl + "/wish/one/" + this.user_idx + "/" + this.idx,{
         params: this.requestBody,
         headers: {}

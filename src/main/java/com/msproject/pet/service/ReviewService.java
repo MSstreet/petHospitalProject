@@ -4,6 +4,7 @@ import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.entity.ReviewEntity;
 import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.entity.UserRepository;
+import com.msproject.pet.exception.InCorrectImageFileException;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
@@ -17,16 +18,22 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
+
+    private String path = "C:\\upload\\";
 
     private final ReviewRepository reviewRepository;
 
@@ -48,40 +55,66 @@ public class ReviewService {
     }
 
 
-    public ReviewEntity ReviewCreate(ReviewDto reviewDto){
+    public ReviewEntity ReviewCreate(ReviewDto reviewDto) throws Exception{
 
-        //ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
+        Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
+        PetHospitalEntity pet = petHospitalEntity.orElseThrow();
 
-      Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
-//
-//        System.out.println("병원 번호 " + reviewDto.getPetHospitalNum());
-//        System.out.println("유저번호 " + reviewDto.getUserNum());
-
-      PetHospitalEntity pet = petHospitalEntity.orElseThrow();
-//
-      Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
-//
-//
+        Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
         UserEntity user = userEntity.orElseThrow();
-//
+
+//        String originalFilename = reviewDto.getFile().getOriginalFilename();
+//        String uuid = UUID.randomUUID().toString();
+//        String extension =  originalFilename.substring(originalFilename.lastIndexOf("."));
+//        String savedName = uuid + extension;
+
         ReviewEntity reviewEntity = ReviewEntity.builder()
                 .petHospitalEntity(pet)
+                .hospitalName(pet.getHospitalName())
                 .userEntity(user)
                 .content(reviewDto.getContent())
                 .score(reviewDto.getScore())
                 .deleteYn(reviewDto.isDeleteYn())
+//                .file(reviewDto.getFile())
+                .fileName(reviewDto.getFileName())
                 .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .build();
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewEntity.getFileName());
+//        try {
+//            reviewEntity.getFile().transferTo(new File(path + savedName));
+//        } catch (IllegalStateException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+        //ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
+
+        //Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
+        //PetHospitalEntity pet = petHospitalEntity.orElseThrow();
+        //Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
+        //UserEntity user = userEntity.orElseThrow();
+//
+//        ReviewEntity reviewEntity = ReviewEntity.builder()
+//                .petHospitalEntity(pet)
+//                .userEntity(user)
+//                .content(reviewDto.getContent())
+//                .score(reviewDto.getScore())
+//                .deleteYn(reviewDto.isDeleteYn())
+//                .createdAt(LocalDateTime.now())
+//                .build();
 
         return reviewRepository.save(reviewEntity);
     }
-
 
     public ReviewEntity update(ReviewDto reviewDto) {
 
         ReviewEntity entity = reviewRepository.findById(reviewDto.getReviewId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
-        entity.changeReview(reviewDto.getContent(), reviewDto.getScore());
+        entity.changeReview(reviewDto.getContent(), reviewDto.getScore(),reviewDto.getFileName(),LocalDateTime.now());
 
         return reviewRepository.save(entity);
     }
@@ -89,7 +122,24 @@ public class ReviewService {
     public void delete(Long id) {
         ReviewEntity entity = reviewRepository.findById(id).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
+        //deleteImage(entity.getFileName());
         reviewRepository.delete(entity);
+
+    }
+
+    public void updateImage(Long id){
+
+    }
+
+    public void deleteImage(Long id){
+        ReviewEntity entity = reviewRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
+        String fileName = entity.getFileName();
+
+        File file = new File(path + "\\" + fileName);
+
+        if(file.exists()){
+            file.delete();
+        }
     }
 
 
@@ -99,10 +149,12 @@ public class ReviewService {
         return ReviewDto.builder()
                 .reviewId(entity.getReviewId())
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
+                .petHospitalName(entity.getPetHospitalEntity().getHospitalName())
                 .userNum(entity.getUserEntity().getIdx()) //수정 0207
                 .content(entity.getContent())
                 .score(entity.getScore())
                 .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .build();
     }
 
@@ -143,12 +195,9 @@ public class ReviewService {
                     .score(entity.getScore())
                     .userId(entity.getUserEntity().getUserId())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
 
-
-            System.out.println("ddd!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + dto.getReviewId());
-
-            System.out.println("=============================");
                 dtos.add(dto);
             }
 
@@ -180,6 +229,7 @@ public class ReviewService {
                     .userId(entity.getUserEntity().getUserId())
                     .hosName(entity.getPetHospitalEntity().getHospitalName())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
 
             dtos.add(dto);

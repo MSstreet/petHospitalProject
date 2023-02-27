@@ -57,6 +57,8 @@
 
         <template v-for=" (n,index) in paginavigation()">
             <template v-if="paging.page==n">
+                <div v-if="n == 2">
+               </div>
               <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
             </template>
 

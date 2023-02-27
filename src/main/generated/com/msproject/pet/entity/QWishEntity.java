@@ -22,13 +22,15 @@ public class QWishEntity extends EntityPathBase<WishEntity> {
 
     public static final QWishEntity wishEntity = new QWishEntity("wishEntity");
 
+    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
+
     public final QPetHospitalEntity petHospitalEntity;
+
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public final QUserEntity userEntity;
 
     public final NumberPath<Long> wishId = createNumber("wishId", Long.class);
-
-    public final BooleanPath wishState = createBoolean("wishState");
 
     public final NumberPath<Integer> wishState1 = createNumber("wishState1", Integer.class);
 

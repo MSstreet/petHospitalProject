@@ -15,33 +15,22 @@ public class PetHospitalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hospitalId;
-
+    private String hospitalName;
     private String sigunName;
 
-    private String hospitalName;
-
     private String operState;
-
     private String hospitalNum;
 
     private String hospitalAddr; // 도로명 주소
 
-    private float petHospitalScore;
+    //private float petHospitalScore; //삭제해도 될 거 같은데
 
 //    @Column(nullable = false)
 //    private Integer wishScore;
 
-    //private String hospitalAddr; // 지번 주소
-
-    //private String hospitalId;
-
     private BigDecimal hosLatitude ;
 
     private BigDecimal hosLongitude;
-
-    //private float hospitalScore;
-
-    //private String hospitalStreetZip;
 
     public void change(String hospitalName, String hospitalNum, String hospitalAddr, String sigunName){
         this.hospitalName = hospitalName;

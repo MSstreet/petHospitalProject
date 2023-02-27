@@ -22,4 +22,6 @@ public class NoticeBoardDto {
     private String createdAt;
 
     private String updatedAt;
+
+    private boolean deleteYn;
 }

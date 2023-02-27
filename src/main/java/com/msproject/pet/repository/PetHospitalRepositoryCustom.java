@@ -42,7 +42,8 @@ public class PetHospitalRepositoryCustom {
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(petHospitalEntity.hospitalId.desc())
+                //.orderBy(petHospitalEntity.hospitalId.desc())
+                .orderBy(reviewEntity.score.avg().desc())
                 .fetch();
 
         //System.out.println("resultSize : " + results.size());
@@ -54,7 +55,7 @@ public class PetHospitalRepositoryCustom {
                 petHospitalEntity.operState,
                 petHospitalEntity.hospitalNum,
                 petHospitalEntity.hospitalAddr,
-                petHospitalEntity.petHospitalScore,
+                //petHospitalEntity.petHospitalScore,
                 reviewEntity.count().as("reviewCount")
         ));
 
@@ -78,7 +79,7 @@ public class PetHospitalRepositoryCustom {
                 petHospitalEntity.operState,
                 petHospitalEntity.hospitalNum,
                 petHospitalEntity.hospitalAddr,
-                petHospitalEntity.petHospitalScore,
+               // petHospitalEntity.petHospitalScore,
                 petHospitalEntity.hosLatitude,
                 petHospitalEntity.hosLongitude,
                 reviewEntity.count().as("reviewCount")
@@ -181,7 +182,7 @@ public class PetHospitalRepositoryCustom {
                 petHospitalEntity.operState,
                 petHospitalEntity.hospitalNum,
                 petHospitalEntity.hospitalAddr,
-                petHospitalEntity.petHospitalScore,
+                //petHospitalEntity.petHospitalScore,
                 reviewEntity.count().as("reviewCount")
         ));
 

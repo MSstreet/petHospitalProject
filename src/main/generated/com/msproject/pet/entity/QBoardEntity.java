@@ -28,9 +28,13 @@ public class QBoardEntity extends EntityPathBase<BoardEntity> {
 
     public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
 
+    public final BooleanPath deleteYn = createBoolean("deleteYn");
+
     public final NumberPath<Long> idx = createNumber("idx", Long.class);
 
     public final StringPath title = createString("title");
+
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public final QUserEntity userEntity;
 

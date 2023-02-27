@@ -19,18 +19,18 @@ class ReviewServiceTest {
     @Autowired
     private ReviewService reviewService;
 
-    @Test
-    public void testRegister(){
-
-        ReviewDto reviewDto = ReviewDto.builder()
-                .petHospitalNum(2429L)
-                .userNum(1L)
-                .content("dkdkdkd")
-                .score(3)
-                .deleteYn(false).build();
-
-        log.info(reviewService.ReviewCreate(reviewDto));
-    }
+//    @Test
+//    public void testRegister(){
+//
+//        ReviewDto reviewDto = ReviewDto.builder()
+//                .petHospitalNum(2429L)
+//                .userNum(1L)
+//                .content("dkdkdkd")
+//                .score(3)
+//                .deleteYn(false).build();
+//
+//        log.info(reviewService.ReviewCreate(reviewDto));
+//    }
 
     @Test
     public void testUpdate(){

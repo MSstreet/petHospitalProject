@@ -27,7 +27,7 @@
 
       <div class="mb-3">
         <label for="content">내용</label>
-        <textarea class="form-control" maxlength="3000" v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요(3000자 이내)" ></textarea>
+        <textarea class="form-control" maxlength="3000" v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요(3000자 이내)"></textarea>
 
       </div>
 
@@ -61,7 +61,9 @@ export default {
       title: '',
       author:'',
       contents: '',
-      created_at: ''
+      created_at: '',
+
+      check:false
     }
   },
   mounted() {
@@ -70,7 +72,25 @@ export default {
   },
   methods: {
 
-    fnGetView() {
+    validCheck(){
+      if (this.title == '') {
+        alert('제목을 입력하세요.')
+        this.check = false
+        return false
+      } else{
+        this.check = true
+      }
+
+      if (this.contents == '') {
+        alert('내용를 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+      }
+    }
+
+    ,fnGetView() {
       if (this.idx !== undefined) {
         this.$axios.get(this.$serverUrl + '/board/' + this.idx, {
           params: this.requestBody
@@ -105,6 +125,11 @@ export default {
     }
 
     ,fnSave() {
+      this.validCheck()
+      if(!(this.check)){
+        return false
+      }
+
       let apiUrl = this.$serverUrl + '/board'
       this.form = {
         "idx": this.idx,

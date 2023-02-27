@@ -17,7 +17,7 @@ public class WishDto {
 
     private Long userNum;
 
-    private boolean wishState;
+    //private boolean wishState;
 
     private int wishState1;
 
@@ -30,6 +30,10 @@ public class WishDto {
     private String hospitalAddr;
 
     private float hospitalScore;
+
+    private String createdAt;
+
+    private String updatedAt;
 
 
 }

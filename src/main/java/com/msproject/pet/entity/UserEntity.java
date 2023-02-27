@@ -1,14 +1,13 @@
 package com.msproject.pet.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+//@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,6 +16,7 @@ import java.time.LocalDateTime;
 public class UserEntity extends BaseEntity{
 
     @Id
+    @Column(name = "user_idx")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
@@ -24,7 +24,6 @@ public class UserEntity extends BaseEntity{
     private String userPw;
     private String userName;
 
-    //////////////////////////////////
     private String phoneNum;
 
     private String zipCode;
@@ -35,10 +34,8 @@ public class UserEntity extends BaseEntity{
 
     private String email; // 0208
 
+    @ColumnDefault("false") //default 0
     private boolean deleteYn;
-
-    //private LocalDateTime createdAt;
-    //private LocalDateTime updatedAt;
 
     public void changePassword(String userPw){
         this.userPw = userPw;
@@ -56,5 +53,9 @@ public class UserEntity extends BaseEntity{
 
     public void changePw(String userPw){
         this.userPw = userPw;
+    }
+
+    public void changeState(){
+        this.deleteYn = true;
     }
 }

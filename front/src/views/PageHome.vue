@@ -39,6 +39,7 @@
 <!--        <button @click="fnPage()" class="ms-2">검색</button>-->
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
         <div class=" mx-auto w-50 p-3 input-group input-group-lg">
+
           <select v-model="search_key">
             <option value="author" selected>병원명</option>
             <option value="title">지역명</option>
@@ -527,7 +528,8 @@ export default {
 
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
-      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      //search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_key:"author",
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
       paginavigation: function () { //페이징 처리 for문 커스텀
@@ -542,14 +544,17 @@ export default {
   ,created(){
 
 
+
+
     if (!("geolocation" in navigator)) {
       return;
     }
-
     // get position
     navigator.geolocation.getCurrentPosition(pos => {
       this.latitude = pos.coords.latitude;
       this.longitude = pos.coords.longitude;
+
+
 
       if (window.kakao && window.kakao.maps) {
 

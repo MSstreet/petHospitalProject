@@ -1,6 +1,7 @@
 package com.msproject.pet.web;
 
 import com.msproject.pet.entity.ReviewEntity;
+import com.msproject.pet.exception.InCorrectImageFileException;
 import com.msproject.pet.model.Header;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.service.ReviewService;
@@ -11,8 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,32 +26,41 @@ import java.util.List;
 public class ReviewController {
 
     private final ReviewService reviewService;
-
-
+    private String path = "C:\\upload\\";
     @PostMapping("/review/join")
-    public ReviewEntity create(@RequestBody ReviewDto reviewDto) throws Exception{
+    public ReviewEntity create(ReviewDto reviewDto) throws Exception{
 
-        System.out.println(reviewDto.getUserNum());
+        isImageFile(reviewDto.getFile());
 
-        System.out.println(reviewDto.getScore());
-        System.out.println(reviewDto.getPetHospitalNum());
-        System.out.println("-----------------------------------------------------------");
+        String originalFilename = reviewDto.getFile().getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String extension =  originalFilename.substring(originalFilename.lastIndexOf("."));
+        String savedName = uuid + extension;
+        reviewDto.setFileName(savedName);
 
-        return reviewService.ReviewCreate(reviewDto);
-
+        try {
+            reviewDto.getFile().transferTo(new File(path + savedName));
+            return reviewService.ReviewCreate(reviewDto);
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
-
-
+    private void isImageFile(MultipartFile file) {
+        String contentType = file.getContentType();
+        if (!(contentType.startsWith("image"))) {
+            throw new InCorrectImageFileException();
+        }
+    }
     @GetMapping("/review/list/{id}")
     public Header<List<ReviewDto>> reviewList(@PathVariable Long id,
             @PageableDefault(sort = "review_id") Pageable pageable,
             SearchCondition searchCondition)
     {
-
-        System.out.println(pageable.getOffset());
-        System.out.println(pageable.getSort());
-
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return reviewService.getReviewList(pageable, searchCondition, id);
     }
 
@@ -71,22 +85,47 @@ public class ReviewController {
 //        return reviewService.getReviewAvg(id);
 //    }
 
-
     @GetMapping("/review/{id}")
     public ReviewDto getReview(@PathVariable Long id){
         return reviewService.getReview(id);
     }
 
-
     @PatchMapping("/review")
-    public ReviewEntity update(@RequestBody ReviewDto reviewDto){
-        return reviewService.update(reviewDto);
+    public ReviewEntity update(ReviewDto reviewDto){
+
+        reviewService.deleteImage(reviewDto.getReviewId());
+
+        isImageFile(reviewDto.getFile());
+
+        String originalFilename = reviewDto.getFile().getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String extension =  originalFilename.substring(originalFilename.lastIndexOf("."));
+        String savedName = uuid + extension;
+
+        reviewDto.setFileName(savedName);
+
+        try {
+            reviewDto.getFile().transferTo(new File(path + savedName));
+            return reviewService.update(reviewDto);
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
 
-
     @DeleteMapping("/review/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id)
+    {
+        reviewService.deleteImage(id);
         reviewService.delete(id);
+    }
+
+    public void deleteImage(Long id){
+        reviewService.deleteImage(id);
     }
 
     @GetMapping("/review/hos/{id}")

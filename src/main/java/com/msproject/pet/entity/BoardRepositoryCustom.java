@@ -23,7 +23,7 @@ public class BoardRepositoryCustom {
     public Page<BoardEntity> findAllBySearchCondition(Pageable pageable, SearchCondition searchCondition) {
 
         JPAQuery<BoardEntity> query = queryFactory.selectFrom(boardEntity)
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()), boardEntity.deleteYn.eq(false));
 
         long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
 

@@ -16,6 +16,7 @@ import PasswordFind from '@/views/common/PasswordFind'
 import HospitalDetail from '@/views/hospital/HospitalDetail'
 import ReviewWrite from '@/views/review/ReviewWrite'
 import ReviewDetail from '@/views/review/ReviewDetail'
+import ReviewUpdate from '@/views/review/ReviewUpdate'
 
 import NoticeBoardList from '@/views/noticeBoard/NoticeBoardList'
 import NoticeBoardDetail from "@/views/noticeBoard/NoticeBoardDetail";
@@ -107,7 +108,7 @@ const routes = [
         path: '/board/list',
         name: 'BoardList',
         component: BoardList,
-         beforeEnter: requireAuth1()
+
     },
     {
         path: '/board/detail',
@@ -144,6 +145,10 @@ const routes = [
         path: '/review/detail',
         name: 'ReviewDetail',
         component: ReviewDetail
+    },{
+        path: '/review/update',
+        name: 'ReviewUpdate',
+        component: ReviewUpdate
     }
     ,{
         path: '/review/myreview',

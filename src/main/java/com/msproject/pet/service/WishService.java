@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,18 +33,14 @@ public class WishService {
 
     private final ModelMapper modelMapper;
 
-
     public WishEntity wishCreate(WishDto wishDto){
 
         //WishEntity wishEntity = modelMapper.map(wishDto, WishEntity.class);
 
         Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(wishDto.getPetHospitalNum());
-
         PetHospitalEntity pet = petHospitalEntity.orElseThrow();
 
-
         Optional<UserEntity> userEntity = userRepository.findById(wishDto.getUserNum());
-
         UserEntity user = userEntity.orElseThrow();
 
         //wishEntity.setUserEntity(user);
@@ -51,7 +48,9 @@ public class WishService {
         WishEntity wishEntity = WishEntity.builder()
                 .petHospitalEntity(pet)
                 .userEntity(user)
-                .wishState(wishDto.isWishState())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                //.wishState(wishDto.isWishState())
                 .wishState1(wishDto.getWishState1())
                 .build();
 
@@ -62,22 +61,20 @@ public class WishService {
     public WishEntity update(WishDto wishDto) {
 
         //WishEntity entity = wishRepository.findById(wishDto.getWishId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
-
-        System.out.println("여기서나는오류인거지111111111111111111111");
         WishEntity entity = wishRepositoryCustom.findOneReview(wishDto.getUserNum(),wishDto.getPetHospitalNum());
-        System.out.println("여기서나는오류인거지222222222222222222222222");
-//        entity.changeWishState(wishDto.isWishState());
 
         entity.changeWishState(wishDto.getWishState1());
-        System.out.println("여기서나는오류인거지33333333333333333333333333333");
+        entity.setUpdatedAt(LocalDateTime.now());
         return wishRepository.save(entity);
     }
 
 
     public void delete(Long id) {
+
         WishEntity entity = wishRepository.findById(id).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
         wishRepository.delete(entity);
+
     }
 
 
@@ -93,13 +90,13 @@ public class WishService {
                   .wishId(entity.getWishId())
                   .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                   .userNum(entity.getUserEntity().getIdx())
-                  .wishState(entity.isWishState())
+                  //.wishState(entity.isWishState())
                   .wishState1(entity.getWishState1())
                   .hospitalName(entity.getPetHospitalEntity().getHospitalName())
                   .hospitalNum(entity.getPetHospitalEntity().getHospitalNum())
                   .hospitalSigunName(entity.getPetHospitalEntity().getSigunName())
                   .hospitalAddr(entity.getPetHospitalEntity().getHospitalAddr())
-                  .hospitalScore(entity.getPetHospitalEntity().getPetHospitalScore())
+                  //.hospitalScore(entity.getPetHospitalEntity().getPetHospitalScore())
                   .build();
 
             dtos.add(dto);
@@ -122,7 +119,7 @@ public class WishService {
                 .wishId(entity.getWishId())
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                 .userNum(entity.getUserEntity().getIdx())
-                .wishState(entity.isWishState())
+                //.wishState(entity.isWishState())
                 .wishState1(entity.getWishState1())
                 .build();
     }
@@ -132,15 +129,11 @@ public class WishService {
 
         WishEntity entity = wishRepositoryCustom.findOneReview(uid, hid);
 
-        System.out.println("들어오는지?");
-
-
-
         WishDto wishDto = WishDto.builder()
                 .wishId(entity.getWishId())
                 .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                 .userNum(entity.getUserEntity().getIdx())
-                .wishState(entity.isWishState())
+                //.wishState(entity.isWishState())
                 .wishState1(entity.getWishState1())
                 .build();
 

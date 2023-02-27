@@ -23,7 +23,6 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardRepositoryCustom boardRepositoryCustom;
-
     private final UserRepository userRepository;
     /**
      * 게시글 목록 가져오기
@@ -87,6 +86,7 @@ public class BoardService {
                     .title(entity.getTitle())
                     .contents(entity.getContents())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .userId(entity.getUserEntity().getUserId())
                     .build();
 
@@ -120,6 +120,7 @@ public class BoardService {
                 .author(entity.getAuthor())
                 .userIdx(entity.getUserEntity().getIdx())
                 .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .userId(entity.getUserEntity().getUserId())
                 .build();
     }
@@ -138,7 +139,9 @@ public class BoardService {
                 .author(boardDto.getAuthor())
                 .userEntity(result)
                 .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .build();
+
         return boardRepository.save(entity);
     }
 
@@ -149,6 +152,7 @@ public class BoardService {
         BoardEntity entity = boardRepository.findById(boardDto.getIdx()).orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
         entity.setTitle(boardDto.getTitle());
         entity.setContents(boardDto.getContents());
+        entity.setUpdatedAt(LocalDateTime.now());
         return boardRepository.save(entity);
     }
 
@@ -157,6 +161,9 @@ public class BoardService {
      */
     public void delete(Long id) {
         BoardEntity entity = boardRepository.findById(id).orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
-        boardRepository.delete(entity);
+        //boardRepository.delete(entity);
+
+        entity.changeState();
+        boardRepository.save(entity);
     }
 }

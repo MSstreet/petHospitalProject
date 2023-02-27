@@ -16,8 +16,6 @@
 <!--           <button @click="fnPage()" class="btn btn-success" id="button-addon2">검색</button>-->
         </div>
 
-
-
         <div class="form-group">
           <label for="exampleInputEmail1" class="form-label mt-4">Email</label>
           <input type="text" maxlength="50" class="form-control" id="exampleInputEmail1" v-model="user_email" @change="validEmailCheck">
@@ -336,6 +334,7 @@ export default {
       if (this.user_id !== '' && !idCheck.test(this.user_id)) {
         document.getElementById('checkId').style.color="red"
         document.getElementById('checkId').innerHTML = " ID는 5자 이상 20자리 이하의 영문과 숫자로 입력해주세요";
+        alert("ID는 5자 이상 20자리 이하의 영문과 숫자로 입력해주세요")
         this.check = false
         return
       }else{
@@ -356,6 +355,7 @@ export default {
       if (this.user_email !== '' && !emailCheck.test(this.user_email)) {
         document.getElementById('checkEmail').style.color="red"
         document.getElementById('checkEmail').innerHTML = " 올바른 이메일 형식이 아닙니다.";
+        alert(" 올바른 이메일 형식이 아닙니다.")
         this.check = false
         return
       }else{
@@ -368,6 +368,8 @@ export default {
       this.validDuplicationEmailCheck()
 
       if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
+        document.getElementById('checkEmail').style.color="red"
+        document.getElementById('checkEmail').innerHTML = " 비밀번호와 비밀번호 확인이 서로 맞지 않습니다.";
         alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
         this.check = false
         return
@@ -378,6 +380,7 @@ export default {
       if (this.user_name !== '' && !nameCheck.test(this.user_name)) {
         document.getElementById('nameCheck').style.color="red"
         document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.";
+        alert('이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.')
         this.check = false
         return
       } else{
@@ -390,7 +393,8 @@ export default {
       if (this.user_num !== '' && !numCheck.test(this.user_num)) {
         //alert('전화번호를 입력하세요.')
         document.getElementById('numberCheck').style.color="red"
-        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a0000-1111-2222 ";
+        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222 ";
+        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
         this.check = false
         return
       } else{

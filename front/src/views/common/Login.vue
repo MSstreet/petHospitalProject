@@ -26,7 +26,7 @@
                       <input type="email" maxlength="50" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
+                      <button type="button" class="btn btn-primary bg-gradient-primary w-100 my-4 mb-2"
                               id="checkEmail" @click="fnFind">확인</button>
                     </div>
 
@@ -63,7 +63,7 @@
                     <input type="email" maxlength="50" id="userEmail" name="memberEmail" class="form-control" placeholder="Email" v-model="user_email" required>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2"
+                    <button type="button" class="btn btn-primary bg-gradient-primary w-100 my-4 mb-2"
                             id="checkEmail" @click="checkEmail">비밀번호 발송</button>
                   </div>
                 </div>

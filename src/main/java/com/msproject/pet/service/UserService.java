@@ -99,8 +99,11 @@ public class UserService implements UserDetailsService {
     }
 
     public void delete(Long id){
+
         UserEntity entity = userRepository.findById(id).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
+        //entity.changeState();
+        //userRepository.save(entity);
         userRepository.delete(entity);
     }
 
@@ -167,6 +170,7 @@ public class UserService implements UserDetailsService {
             UserEntity userEntity = user.orElseThrow();
 
             MailDto mailDto = createMailAndChangePassword(userEntity);
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             mailSend(mailDto);
 
             return userEntity;
@@ -189,7 +193,9 @@ public class UserService implements UserDetailsService {
 
 
         userEntity.changePw(passwordEncoder.encode(str));
+
         userRepository.save(userEntity);
+
 
         return dto;
     }

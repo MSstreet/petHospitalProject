@@ -1,44 +1,132 @@
 <template>
+<!--  <div class="wrap mt-5">-->
+<!--    <span><h3>{{hospital_name}} 후기</h3></span>-->
+<!--    <form name="reviewform" class="reviewform">-->
+
+<!--      <p class="title_star">별점과 리뷰를 남겨주세요.</p>-->
+<!--      <div class="review_rating">-->
+<!--        <div class="warning_msg">별점을 선택해 주세요.</div>-->
+<!--          <div class="star-rating col-6">-->
+<!--            <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />-->
+<!--            <label for="5-stars" class="star">&#9733;</label>-->
+
+<!--            <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />-->
+<!--            <label for="4-stars" class="star">&#9733;</label>-->
+
+<!--            <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />-->
+<!--            <label for="3-stars" class="star">&#9733;</label>-->
+
+<!--            <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />-->
+<!--            <label for="2-stars" class="star">&#9733;</label>-->
+
+<!--            <input type="radio" id="1-star" name="rating" v-model="score" value="1" />-->
+<!--            <label for="1-star" class="star">&#9733;</label>-->
+<!--          </div>-->
+<!--      </div>-->
+
+<!--      <div class="review_contents mt-3">-->
+<!--        <div class="warning_msg">5자 이상으로 작성해 주세요.</div>-->
+<!--        <textarea rows="10" class="review_textarea" v-model="contents"></textarea>-->
+<!--      </div>-->
+
+<!--      <div class="common-buttons">-->
+<!--              <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>-->
+<!--      </div>-->
+
+<!--    </form>-->
+<!--  </div>-->
 
   <div class="wrap mt-5">
     <span><h3>{{hospital_name}} 후기</h3></span>
-    <form name="reviewform" class="reviewform">
+    <form  enctype="multipart/form-data" method="post" id="revieform" class="reviewform">
 
       <p class="title_star">별점과 리뷰를 남겨주세요.</p>
 
-      <div class="review_rating">
-        <div class="warning_msg">별점을 선택해 주세요.</div>
-          <div class="star-rating col-6">
-            <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />
-            <label for="5-stars" class="star">&#9733;</label>
+            <div class="review_rating">
+              <div class="warning_msg">별점을 선택해 주세요.</div>
+              <div class="star-rating col-6">
+                <input type="radio" id="5-stars" name="score" v-model="score" value="5" />
+                <label for="5-stars" class="star">&#9733;</label>
 
-            <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />
-            <label for="4-stars" class="star">&#9733;</label>
+                <input type="radio" id="4-stars" name="score" v-model="score" value="4" />
+                <label for="4-stars" class="star">&#9733;</label>
 
-            <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />
-            <label for="3-stars" class="star">&#9733;</label>
+                <input type="radio" id="3-stars" name="score" v-model="score" value="3" />
+                <label for="3-stars" class="star">&#9733;</label>
 
-            <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />
-            <label for="2-stars" class="star">&#9733;</label>
+                <input type="radio" id="2-stars" name="score" v-model="score" value="2" />
+                <label for="2-stars" class="star">&#9733;</label>
 
-            <input type="radio" id="1-star" name="rating" v-model="score" value="1" />
-            <label for="1-star" class="star">&#9733;</label>
-          </div>
-      </div>
+                <input type="radio" id="1-stars" name="score" v-model="score" value="1" />
+                <label for="1-stars" class="star">&#9733;</label>
+              </div>
+            </div>
 
-      <div class="review_contents mt-3">
-        <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
-        <textarea rows="10" class="review_textarea" v-model="contents"></textarea>
-      </div>
+<!--            <div v-if="error">Please select an option.</div>-->
+
+      <!--      <input type="text" name="content">-->
+            <div class="review_contents mt-3">
+              <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
+              <textarea rows="10" class="review_textarea" name="content" v-model="contents"></textarea>
+            </div>
+
+            <h4>파일 업로드</h4>
+            <input type="file" name="file" accept="image/*">
+
+
+<!--      <input type="hidden" name="pet_hospital_num" v-model="pet_hospital_num">-->
+<!--      <input type="hidden" name="user_num" v-model="user_idx">-->
+<!--      -->
+
+      <!--      <input type="file" name="file" id="file" ref="Image" @change="onFileChange">-->
 
       <div class="common-buttons">
-              <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>
+        <button type="button" class="btn btn-primary" @click="fnTest()">저장</button>
       </div>
 
     </form>
   </div>
 
-<!--  <div class="board-detail mt-5">-->
+<!--  <div class="wrap mt-5">-->
+<!--    <span><h3>{{hospital_name}} 후기</h3></span>-->
+<!--    <form @submit.prevent="fnSave" ref="form" id="reviewform" name="reviewform" class="reviewform"  enctype="multipart/form-data">-->
+
+<!--      <p class="title_star">별점과 리뷰를 남겨주세요.</p>-->
+<!--      <div class="review_rating">-->
+<!--        <div class="warning_msg">별점을 선택해 주세요.</div>-->
+<!--        <div class="star-rating col-6">-->
+<!--          <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />-->
+<!--          <label for="5-stars" class="star">&#9733;</label>-->
+
+<!--          <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />-->
+<!--          <label for="4-stars" class="star">&#9733;</label>-->
+
+<!--          <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />-->
+<!--          <label for="3-stars" class="star">&#9733;</label>-->
+
+<!--          <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />-->
+<!--          <label for="2-stars" class="star">&#9733;</label>-->
+
+<!--          <input type="radio" id="1-star" name="rating" v-model="score" value="1" />-->
+<!--          <label for="1-star" class="star">&#9733;</label>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="review_contents mt-3">-->
+<!--        <div class="warning_msg">5자 이상으로 작성해 주세요.</div>-->
+<!--        <textarea rows="10" class="review_textarea" v-model="contents"></textarea>-->
+<!--      </div>-->
+
+<!--      <h4>단일 파일 업로드</h4>-->
+<!--      <input type="file" name="file" id="file" ref="Image" @change="onFileChange">-->
+
+<!--      <div class="common-buttons">-->
+<!--        <button type="submit" class="btn btn-primary">저장</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+
+  <!--  <div class="board-detail mt-5">-->
 <!--  <div class="row">-->
 <!--    <div class="mb-2 mt-3 col-6">-->
 <!--      <h3 class="name mt-2 my-1 d-flex align-items-center font-weight-bold">{{hospital_name}}</h3>-->
@@ -80,11 +168,10 @@ export default {
     return {
       requestBody: this.$route.query,
       pet_hospital_num: this.$route.query.idx,
-
       user_idx: this.$store.state.userIdx,
-      score: 0,
-      contents:'',
 
+      score:'',
+      contents:'',
       addr1:'',
       hospital_id:'',
       hospital_name: '',
@@ -93,7 +180,9 @@ export default {
       sigun_name: '',
       oper_state: '',
       hospital_score:'',
-      review_count:''
+      review_count:'',
+
+      error:false
     };
   },
   mounted() {
@@ -106,7 +195,50 @@ export default {
   },
 
   methods:{
-    fnSave() {
+    fnTest(){
+      if (!this.score) {
+        alert("평점을 선택해주세요.")
+        return false
+      }
+      if(!this.contents){
+        alert("리뷰 내용을 입력해주세요.")
+        return false
+      }
+      const formData = new FormData(document.getElementById("revieform"))
+      formData.append('petHospitalNum',this.pet_hospital_num)
+      formData.append('userNum',this.user_idx)
+      let apiUrl = this.$serverUrl + '/review/join'
+      if (this.idx === undefined) {
+        //INSERT
+        this.$axios.post(apiUrl, formData)
+            .then((res) => {
+              if(res.data.errorCode == 401){
+                alert("올바른 이미지 파일을 등록해주세요.")
+                return false
+              }
+              alert('글이 저장되었습니다.')
+              this.fnView(res.data.pet_hospital_entity.hospital_id)
+
+            }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      } else {
+        //UPDATE
+        this.$axios.patch(apiUrl, this.form)
+            .then((res) => {
+              alert('글이 저장되었습니다.')
+              this.fnView(res.data.idx)
+            }).catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+          }
+        })
+      }
+    }
+
+    ,fnSave() {
       let apiUrl = this.$serverUrl + '/review/join'
 
       this.form = {

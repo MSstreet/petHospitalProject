@@ -8,15 +8,25 @@
 <!--      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>-->
 <!--    </div>-->
 
+
+
     <div class="board-contents">
 <!--      <div class="mb-3">-->
 <!--        <label for="title">제목</label>-->
 <!--        <input type="text" class="form-control" name="title" id="title">-->
 <!--      </div>-->
 
-      <h3 class=" mt-5" id="title">{{ title }}</h3>
-      <span>{{ created_at }}</span>
+      <div class="common-buttons pt-5 mb-3">
+        <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnUpdate">수정</button>&nbsp;
+        <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnDelete">삭제</button>&nbsp;
 
+        <button type="button" class="btn btn-primary" v-on:click="fnList">목록</button>
+      </div>
+
+      <div class="border ">
+        <h3 class="my-3 ms-2" id="title">{{ title }}</h3>
+        <span class="my-3 ms-2 mb-2">{{ created_at }}</span>
+      </div>
 <!--        <strong class="w2-large">{{ author }}</strong>-->
 
 
@@ -26,12 +36,12 @@
       <span>{{ contents }}</span>
     </div>
 
-    <div class="common-buttons pt-5">
-      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnUpdate">수정</button>&nbsp;
-      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnDelete">삭제</button>&nbsp;
+<!--    <div class="common-buttons pt-5">-->
+<!--      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnUpdate">수정</button>&nbsp;-->
+<!--      <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnDelete">삭제</button>&nbsp;-->
 
-      <button type="button" class="btn btn-primary" v-on:click="fnList">목록</button>
-    </div>
+<!--      <button type="button" class="btn btn-primary" v-on:click="fnList">목록</button>-->
+<!--    </div>-->
 
 
   </div>
@@ -41,10 +51,12 @@
 export default {
   data() { //변수생성
     return {
-      requestBody: this.$route.query,
-      idx: this.$route.query.idx,
 
+      requestBody: this.$route.query,
+
+      idx: this.$route.query.idx,
       logged_idx: this.$store.state.userIdx,
+
       writer_idx:this.$route.query.userIdx,
 
       title: '',

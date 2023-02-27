@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,7 @@ import javax.persistence.*;
 public class WishEntity {
 
     @Id
+    @Column(name = "wish_idx")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wishId;
 
@@ -28,9 +30,12 @@ public class WishEntity {
     @OnDelete(action= OnDeleteAction.CASCADE)
     private UserEntity userEntity;
 
-    private boolean wishState;
-
+    //private boolean wishState; //삭제
     private int wishState1;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
     public void changeWishState(int wishState1){
         this.wishState1 = wishState1;

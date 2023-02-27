@@ -43,7 +43,7 @@ public class PetHospitalService {
                .hospitalName(petHospitalDto.getHospitalName())
                .hospitalNum(petHospitalDto.getHospitalNum())
                .hospitalAddr(petHospitalDto.getHospitalAddr())
-               .petHospitalScore(petHospitalDto.getHospitalScore())
+               //.petHospitalScore(petHospitalDto.getHospitalScore())
                .build();
 
 //        PetHospitalEntity entity = PetHospitalEntity.builder()
@@ -181,7 +181,7 @@ public class PetHospitalService {
                     .sigunName(entity.getSigunName())
                     .hospitalNum(entity.getHospitalNum())
                     .hospitalAddr(entity.getHospitalAddr())
-                    .hospitalScore(entity.getPetHospitalScore())
+                    //.hospitalScore(entity.getPetHospitalScore())
                     .operState(entity.getOperState())
                     .build();
 

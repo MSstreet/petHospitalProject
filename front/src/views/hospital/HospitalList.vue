@@ -10,7 +10,7 @@
   <div class="card-header mt-5">
     <div class="input-group input-group-sm search-pos" >
       <select v-model="search_key">
-        <option value="">- 선택 -</option>
+<!--        <option value="">- 선택 -</option>-->
         <option value="author">병원명</option>
         <option value="title">지역명</option>
       </select>
@@ -115,8 +115,8 @@ export default {
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
 
-      search_key: this.$route.query.sk ? this.$route.query.sk : '',
-      //search_key: '지역명',
+      //search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_key: 'author',
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
       paginavigation: function () { //페이징 처리 for문 커스텀
@@ -159,7 +159,7 @@ export default {
 
         console.log(res.data.pagination);
 
-         console.log(res.data.data);
+         console.log(res.data.data.length);
         // console.log(res.data.pagination);
 
       }).catch((err) => {

@@ -19,21 +19,19 @@ public class QNoticeBoard extends EntityPathBase<NoticeBoard> {
 
     public static final QNoticeBoard noticeBoard = new QNoticeBoard("noticeBoard");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
-
     public final StringPath contents = createString("contents");
+
+    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
+
+    public final BooleanPath deleteYn = createBoolean("deleteYn");
 
     public final BooleanPath display_yn = createBoolean("display_yn");
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> modDate = _super.modDate;
-
     public final NumberPath<Long> nboardId = createNumber("nboardId", Long.class);
 
-    //inherited
-    public final DateTimePath<java.time.LocalDateTime> regDate = _super.regDate;
-
     public final StringPath title = createString("title");
+
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public QNoticeBoard(String variable) {
         super(NoticeBoard.class, forVariable(variable));

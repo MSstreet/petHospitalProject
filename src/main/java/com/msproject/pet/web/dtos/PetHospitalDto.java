@@ -25,7 +25,7 @@ public class PetHospitalDto {
 
     private String hospitalAddr; // 도로명 주소
 
-    private float hospitalScore;
+    //private float hospitalScore;
 
     //private String operationYn;
 

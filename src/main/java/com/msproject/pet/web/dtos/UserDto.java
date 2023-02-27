@@ -14,8 +14,11 @@ import java.time.LocalDateTime;
 public class UserDto {
 
     private Long idx;
+
     private String userId;
+
     private String userPw;
+
     private String userName;
 
     private String phoneNum;
@@ -30,9 +33,4 @@ public class UserDto {
 
     private boolean deleteYn;
 
-    //private Long user;
-//
-    //private LocalDateTime createdAt;
-//
-    //private LocalDateTime updatedAt;
 }

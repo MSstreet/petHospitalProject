@@ -49,13 +49,13 @@
 
       <form @submit.prevent="fnJoin" ref="form">
 
-        <div class="form-group has-success">
+<!--        <div class="form-group has-success">-->
 
-          <label class="form-label mt-4" for="inputValid">비밀번호</label>
-          <div class="d-grid gap-2">
-            <router-link to="/pw_edit" class="btn btn-secondary" role="button">Edit</router-link>
-          </div>
-        </div>
+<!--          <label class="form-label mt-4" for="inputValid">비밀번호</label>-->
+<!--          <div class="d-grid gap-2">-->
+<!--            <router-link to="/pw_edit" class="btn btn-secondary" role="button">Edit</router-link>-->
+<!--          </div>-->
+<!--        </div>-->
 
 
         <div class="form-group">
@@ -64,6 +64,13 @@
 <!--          <input type="text" class="form-control" id="exampleInputEmail1">-->
         </div>
 
+        <div class="form-group has-success">
+
+          <label class="form-label mt-4" for="inputValid">비밀번호</label>
+          <div class="d-grid gap-2">
+            <router-link to="/pw_edit" class="btn btn-secondary" role="button">Edit</router-link>
+          </div>
+        </div>
 
         <div class="form-group">
           <label for="exampleInputName" class="form-label mt-4">이름</label>

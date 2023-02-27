@@ -14,7 +14,9 @@ import java.io.Serializable;
 public class BoardDto implements Serializable {
 
     private Long idx;
+
     private String title;
+
     private String contents;
 
     private String author;
@@ -25,5 +27,7 @@ public class BoardDto implements Serializable {
 
     private String createdAt;
 
+    private String updatedAt;
 
+    private boolean deleteYn;
 }
