@@ -31,7 +31,7 @@ public class BoardEntity {
     private String author; // 삭제해도 됨
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    //@OnDelete(action= OnDeleteAction.CASCADE)
     private UserEntity userEntity;
 
     private LocalDateTime createdAt;
@@ -42,6 +42,10 @@ public class BoardEntity {
     private boolean deleteYn;
 
     public void changeState(){
+        this.deleteYn = true;
+    }
+
+    public void changeDeleteState() {
         this.deleteYn = true;
     }
 }

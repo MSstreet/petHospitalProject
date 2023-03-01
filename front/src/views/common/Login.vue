@@ -230,7 +230,6 @@ export default {
         console.log("확인" + loginResult)
 
         if (loginResult) {
-
            this.goToPages()
            // alert('로그인 결과 : ' + loginResult)
         }

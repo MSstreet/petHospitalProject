@@ -45,9 +45,10 @@ public class ReviewService {
 
     private final ReviewRepositoryCustom reviewRepositoryCustom;
 
-    public float GetReviewAvg(Long id) {
+    public double GetReviewAvg(Long id) {
 
-        float reviewAvg = reviewRepository.getReviewAvg(id);
+        //float reviewAvg = reviewRepository.getReviewAvg(id);
+        double reviewAvg = reviewRepositoryCustom.getReviewAvg(id);
 
         reviewAvg = Math.round(reviewAvg * 100) / 100;
 

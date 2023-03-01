@@ -9,6 +9,7 @@ import com.msproject.pet.repository.PetHospitalRepositoryCustom;
 import com.msproject.pet.repository.PetHospitalRepository;
 
 import com.msproject.pet.repository.ReviewRepository;
+import com.msproject.pet.repository.ReviewRepositoryCustom;
 import com.msproject.pet.web.dtos.PetHospitalDto;
 import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class PetHospitalService {
     private final ReviewRepository reviewRepository;
     private final PetHospitalRepositoryCustom petHospitalRepositoryCustom;
 
+    private final ReviewRepositoryCustom reviewRepositoryCustom;
 
 
     public PetHospitalEntity create(PetHospitalDto petHospitalDto) {
@@ -109,7 +111,9 @@ public class PetHospitalService {
         if (reviewEntities.size() == 0) {
             petHospitalListReviewCountDto.setHospitalScore(0);
         } else {
-            float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
+            //float avg = reviewRepository.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
+
+            double avg = reviewRepositoryCustom.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
             DecimalFormat df = new DecimalFormat("0.0");
             avg = Float.parseFloat(df.format(avg));
             //avg = Math.round(avg * 100) / 100;
@@ -146,7 +150,8 @@ public class PetHospitalService {
 
 
             if(dto.getReviewCount() != 0){
-                float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
+               // float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
+               double avg = reviewRepositoryCustom.getReviewAvg(dto.getHospitalId());
                 DecimalFormat df = new DecimalFormat("0.0");
                 avg = Float.parseFloat(df.format(avg));
                 dto.setHospitalScore(avg);

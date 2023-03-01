@@ -52,6 +52,9 @@ public class UserController {
     @PostMapping("/find")
     public String findId(@RequestBody FindUserIdDto findUserIdDto){
 
+        System.out.println(findUserIdDto.getUserName());
+        System.out.println(findUserIdDto.getEmail());
+
         UserEntity user = userService.findId(findUserIdDto);
 
         if(user == null){

@@ -129,7 +129,7 @@ public class ReviewController {
     }
 
     @GetMapping("/review/hos/{id}")
-    public float GetReviewAvg(@PathVariable Long id){
+    public double GetReviewAvg(@PathVariable Long id){
         return reviewService.GetReviewAvg(id);
     }
 }

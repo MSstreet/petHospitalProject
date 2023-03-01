@@ -1,16 +1,12 @@
 package com.msproject.pet.service;
 
-import com.msproject.pet.entity.UserEntity;
-import com.msproject.pet.entity.UserRepository;
-import com.msproject.pet.entity.UserRepositoryCustom;
+import com.msproject.pet.entity.*;
 import com.msproject.pet.exception.DuplicateUserIdException;
 import com.msproject.pet.exception.WithdrawalException;
 import com.msproject.pet.repository.ReviewRepository;
+import com.msproject.pet.repository.UserHistoryRepository;
 import com.msproject.pet.repository.WishRepository;
-import com.msproject.pet.web.dtos.FindUserIdDto;
-import com.msproject.pet.web.dtos.MailDto;
-import com.msproject.pet.web.dtos.UserDto;
-import com.msproject.pet.web.dtos.UserPwChangeDto;
+import com.msproject.pet.web.dtos.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -27,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +34,9 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     private final UserRepositoryCustom userRepositoryCustom;
+
+    private final UserHistoryRepository userHistoryRepository;
+
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private final JavaMailSender mailSender;
@@ -44,6 +44,8 @@ public class UserService implements UserDetailsService {
     private final ReviewRepository reviewRepository;
 
     private final WishRepository wishRepository;
+
+    private final BoardRepository boardRepository;
 
     //private final PasswordEncoder passwordEncoder;
 
@@ -54,13 +56,11 @@ public class UserService implements UserDetailsService {
         UserEntity userEntity = userRepository.findByUserId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
 
+        //UserEntity userEntity = userRepositoryCustom.findByUserId(username);
 
-        
-        if(userEntity.isDeleteYn()){
-            throw new WithdrawalException();
-        }
-
-
+//        if(userEntity.isDeleteYn()){
+//            throw new WithdrawalException();
+//        }
 
         if (userEntity.getUserId().equals(username)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -90,18 +90,15 @@ public class UserService implements UserDetailsService {
 
     private void validateDuplicateEmail(String userId) {
 
-//        if (userRepository.existsByUserId(userId)) {
+//        if (userRepositoryCustom.CheckExistsByUserId(userId)) {
 //            throw new DuplicateUserIdException();
 //        }
-        if (userRepositoryCustom.CheckExistsByUserId(userId)) {
-            throw new DuplicateUserIdException();
-        }
     }
 
      public Boolean checkId(String userId){
 
-        return userRepositoryCustom.CheckExistsByUserId(userId);
-        //return userRepository.existsByUserId(userId);
+        //return userRepositoryCustom.CheckExistsByUserId(userId);
+        return userRepository.existsByUserId(userId);
      }
 
     //, get, update, delete
@@ -119,10 +116,33 @@ public class UserService implements UserDetailsService {
 
         UserEntity entity = userRepository.findById(id).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
-        entity.changeState();
-        userRepository.save(entity);
+//        entity.changeState();
+//        userRepository.save(entity);
 
-        //userRepository.delete(entity);
+        List<ReviewEntity> reviewEntities = reviewRepository.findByUserEntity(entity);
+        for (ReviewEntity entity1 : reviewEntities) {
+            entity1.changeDeleteState();
+        }
+        List<BoardEntity> boardEntities = boardRepository.findByUserEntity(entity);
+        for (BoardEntity boardEntity : boardEntities) {
+            boardEntity.changeDeleteState();
+        }
+
+        UserHistory userHistory = UserHistory.builder()
+                .userId(entity.getUserId())
+                .userPw(entity.getUserPw())
+                .userName(entity.getUserName())
+                .phoneNum(entity.getPhoneNum())
+                .zipCode(entity.getZipCode())
+                .addr(entity.getAddr())
+                .detailAddr(entity.getDetailAddr())
+                .email(entity.getEmail())
+                .build();
+
+        userHistoryRepository.save(userHistory);
+
+
+        userRepository.delete(entity);
     }
 
     public UserDto getUser(Long id){
@@ -159,8 +179,8 @@ public class UserService implements UserDetailsService {
 
     public Boolean checkEmail(String email) {
 
-        return userRepositoryCustom.existsByEmail(email);
-        //return userRepository.existsByEmail(email);
+        //return userRepositoryCustom.existsByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     public UserEntity findId(FindUserIdDto findUserIdDto) {
@@ -181,7 +201,7 @@ public class UserService implements UserDetailsService {
     public UserEntity findPw(String userEmail) {
 
 //        Boolean check = userRepository.existsByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
-        Boolean check = userRepositoryCustom.existsByEmail(userEmail);
+        Boolean check = userRepository.existsByEmail(userEmail);
 
         if(check){
             Optional<UserEntity> user = userRepository.findByEmail(userEmail);

@@ -29,7 +29,7 @@ public class ReviewRepositoryCustom {
 //                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
 
         JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
-                .where(reviewEntity.petHospitalEntity.hospitalId.eq(id));
+                .where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false));
 
         //System.out.println("!!!!!!!!sdfsdfsdfsdfsdfsdfsdfsdfsdfsdf!!!!!!!!!!!!!!!!!!!!!" + id);
 
@@ -94,5 +94,16 @@ public class ReviewRepositoryCustom {
 //            }
 //        }
 
+    public double getReviewAvg(Long id) {
+        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false)).from(reviewEntity);
 
+        double results;
+        if(score.fetchOne() == null){
+            return 0;
+        }else{
+            results = score.fetchOne();
+            return results;
+        }
+
+    }
 }

@@ -21,8 +21,6 @@ export default {
             const getUserInfoPromise = getUserInfo(userId, userPw)
             const [userInfoResponse] = await Promise.all([getUserInfoPromise])
 
-            console.log("11111111" + userInfoResponse.data.errorCode)
-
             if (userInfoResponse.data.length === 0) {
                 return 'notFound'
             }else if(userInfoResponse.data.errorCode == 402){

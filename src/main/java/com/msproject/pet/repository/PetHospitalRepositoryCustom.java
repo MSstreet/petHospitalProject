@@ -57,6 +57,7 @@ public class PetHospitalRepositoryCustom {
                 petHospitalEntity.hospitalAddr,
                 //petHospitalEntity.petHospitalScore,
                 reviewEntity.count().as("reviewCount")
+                //reviewEntity.deleteYn.eq(false).count().as("reviewCount")
         ));
 
         List<PetHospitalListReviewCountDto> dtoList = dtoJPAQuery.fetch();
@@ -70,7 +71,7 @@ public class PetHospitalRepositoryCustom {
 
         JPAQuery<PetHospitalEntity> query = queryFactory.selectFrom(petHospitalEntity)
                 .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity))
-                .where(petHospitalEntity.hospitalId.eq(id));
+                .where(petHospitalEntity.hospitalId.eq(id).and(reviewEntity.deleteYn.eq(false)));
 
         JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
                 petHospitalEntity.hospitalId,

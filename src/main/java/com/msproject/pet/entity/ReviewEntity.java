@@ -30,7 +30,7 @@ public class ReviewEntity{
     private PetHospitalEntity petHospitalEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    //@OnDelete(action= OnDeleteAction.CASCADE)
     private UserEntity userEntity;
     private String content;
     private float score;
@@ -41,6 +41,7 @@ public class ReviewEntity{
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    @ColumnDefault("false")
     private boolean deleteYn;
 
     @Transient
@@ -56,4 +57,7 @@ public class ReviewEntity{
         this.updatedAt = updatedAt;
     }
 
+    public void changeDeleteState() {
+        this.deleteYn = true;
+    }
 }

@@ -2,6 +2,7 @@ package com.msproject.pet.repository;
 
 import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.entity.ReviewEntity;
+import com.msproject.pet.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,5 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
 
     List<ReviewEntity> findByPetHospitalEntity(PetHospitalEntity petHospitalEntity);
 
+    List<ReviewEntity> findByUserEntity(UserEntity userEntity);
 }

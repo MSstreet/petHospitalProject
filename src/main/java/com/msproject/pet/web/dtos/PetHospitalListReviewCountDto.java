@@ -25,8 +25,8 @@ public class PetHospitalListReviewCountDto {
 
     private String hospitalAddr; // 도로명 주소
 
-    private float hospitalScore;
-
+    //private float hospitalScore;
+    private double hospitalScore;
     private Long reviewCount;
 
     private BigDecimal hosLatitude ;
