@@ -109,5 +109,11 @@ public class WishController {
 
     }
 
+    @GetMapping("/wish/change/{wid}")
+    public WishEntity changeStateZero(@PathVariable Long wid){
+
+        return  wishService.changeStateZero(wid);
+    }
+
 
 }

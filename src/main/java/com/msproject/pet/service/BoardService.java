@@ -131,6 +131,7 @@ public class BoardService {
     public BoardEntity create(BoardDto boardDto) {
 
         Optional<UserEntity> user = userRepository.findById(boardDto.getUserIdx());
+
         UserEntity result = user.orElseThrow();
 
        BoardEntity entity = BoardEntity.builder()

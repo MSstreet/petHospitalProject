@@ -55,9 +55,11 @@ export default {
   data() { //변수생성
     return {
       requestBody: this.$route.query,
+
       idx: this.$route.query.idx,
 
       user_idx:this.$store.state.userIdx,
+
       title: '',
       author:'',
       contents: '',

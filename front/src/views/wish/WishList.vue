@@ -16,12 +16,17 @@
                     <p class="card-text mb-1">{{ row.hospital_sigun_name }}</p>
                     <p class="card-text mb-1">{{ row.hospital_addr }}</p>
                     <p class="card-text mb-1"><i class="fa-solid fa-star"></i>&nbsp{{ row.hospital_score }}</p>
+
+                    <button type="button" class="mt-0 mb-1 btn btn-success" @click="fnDeleteWish(`${row.wish_id}`)" v-on:click="fnList">찜삭제</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+<!--        <div>-->
+<!--        <button type="button" class="mt-0 mb-4 btn btn-primary" v-on:click="fnList">목록</button>-->
+<!--        </div>-->
       </div>
 
     <div v-else>
@@ -75,6 +80,7 @@ export default {
       user_idx: this.$store.state.userIdx,
       // no: '', //게시판 숫자처리
 
+      wish_idx:'',
       paging: {
         block: 0,
         end_page: 0,
@@ -107,7 +113,24 @@ export default {
     this.fnGetList()
   }
   ,methods: {
-    fnGetList() {
+
+    fnDeleteWish(wish_idx){
+      console.log(wish_idx)
+
+      this.$axios.get(this.$serverUrl + "/wish/change/" + wish_idx,{
+        //params: this.requestBody,
+        //headers: {}
+      }).then((res) => {
+        console.log(res.data)
+        this.wish_state = res.data.wish_state1
+        this.fnGetList()
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    }
+    ,fnGetList() {
 
       this.requestBody = { // 데이터 전송
         sk: this.search_key,

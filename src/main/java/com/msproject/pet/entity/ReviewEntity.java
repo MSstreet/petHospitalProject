@@ -59,5 +59,6 @@ public class ReviewEntity{
 
     public void changeDeleteState() {
         this.deleteYn = true;
+        this.score = 0;
     }
 }

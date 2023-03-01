@@ -89,14 +89,12 @@ public class UserService implements UserDetailsService {
     }
 
     private void validateDuplicateEmail(String userId) {
-
 //        if (userRepositoryCustom.CheckExistsByUserId(userId)) {
 //            throw new DuplicateUserIdException();
 //        }
     }
 
      public Boolean checkId(String userId){
-
         //return userRepositoryCustom.CheckExistsByUserId(userId);
         return userRepository.existsByUserId(userId);
      }
@@ -140,7 +138,6 @@ public class UserService implements UserDetailsService {
                 .build();
 
         userHistoryRepository.save(userHistory);
-
 
         userRepository.delete(entity);
     }

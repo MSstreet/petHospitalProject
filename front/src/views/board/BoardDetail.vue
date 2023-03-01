@@ -55,6 +55,7 @@ export default {
       requestBody: this.$route.query,
 
       idx: this.$route.query.idx,
+
       logged_idx: this.$store.state.userIdx,
 
       writer_idx:this.$route.query.userIdx,

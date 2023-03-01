@@ -115,7 +115,7 @@ public class PetHospitalService {
 
             double avg = reviewRepositoryCustom.getReviewAvg(petHospitalListReviewCountDto.getHospitalId());
             DecimalFormat df = new DecimalFormat("0.0");
-            avg = Float.parseFloat(df.format(avg));
+            avg = Double.parseDouble(df.format(avg));
             //avg = Math.round(avg * 100) / 100;
             petHospitalListReviewCountDto.setHospitalScore(avg);
         }
@@ -153,7 +153,7 @@ public class PetHospitalService {
                // float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
                double avg = reviewRepositoryCustom.getReviewAvg(dto.getHospitalId());
                 DecimalFormat df = new DecimalFormat("0.0");
-                avg = Float.parseFloat(df.format(avg));
+                avg = Double.parseDouble(df.format(avg));
                 dto.setHospitalScore(avg);
             }
                 dtos.add(dto);

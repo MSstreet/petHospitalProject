@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <label for="exampleInputId" class="form-label mt-4">아이디</label>
-          <input type="text" maxlength="50" class="form-control" id="exampleInputId" v-model="user_id" @change ="validIdCheck">
+          <input type="text" maxlength="50" class="form-control" id="exampleInputId"  v-model="user_id" @change ="validIdCheck">
           <div id="checkId" class="mt-1"></div>
 
 <!--           <button @click="fnPage()" class="btn btn-success" id="button-addon2">검색</button>-->
@@ -25,7 +25,7 @@
 
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">비밀번호</label>
-          <input type="password" maxlength="50" class="form-control" id="inputValid" v-model="user_pw" @change="validPasswordCheck">
+          <input type="password" maxlength="20" class="form-control" id="inputValid" v-model="user_pw" @change="validPasswordCheck">
           <div id="checkPwd" class="mt-1"></div>
 <!--          <div class="valid-feedback"></div>-->
         </div>
@@ -33,7 +33,7 @@
 
         <div class="form-group has-danger" id="inputInvalid">
           <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>
-          <input type="password" maxlength="50" class="form-control"  v-model="pwd_check" @change="validSamePasswordCheck">
+          <input type="password" maxlength="20" class="form-control"  v-model="pwd_check" @change="validSamePasswordCheck">
           <div id="doubleCheckPwd" class="mt-1"></div>
           <!--          <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>-->
         </div>
@@ -41,21 +41,21 @@
 
         <div class="form-group">
           <label for="exampleInputName" class="form-label mt-4">이름</label>
-          <input type="text" maxlength="50" class="form-control" id="exampleInputName" v-model="user_name" @change="validNameCheck">
+          <input type="text" maxlength="20" class="form-control" id="exampleInputName" v-model="user_name" @change="validNameCheck">
           <div id="nameCheck" class="mt-1"></div>
         </div>
 
 
         <div class="form-group">
           <label for="exampleInputNum" class="form-label mt-4">전화번호</label>
-          <input type="text" maxlength="50" class="form-control" id="exampleInputNum" v-model="user_num" @change="validNumCheck">
+          <input type="text" maxlength="20" class="form-control" id="exampleInputNum" v-model="user_num" @change="validNumCheck">
           <div id="numberCheck" class="mt-1"></div>
         </div>
 
 
         <div class="form-group">
           <label for="exampleInputZip" class="form-label mt-4">우편번호</label>
-          <input type="text" maxlength="50" v-model="postcode"  class="form-control mb-1" id="exampleInputZip">
+          <input type="text" maxlength="20" v-model="postcode"  class="form-control mb-1" id="exampleInputZip">
           <!--          <div id="addrCheck" class=""></div>-->
         </div>
 
@@ -251,11 +251,11 @@ export default {
     }
     //비밀번호 유효성 체크
     ,validPasswordCheck(){
-      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
       if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
         //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
         document.getElementById('checkPwd').style.color="red"
-        document.getElementById('checkPwd').innerHTML = " 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.";
+        document.getElementById('checkPwd').innerHTML = " 10 ~ 20자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.";
         this.check = false
         return
       }else{
@@ -317,7 +317,7 @@ export default {
     //서브밋 체크
     ,submitCheck() {
       const idCheck = new RegExp("^[A-Za-z0-9]{5,20}$")
-      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
       const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
       const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
       const nameCheck = new RegExp("^[|가-힣]{3,20}")
@@ -346,7 +346,7 @@ export default {
       this.validIdDuplicationCheck()
 
       if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
-        alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        alert('비밀번호 정규식에 맞지 않습니다.\n 10~20자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
         this.check = false
         return
       }else{

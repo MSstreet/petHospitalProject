@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -50,8 +51,9 @@ public class ReviewService {
         //float reviewAvg = reviewRepository.getReviewAvg(id);
         double reviewAvg = reviewRepositoryCustom.getReviewAvg(id);
 
-        reviewAvg = Math.round(reviewAvg * 100) / 100;
-
+        //reviewAvg = Math.round(reviewAvg * 100) / 100;
+        DecimalFormat df = new DecimalFormat("0.0");
+        reviewAvg = Double.parseDouble(df.format(reviewAvg));
         return  reviewAvg;
     }
 

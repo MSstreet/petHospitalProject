@@ -21,6 +21,7 @@ public class UserEntity extends BaseEntity{
     private Long idx;
 
     private String userId;
+
     private String userPw;
     private String userName;
 

@@ -500,7 +500,6 @@ export default {
         dots: true,
         animatedDots: true
       }
-
       ,map: null,
       markers: [],
 

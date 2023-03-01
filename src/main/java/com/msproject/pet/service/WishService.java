@@ -149,4 +149,13 @@ public class WishService {
         }
 
     }
+    public WishEntity changeStateZero(Long wid) {
+        WishEntity wishEntity = wishRepository.findById(wid).orElseThrow(()-> new RuntimeException("잘못된 요청입니다."));
+
+        wishEntity.changeWishState1();
+
+        wishRepository.save(wishEntity);
+
+        return wishEntity;
+    }
 }

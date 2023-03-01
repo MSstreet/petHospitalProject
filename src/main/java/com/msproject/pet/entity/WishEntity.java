@@ -40,4 +40,7 @@ public class WishEntity {
     public void changeWishState(int wishState1){
         this.wishState1 = wishState1;
     }
+    public void changeWishState1(){
+        this.wishState1 = 0;
+    }
 }

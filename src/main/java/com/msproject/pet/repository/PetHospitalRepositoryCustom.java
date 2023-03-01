@@ -44,6 +44,7 @@ public class PetHospitalRepositoryCustom {
                 .limit(pageable.getPageSize())
                 //.orderBy(petHospitalEntity.hospitalId.desc())
                 .orderBy(reviewEntity.score.avg().desc())
+                //.orderBy(reviewEntity.score.avg().when(reviewEntity.deleteYn.eq(false)))
                 .fetch();
 
         //System.out.println("resultSize : " + results.size());
@@ -136,21 +137,17 @@ public class PetHospitalRepositoryCustom {
     }
 
     private BooleanExpression searchKeywords1( String sv) {
-
-
         System.out.println("확인!!!" + sv);
 
             if(StringUtils.hasLength(sv)) {
                 return petHospitalEntity.hospitalAddr.contains(sv);
             }
 
-
 //        } else if ("contents".equals(sk)) {
 //            if(StringUtils.hasLength(sv)) {
 //                return petHospitalEntity.hospitalId.contents.contains(sv);
 //            }
 //        }
-
         return null;
     }
 

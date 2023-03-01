@@ -8,8 +8,9 @@
 
         <div class="col-12 px-3 pt-3 pb-0 mb-3" style="text-align: center; border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
           <div style="letter-spacing: -1.05px; text-align: center; color: #9b9b9b; font-size: 18px" class="mb-2">
-            평점
+            평점 {{hos_score}}
           </div>
+
        <span v-if="hos_score < 1.5">
           <i class="fa-solid fa-star fa-lg"></i>
           <i class="fa-regular fa-star fa-lg"></i>
