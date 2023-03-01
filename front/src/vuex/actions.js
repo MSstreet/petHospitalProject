@@ -31,6 +31,9 @@ let processResponse = (store, loginResponse) => {
             setErrorState(store, 'Wrong ID or Password')
             setIsAuth(store, false)
             break
+        case 'withdrawal':
+            setErrorState(store, 'Withdrawal ID')
+            setIsAuth(store, false)
         default:
             // console.log("check"+loginResponse.user_id)
             // console.log("check"+loginResponse.user_idx)
@@ -65,6 +68,8 @@ export default {
     async login (store, {user_id, user_pw}) {
         let loginResponse = await loginAPI.doLogin(user_id, user_pw)
 
+
+
         setUserId(store,loginResponse.data.user_id)
         setUserIdx(store,loginResponse.data.user_idx)
 
@@ -73,10 +78,6 @@ export default {
         console.log("확인이요" + store.getters.getIsUserIdx)
         console.log("확인이요" + store.getters.getUserId)
 
-        // console.log(store.getters.getIsUserIdx)
-        // console.log(store.getters.getUserId)
-
-        // console.log(store.getters.getIsAuth)
 
         return store.getters.getIsAuth  // 로그인 결과를 리턴한다
         //return store.getters.getIsUserIdx

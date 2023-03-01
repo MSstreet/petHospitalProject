@@ -226,7 +226,9 @@ export default {
       //로그인 API 호출
       try {
         let loginResult = await this.login({user_id: this.user_id, user_pw: this.user_pw})
+
         console.log("확인" + loginResult)
+
         if (loginResult) {
 
            this.goToPages()

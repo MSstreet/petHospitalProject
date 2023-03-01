@@ -2,7 +2,9 @@ package com.msproject.pet.service;
 
 import com.msproject.pet.entity.UserEntity;
 import com.msproject.pet.entity.UserRepository;
+import com.msproject.pet.entity.UserRepositoryCustom;
 import com.msproject.pet.exception.DuplicateUserIdException;
+import com.msproject.pet.exception.WithdrawalException;
 import com.msproject.pet.repository.ReviewRepository;
 import com.msproject.pet.repository.WishRepository;
 import com.msproject.pet.web.dtos.FindUserIdDto;
@@ -33,6 +35,8 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+
+    private final UserRepositoryCustom userRepositoryCustom;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private final JavaMailSender mailSender;
@@ -49,6 +53,14 @@ public class UserService implements UserDetailsService {
 
         UserEntity userEntity = userRepository.findByUserId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
+
+
+        
+        if(userEntity.isDeleteYn()){
+            throw new WithdrawalException();
+        }
+
+
 
         if (userEntity.getUserId().equals(username)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -78,13 +90,18 @@ public class UserService implements UserDetailsService {
 
     private void validateDuplicateEmail(String userId) {
 
-        if (userRepository.existsByUserId(userId)) {
+//        if (userRepository.existsByUserId(userId)) {
+//            throw new DuplicateUserIdException();
+//        }
+        if (userRepositoryCustom.CheckExistsByUserId(userId)) {
             throw new DuplicateUserIdException();
         }
     }
 
      public Boolean checkId(String userId){
-        return userRepository.existsByUserId(userId);
+
+        return userRepositoryCustom.CheckExistsByUserId(userId);
+        //return userRepository.existsByUserId(userId);
      }
 
     //, get, update, delete
@@ -102,9 +119,10 @@ public class UserService implements UserDetailsService {
 
         UserEntity entity = userRepository.findById(id).orElseThrow(()->new RuntimeException("존재하지 않는 유저입니다."));
 
-        //entity.changeState();
-        //userRepository.save(entity);
-        userRepository.delete(entity);
+        entity.changeState();
+        userRepository.save(entity);
+
+        //userRepository.delete(entity);
     }
 
     public UserDto getUser(Long id){
@@ -140,9 +158,9 @@ public class UserService implements UserDetailsService {
     }
 
     public Boolean checkEmail(String email) {
-        {
-            return userRepository.existsByEmail(email);
-        }
+
+        return userRepositoryCustom.existsByEmail(email);
+        //return userRepository.existsByEmail(email);
     }
 
     public UserEntity findId(FindUserIdDto findUserIdDto) {
@@ -163,7 +181,7 @@ public class UserService implements UserDetailsService {
     public UserEntity findPw(String userEmail) {
 
 //        Boolean check = userRepository.existsByUserNameAndEmail(findUserIdDto.getUserName(), findUserIdDto.getEmail());
-        Boolean check = userRepository.existsByEmail(userEmail);
+        Boolean check = userRepositoryCustom.existsByEmail(userEmail);
 
         if(check){
             Optional<UserEntity> user = userRepository.findByEmail(userEmail);

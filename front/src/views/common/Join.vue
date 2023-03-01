@@ -314,7 +314,7 @@ export default {
         return
       }
     }
-
+    //서브밋 체크
     ,submitCheck() {
       const idCheck = new RegExp("^[A-Za-z0-9]{5,20}$")
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
@@ -344,6 +344,7 @@ export default {
       }
 
       this.validIdDuplicationCheck()
+
       if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
         alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
         this.check = false
