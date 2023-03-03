@@ -47,28 +47,34 @@
   </div>
 
 
-  <div class="position-page1">
+  <div class="test-position">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
         <span class="center">
           <ul class="pagination">
+
             <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
 
             <!--             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
             <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
-            <template v-for=" (n,index) in paginavigation()">
+
+            <template v-for="(n,index) in paginavigation()">
+
                 <template v-if="paging.page==n">
-                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>
+                  <div v-if="n == 2">
+                  </div>
+                  <li class="page-item active" :key="index"> <a class="page-link"> {{ n }}</a> </li>
                 </template>
 
                 <template v-else>
-                   <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
+                   <li class="page-item "> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>
                 </template>
             </template>
 
              <a href="javascript:;" class="page-link" v-if="paging.total_page_cnt > paging.end_page"
                 @click="fnPage(`${paging.end_page+1}`)">&gt;</a>
             <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>
+
           </ul>
         </span>
       </nav>

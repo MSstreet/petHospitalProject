@@ -27,7 +27,7 @@ public class NoticeBoardRepositoryCustom {
     public Page<NoticeBoard> findAllBySearchCondition(Pageable pageable, SearchCondition searchCondition) {
 
         JPAQuery<NoticeBoard> query = queryFactory.selectFrom(noticeBoard)
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),noticeBoard.display_yn.eq(true));
 
         long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
 
@@ -49,11 +49,11 @@ public class NoticeBoardRepositoryCustom {
 //        }
         if ("title".equals(sk)) {
             if(StringUtils.hasLength(sv)) {
-                return boardEntity.title.contains(sv);
+                return noticeBoard.title.contains(sv);
             }
         } else if ("contents".equals(sk)) {
             if(StringUtils.hasLength(sv)) {
-                return boardEntity.contents.contains(sv);
+                return noticeBoard.contents.contains(sv);
             }
         }
         return null;

@@ -72,7 +72,7 @@ public class PetHospitalRepositoryCustom {
 
         JPAQuery<PetHospitalEntity> query = queryFactory.selectFrom(petHospitalEntity)
                 .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity))
-                .where(petHospitalEntity.hospitalId.eq(id).and(reviewEntity.deleteYn.eq(false)));
+                .where(petHospitalEntity.hospitalId.eq(id).and(reviewEntity.deleteYn.eq(false)).and(reviewEntity.approveYn.eq(true)));
 
         JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
                 petHospitalEntity.hospitalId,

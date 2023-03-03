@@ -126,8 +126,11 @@ public class ReviewService {
         ReviewEntity entity = reviewRepository.findById(id).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
         //deleteImage(entity.getFileName());
-        reviewRepository.delete(entity);
+        //reviewRepository.delete(entity);
+        entity.changeDeleteState();
+        entity.isDeleteYn();
 
+        reviewRepository.save(entity);
     }
 
     public void updateImage(Long id){
@@ -197,6 +200,7 @@ public class ReviewService {
                     .content(entity.getContent())
                     .score(entity.getScore())
                     .userId(entity.getUserEntity().getUserId())
+                    //.approveYn(entity.isApproveYn())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
@@ -231,6 +235,7 @@ public class ReviewService {
                     .score(entity.getScore())
                     .userId(entity.getUserEntity().getUserId())
                     .hosName(entity.getPetHospitalEntity().getHospitalName())
+                    .approveYn(entity.isApproveYn())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();

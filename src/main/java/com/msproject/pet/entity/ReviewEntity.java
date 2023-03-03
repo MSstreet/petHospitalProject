@@ -47,17 +47,19 @@ public class ReviewEntity{
     @Transient
     private MultipartFile file;
 
-    @ColumnDefault("0")
-    private int approveYn;
+    @ColumnDefault("false")
+    private boolean approveYn;
 
     public void changeReview(String content, float score,String fileName, LocalDateTime updatedAt){
         this.content = content;
         this.score = score;
         this.fileName = fileName;
         this.updatedAt = updatedAt;
+        this.approveYn = false;
     }
 
     public void changeDeleteState() {
+
         this.deleteYn = true;
         this.score = 0;
     }

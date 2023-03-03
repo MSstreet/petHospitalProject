@@ -33,10 +33,10 @@ spring:
       fail-on-empty-beans: 'false'
 
   mail:
-    host: smtp.naver.com
+    host: smtp.gmail.com
     port: 465
-    username: cortm5pp@naver.com
-    password: 56VRVGJVF3VK
+    username: cortm5pp@gmail.com
+    password: xgloinqydyvjasiq
     properties:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true

@@ -3,7 +3,7 @@
 
 <div class="container text-center mb-5">
   <div >
-    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center; "><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
+    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center; " @click="fnReload()"><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
   </div>
 
 
@@ -20,6 +20,9 @@
     </div>
   </div>
 
+  <div class="test-position mt-5" v-if="list.length==0">
+    <h3>조회하신 병원을 찾을 수 없습니다.</h3>
+  </div>
 
   <div class="container px-4 test-class" v-for="(row, idx) in list" :key="idx">
     <div  class="row mt-5">
@@ -183,6 +186,9 @@ export default {
         console.log(this.page)
       }
       this.fnGetList()
+    }
+    ,fnReload(){
+      location.reload()
     }
   }
 }

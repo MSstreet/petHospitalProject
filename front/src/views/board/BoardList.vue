@@ -3,7 +3,7 @@
   <div class="container-fluid px-4">
 
     <div >
-      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">자유게시판</h1>
+      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center" @click="fnReload">자유게시판</h1>
     </div>
 
 
@@ -44,7 +44,11 @@
 
 
       <div class="card-body">
-        <table class="table table-hover table-striped">
+        <div class="mb-3 test-position" v-if="list.length==0">
+          <h3>조회하신 글을 찾을 수 없습니다.</h3>
+        </div>
+
+        <table v-if="list.length != 0" class="table table-hover table-striped">
           <thead>
           <tr>
             <th>글번호</th>
@@ -57,6 +61,8 @@
           </thead>
 
           <tbody>
+
+
 
           <tr v-for="(row, idx) in list" :key="idx">
 
@@ -438,9 +444,13 @@ export default {
         path: './detail',
         query: this.requestBody
       })
-    },
+    }
+    ,fnReload(){
+      location.reload();
+    }
 
-    fnWrite() {
+
+    ,fnWrite() {
       this.$router.push({
         path: './write'
       })

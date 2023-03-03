@@ -29,7 +29,7 @@ public class ReviewRepositoryCustom {
 //                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
 
         JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
-                .where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false));
+                .where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false), reviewEntity.approveYn.eq(true));
 
         //System.out.println("!!!!!!!!sdfsdfsdfsdfsdfsdfsdfsdfsdfsdf!!!!!!!!!!!!!!!!!!!!!" + id);
 
@@ -55,7 +55,7 @@ public class ReviewRepositoryCustom {
 //                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()));
 
         JPAQuery<ReviewEntity> query = queryFactory.selectFrom(reviewEntity)
-                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()))
+                .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),  reviewEntity.deleteYn.eq(false))
                 .where(reviewEntity.userEntity.idx.eq(id));
 
         long total = query.stream().count();   //여기서 전체 카운트 후 아래에서 조건작업
@@ -95,7 +95,7 @@ public class ReviewRepositoryCustom {
 //        }
 
     public double getReviewAvg(Long id) {
-        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false)).from(reviewEntity);
+        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false), reviewEntity.approveYn.eq(true)).from(reviewEntity);
 
         double results;
         if(score.fetchOne() == null){

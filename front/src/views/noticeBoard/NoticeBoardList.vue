@@ -3,7 +3,7 @@
   <div class="container-fluid px-4">
 
     <div >
-      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center">공지사항</h1>
+      <h1  class="mt-5 mb-5 fs-1 fw-bold" style="text-align: center" @click="fnReload()">공지사항</h1>
     </div>
 
     <div class="card mb-4 text-center">
@@ -11,34 +11,43 @@
 
         <div class="input-group input-group-sm search-pos" >
           <select v-model="search_key">
-            <option value="">- 선택 -</option>
-            <option value="title">제목</option>
+<!--            <option value="">- 선택 -</option>-->
+            <option value="title" selected>제목</option>
             <option value="contents">내용</option>
           </select>
+
+
+
           <input type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
           <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
         </div>
       </div>
 
-
       <div class="card-body">
-        <table class="table table-hover table-striped">
+
+
+          <div class="mt-3 test-position" v-if="list.length==0">
+            <h3>조회하신 글을 찾을 수 없습니다.</h3>
+          </div>
+
+        <table v-if="list.length!=0" class="table table-hover table-striped">
           <thead>
           <tr>
-            <th>글번호</th>
             <th>제목</th>
-            <!--            <th>조회수</th>-->
+            <th>내용</th>
             <th>작성일</th>
+            <th>수정일</th>
           </tr>
           </thead>
           <tbody>
 
           <tr v-for="(row, idx) in list" :key="idx">
 
-            <td>{{ row.notice_board_idx }}</td>
             <td><a v-on:click="fnView(`${row.notice_board_idx}`)">{{ row.title }}</a></td>
+            <td>{{ row.contents }}</td>
             <td>{{ row.created_at }}</td>
+            <td>{{ row.updated_at }}</td>
 
           </tr>
           </tbody>
@@ -111,7 +120,8 @@ export default {
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
 
-      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      //search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_key:"title",
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
 
       paginavigation: function () { //페이징 처리 for문 커스텀
@@ -125,6 +135,7 @@ export default {
   },
   mounted() {
     this.fnGetList()
+
   },
   methods: {
     fnGetList() {
@@ -168,6 +179,9 @@ export default {
       }
 
       this.fnGetList()
+    }
+    ,fnReload(){
+      location.reload()
     }
   }
 }

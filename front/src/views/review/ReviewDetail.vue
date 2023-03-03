@@ -357,16 +357,28 @@
             </div>
           </div>
         </div>
+
+
         <div class="col-7 position_re ">
-          <div class="fw-semibold">
-            <p>{{row.created_at}}</p>
+          <div class="row fw-semibold">
+
+
+            <div class="col-3 mb-2" style="background-color: #4c1192;  border-radius: 15px; color: white"><i class="fa-solid fa-check fa-lg"></i> 영수증 인증</div>
+            <div class="col-8 text-end">{{row.created_at}}</div>
           </div>
           <div class="fs-5 " style="word-break: break-all">
             <p>{{row.content}}</p>
           </div>
+          <div>
+
+          </div>
           <div class="text-end mb-5">
-            <button class="me-2 mb-5 btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
-            <button class="mb-5 btn btn-success" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
+
+            <div>
+              <button class="me-2 mb-5 btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+              <button class="mb-5 me-5 btn btn-success" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
+            </div>
+
           </div>
         </div>
 <!--      <div class="row">-->

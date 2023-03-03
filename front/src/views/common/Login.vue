@@ -245,7 +245,7 @@ export default {
     ,goToPages() {
       this.$router.push({
         // path: './write',
-        name: 'BoardList'
+        name: 'PageHome'
       })
     }
     ,checkEmail(){

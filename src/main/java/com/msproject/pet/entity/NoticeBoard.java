@@ -22,6 +22,7 @@ public class NoticeBoard {
 
     private String contents;
 
+    @ColumnDefault("true")
     private boolean display_yn;
 
     private LocalDateTime createdAt;
@@ -30,4 +31,6 @@ public class NoticeBoard {
 
     @ColumnDefault("false") //default 0
     private boolean deleteYn;
+
+
 }

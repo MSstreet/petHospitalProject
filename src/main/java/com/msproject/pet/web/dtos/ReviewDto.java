@@ -42,5 +42,5 @@ public class ReviewDto {
 
     private String fileName;
 
-    private int approveYn;
+    private boolean approveYn;
 }

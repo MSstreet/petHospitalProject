@@ -96,13 +96,13 @@
           <!--          <input type="text" class="form-control mb-4" id="exampleInputAddr" >-->
         </div>
 
-        <div class="form-group">
-          <label for="exampleInputAddr" class="form-label mt-4">주소</label>
+        <div class="form-group mb-3">
+          <label for="exampleInputAddr" class="form-label mt-4" >주소</label>
           <span type="text" class="form-control" id="exampleInputEmail1">{{user_addr}}</span>
 <!--          <input type="text" class="form-control mb-4" id="exampleInputAddr" >-->
         </div>
 
-        <div class="form-group" v-if="detail_addr !== null">
+        <div class="form-group" v-if="detail_addr !== ''">
           <label for="exampleInputDetailAddr" class="form-label mt-4">상세주소</label>
           <span type="text" class="form-control" id="exampleInputDetailAddr" >{{detail_addr}}</span>
           <!--          <input type="text" class="form-control mb-4" id="exampleInputAddr" >-->

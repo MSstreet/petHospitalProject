@@ -13,11 +13,31 @@
 
 
 
-  <div >
-    <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">
+<!--  <div >-->
+<!--    <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
+
+<!--        <div id="mainslider" class="mt-3 img-container" >-->
+<!--          <splide :options="options">-->
+<!--            <splide-slide>-->
+<!--              <img  src="../assets/animal_waifu2x_art_noise1.png" alt="main1">-->
+<!--            </splide-slide>-->
+<!--            <splide-slide>-->
+<!--              <img  src="../assets/animal.png" alt="main2">-->
+<!--            </splide-slide>-->
+<!--            <splide-slide>-->
+<!--              <img  src="../assets/animal3.png" alt="main3">-->
+<!--            </splide-slide>-->
+<!--            <splide-slide>-->
+<!--              <img  src="../assets/animal4.png" alt="main3">-->
+<!--            </splide-slide>-->
+<!--            <splide-slide>-->
+<!--              <img  src="../assets/animal5.png" alt="main3">-->
+<!--            </splide-slide>-->
+<!--          </splide>-->
+<!--        </div>-->
 
   <div class="container-fluid mt-3 pt-3" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->

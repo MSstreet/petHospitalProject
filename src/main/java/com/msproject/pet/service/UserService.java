@@ -264,8 +264,8 @@ public class UserService implements UserDetailsService {
         message.setTo(mailDTO.getAddress());
         message.setSubject(mailDTO.getTitle());
         message.setText(mailDTO.getMessage());
-        message.setFrom("cortm5pp@naver.com");
-        message.setReplyTo("cortm5pp@naver.com");
+        message.setFrom("cortm5pp@gmail.com");
+        message.setReplyTo("cortm5pp@gmail.com");
         System.out.println("message"+message);
         mailSender.send(message);
     }

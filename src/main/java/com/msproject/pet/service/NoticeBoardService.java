@@ -39,7 +39,8 @@ public class NoticeBoardService {
                     .noticeBoardIdx(entity.getNboardId())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
-                    //.createdAt(entity.get().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
 
             dtos.add(dto);
@@ -62,7 +63,7 @@ public class NoticeBoardService {
                 .noticeBoardIdx(entity.getNboardId())
                 .title(entity.getTitle())
                 .contents(entity.getContents())
-                //.createdAt(entity.getRegDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .build();
     }
 }

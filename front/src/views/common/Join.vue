@@ -236,6 +236,7 @@ export default {
             if(res.data === true){
               document.getElementById('checkId').style.color="red"
               document.getElementById('checkId').innerHTML = "중복된 ID 입니다.";
+              alert("중복된 ID 입니다.")
               this.duplicated_id_check = false
               console.log("아이디 중복 확인 :" + this.check)
             }else{
@@ -369,9 +370,9 @@ export default {
       this.validDuplicationEmailCheck()
 
       if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
+        alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
         document.getElementById('checkEmail').style.color="red"
         document.getElementById('checkEmail').innerHTML = " 비밀번호와 비밀번호 확인이 서로 맞지 않습니다.";
-        alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
         this.check = false
         return
       }else{
@@ -393,9 +394,9 @@ export default {
 
       if (this.user_num !== '' && !numCheck.test(this.user_num)) {
         //alert('전화번호를 입력하세요.')
+        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
         document.getElementById('numberCheck').style.color="red"
         document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222 ";
-        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
         this.check = false
         return
       } else{

@@ -28,7 +28,7 @@
     </div>
 
     <h3 class="fs-1 fw-bold text-center mb-5"> 나의 후기 목록</h3>
-<div class="container">
+  <div class="container">
     <div class="row mt-3 border border-bottom-0" style="text-align: center" v-if="list.length > 0" v-for="(row, idx) in list" :key="idx">
 
       <div class="col-5 text-center">
@@ -113,19 +113,30 @@
 
       <div class="col-5 position_re">
 
-        <div  class="fw-semibold">
+        <div  class="mb-0 fw-semibold">
           <p>{{row.created_at}}</p>
-
         </div>
 
         <div class="fs-5" style="word-break: break-all">
+          <div v-if="row.approve_yn==1" class="col-6 mb-1" style="size:1.5rem; background-color: #4c1192; width: 8rem; border-radius: 15px; color: white"> <i class="ms-1 fa-solid fa-check fa-lg"></i>
+            <b>인증 완료</b>
+          </div>
           <p>{{row.content}}</p>
 
         </div>
+
       </div>
 
-      <div class="col-2 mt-4 text-end">
-        <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+      <div class="col-2 mt-3 text-end">
+        <div class="mb-2">
+          <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+        </div>
+        <div class="mb-2">
+          <button class="btn btn-success" v-on:click="fnUpdate(`${row.pet_hospital_num}`,`${row.review_id}`)">수정</button>
+        </div>
+<!--        <div class="col-6 mb-2" style="background-color: #4c1192;  border-radius: 15px; color: white"> <i class="fa-solid fa-check fa-lg"></i>-->
+<!--          -->
+<!--        </div>-->
       </div>
     </div>
 
@@ -240,6 +251,7 @@ export default {
       idx:this.$store.state.userIdx,
       review_id : '',
 
+
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
@@ -280,7 +292,6 @@ export default {
       if (this.page !== n) {
         this.page = n
       }
-
       this.fnGetList()
     },
     fnGetList() {
@@ -289,9 +300,7 @@ export default {
         // sv: this.search_value,
         page: this.page,
         size: this.size
-
       }
-
       this.$axios.get(this.$serverUrl + '/review/user/'+ this.idx, {
         params: this.requestBody,
         headers: {}
@@ -305,9 +314,7 @@ export default {
         this.review_id = res.data.data.review_id
 
         console.log("!!!!!!!!!review!!!!!!!!!!" + this.review_id)
-
         console.log(res.data.data);
-
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
@@ -324,6 +331,18 @@ export default {
             this.fnGetList();
           }).catch((err) => {
         console.log(err);
+      })
+    }
+    ,fnUpdate(hos_idx,rev_idx){
+      console.log("hos_idx:" + hos_idx)
+      console.log("rev_idx:" + rev_idx)
+
+      this.requestBody.hos_idx = hos_idx
+      this.requestBody.rev_idx = rev_idx
+
+      this.$router.push({
+        path: '/review/update',
+        query: this.requestBody
       })
     }
   }

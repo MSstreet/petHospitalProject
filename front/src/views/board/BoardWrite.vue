@@ -131,6 +131,7 @@ export default {
       if(!(this.check)){
         return false
       }
+      // this.contents.replace(/\n/g, '\u00A0')
 
       let apiUrl = this.$serverUrl + '/board'
       this.form = {

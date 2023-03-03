@@ -22,7 +22,7 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public static final QReviewEntity reviewEntity = new QReviewEntity("reviewEntity");
 
-    public final NumberPath<Integer> approveYn = createNumber("approveYn", Integer.class);
+    public final BooleanPath approveYn = createBoolean("approveYn");
 
     public final StringPath content = createString("content");
 
