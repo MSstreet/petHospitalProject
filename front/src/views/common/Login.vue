@@ -243,7 +243,7 @@ export default {
       }
     }
     ,goToPages() {
-      this.$router.push({
+      this.$router.replace({
         // path: './write',
         name: 'PageHome'
       })

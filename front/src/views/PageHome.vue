@@ -1,8 +1,29 @@
 <!-- PageHome.vue -->
 <template>
-  <div class="text-center mt-5">
+  <div class="container text-center mt-5 " >
     <i class="fa-regular fa-hospital fa-2xl mb-4"></i>
       <h3 class="fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
+
+      <div id="mainslider" class="mt-3 " >
+        <splide :options="options">
+          <splide-slide>
+            <img  src="../assets/unnamed.jpg" width="50px" alt="main1">
+          </splide-slide>
+          <splide-slide>
+            <img  src="../assets/animal.png" alt="main2">
+          </splide-slide>
+          <splide-slide>
+            <img  src="../assets/animal3.png" alt="main3">
+          </splide-slide>
+          <splide-slide>
+            <img  src="../assets/animal4.png" alt="main3">
+          </splide-slide>
+          <splide-slide>
+            <img  src="../assets/animal5.png" alt="main3">
+          </splide-slide>
+        </splide>
+      </div>
+
   </div>
 
 <!--      <div >-->
@@ -18,26 +39,6 @@
 
 <!--    </div>-->
 <!--  </div>-->
-
-<!--        <div id="mainslider" class="mt-3 img-container" >-->
-<!--          <splide :options="options">-->
-<!--            <splide-slide>-->
-<!--              <img  src="../assets/animal_waifu2x_art_noise1.png" alt="main1">-->
-<!--            </splide-slide>-->
-<!--            <splide-slide>-->
-<!--              <img  src="../assets/animal.png" alt="main2">-->
-<!--            </splide-slide>-->
-<!--            <splide-slide>-->
-<!--              <img  src="../assets/animal3.png" alt="main3">-->
-<!--            </splide-slide>-->
-<!--            <splide-slide>-->
-<!--              <img  src="../assets/animal4.png" alt="main3">-->
-<!--            </splide-slide>-->
-<!--            <splide-slide>-->
-<!--              <img  src="../assets/animal5.png" alt="main3">-->
-<!--            </splide-slide>-->
-<!--          </splide>-->
-<!--        </div>-->
 
   <div class="container-fluid mt-3 pt-3" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
@@ -731,6 +732,7 @@ export default {
 </script>
 
 <style scoped>
+
 .home {
   text-align: center;
   margin: 10px;
@@ -752,15 +754,23 @@ export default {
   /*margin: auto;*/
 }
 
-img{
-  width: 100%;
-  height: 50%;
+/*img{*/
+/*  width: 100%;*/
+/*  height: 50%;*/
 
-}
+/*}*/
 .margin-b{
   margin-bottom: 7rem;
 }
 .root_cacao_roughmap {
   margin: auto !important;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
 }
 </style>

@@ -55,11 +55,21 @@ const requireAuth1 = () => (from, to, next) => {
     }
 }
 
+const preventAfterLogging = () => (from, to, next) => {
+
+    const token = localStorage.getItem('user_token')
+
+    if (token && from.path==='/login') {
+        next('/mypage')
+    }
+}
+
 const routes = [
     {
         path: '/',
         name: 'PageHome',
-        component: PageHome
+        component: PageHome,
+
      },
     {
         path: '/join',

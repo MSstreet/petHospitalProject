@@ -163,6 +163,7 @@ export default {
     ,validIdCheck(){
       const idCheck = new RegExp("^[A-Za-z0-9]{5,20}$")
       if (this.user_id !== '' && !idCheck.test(this.user_id)) {
+        alert("ID는 5자 이상 20자리 이하의 영문과 숫자로 입력해주세요")
         document.getElementById('checkId').style.color="red"
         document.getElementById('checkId').innerHTML = " ID는 5자 이상 20자리 이하의 영문과 숫자로 입력해주세요";
         this.check = false
@@ -182,6 +183,7 @@ export default {
       const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
       if (this.user_email !== '' && !emailCheck.test(this.user_email)) {
         //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        alert("올바른 이메일 형식이 아닙니다.")
         document.getElementById('checkEmail').style.color="red"
         document.getElementById('checkEmail').innerHTML = " 올바른 이메일 형식이 아닙니다.";
         this.check = false
@@ -206,6 +208,7 @@ export default {
       }).then((res) => {
         //console.log(res.data)
         if(res.data === true){
+          alert("이미 등록된 email입니다.")
           document.getElementById('checkEmail').style.color="red"
           document.getElementById('checkEmail').innerHTML = "이미 등록된 email입니다.";
           //this.check = false

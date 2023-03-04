@@ -17,7 +17,7 @@
 
 <!--      <router-link to="/join" v-if="!this.$store.state.isLogin">회원가입</router-link>-->
 <!--    </div>-->
-
+<div id="topheader">
     <nav class="navbar navbar-expand-lg bg-body-tertiary"  style="background-color: #008080;">
       <div class="container-fluid">
 
@@ -127,13 +127,13 @@
       </div>
       <!--      <router-link to="/about">About</router-link> |-->
     </nav>
+</div>
   </header>
 </template>
 
 <script>
 import {IS_LOGIN} from '@/vuex/mutation_types'
 import store from "@/vuex/store";
-
 let setIsLogin = ({commit}, data) => {
   commit(IS_LOGIN, data)
 }
@@ -162,6 +162,8 @@ export default {
 
 
 }
+
+
 </script>
 
 <style scoped>
@@ -170,6 +172,15 @@ export default {
   text-align: center;
 }
 
+.nav-item {
+  text-colo: none;
+}
+
+.nav-item:hover  {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: white;
+}
 
 
 </style>
