@@ -3,6 +3,7 @@ package com.msproject.pet.service;
 import com.msproject.pet.entity.*;
 import com.msproject.pet.exception.DuplicateUserIdException;
 import com.msproject.pet.exception.WithdrawalException;
+import com.msproject.pet.repository.BoardReplyRepository;
 import com.msproject.pet.repository.ReviewRepository;
 import com.msproject.pet.repository.UserHistoryRepository;
 import com.msproject.pet.repository.WishRepository;
@@ -46,6 +47,8 @@ public class UserService implements UserDetailsService {
     private final WishRepository wishRepository;
 
     private final BoardRepository boardRepository;
+
+    private final BoardReplyRepository boardReplyRepository;
 
     //private final PasswordEncoder passwordEncoder;
 
@@ -124,6 +127,10 @@ public class UserService implements UserDetailsService {
         List<BoardEntity> boardEntities = boardRepository.findByUserEntity(entity);
         for (BoardEntity boardEntity : boardEntities) {
             boardEntity.changeDeleteState();
+        }
+        List<BoardReply> boardReplies = boardReplyRepository.findByUserEntity(entity);
+        for (BoardReply boardReply : boardReplies){
+            boardReply.changeDeleteState();
         }
 
         UserHistory userHistory = UserHistory.builder()

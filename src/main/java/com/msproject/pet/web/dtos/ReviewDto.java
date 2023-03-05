@@ -32,6 +32,8 @@ public class ReviewDto {
 
     private float score;
 
+    private float tmpScore;
+
     private boolean deleteYn;
 
     private String createdAt;

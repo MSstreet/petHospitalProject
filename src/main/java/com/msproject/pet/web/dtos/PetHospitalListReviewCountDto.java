@@ -27,6 +27,7 @@ public class PetHospitalListReviewCountDto {
 
     //private float hospitalScore;
     private double hospitalScore;
+
     private Long reviewCount;
 
     private BigDecimal hosLatitude ;

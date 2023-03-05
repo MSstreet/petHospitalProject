@@ -27,7 +27,7 @@ class WishServiceTest {
         WishDto wishDto = WishDto.builder()
                 .petHospitalNum(2429L)
                 .userNum(1L)
-                .wishState(false)
+                //.wishState(false)
                 .build();
 
         System.out.println("확인 : " + wishDto.getPetHospitalNum());

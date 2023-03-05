@@ -31,19 +31,20 @@ public class PetHospitalRepositoryCustom {
                 .leftJoin(reviewEntity).on(reviewEntity.petHospitalEntity.eq(petHospitalEntity));
 
         query.where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"));
-
         query.groupBy(petHospitalEntity);
 
+//        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.deleteYn.eq(false), reviewEntity.approveYn.eq(true)).from(reviewEntity);
+//        double score1 = score.fetchOne();
+
         long total = query.stream().count();
-
         //System.out.println("total : " + total);
-
         List<PetHospitalEntity> results = query
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 //.orderBy(petHospitalEntity.hospitalId.desc())
                 .orderBy(reviewEntity.score.avg().desc())
+                //.orderBy(score1.desc())
                 //.orderBy(reviewEntity.score.avg().when(reviewEntity.deleteYn.eq(false)))
                 .fetch();
 

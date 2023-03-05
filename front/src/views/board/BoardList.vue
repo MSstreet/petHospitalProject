@@ -56,7 +56,7 @@
             <th>작성자</th>
 <!--            <th>조회수</th>-->
             <th>작성일</th>
-            <th>수정일</th>
+<!--            <th>수정일</th>-->
           </tr>
           </thead>
 
@@ -67,10 +67,10 @@
           <tr v-for="(row, idx) in list" :key="idx">
 
             <td>{{ row.idx }}</td>
-            <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>
+            <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>
             <td>{{ row.user_id }}</td>
-            <td>{{ row.created_at }}</td>
-            <td>{{ row.updated_at }}</td>
+            <td>{{row.created_at1}}</td>
+<!--            <td>{{ row.updated_at }}</td>-->
           </tr>
           </tbody>
         </table>
@@ -403,11 +403,24 @@ export default {
         return pageNumber;
       }
     }
-  },
-  mounted() {
+  }
+  ,filters: {
+    formatDate(value) {
+      const date = new Date(value);
+      const year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      month = month > 9 ? month : `0${month}`;
+      const day = date.getDate();
+      let hours = date.getHours();
+      hours = hours > 9 ? hours : `0${hours}`;
+      let minutes = date.getMinutes();
+      minutes = minutes > 9 ? minutes : `0${minutes}`;
+      return `${year}-${month}-${day} ${hours}:${minutes}`;
+    },
+  }
+  ,mounted() {
     this.fnGetList()
-  },
-  methods: {
+  },methods: {
     fnGetList() {
       this.requestBody = { // 데이터 전송
         sk: this.search_key,

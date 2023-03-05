@@ -1,63 +1,65 @@
 <!-- PageHome.vue -->
 <template>
+
+
   <div class="container text-center mt-5 " >
     <i class="fa-regular fa-hospital fa-2xl mb-4"></i>
-      <h3 class="fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
+    <h3 class="fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>
 
-      <div id="mainslider" class="mt-3 " >
-        <splide :options="options">
-          <splide-slide>
-            <img  src="../assets/unnamed.jpg" width="50px" alt="main1">
-          </splide-slide>
-          <splide-slide>
-            <img  src="../assets/animal.png" alt="main2">
-          </splide-slide>
-          <splide-slide>
-            <img  src="../assets/animal3.png" alt="main3">
-          </splide-slide>
-          <splide-slide>
-            <img  src="../assets/animal4.png" alt="main3">
-          </splide-slide>
-          <splide-slide>
-            <img  src="../assets/animal5.png" alt="main3">
-          </splide-slide>
-        </splide>
-      </div>
+<!--    <div id="mainslider" class="mt-3 " >-->
+<!--      <splide :options="options">-->
+<!--        <splide-slide>-->
+<!--          <img  src="../assets/unnamed.jpg" width="50px" alt="main1">-->
+<!--        </splide-slide>-->
+<!--        <splide-slide>-->
+<!--          <img  src="../assets/animal.png" alt="main2">-->
+<!--        </splide-slide>-->
+<!--        <splide-slide>-->
+<!--          <img  src="../assets/animal3.png" alt="main3">-->
+<!--        </splide-slide>-->
+<!--        <splide-slide>-->
+<!--          <img  src="../assets/animal4.png" alt="main3">-->
+<!--        </splide-slide>-->
+<!--        <splide-slide>-->
+<!--          <img  src="../assets/animal5.png" alt="main3">-->
+<!--        </splide-slide>-->
+<!--      </splide>-->
+<!--    </div>-->
 
   </div>
 
-<!--      <div >-->
-<!--        <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
+<!--        <div >-->
+<!--          <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
 
+<!--          </div>-->
 <!--        </div>-->
-<!--      </div>-->
 
 
 
-<!--  <div >-->
-<!--    <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
+  <!--  <div >-->
+  <!--    <div id="map" class="root_cacao_roughmap" style="width: 50rem; height: 50rem; position: center">-->
 
-<!--    </div>-->
-<!--  </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
   <div class="container-fluid mt-3 pt-3" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
 
     <div style="width: 960px; display: inline-block">
-<!--      <h3 class="fs-1 fw-bold"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>-->
+      <!--      <h3 class="fs-1 fw-bold"><b style="color: #4c1192">솔직한</b> 동물 병원 후기</h3>-->
       <form action="" method="">
 
         <!--      <div class="mx-quto input-group mt-5">-->
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--        <select v-model="search_key">-->
-<!--          <option value="">- 선택 -</option>-->
-<!--          <option value="author">작성자</option>-->
-<!--          <option value="title">제목</option>-->
-<!--          <option value="contents">내용</option>-->
-<!--        </select>-->
+        <!--        <select v-model="search_key">-->
+        <!--          <option value="">- 선택 -</option>-->
+        <!--          <option value="author">작성자</option>-->
+        <!--          <option value="title">제목</option>-->
+        <!--          <option value="contents">내용</option>-->
+        <!--        </select>-->
 
-<!--        <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
-<!--        <button @click="fnPage()" class="ms-2">검색</button>-->
+        <!--        <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
+        <!--        <button @click="fnPage()" class="ms-2">검색</button>-->
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
         <div class=" mx-auto w-50 p-3 input-group input-group-lg">
 
@@ -468,27 +470,27 @@
             </div>
           </div>
         </div>
-   </div>
+      </div>
 
-<!--      <div id="mainslider" class="mt-3 img-container" >-->
-<!--        <splide :options="options">-->
-<!--          <splide-slide>-->
-<!--            <img  src="../assets/animal_waifu2x_art_noise1.png" alt="main1">-->
-<!--          </splide-slide>-->
-<!--          <splide-slide>-->
-<!--            <img  src="../assets/animal.png" alt="main2">-->
-<!--          </splide-slide>-->
-<!--          <splide-slide>-->
-<!--            <img  src="../assets/animal3.png" alt="main3">-->
-<!--          </splide-slide>-->
-<!--          <splide-slide>-->
-<!--            <img  src="../assets/animal4.png" alt="main3">-->
-<!--          </splide-slide>-->
-<!--          <splide-slide>-->
-<!--            <img  src="../assets/animal5.png" alt="main3">-->
-<!--          </splide-slide>-->
-<!--        </splide>-->
-<!--      </div>-->
+      <!--      <div id="mainslider" class="mt-3 img-container" >-->
+      <!--        <splide :options="options">-->
+      <!--          <splide-slide>-->
+      <!--            <img  src="../assets/animal_waifu2x_art_noise1.png" alt="main1">-->
+      <!--          </splide-slide>-->
+      <!--          <splide-slide>-->
+      <!--            <img  src="../assets/animal.png" alt="main2">-->
+      <!--          </splide-slide>-->
+      <!--          <splide-slide>-->
+      <!--            <img  src="../assets/animal3.png" alt="main3">-->
+      <!--          </splide-slide>-->
+      <!--          <splide-slide>-->
+      <!--            <img  src="../assets/animal4.png" alt="main3">-->
+      <!--          </splide-slide>-->
+      <!--          <splide-slide>-->
+      <!--            <img  src="../assets/animal5.png" alt="main3">-->
+      <!--          </splide-slide>-->
+      <!--        </splide>-->
+      <!--      </div>-->
       <div class="row text-left px-3" style="margin-top: 48px;">
       </div>
     </div>
@@ -501,7 +503,6 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-
 export default {
   name: 'PageHome',
   components: {
@@ -523,10 +524,8 @@ export default {
       }
       ,map: null,
       markers: [],
-
       latitude: 0,
       longitude: 0,
-
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
@@ -534,9 +533,7 @@ export default {
         block: 0,
         end_page: 0,
         next_block: 0,
-
         page: 0,
-
         page_size: 0,
         prev_block: 0,
         start_index: 0,
@@ -545,13 +542,11 @@ export default {
         total_list_cnt: 0,
         total_page_cnt: 0,
       }, //페이징 데이터
-
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
       //search_key: this.$route.query.sk ? this.$route.query.sk : '',
       search_key:"author",
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
-
       paginavigation: function () { //페이징 처리 for문 커스텀
         let pageNumber = [] //;
         let start_page = this.paging.start_page;
@@ -562,10 +557,6 @@ export default {
     }
   }
   ,created(){
-
-
-
-
     if (!("geolocation" in navigator)) {
       return;
     }
@@ -573,13 +564,8 @@ export default {
     navigator.geolocation.getCurrentPosition(pos => {
       this.latitude = pos.coords.latitude;
       this.longitude = pos.coords.longitude;
-
-
-
       if (window.kakao && window.kakao.maps) {
-
         this.initMap();
-
       } else {
         const script = document.createElement("script");
         /* global kakao */
@@ -591,9 +577,7 @@ export default {
       alert(err.message);
     })
   }
-
   ,methods: {
-
     initMap() {
       const map = document.getElementById("map")
       const options = {
@@ -603,24 +587,19 @@ export default {
       }
       this.map = new kakao.maps.Map(map, options)
       this.displayMarker([[this.latitude, this.longitude]]);
-
       const marker1 = new kakao.maps.LatLng(37, 131)
       const marker = new kakao.maps.Marker({
         position : marker1
       })
       marker.setMap(this.map)
     }
-
     ,displayMarker(markerPositions) {
-
       if (this.markers.length > 0) {
         this.markers.forEach((marker) => marker.setMap(null));
       }
-
       const positions = markerPositions.map(
           (position) => new kakao.maps.LatLng(...position)
       );
-
       if (positions.length > 0) {
         this.markers = positions.map(
             (position) =>
@@ -629,42 +608,34 @@ export default {
                   position,
                 })
         );
-
         const bounds = positions.reduce(
             (bounds, latlng) => bounds.extend(latlng),
             new kakao.maps.LatLngBounds()
         );
-
         this.map.setBounds(bounds);
       }
     }
-
     ,fnGetList() {
       console.log(this.search_key)
       console.log("벨류확인" + this.search_value)
-
       this.requestBody = { // 데이터 전송
         sk: this.search_key,
         sv: this.search_value,
         page: this.page,
         size: this.size
       }
-
       this.$axios.get(this.$serverUrl + "/hospital/list", {
         params: this.requestBody,
         headers: {}
       }).then((res) => {
-
         if (res.data.result_code === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
-
         // this.fnView()
         console.log(res.data.data);
         // console.log(res.data.pagination);
-
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -675,17 +646,14 @@ export default {
       console.log(n)
       this.search_value = n
       console.log(this.search_value)
-
       this.$router.push({
         path: '/hospital/list1',
         query:{
-        //sk : "지역명",
-        sv : this.search_value
+          //sk : "지역명",
+          sv : this.search_value
         }
       })
     }
-
-
     // ,fnView() {
     //   //this.requestBody.idx = idx
     //   this.$router.push({
@@ -700,14 +668,11 @@ export default {
     //
     //   this.fnGetList()
     // }
-
-
     ,fnPage1(n,m) {
       console.log(n)
       this.search_value = n
       this.search_key = m
       console.log(this.search_value)
-
       this.$router.push({
         path: '/hospital/list',
         query:{
@@ -716,7 +681,6 @@ export default {
         }
       })
     }
-
   }
   ,mounted() {
     // const script = document.createElement("script")
@@ -727,21 +691,17 @@ export default {
     // document.head.appendChild(script)
   }
 }
-
-
 </script>
 
 <style scoped>
-
 .home {
   text-align: center;
   margin: 10px;
-/*.img-size {*/
-/*  width: 300px;*/
-/*  height: 150px;*/
-/*  object-fit: cover;*/
-/*}*/
-
+  /*.img-size {*/
+  /*  width: 300px;*/
+  /*  height: 150px;*/
+  /*  object-fit: cover;*/
+  /*}*/
 }
 .test-position{
   display: flex;
@@ -753,11 +713,9 @@ export default {
   width: 100%;
   /*margin: auto;*/
 }
-
 /*img{*/
 /*  width: 100%;*/
 /*  height: 50%;*/
-
 /*}*/
 .margin-b{
   margin-bottom: 7rem;
@@ -765,12 +723,10 @@ export default {
 .root_cacao_roughmap {
   margin: auto !important;
 }
-
 .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-
 }
 </style>

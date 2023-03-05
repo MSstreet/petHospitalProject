@@ -449,8 +449,6 @@
         </span>
       </nav>
     </div>
-
-
   </div>
 
 <!--  <div style="position: center">-->
@@ -492,9 +490,7 @@ export default {
     return {
 
       idx:this.$route.query.idx,
-
       hos_score:'',
-
       log_id: this.$store.state.userIdx,
 
       requestBody: {}, //리스트 페이지 데이터전송
@@ -555,17 +551,13 @@ export default {
         params: this.requestBody,
         headers: {}
       }).then((res) => {
-
         if (res.data.result_code === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
-
         console.log(res.data.pagination);
         //console.log(res.data.data);
-
-
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -600,7 +592,6 @@ export default {
         console.log(err);
       })
     }
-
     ,fnUpdate(hos_idx,rev_idx){
       console.log("hos_idx:" + hos_idx)
       console.log("rev_idx:" + rev_idx)
@@ -613,7 +604,6 @@ export default {
         query: this.requestBody
       })
     }
-
     ,fnDetail() {
       this.requestBody.idx = this.idx
 

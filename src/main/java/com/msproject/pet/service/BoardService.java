@@ -5,12 +5,16 @@ import com.msproject.pet.model.Header;
 import com.msproject.pet.model.Pagination;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.web.dtos.BoardDto;
+import com.msproject.pet.web.dtos.BoardListWithReplyCountDto;
+import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -99,6 +103,40 @@ public class BoardService {
 
         Pagination pagination = new Pagination(
                 (int) boardEntities.getTotalElements()
+                , pageable.getPageNumber() + 1
+                , pageable.getPageSize()
+                , 10
+        );
+
+        return Header.OK(dtos, pagination);
+    }
+
+    public Header<List<BoardListWithReplyCountDto>> getBoardListWithReplyCount(Pageable pageable,SearchCondition searchCondition) {
+
+        List<BoardListWithReplyCountDto> dtos = new ArrayList<>();
+        Page<BoardListWithReplyCountDto> boardListWithReplyCountDtos = boardRepositoryCustom.findAllBySearchConditionWithReplyCount(pageable,searchCondition);
+
+        for (BoardListWithReplyCountDto entity : boardListWithReplyCountDtos) {
+            BoardListWithReplyCountDto dto = BoardListWithReplyCountDto.builder()
+                    .idx(entity.getIdx())
+                    .title(entity.getTitle())
+                    .contents(entity.getContents())
+                    .author(entity.getAuthor())
+                    .userIdx(entity.getUserIdx())
+                    .userId(entity.getUserId())
+                    //.hospitalScore(entity.getHospitalScore())
+                    .createdAt(entity.getCreatedAt())
+                    .updatedAt(entity.getUpdatedAt())
+                    .createdAt1(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt1(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .replyCount(entity.getReplyCount())
+                    .build();
+
+            dtos.add(dto);
+
+        }
+        Pagination pagination = new Pagination(
+                (int) boardListWithReplyCountDtos.getTotalElements()
                 , pageable.getPageNumber() + 1
                 , pageable.getPageSize()
                 , 10

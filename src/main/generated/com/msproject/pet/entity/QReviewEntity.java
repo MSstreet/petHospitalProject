@@ -40,6 +40,8 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public final NumberPath<Float> score = createNumber("score", Float.class);
 
+    public final NumberPath<Float> tmpScore = createNumber("tmpScore", Float.class);
+
     public final DateTimePath<java.time.LocalDateTime> updatedAt = createDateTime("updatedAt", java.time.LocalDateTime.class);
 
     public final QUserEntity userEntity;

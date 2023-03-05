@@ -32,7 +32,8 @@ class PetHospitalServiceTest {
                 .hospitalName("동물병원")
                 .hospitalNum("000111222")
                 .hospitalAddr("부천시")
-                .hospitalScore(2).build();
+                .build();
+                //.hospitalScore(2).build();
 
         PetHospitalEntity petHospitalEntity =  petHospitalService.create(petHospitalDto);
 

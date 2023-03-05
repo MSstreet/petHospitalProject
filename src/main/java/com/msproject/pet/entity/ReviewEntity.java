@@ -35,6 +35,8 @@ public class ReviewEntity{
     private String content;
     private float score;
 
+    private float tmpScore;
+
     private String hospitalName;
     private String fileName;
 
@@ -52,7 +54,8 @@ public class ReviewEntity{
 
     public void changeReview(String content, float score,String fileName, LocalDateTime updatedAt){
         this.content = content;
-        this.score = score;
+        //this.score = score;
+        this.tmpScore = score;
         this.fileName = fileName;
         this.updatedAt = updatedAt;
         this.approveYn = false;

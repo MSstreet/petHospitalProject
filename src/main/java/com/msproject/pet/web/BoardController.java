@@ -5,6 +5,7 @@ import com.msproject.pet.model.Header;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.service.BoardService;
 import com.msproject.pet.web.dtos.BoardDto;
+import com.msproject.pet.web.dtos.BoardListWithReplyCountDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -32,11 +33,12 @@ public class BoardController {
 //    }
 
     @GetMapping("/board/list")
-    public Header<List<BoardDto>> boardList(
+    public Header<List<BoardListWithReplyCountDto>> boardList(
             @PageableDefault(sort = {"idx"}) Pageable pageable,
             SearchCondition searchCondition)
     {
-        return boardService.getBoardList(pageable, searchCondition);
+        //return boardService.getBoardList(pageable, searchCondition);
+        return boardService.getBoardListWithReplyCount(pageable,searchCondition);
     }
 
     @GetMapping("/board/{id}")

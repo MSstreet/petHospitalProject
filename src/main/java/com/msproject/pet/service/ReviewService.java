@@ -76,15 +76,17 @@ public class ReviewService {
                 .hospitalName(pet.getHospitalName())
                 .userEntity(user)
                 .content(reviewDto.getContent())
-                .score(reviewDto.getScore())
+                //.score(reviewDto.getScore())
                 .deleteYn(reviewDto.isDeleteYn())
 //                .file(reviewDto.getFile())
+                .tmpScore(reviewDto.getScore())
                 .fileName(reviewDto.getFileName())
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewEntity.getFileName());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewDto.getScore());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + reviewEntity.getTmpScore());
 //        try {
 //            reviewEntity.getFile().transferTo(new File(path + savedName));
 //        } catch (IllegalStateException e) {
@@ -132,11 +134,8 @@ public class ReviewService {
 
         reviewRepository.save(entity);
     }
-
     public void updateImage(Long id){
-
     }
-
     public void deleteImage(Long id){
         ReviewEntity entity = reviewRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
         String fileName = entity.getFileName();
@@ -147,8 +146,6 @@ public class ReviewService {
             file.delete();
         }
     }
-
-
     public ReviewDto getReview(Long id) {
         ReviewEntity entity = reviewRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
 
@@ -181,8 +178,6 @@ public class ReviewService {
 //        }
 //
 //    }
-
-
     public Header<List<ReviewDto>> getReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 
         List<ReviewDto> dtos = new ArrayList<>();
@@ -207,17 +202,14 @@ public class ReviewService {
 
                 dtos.add(dto);
             }
-
         Pagination pagination = new Pagination(
                 (int) reviewEntities.getTotalElements()
                 , pageable.getPageNumber() + 1
                 , pageable.getPageSize()
                 , 10
         );
-
         return Header.OK(dtos, pagination);
     }
-
 
     public Header<List<ReviewDto>> getUserReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 

@@ -50,12 +50,14 @@ public class ReviewController {
         }
         return null;
     }
+
     private void isImageFile(MultipartFile file) {
         String contentType = file.getContentType();
         if (!(contentType.startsWith("image"))) {
             throw new InCorrectImageFileException();
         }
     }
+
     @GetMapping("/review/list/{id}")
     public Header<List<ReviewDto>> reviewList(@PathVariable Long id,
             @PageableDefault(sort = "review_id") Pageable pageable,
@@ -124,9 +126,11 @@ public class ReviewController {
         reviewService.delete(id);
     }
 
+
     public void deleteImage(Long id){
         reviewService.deleteImage(id);
     }
+
 
     @GetMapping("/review/hos/{id}")
     public double GetReviewAvg(@PathVariable Long id){

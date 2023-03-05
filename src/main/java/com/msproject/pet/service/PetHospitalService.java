@@ -126,14 +126,12 @@ public class PetHospitalService {
     public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount(Pageable pageable, SearchCondition searchCondition) {
 
         List<PetHospitalListReviewCountDto> dtos = new ArrayList<>();
-
         Page<PetHospitalListReviewCountDto> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchConditionWithReviewCount(pageable, searchCondition);
 
         System.out.println(hospitalEntities.getTotalElements());
 
 
         for (PetHospitalListReviewCountDto entity : hospitalEntities) {
-
             PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
                     .hospitalId(entity.getHospitalId())
                     .hospitalName(entity.getHospitalName())
@@ -144,11 +142,8 @@ public class PetHospitalService {
                     .operState(entity.getOperState())
                     .reviewCount(entity.getReviewCount())
                     .build();
-
 //            if(dto.getOperState().equals("정상")) {
                 //System.out.println(entity.getOperState());
-
-
             if(dto.getReviewCount() != 0){
                // float avg = reviewRepository.getReviewAvg(dto.getHospitalId());
                double avg = reviewRepositoryCustom.getReviewAvg(dto.getHospitalId());
@@ -159,16 +154,13 @@ public class PetHospitalService {
                 dtos.add(dto);
             //}
         }
-
         Pagination pagination = new Pagination(
                 (int) hospitalEntities.getTotalElements()
                 , pageable.getPageNumber() + 1
                 , pageable.getPageSize()
                 , 10
         );
-
         return Header.OK(dtos, pagination);
-
     }
 
     public Header<List<PetHospitalDto>> getHospitalList(Pageable pageable, SearchCondition searchCondition) {
@@ -209,16 +201,11 @@ public class PetHospitalService {
     public Header<List<PetHospitalListReviewCountDto>> getHospitalListWithReviewCount1(Pageable pageable, SearchCondition searchCondition) {
 
         List<PetHospitalListReviewCountDto> dtos = new ArrayList<>();
-
         Page<PetHospitalListReviewCountDto> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchConditionWithReviewCount1(pageable, searchCondition);
 
         System.out.println(hospitalEntities.getTotalElements());
 
-
         for (PetHospitalListReviewCountDto entity : hospitalEntities) {
-
-
-
             PetHospitalListReviewCountDto dto = PetHospitalListReviewCountDto.builder()
                     .hospitalId(entity.getHospitalId())
                     .hospitalName(entity.getHospitalName())
@@ -229,13 +216,11 @@ public class PetHospitalService {
                     .operState(entity.getOperState())
                     .reviewCount(entity.getReviewCount())
                     .build();
-
 //            if(dto.getOperState().equals("정상")) {
             System.out.println(entity.getOperState());
             dtos.add(dto);
             //}
         }
-
         Pagination pagination = new Pagination(
                 (int) hospitalEntities.getTotalElements()
                 , pageable.getPageNumber() + 1
@@ -245,7 +230,6 @@ public class PetHospitalService {
 
         return Header.OK(dtos, pagination);
     }
-
 
 //    public void SavePetHospital() throws Exception {
 //
