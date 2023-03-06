@@ -11,13 +11,29 @@
             평점 {{hos_score}}
           </div>
 
-       <span v-if="hos_score < 1.5">
-          <i class="fa-solid fa-star fa-lg"></i>
-          <i class="fa-regular fa-star fa-lg"></i>
-          <i class="fa-regular fa-star fa-lg"></i>
-          <i class="fa-regular fa-star fa-lg"></i>
-          <i class="fa-regular fa-star fa-lg"></i>
-      </span>
+          <span v-if="hos_score < 0.5">
+           <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 0.5 && hos_score < 1)">
+           <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
+          </span>
+
+          <span v-if="(hos_score >= 1 && hos_score < 1.5)">
+                <i class="fa-solid fa-star fa-lg"></i>
+                <i class="fa-regular fa-star fa-lg"></i>
+                <i class="fa-regular fa-star fa-lg"></i>
+                <i class="fa-regular fa-star fa-lg"></i>
+                <i class="fa-regular fa-star fa-lg"></i>
+          </span>
 
           <span v-if="(hos_score >= 1.5 && hos_score < 2)">
               <i class="fa-solid fa-star fa-lg"></i>

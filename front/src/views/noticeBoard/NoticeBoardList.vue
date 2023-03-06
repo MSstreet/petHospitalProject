@@ -18,7 +18,7 @@
 
 
 
-          <input type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
+          <input style="border: #2c3e50" type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
           <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
         </div>
@@ -35,19 +35,19 @@
           <thead>
           <tr>
             <th>제목</th>
-            <th>내용</th>
+<!--            <th>내용</th>-->
             <th>작성일</th>
             <th>수정일</th>
           </tr>
           </thead>
           <tbody>
 
-          <tr v-for="(row, idx) in list" :key="idx">
+          <tr class="t1" v-for="(row, idx) in list" :key="idx">
 
-            <td><a v-on:click="fnView(`${row.notice_board_idx}`)">{{ row.title }}</a></td>
-            <td>{{ row.contents }}</td>
-            <td>{{ row.created_at }}</td>
-            <td>{{ row.updated_at }}</td>
+            <td class="t"><a v-on:click="fnView(`${row.notice_board_idx}`)">{{ row.title }}</a></td>
+<!--            <td>{{ row.contents }}</td>-->
+            <td  width="20%" >{{ row.created_at }}</td>
+            <td width="20%" >{{ row.updated_at }}</td>
 
           </tr>
           </tbody>
@@ -187,7 +187,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .position-page2{
   position: relative;
   left:49rem;
@@ -203,6 +203,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.t{
+  text-color: none;
+}
+
+.t:hover{
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: black;
+
+}
+
+.t1:hover{
+  /*background-color: blanchedalmond;*/
+  background-color: beige;
 }
 </style>
 

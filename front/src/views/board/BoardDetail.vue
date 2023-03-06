@@ -221,8 +221,9 @@ export default {
       })
     }
     ,fnUpdate() {
+      this.requestBody.idx = this.idx
       this.$router.push({
-        path: './write',
+        path: './update',
         query: this.requestBody
       })
     }

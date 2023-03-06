@@ -8,16 +8,13 @@
 
 
     <div class="card-header mt-5">
-
       <select >
 <!--        <option value="">- 선택 -</option>-->
-<!--        <option value="author">병원명</option>-->
+        <option value="author">병원명</option>
         <option value="title">지역명</option>
       </select>
       <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
-
       <button @click="fnPage()" class="ms-2">검색</button>
-
     </div>
 
 
@@ -113,10 +110,9 @@ export default {
       page: this.$route.query.page ? this.$route.query.page : 1,
       size: this.$route.query.size ? this.$route.query.size : 10,
 
-      //search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_key: this.$route.query.sk ? this.$route.query.sk : '',
       //search_key: '지역명',
       search_value: this.$route.query.sv ? this.$route.query.sv : '',
-
 
 
       paginavigation: function () { //페이징 처리 for문 커스텀
@@ -137,13 +133,13 @@ export default {
       console.log("벨류확인" + this.search_value)
 
       this.requestBody = { // 데이터 전송
-        //sk: this.search_key,
+        sk: this.search_key,
         sv: this.search_value,
         page: this.page,
         size: this.size
       }
 
-      this.$axios.get(this.$serverUrl + "/hospital/list1", {
+      this.$axios.get(this.$serverUrl + "/hospital/list", {
         params: this.requestBody,
         headers: {}
       }).then((res) => {

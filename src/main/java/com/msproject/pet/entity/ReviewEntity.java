@@ -54,7 +54,7 @@ public class ReviewEntity{
 
     public void changeReview(String content, float score,String fileName, LocalDateTime updatedAt){
         this.content = content;
-        //this.score = score;
+        this.score = 0;
         this.tmpScore = score;
         this.fileName = fileName;
         this.updatedAt = updatedAt;

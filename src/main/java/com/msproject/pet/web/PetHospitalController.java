@@ -46,7 +46,7 @@ public class PetHospitalController {
             @PageableDefault(sort = {"idx"}) Pageable pageable,
             SearchCondition searchCondition)
     {
-        //System.out.println(searchCondition.getSk());
+        System.out.println(searchCondition.getSk());
         System.out.println(searchCondition.getSv());
 
         return petHospitalService.getHospitalListWithReviewCount1(pageable, searchCondition);

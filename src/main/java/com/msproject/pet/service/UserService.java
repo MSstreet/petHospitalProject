@@ -129,9 +129,12 @@ public class UserService implements UserDetailsService {
             boardEntity.changeDeleteState();
         }
         List<BoardReply> boardReplies = boardReplyRepository.findByUserEntity(entity);
+
         for (BoardReply boardReply : boardReplies){
-            boardReply.changeDeleteState();
+            boardReplyRepository.delete(boardReply);
+            //boardReply.changeDeleteState();
         }
+
 
         UserHistory userHistory = UserHistory.builder()
                 .userId(entity.getUserId())
@@ -146,7 +149,8 @@ public class UserService implements UserDetailsService {
 
         userHistoryRepository.save(userHistory);
 
-        userRepository.delete(entity);
+        userRepositoryCustom.delete(entity.getIdx());
+        //userRepository.delete(entity);
     }
 
     public UserDto getUser(Long id){

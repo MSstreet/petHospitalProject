@@ -120,10 +120,11 @@ public class BoardReplyService {
     public void delete(Long id) {
         BoardReply boardReply = boardReplyRepository.findById(id).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
 
-        boardReply.changeDeleteState();
-        boardReply.isDeleteYn();
+        //boardReply.changeDeleteState();
+        //boardReply.isDeleteYn();
 
-        boardReplyRepository.save(boardReply);
+        //boardReplyRepository.save(boardReply);
+        boardReplyRepository.delete(boardReply);
 
     }
 }

@@ -3,6 +3,7 @@ import PageHome from '@/views/PageHome.vue'
 import BoardList from '@/views/board/BoardList.vue'
 import BoardDetail from '@/views/board/BoardDetail.vue'
 import BoardWrite from '@/views/board/BoardWrite.vue'
+import BoardUpdate from "@/views/board/BoardUpdate";
 import Login from "@/views/common/Login"
 import Join from "@/views/common/Join"
 import HospitalList from '@/views/hospital/HospitalList'
@@ -130,7 +131,14 @@ const routes = [
         name: 'BoardWrite',
         component: BoardWrite,
         beforeEnter: requireAuth()
-    },{
+    }
+    ,{
+        path: '/board/update',
+        name: 'BoardUpdate',
+        component: BoardUpdate,
+        beforeEnter: requireAuth()
+    }
+    ,{
         path: '/hospital/list',
         name: 'HospitalList',
         component: HospitalList
@@ -173,12 +181,13 @@ const routes = [
         path: '/notice/list',
         name: 'NoticeBoardList',
         component: NoticeBoardList,
-        beforeEnter: requireAuth1()
+
     },
     {
         path: '/notice/detail',
         name: 'NoticeBoardDetail',
         component: NoticeBoardDetail,
+        beforeEnter: requireAuth1()
     },
 
 ]

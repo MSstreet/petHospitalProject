@@ -173,12 +173,12 @@ export default {
 }
 
 .nav-item {
-  text-colo: none;
+  text-color: none;
 }
 
 .nav-item:hover  {
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
   text-decoration-color: white;
 }
 

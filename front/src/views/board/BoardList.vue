@@ -30,7 +30,7 @@
             <option value="contents">내용</option>
           </select>
 
-          <input type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
+          <input style="border: #2c3e50" type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
           <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
 
@@ -64,12 +64,12 @@
 
 
 
-          <tr v-for="(row, idx) in list" :key="idx">
+          <tr class="t1" v-for="(row, idx) in list" :key="idx">
 
-            <td>{{ row.idx }}</td>
-            <td><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>
+            <td width="10%">{{ row.idx }}</td>
+            <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>
             <td>{{ row.user_id }}</td>
-            <td>{{row.created_at1}}</td>
+            <td width="20%">{{row.created_at1}}</td>
 <!--            <td>{{ row.updated_at }}</td>-->
           </tr>
           </tbody>
@@ -448,9 +448,8 @@ export default {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
-    },
-
-    fnView(idx,user_idx) {
+    }
+    ,fnView(idx,user_idx) {
       this.requestBody.idx = idx
       this.requestBody.userIdx = user_idx
       this.$router.push({
@@ -473,7 +472,6 @@ export default {
       if (this.page !== n) {
         this.page = n
       }
-
       this.fnGetList()
     }
   }
@@ -496,6 +494,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.t{
+  text-color: none;
+}
+
+.t:hover{
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: black;
+}
+
+.t1:hover{
+  /*background-color: blanchedalmond;*/
+  background-color: beige;
 }
 </style>
 

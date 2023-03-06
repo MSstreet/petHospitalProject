@@ -14,7 +14,7 @@
         <option value="author">병원명</option>
         <option value="title">지역명</option>
       </select>
-      <input type="text" maxlength="50" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
+      <input  type="text" maxlength="50" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
 
       <button @click="fnPage()" class="btn btn-success ms-1">검색</button>
     </div>
@@ -219,4 +219,5 @@ export default {
   /*.item-justify{*/
   /*  align-items: center !important;*/
   /*}*/
+
 </style>

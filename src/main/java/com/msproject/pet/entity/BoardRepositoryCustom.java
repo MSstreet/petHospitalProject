@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import javax.persistence.EntityManager;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -26,7 +27,6 @@ import static com.msproject.pet.entity.QReviewEntity.reviewEntity;
 @Repository
 public class BoardRepositoryCustom {
     private final JPAQueryFactory queryFactory;
-
     public Page<BoardEntity> findAllBySearchCondition(Pageable pageable, SearchCondition searchCondition) {
 
         JPAQuery<BoardEntity> query = queryFactory.selectFrom(boardEntity)
@@ -69,8 +69,8 @@ public class BoardRepositoryCustom {
         //System.out.println("resultSize : " + results.size());
 
         JPAQuery<BoardListWithReplyCountDto> dtoJPAQuery = query.select(Projections.bean(BoardListWithReplyCountDto.class,
-               boardEntity.idx,
-               boardEntity.title,
+                boardEntity.idx,
+                boardEntity.title,
                 boardEntity.contents,
                 boardEntity.author,
                 boardEntity.userEntity.idx.as("userIdx"),
@@ -78,7 +78,6 @@ public class BoardRepositoryCustom {
                 boardEntity.createdAt,
                 boardEntity.updatedAt,
                 boardReply.count().as("replyCount")
-
         ));
 
         List<BoardListWithReplyCountDto> dtoList = dtoJPAQuery.fetch();

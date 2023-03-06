@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static com.msproject.pet.entity.QUserEntity.userEntity;
@@ -15,7 +17,7 @@ import static com.msproject.pet.entity.QUserEntity.userEntity;
 public class UserRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
-
+    private final EntityManager em;
     public boolean CheckExistsByUserId(String userId) {
 
         JPAQuery<UserEntity> query = queryFactory.selectFrom(userEntity)
@@ -56,5 +58,13 @@ public class UserRepositoryCustom {
         }
 
        return user;
+    }
+
+    @Transactional
+    public void delete(Long Idx){
+
+        em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0 ;").executeUpdate();
+       long count = queryFactory.delete(userEntity).where(userEntity.idx.eq(Idx)).execute();
+        em.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1 ;").executeUpdate();
     }
 }
