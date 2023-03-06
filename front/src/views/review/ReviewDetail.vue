@@ -391,8 +391,8 @@
           <div class="text-end mb-5">
 
             <div>
-              <button class="me-2 mb-5 btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
-              <button class="mb-5 me-5 btn btn-success" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
+              <button class="me-2 mb-5 btn btn-success" v-if="row.user_num == log_id" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
+              <button class="mb-5 me-5 btn btn-success" v-if="row.user_num == log_id" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
             </div>
 
           </div>
@@ -573,7 +573,7 @@ export default {
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
         console.log(res.data.pagination);
-        //console.log(res.data.data);
+        console.log(res.data.data);
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

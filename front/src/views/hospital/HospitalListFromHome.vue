@@ -7,14 +7,26 @@
     </div>
 
 
-    <div class="card-header mt-5">
-      <select >
-<!--        <option value="">- 선택 -</option>-->
-        <option value="author">병원명</option>
-        <option value="title">지역명</option>
-      </select>
-      <input type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">
-      <button @click="fnPage()" class="ms-2">검색</button>
+<!--    <div class="card-header mt-5">-->
+<!--      <select style="height: 2rem;">-->
+<!--&lt;!&ndash;        <option value="">- 선택 -</option>&ndash;&gt;-->
+<!--        <option value="author">병원명</option>-->
+<!--        <option value="title">지역명</option>-->
+<!--      </select>-->
+<!--      <input style="height: 2rem;" type="text" class="ms-2" v-model="search_value" @keyup.enter="fnPage()">-->
+<!--      <button @click="fnPage()" class="btn btn-success ms-2">검색</button>-->
+<!--    </div>-->
+
+    <div class="card-header  mt-5">
+      <div class="input-group input-group-sm search-pos" >
+        <select v-model="search_key">
+          <option value="author">병원명</option>
+          <option value="title">지역명</option>
+        </select>
+        <input style="border-width: 1px;" type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
+               aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
+        <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
+      </div>
     </div>
 
 

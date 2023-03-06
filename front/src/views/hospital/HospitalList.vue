@@ -3,7 +3,7 @@
 
 <div class="container text-center mb-5">
   <div >
-    <h1  class="mt-3 fs-1 fw-bold" style="text-align: center; " @click="fnReload()"><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
+    <h1  class="tt mt-3 fs-1 fw-bold" style="text-align: center; " @click="fnReload()"><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
   </div>
 
 
@@ -14,7 +14,7 @@
         <option value="author">병원명</option>
         <option value="title">지역명</option>
       </select>
-      <input  type="text" maxlength="50" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
+      <input style="border-width: 1px;" type="text" placeholder="검색어 입력" maxlength="50" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
 
       <button @click="fnPage()" class="btn btn-success ms-1">검색</button>
     </div>
@@ -24,11 +24,11 @@
     <h3>조회하신 병원을 찾을 수 없습니다.</h3>
   </div>
 
-  <div class="container px-4 test-class" v-for="(row, idx) in list" :key="idx">
+  <div class=" container px-4 test-class" v-for="(row, idx) in list" :key="idx">
     <div  class="row mt-5">
 
       <div class="col-12">
-          <div class="card mb-3" style="max-width: 450px;">
+          <div class="ttt card mb-3" style="max-width: 450px;">
             <div class="row g-0">
               <div class="col-md-12">
                 <div class="card-body">
@@ -219,5 +219,8 @@ export default {
   /*.item-justify{*/
   /*  align-items: center !important;*/
   /*}*/
-
+.ttt:hover{
+  background: lightgrey;
+  cursor: pointer;
+}
 </style>

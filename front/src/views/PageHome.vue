@@ -127,11 +127,7 @@
                 부일로
               </div>
             </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('원종로','title')">
-                원종로
-              </div>
-            </div>
+
             <div class="col-4 p-0">
               <div class="fw-bold tt purple-link mb-1" @click="fnPage('상동로','title')">
                 상동로
@@ -214,16 +210,6 @@
                 수지구
               </div>
             </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('기훙구','title')">
-                기흥구
-              </div>
-            </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('처안구','title')">
-                처안구
-              </div>
-            </div>
           </div>
         </div>
 
@@ -240,23 +226,7 @@
                 수인로
               </div>
             </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('배곧로','title')">
-                배곧로
-              </div>
-            </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('일곶중앙로','title')">
-                일곶중앙로
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3 px-3">
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('수인로','title')">
-                수인로
-              </div>
-            </div>
+
             <div class="col-4 p-0">
               <div class="fw-bold tt purple-link mb-1" @click="fnPage('승지로','title')">
                 승지로
@@ -288,16 +258,8 @@
           </div>
 
           <div class="row mt-3 px-3">
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('대야로','title')">
-                대야로
-              </div>
-            </div>
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('정왕천로','title')">
-                정왕천로
-              </div>
-            </div>
+
+
             <div class="col-4 p-0">
               <div class="fw-bold tt purple-link mb-1" @click="fnPage('대은로','title')">
                 대은로
@@ -446,8 +408,8 @@
             </div>
 
             <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('이충로','title')">
-                이충로
+              <div class="fw-bold tt purple-link mb-1" @click="fnPage('서정역로','title')">
+                서정역로
               </div>
             </div>
           </div>
@@ -465,11 +427,7 @@
               </div>
             </div>
 
-            <div class="col-4 p-0">
-              <div class="fw-bold tt purple-link mb-1" @click="fnPage('서정역로','title')">
-                서정역로
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -699,7 +657,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .home {
   text-align: center;
   margin: 10px;
