@@ -158,6 +158,7 @@ public class ReviewService {
                 .score(entity.getScore())
                 .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                .fileName(entity.getFileName())
                 .build();
     }
 

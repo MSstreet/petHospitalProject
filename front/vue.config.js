@@ -4,6 +4,13 @@ module.exports = defineConfig({
 })
 
 module.exports = {
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'C:\\upload\\')
+      }
+    }
+  },
   lintOnSave:false,
   outputDir: "../src/main/resources/static",  // 빌드 타겟 디렉토리
   devServer: {

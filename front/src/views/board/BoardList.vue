@@ -53,7 +53,8 @@
           <tr class="t1" v-for="(row, idx) in list" :key="idx">
 
             <td width="10%">{{ row.idx }}</td>
-            <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>
+<!--            <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>-->
+            <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>
             <td>{{ row.user_id }}</td>
             <td width="20%">{{row.created_at1}}</td>
 <!--            <td>{{ row.updated_at }}</td>-->

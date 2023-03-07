@@ -14,7 +14,10 @@
             </div>
           </div>
 
-        <h1 class="name mt-2 my-1 d-flex align-items-center">{{hospital_name }}</h1>
+        <div class="row">
+        <h1 class="col-12 name mt-2 my-1 d-flex align-items-center">{{hospital_name }}</h1>
+        <a class="col-1 btn btn-success btn-sm mb-3" v-on:click="fnHosList">목록</a>
+        </div>
 
         <div class="d-flex align-items-start py-2 color49 pb-1">
           <div class="review" style="position: relative; font-size: 1.5rem;letter-spacing: 1px;">
@@ -25,7 +28,7 @@
           </div>
         </div>
 
-        <div class="pb-2 pt-2 btn-pos">
+        <div class=" pb-2 pt-2 btn-pos">
           <a class="btn btn-primary btn-lg" v-on:click="reviewWrite(`${hospital_id}`)"><i class="fas fa-edit"></i> 리뷰 남기기</a>
         </div>
 
@@ -91,7 +94,6 @@ export default {
       requestBody: this.$route.query,
 
       idx: this.$route.query.idx,
-
       user_idx : this.$store.state.userIdx,
 
       heartval: 0,
@@ -248,7 +250,14 @@ export default {
         }
       })
     }
+    ,fnHosList(){
+      delete this.requestBody.idx
 
+      this.$router.push({
+        path: './list',
+        query: this.requestBody
+      })
+    }
   }
 }
 

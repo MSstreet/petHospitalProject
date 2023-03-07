@@ -255,9 +255,9 @@ export default {
     }
     //비밀번호 유효성 체크
     ,validPasswordCheck(){
-      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
+      const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,20}$");
       if (this.user_pw !== '' && !pwCheck.test(this.user_pw)) {
-        //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
+        alert('비밀번호 정규식에 맞지 않습니다.\n 10 ~ 20자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
         document.getElementById('checkPwd').style.color="red"
         document.getElementById('checkPwd').innerHTML = " 10 ~ 20자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.";
         this.check = false
@@ -272,7 +272,7 @@ export default {
     //비밀번호 확인 체크
     ,validSamePasswordCheck(){
       if (this.user_pw !== '' && this.pwd_check !== '' && this.user_pw !== this.pwd_check) {
-        //alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
+        alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
         document.getElementById('doubleCheckPwd').style.color="red"
         document.getElementById('doubleCheckPwd').innerHTML = " 비밀번호와 비밀번호 확인이 서로 맞지 않습니다.";
         this.check = false
@@ -288,7 +288,7 @@ export default {
     ,validNameCheck(){
       const nameCheck = new RegExp("^[|가-힣]{3,20}");
       if (this.user_name !== '' && !nameCheck.test(this.user_name)) {
-        //alert('이름을 입력하세요.')
+        alert('이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.')
         document.getElementById('nameCheck').style.color="red"
         document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.";
         this.check = false
@@ -306,9 +306,9 @@ export default {
       const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
 
       if (this.user_num !== '' && !numCheck.test(this.user_num)) {
-        //alert('전화번호를 입력하세요.')
+        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
         document.getElementById('numberCheck').style.color="red"
-        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a0000-1111-2222 ";
+        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222 ";
         this.check = false
         return
       } else{

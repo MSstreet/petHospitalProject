@@ -42,6 +42,7 @@
   <div class="board-detail">
     <div class="board-contents">
       <div class="common-buttons pt-5 mb-3">
+        <span class="float-start fs-2 fw-bold mb-2"><b style="color: #4c1192;">게시글 상세</b></span>
         <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnUpdate">수정</button>&nbsp;
         <button type="button" class="btn btn-primary" v-if="logged_idx == writer_idx" v-on:click="fnDelete">삭제</button>&nbsp;
         <button type="button" class="btn btn-primary" data-bs-target="#findPw" v-on:click="fnList">목록</button>
@@ -53,54 +54,39 @@
       </div>
     </div>
 
-    <div class="board-contents pt-5 pb-5" >
-      <span>{{ contents }}</span>
+    <div  class="board-contents pt-5 pb-5" >
+     <div v-html="contents" ></div>
     </div>
 
 
-      <div class="ms-1 row justify-content-center mt-5">
-            <div class="card-body">
-              <button type="submit" class="mb-2 float-end btn btn-success" @click="fnSave">저장</button>
-                <div class="mb-2 form-group">
-                  <label class="mb-1 fw-semibold" for="comment">Comment</label>
-                  <textarea v-model="coments" class="form-control" id="comment" rows="3"></textarea>
-                </div>
+<!--      <div class="ms-1 row justify-content-center mt-5">-->
+<!--            <div class="card-body">-->
+<!--              <button type="submit" class="mb-2 float-end btn btn-success" @click="fnSave">저장</button>-->
+<!--                <div class="mb-2 form-group">-->
+<!--                  <label class="mb-1 fw-semibold" for="comment">Comment</label>-->
+<!--                  <textarea v-model="coments" class="form-control" id="comment" rows="3"></textarea>-->
+<!--                </div>-->
 
-            </div>
-      </div>
-
-    <label v-if="list.length != 0" class="mt-3 mb-2 ms-2 fw-semibold" for="comment">Comment List&nbsp({{paging.total_list_cnt}})</label>
-      <div class="  row" v-for="(row, idx) in list" :key="idx">
-
-<!--        <div class="col-1  mt-3 text-center">-->
-<!--          <div class=" fw-semibold">-->
-<!--&lt;!&ndash;            <div class="col-8">{{row.user_id}}</div>&ndash;&gt;-->
-<!--          </div>-->
-<!--        </div>-->
-
-        <div class="col-12 mt-3">
-            <div class="ms-3  " style="word-break: break-all">
-              <div class="fs-5 mb-1">
-                <div style="font-size: smaller;" class="fw-semibold">{{row.user_id}}</div>
-              </div>
-              <p style="font-size: 1.2em;  font-weight:lighter ">{{row.contents}}</p>
-            </div>
-          <div>
-            <button style="font-size: smaller;" class=" float-end btn btn-link" v-if="logged_idx == row.user_idx" v-on:click="fnComentDelete(`${row.reply_idx}`)">삭제</button>
-            <button style="font-size: smaller;" class=" btn btn-link float-end"  data-bs-toggle="modal" data-bs-target="#findPw" v-if="logged_idx == row.user_idx" @click="testUpdate(`${row.reply_idx}`)">수정</button>
-          </div>
-
-        </div>
-<!--        <div class="col- mt-5">-->
-<!--          <div class="text-end mb-5">-->
-
-<!--            <div>-->
-<!--              <button style="font-size: x-small;" class="me-2  btn btn-xs btn-success" v-if="logged_idx == row.user_idx" v-on:click="fnComentDelete(`${row.reply_idx}`)">삭제</button>-->
-<!--              <button style="font-size: x-small;" class=" btn btn-xs btn-success" data-bs-toggle="modal" data-bs-target="#findPw" v-if="logged_idx == row.user_idx" @click="testUpdate(`${row.reply_idx}`)">수정</button>-->
 <!--            </div>-->
+<!--      </div>-->
+
+<!--    <label v-if="list.length != 0" class="mt-3 mb-2 ms-2 fw-semibold" for="comment">Comment List&nbsp({{paging.total_list_cnt}})</label>-->
+<!--      <div class="  row" v-for="(row, idx) in list" :key="idx">-->
+
+<!--        <div class="col-12 mt-3">-->
+<!--            <div class="ms-3  " style="word-break: break-all">-->
+<!--              <div class="fs-5 mb-1">-->
+<!--                <div style="font-size: smaller;" class="fw-semibold">{{row.user_id}}</div>-->
+<!--              </div>-->
+<!--              <p style="font-size: 1.2em;  font-weight:lighter ">{{row.contents}}</p>-->
+<!--            </div>-->
+<!--          <div>-->
+<!--            <button style="font-size: smaller;" class=" float-end btn btn-link" v-if="logged_idx == row.user_idx" v-on:click="fnComentDelete(`${row.reply_idx}`)">삭제</button>-->
+<!--            <button style="font-size: smaller;" class=" btn btn-link float-end"  data-bs-toggle="modal" data-bs-target="#findPw" v-if="logged_idx == row.user_idx" @click="testUpdate(`${row.reply_idx}`)">수정</button>-->
 <!--          </div>-->
+
 <!--        </div>-->
-      </div>
+<!--      </div>-->
 
 
     <div class="test-position">
@@ -204,7 +190,7 @@ export default {
       }).then((res) => {
         this.title = res.data.title
         this.author = res.data.author
-        this.contents = res.data.contents
+        this.contents = res.data.contents.replace(/\n/g, '<br/>'),
         this.created_at = res.data.created_at
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {

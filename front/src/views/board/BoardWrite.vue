@@ -13,6 +13,8 @@
 <!--    </div>-->
 
     <div class="board-contents">
+
+
       <div class="mb-3">
         <label for="title">제목</label>
         <input type="text" maxlength="200" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요(200자 이내).">

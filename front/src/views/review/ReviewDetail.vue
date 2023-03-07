@@ -12,7 +12,7 @@
           </div>
 
           <span v-if="hos_score < 0.5">
-           <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+           <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>

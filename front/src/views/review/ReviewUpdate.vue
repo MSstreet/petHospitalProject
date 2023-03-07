@@ -26,13 +26,18 @@
           <label for="1-stars" class="star">&#9733;</label>
         </div>
       </div>
-
+      <div>{{file_name}}</div>
       <!--      <input type="text" name="content">-->
       <div class="review_contents mt-3">
         <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
-        <textarea rows="10" class="review_textarea" name="content" v-model="contents" ></textarea>
-      </div>
 
+<!--        <img :src="require(`../../../../../../../C:\\/upload/${file_name}`)" v-if="fileName != null " style="float:left"/>-->
+<!--        <img :src="require('../../../../../../../../../upload/0aca18a9-f8fb-4b59-90e7-710be1cd1a60.PNG')"  style="float:left"/>-->
+
+        <textarea rows="10" class="review_textarea" name="content" v-model="contents" >
+        </textarea>
+
+      </div>
       <h4>파일 업로드</h4>
       <input type="file" name="file" accept="image/*">
 
@@ -57,7 +62,7 @@ export default {
       score:'',
       contents:'',
       hospital_name: '',
-
+      file_name:''
     };
   },
   mounted() {
@@ -124,6 +129,10 @@ export default {
         this.hospital_name = res.data.pet_hospital_name
         this.score = res.data.score
         this.contents = res.data.content
+        this.file_name = res.data.file_name
+
+        console.log(res.data)
+
 
         console.log(this.hospital_name)
         console.log(this.score )

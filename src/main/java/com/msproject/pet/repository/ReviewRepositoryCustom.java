@@ -95,7 +95,7 @@ public class ReviewRepositoryCustom {
 //        }
 
     public double getReviewAvg(Long id) {
-        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false), reviewEntity.approveYn.eq(true)).from(reviewEntity);
+        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.petHospitalEntity.hospitalId.eq(id), reviewEntity.deleteYn.eq(false).and(reviewEntity.approveYn.eq(true))).from(reviewEntity);
 
         double results;
         if(score.fetchOne() == null){
