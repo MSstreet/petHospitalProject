@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService {
     public UserEntity saveUser(UserDto userDto) throws Exception{
 
         System.out.println(userDto.getUserId());
-
+        System.out.println(userDto.getDetailAddr());
         validateDuplicateEmail(userDto.getUserId());
 
         UserEntity userEntity = UserEntity.builder()
@@ -86,6 +86,7 @@ public class UserService implements UserDetailsService {
                 .zipCode(userDto.getZipCode())
                 .addr(userDto.getAddr())
                 .email(userDto.getEmail())
+                .detailAddr(userDto.getDetailAddr())
                 .build();
 
         return userRepository.save(userEntity);
@@ -275,8 +276,8 @@ public class UserService implements UserDetailsService {
         message.setTo(mailDTO.getAddress());
         message.setSubject(mailDTO.getTitle());
         message.setText(mailDTO.getMessage());
-        message.setFrom("cortm5pp@gmail.com");
-        message.setReplyTo("cortm5pp@gmail.com");
+        message.setFrom("kssjjh123@gmail.com");
+        message.setReplyTo("kssjjh123@gmail.com");
         System.out.println("message"+message);
         mailSender.send(message);
     }

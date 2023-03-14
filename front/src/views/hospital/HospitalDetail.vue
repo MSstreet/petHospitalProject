@@ -1,7 +1,5 @@
 <template>
 
-
-
 <div class="text-center">
   <div style="width: 960px; display: inline-block">
     <div class="row p-3">
@@ -21,10 +19,8 @@
 
         <div class="d-flex align-items-start py-2 color49 pb-1">
           <div class="review" style="position: relative; font-size: 1.5rem;letter-spacing: 1px;">
-
             <span class="mr-1" style="font-weight: 700;">{{hospital_score}}</span>
             | <span class="ml-1">리뷰 ({{review_count}})</span>
-
           </div>
         </div>
 
@@ -267,30 +263,29 @@ export default {
   .review{
     left: 0.2rem;
   }
+
   .name{
     position: relative;
     right: 0.5rem;
     top: 0.2rem;
   }
+
   .position{
     display: flex;
     flex-direction:row;
     justify-content: space-evenly;
   }
+
   .btn-pos{
     text-align: left;
   }
   .info-pos{
     text-align: left;
   }
-/*.heart-size{*/
-/*  max-width: 10%;*/
-/*  max-height: 10%;*/
-/*}*/
-.heart-position{
-  position: relative;
-  right: 17rem;
-  bottom:4.2rem;
+ .heart-position{
+    position: relative;
+    right: 17rem;
+    bottom:4.2rem;
 }
 
 

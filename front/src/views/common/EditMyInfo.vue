@@ -2,6 +2,10 @@
 
   <section class="bg-light">
 
+    <div class=" text-center fs-1 fw-bold mb-2">
+      <b style="color: black;">Edit My Info</b>
+    </div>
+
     <div class="container py-4">
 
 
@@ -33,7 +37,7 @@
           <label for="exampleInputNum" class="form-label mt-4">전화번호</label>
 <!--          <span type="text" class="form-control" id="exampleInputEmail1">{{user_num}}</span>-->
                     <input type="text" class="form-control" id="exampleInputNum"
-                    :placeholder="user_num" v-model="user_num">
+                    :placeholder="user_num" v-model="user_num"  @change="validNumCheck">
           <div id="numberCheck" class="mt-1"></div>
         </div>
 
@@ -106,7 +110,8 @@ export default {
 
       postcode:'',
       address: '',
-      extra_address: ''
+      extra_address: '',
+      check:false
     }
   }
   ,mounted() {
@@ -168,7 +173,6 @@ export default {
                       ? `, ${data.buildingName}`
                       : data.buildingName;
             }
-
             // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
             if (this.extra_address !== "") {
               this.extra_address = `(${this.extra_address})`;
@@ -184,6 +188,11 @@ export default {
     }
     ,fnUpdate() {
       let apiUrl = this.$serverUrl + '/user/'
+      this.updateCheck()
+      if(!(this.check)){
+        return false
+      }
+
 
       this.form = {
         "user_id": this.user_id,
@@ -213,6 +222,61 @@ export default {
       query: this.requestBody
     })
   }
+  ,validNumCheck(){
+      const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
+
+      if (this.user_num !== '' && !numCheck.test(this.user_num)) {
+        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
+        document.getElementById('numberCheck').style.color="red"
+        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222 ";
+        this.check = false
+        return
+      } else{
+        document.getElementById('numberCheck').style.color="black"
+        document.getElementById('numberCheck').innerHTML = "";
+        this.check = true
+      }
+    }
+    ,updateCheck(){
+      const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
+
+      if (this.user_num == '') {
+        alert('전화번호를 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+      }
+
+      if (this.postcode == '') {
+        alert('우편번호를 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+      }
+
+      if (this.address == '') {
+        alert('주소를 입력하세요.')
+        this.check = false
+        return
+      } else{
+        this.check = true
+      }
+
+
+      if (this.user_num !== '' && !numCheck.test(this.user_num)) {
+        alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')
+        document.getElementById('numberCheck').style.color="red"
+        document.getElementById('numberCheck').innerHTML = "올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222 ";
+        this.check = false
+        return
+      } else{
+        document.getElementById('numberCheck').style.color="black"
+        document.getElementById('numberCheck').innerHTML = "";
+        this.check = true
+      }
+    }
   }
 
 }

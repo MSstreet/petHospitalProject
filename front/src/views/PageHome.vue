@@ -6,25 +6,25 @@
     <i class="fa-regular fa-hospital fa-2xl mb-4"></i>
     <h3 class=" fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192;">솔직한</b> 동물 병원 후기</h3>
 
-<!--    <div id="mainslider" class="mt-3 " >-->
-<!--      <splide :options="options">-->
+    <div id="mainslider" class="mt-3" >
+      <splide :options="options">
 <!--        <splide-slide>-->
-<!--          <img  src="../assets/unnamed.jpg" width="50px" alt="main1">-->
+<!--          <img  src="../assets/home.jpg" alt="main1">-->
 <!--        </splide-slide>-->
-<!--        <splide-slide>-->
-<!--          <img  src="../assets/animal.png" alt="main2">-->
-<!--        </splide-slide>-->
-<!--        <splide-slide>-->
-<!--          <img  src="../assets/animal3.png" alt="main3">-->
-<!--        </splide-slide>-->
-<!--        <splide-slide>-->
-<!--          <img  src="../assets/animal4.png" alt="main3">-->
-<!--        </splide-slide>-->
+        <splide-slide>
+          <img style="border-radius: 70px" src="../assets/home.jpg" alt="main2">
+        </splide-slide>
+        <splide-slide>
+          <img style="border-radius: 70px" src="../assets/home1.jpg" alt="main3">
+        </splide-slide>
+        <splide-slide>
+          <img style="border-radius: 70px" src="../assets/home2.jpg" alt="main3">
+        </splide-slide>
 <!--        <splide-slide>-->
 <!--          <img  src="../assets/animal5.png" alt="main3">-->
 <!--        </splide-slide>-->
-<!--      </splide>-->
-<!--    </div>-->
+      </splide>
+    </div>
 
   </div>
 

@@ -38,6 +38,10 @@
 
   <section class="bg-light">
 
+    <div class=" text-center fs-1 fw-bold mb-2">
+      <b style="color: black;">My Info</b>
+    </div>
+
     <div class="container py-4">
 
 
@@ -171,8 +175,12 @@ export default {
       this.$axios.delete(this.$serverUrl + '/user/' + this.user_idx, {})
           .then(() => {
             alert('회원탈퇴 되었습니다.')
-            this.$store.state.isLogin = false
+
             this.fnView();
+            localStorage.removeItem("user_token")
+            localStorage.removeItem("user_role")
+            this.$store.state.isLogin = false
+            setIsLogin(store, false)
           }).catch((err) => {
         console.log(err);
       })

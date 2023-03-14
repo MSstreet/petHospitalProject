@@ -52,11 +52,11 @@ public class ReviewService {
         double reviewAvg = reviewRepositoryCustom.getReviewAvg(id);
 
         //reviewAvg = Math.round(reviewAvg * 100) / 100;
-        DecimalFormat df = new DecimalFormat("0.0");
-        reviewAvg = Double.parseDouble(df.format(reviewAvg));
+        DecimalFormat df = new DecimalFormat("#");
+        reviewAvg = Integer.parseInt(df.format(reviewAvg));
+        //int rounded = (int)Math.round(reviewAvg);
         return  reviewAvg;
     }
-
 
     public ReviewEntity ReviewCreate(ReviewDto reviewDto) throws Exception{
 
@@ -71,46 +71,36 @@ public class ReviewService {
 //        String extension =  originalFilename.substring(originalFilename.lastIndexOf("."));
 //        String savedName = uuid + extension;
 
+        System.out.println(reviewDto.getEffectScore());
+        System.out.println(reviewDto.getPriceScore());
+        System.out.println(reviewDto.getKindnessScore());
+
+        float avgScore = (float)(reviewDto.getEffectScore() + reviewDto.getPriceScore() + reviewDto.getKindnessScore()) / 3;
+
+        System.out.println("평균값 확인" + avgScore);
+        DecimalFormat df = new DecimalFormat("0.0");
+        avgScore = Float.parseFloat(df.format(avgScore));
+
         ReviewEntity reviewEntity = ReviewEntity.builder()
                 .petHospitalEntity(pet)
                 .hospitalName(pet.getHospitalName())
                 .userEntity(user)
                 .content(reviewDto.getContent())
+                .kindnessScore(reviewDto.getKindnessScore())
+                .effectScore(reviewDto.getEffectScore())
+                .priceScore(reviewDto.getPriceScore())
                 //.score(reviewDto.getScore())
                 .deleteYn(reviewDto.isDeleteYn())
 //                .file(reviewDto.getFile())
-                .tmpScore(reviewDto.getScore())
+                .tmpScore(avgScore)
                 .fileName(reviewDto.getFileName())
+                .originalFileName(reviewDto.getOriginalFileName())
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
 
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + reviewDto.getScore());
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + reviewEntity.getTmpScore());
-//        try {
-//            reviewEntity.getFile().transferTo(new File(path + savedName));
-//        } catch (IllegalStateException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-        //ReviewEntity reviewEntity = modelMapper.map(reviewDto, ReviewEntity.class);
-
-        //Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(reviewDto.getPetHospitalNum());
-        //PetHospitalEntity pet = petHospitalEntity.orElseThrow();
-        //Optional<UserEntity> userEntity = userRepository.findById(reviewDto.getUserNum());
-        //UserEntity user = userEntity.orElseThrow();
-//
-//        ReviewEntity reviewEntity = ReviewEntity.builder()
-//                .petHospitalEntity(pet)
-//                .userEntity(user)
-//                .content(reviewDto.getContent())
-//                .score(reviewDto.getScore())
-//                .deleteYn(reviewDto.isDeleteYn())
-//                .createdAt(LocalDateTime.now())
-//                .build();
 
         return reviewRepository.save(reviewEntity);
     }
@@ -118,8 +108,14 @@ public class ReviewService {
     public ReviewEntity update(ReviewDto reviewDto) {
 
         ReviewEntity entity = reviewRepository.findById(reviewDto.getReviewId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
+        float avgScore = (float)(reviewDto.getEffectScore() + reviewDto.getPriceScore() + reviewDto.getKindnessScore()) / 3;
+        System.out.println("평균값 확인" + avgScore);
+        DecimalFormat df = new DecimalFormat("0.0");
+        avgScore = Float.parseFloat(df.format(avgScore));
 
-        entity.changeReview(reviewDto.getContent(), reviewDto.getScore(),reviewDto.getFileName(),LocalDateTime.now());
+        entity.changeReview(reviewDto.getContent(), avgScore,reviewDto.getFileName(),LocalDateTime.now(),reviewDto.getOriginalFileName(),reviewDto.getPriceScore(),reviewDto.getKindnessScore(),reviewDto.getEffectScore());
+
+
 
         return reviewRepository.save(entity);
     }
@@ -159,48 +155,31 @@ public class ReviewService {
                 .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                 .fileName(entity.getFileName())
+                .originalFileName(entity.getOriginalFileName())
                 .build();
     }
 
-//    public float getReviewAvg(Long id){
-//
-//        List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(id);
-//        float sum = 0;
-//
-//        for(int i = 0; i < reviewEntities.size(); i ++){
-//                  sum = reviewEntities.get(i).getScore();
-//                  System.out.println(sum);
-//        }
-//
-//        if(sum == 0){
-//            return 0;
-//        }else{
-//            return reviewRepository.getReviewAvg(id);
-//        }
-//
-//    }
     public Header<List<ReviewDto>> getReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 
         List<ReviewDto> dtos = new ArrayList<>();
-        System.out.println("=============================");
-        System.out.println("=============================" + id);
         Page<ReviewEntity> reviewEntities = reviewRepositoryCustom.findAllBySearchCondition(pageable, searchCondition, id);
 
-
         for (ReviewEntity entity : reviewEntities) {
+            int rounded = (int)entity.getScore();
 
             ReviewDto dto = ReviewDto.builder()
                     .reviewId(entity.getReviewId())
                     .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                     .userNum(entity.getUserEntity().getIdx()) // 수정 0207
                     .content(entity.getContent())
-                    .score(entity.getScore())
+                    .score(rounded)
+                    .priceScore(entity.getPriceScore())
+                    .effectScore(entity.getEffectScore())
+                    .kindnessScore(entity.getKindnessScore())
                     .userId(entity.getUserEntity().getUserId())
-                    //.approveYn(entity.isApproveYn())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
-
                 dtos.add(dto);
             }
         Pagination pagination = new Pagination(
@@ -211,38 +190,37 @@ public class ReviewService {
         );
         return Header.OK(dtos, pagination);
     }
-
     public Header<List<ReviewDto>> getUserReviewList(Pageable pageable, SearchCondition searchCondition, Long id) {
 
         List<ReviewDto> dtos = new ArrayList<>();
-
         Page<ReviewEntity> reviewEntities = reviewRepositoryCustom.findAllByUserId(pageable, searchCondition, id);
-
         for (ReviewEntity entity : reviewEntities) {
 
+            int rounded = (int)entity.getScore();
             ReviewDto dto = ReviewDto.builder()
                     .reviewId(entity.getReviewId())
                     .petHospitalNum(entity.getPetHospitalEntity().getHospitalId())
                     .userNum(entity.getUserEntity().getIdx()) // 수정 0207
                     .content(entity.getContent())
-                    .score(entity.getScore())
+                    .score(rounded)
+                    .tmpScore(entity.getTmpScore())
+                    .priceScore(entity.getPriceScore())
+                    .kindnessScore(entity.getKindnessScore())
+                    .effectScore(entity.getEffectScore())
                     .userId(entity.getUserEntity().getUserId())
                     .hosName(entity.getPetHospitalEntity().getHospitalName())
                     .approveYn(entity.isApproveYn())
                     .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
                     .build();
-
             dtos.add(dto);
         }
-
         Pagination pagination = new Pagination(
                 (int) reviewEntities.getTotalElements()
                 , pageable.getPageNumber() + 1
                 , pageable.getPageSize()
                 , 10
         );
-
         return Header.OK(dtos, pagination);
     }
 }

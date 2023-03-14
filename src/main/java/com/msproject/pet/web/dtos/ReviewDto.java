@@ -30,6 +30,13 @@ public class ReviewDto {
 
     private String hosName;
 
+
+    private int priceScore;
+
+    private int kindnessScore;
+
+    private int effectScore;
+
     private float score;
 
     private float tmpScore;
@@ -45,4 +52,7 @@ public class ReviewDto {
     private String fileName;
 
     private boolean approveYn;
+
+    private String originalFileName;
+
 }

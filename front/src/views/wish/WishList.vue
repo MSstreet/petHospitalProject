@@ -17,7 +17,7 @@
                     <p class="card-text mb-1">{{ row.hospital_addr }}</p>
                     <p class="card-text mb-1"><i class="fa-solid fa-star"></i>&nbsp{{ row.hospital_score }}</p>
 
-                    <button type="button" class="mt-0 mb-1 btn btn-success" @click="fnDeleteWish(`${row.wish_id}`)" v-on:click="fnList">찜삭제</button>
+                    <button type="button" class="mt-0 mb-1 btn btn-success" @click="fnDeleteWish(`${row.wish_id}`)">찜삭제</button>
                   </div>
                 </div>
               </div>
@@ -115,6 +115,9 @@ export default {
   ,methods: {
 
     fnDeleteWish(wish_idx){
+
+      if (!confirm("삭제하시겠습니까?")) return
+
       console.log(wish_idx)
 
       this.$axios.get(this.$serverUrl + "/wish/change/" + wish_idx,{

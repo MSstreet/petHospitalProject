@@ -1,165 +1,83 @@
 <template>
-<!--  <div class="wrap mt-5">-->
-<!--    <span><h3>{{hospital_name}} 후기</h3></span>-->
-<!--    <form name="reviewform" class="reviewform">-->
-
-<!--      <p class="title_star">별점과 리뷰를 남겨주세요.</p>-->
-<!--      <div class="review_rating">-->
-<!--        <div class="warning_msg">별점을 선택해 주세요.</div>-->
-<!--          <div class="star-rating col-6">-->
-<!--            <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />-->
-<!--            <label for="5-stars" class="star">&#9733;</label>-->
-
-<!--            <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />-->
-<!--            <label for="4-stars" class="star">&#9733;</label>-->
-
-<!--            <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />-->
-<!--            <label for="3-stars" class="star">&#9733;</label>-->
-
-<!--            <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />-->
-<!--            <label for="2-stars" class="star">&#9733;</label>-->
-
-<!--            <input type="radio" id="1-star" name="rating" v-model="score" value="1" />-->
-<!--            <label for="1-star" class="star">&#9733;</label>-->
-<!--          </div>-->
-<!--      </div>-->
-
-<!--      <div class="review_contents mt-3">-->
-<!--        <div class="warning_msg">5자 이상으로 작성해 주세요.</div>-->
-<!--        <textarea rows="10" class="review_textarea" v-model="contents"></textarea>-->
-<!--      </div>-->
-
-<!--      <div class="common-buttons">-->
-<!--              <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>-->
-<!--      </div>-->
-
-<!--    </form>-->
-<!--  </div>-->
 
   <div class="wrap mt-5">
     <span><h3>{{hospital_name}} 후기</h3></span>
     <form  enctype="multipart/form-data" method="post" id="revieform" class="reviewform">
-
       <p class="title_star">별점과 리뷰를 남겨주세요.</p>
-
-            <div class="review_rating">
+        <div class="mb-2 row me-3">
+          <div class="col-2">
+            <div class="ms-3 mt-2 text-center font-weight-bold">가격</div>
+          </div>
+            <div class="col-10 review_rating">
               <div class="warning_msg">별점을 선택해 주세요.</div>
-              <div class="star-rating col-6">
-                <input type="radio" id="5-stars" name="score" v-model="score" value="5" />
-                <label for="5-stars" class="star">&#9733;</label>
-
-                <input type="radio" id="4-stars" name="score" v-model="score" value="4" />
-                <label for="4-stars" class="star">&#9733;</label>
-
-                <input type="radio" id="3-stars" name="score" v-model="score" value="3" />
-                <label for="3-stars" class="star">&#9733;</label>
-
-                <input type="radio" id="2-stars" name="score" v-model="score" value="2" />
-                <label for="2-stars" class="star">&#9733;</label>
-
-                <input type="radio" id="1-stars" name="score" v-model="score" value="1" />
-                <label for="1-stars" class="star">&#9733;</label>
+              <div class="star-rating-1 col-12">
+                <input type="radio" id="5-stars-price" name="priceScore" v-model="priceScore" value="5" />
+                <label for="5-stars-price" class="star">&#9733;</label>
+                <input type="radio" id="4-stars-price" name="priceScore" v-model="priceScore" value="4" />
+                <label for="4-stars-price" class="star">&#9733;</label>
+                <input type="radio" id="3-stars-price" name="priceScore" v-model="priceScore" value="3" />
+                <label for="3-stars-price" class="star">&#9733;</label>
+                <input type="radio" id="2-stars-price" name="priceScore" v-model="priceScore" value="2" />
+                <label for="2-stars-price" class="star">&#9733;</label>
+                <input type="radio" id="1-stars-price" name="priceScore" v-model="priceScore" value="1" />
+                <label for="1-stars-price" class="star">&#9733;</label>
               </div>
             </div>
+        </div>
 
-<!--            <div v-if="error">Please select an option.</div>-->
+      <div class=" row me-3 mb-2">
+        <div class="col-2">
+          <div class="ms-3 mt-2 text-center font-weight-bold">친절</div>
+        </div>
+        <div class="col-10 review_rating">
+          <div class="warning_msg">별점을 선택해 주세요.</div>
+          <div class="star-rating-2 col-12">
+            <input type="radio" id="5-stars-kindness" name="kindnessScore" v-model="kindnessScore" value="5" />
+            <label for="5-stars-kindness" class="star">&#9733;</label>
+            <input type="radio" id="4-stars-kindness" name="kindnessScore" v-model="kindnessScore" value="4" />
+            <label for="4-stars-kindness" class="star">&#9733;</label>
+            <input type="radio" id="3-stars-kindness" name="kindnessScore" v-model="kindnessScore" value="3" />
+            <label for="3-stars-kindness" class="star">&#9733;</label>
+            <input type="radio" id="2-stars-kindness" name="kindnessScore" v-model="kindnessScore" value="2" />
+            <label for="2-stars-kindness" class="star">&#9733;</label>
+            <input type="radio" id="1-stars-kindness" name="kindnessScore" v-model="kindnessScore" value="1" />
+            <label for="1-stars-kindness" class="star">&#9733;</label>
+          </div>
+        </div>
+      </div>
 
-      <!--      <input type="text" name="content">-->
+      <div class=" row me-3">
+        <div class="col-2">
+          <div class="ms-3 mt-2 text-center font-weight-bold">효과</div>
+        </div>
+        <div class="col-10 review_rating">
+          <div class="warning_msg">별점을 선택해 주세요.</div>
+          <div class="star-rating-3 col-12">
+            <input type="radio" id="5-stars-effect" name="effectScore" v-model="effectScore" value="5" />
+            <label for="5-stars-effect" class="star">&#9733;</label>
+            <input type="radio" id="4-stars-effect" name="effectScore" v-model="effectScore" value="4" />
+            <label for="4-stars-effect" class="star">&#9733;</label>
+            <input type="radio" id="3-stars-effect" name="effectScore" v-model="effectScore" value="3" />
+            <label for="3-stars-effect" class="star">&#9733;</label>
+            <input type="radio" id="2-stars-effect" name="effectScore" v-model="effectScore" value="2" />
+            <label for="2-stars-effect" class="star">&#9733;</label>
+            <input type="radio" id="1-stars-effect" name="effectScore" v-model="effectScore" value="1" />
+            <label for="1-stars-effect" class="star">&#9733;</label>
+          </div>
+        </div>
+      </div>
+
             <div class="review_contents mt-3">
               <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
-              <textarea rows="10" class="review_textarea" name="content" v-model="contents"></textarea>
+              <textarea rows="10" class="review_textarea" name="content" v-model="contents" placeholder="여러분의 리뷰를 통해 동물병원의 가치가 결정됩니다.       가격, 서비스, 효과 등을 자세히 기술해주세요."></textarea>
             </div>
-
-            <h4>파일 업로드</h4>
+            <h4>영수증 업로드</h4>
             <input type="file" name="file" accept="image/*">
-
-
-<!--      <input type="hidden" name="pet_hospital_num" v-model="pet_hospital_num">-->
-<!--      <input type="hidden" name="user_num" v-model="user_idx">-->
-<!--      -->
-
-      <!--      <input type="file" name="file" id="file" ref="Image" @change="onFileChange">-->
-
       <div class="common-buttons">
         <button type="button" class="btn btn-primary" @click="fnTest()">저장</button>
       </div>
-
     </form>
   </div>
-
-<!--  <div class="wrap mt-5">-->
-<!--    <span><h3>{{hospital_name}} 후기</h3></span>-->
-<!--    <form @submit.prevent="fnSave" ref="form" id="reviewform" name="reviewform" class="reviewform"  enctype="multipart/form-data">-->
-
-<!--      <p class="title_star">별점과 리뷰를 남겨주세요.</p>-->
-<!--      <div class="review_rating">-->
-<!--        <div class="warning_msg">별점을 선택해 주세요.</div>-->
-<!--        <div class="star-rating col-6">-->
-<!--          <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />-->
-<!--          <label for="5-stars" class="star">&#9733;</label>-->
-
-<!--          <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />-->
-<!--          <label for="4-stars" class="star">&#9733;</label>-->
-
-<!--          <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />-->
-<!--          <label for="3-stars" class="star">&#9733;</label>-->
-
-<!--          <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />-->
-<!--          <label for="2-stars" class="star">&#9733;</label>-->
-
-<!--          <input type="radio" id="1-star" name="rating" v-model="score" value="1" />-->
-<!--          <label for="1-star" class="star">&#9733;</label>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="review_contents mt-3">-->
-<!--        <div class="warning_msg">5자 이상으로 작성해 주세요.</div>-->
-<!--        <textarea rows="10" class="review_textarea" v-model="contents"></textarea>-->
-<!--      </div>-->
-
-<!--      <h4>단일 파일 업로드</h4>-->
-<!--      <input type="file" name="file" id="file" ref="Image" @change="onFileChange">-->
-
-<!--      <div class="common-buttons">-->
-<!--        <button type="submit" class="btn btn-primary">저장</button>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--  </div>-->
-
-  <!--  <div class="board-detail mt-5">-->
-<!--  <div class="row">-->
-<!--    <div class="mb-2 mt-3 col-6">-->
-<!--      <h3 class="name mt-2 my-1 d-flex align-items-center font-weight-bold">{{hospital_name}}</h3>-->
-<!--    </div>-->
-
-<!--    <div class="star-rating col-6">-->
-<!--      <input type="radio" id="5-stars" name="rating" v-model="score" value="5" />-->
-<!--      <label for="5-stars" class="star">&#9733;</label>-->
-
-<!--      <input type="radio" id="4-stars" name="rating" v-model="score" value="4" />-->
-<!--      <label for="4-stars" class="star">&#9733;</label>-->
-
-<!--      <input type="radio" id="3-stars" name="rating" v-model="score" value="3" />-->
-<!--      <label for="3-stars" class="star">&#9733;</label>-->
-
-<!--      <input type="radio" id="2-stars" name="rating" v-model="score" value="2" />-->
-<!--      <label for="2-stars" class="star">&#9733;</label>-->
-
-<!--      <input type="radio" id="1-star" name="rating" v-model="score" value="1" />-->
-<!--      <label for="1-star" class="star">&#9733;</label>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--    <div class="form-control">-->
-<!--      <textarea id="" cols="30" rows="10" v-model="contents" cstyle="resize: none;">-->
-<!--      </textarea>-->
-<!--    </div>-->
-
-<!--    <div class="common-buttons">-->
-<!--      <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>&nbsp;-->
-<!--&lt;!&ndash;      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-
 </template>
 
 <script>
@@ -170,7 +88,10 @@ export default {
       pet_hospital_num: this.$route.query.idx,
       user_idx: this.$store.state.userIdx,
 
-      score:'',
+      priceScore:'',
+      kindnessScore:'',
+      effectScore:'',
+
       contents:'',
       addr1:'',
       hospital_id:'',
@@ -196,7 +117,15 @@ export default {
 
   methods:{
     fnTest(){
-      if (!this.score) {
+      if (!this.priceScore) {
+        alert("평점을 선택해주세요.")
+        return false
+      }
+      if (!this.kindnessScore) {
+        alert("평점을 선택해주세요.")
+        return false
+      }
+      if (!this.effectScore) {
         alert("평점을 선택해주세요.")
         return false
       }
@@ -204,6 +133,11 @@ export default {
         alert("리뷰 내용을 입력해주세요.")
         return false
       }
+
+      console.log(this.priceScore)
+      console.log(this.kindnessScore)
+      console.log(this.effectScore)
+
       const formData = new FormData(document.getElementById("revieform"))
       formData.append('petHospitalNum',this.pet_hospital_num)
       formData.append('userNum',this.user_idx)
@@ -237,7 +171,6 @@ export default {
         })
       }
     }
-
     ,fnSave() {
       let apiUrl = this.$serverUrl + '/review/join'
 
@@ -272,7 +205,8 @@ export default {
           }
         })
       }
-    }, fnView(idx) {
+    }
+    ,fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
         path: '/hospital/detail',
@@ -305,15 +239,12 @@ export default {
       })
     }
   }
-
 };
-
 
 </script>
 
 <style>
-
-.star-rating {
+.star-rating-1 {
   border:solid 1px #ccc;
   display:flex;
   flex-direction: row-reverse;
@@ -324,24 +255,81 @@ export default {
   width:5em;
 }
 
-.star-rating input {
+.star-rating-1 input {
   display:none;
 }
 
-.star-rating label {
+.star-rating-1 label {
   color:#ccc;
   cursor:pointer;
 }
 
-.star-rating :checked ~ label {
+.star-rating-1 :checked ~ label {
   color:#f90;
 }
 
-.star-rating label:hover,
-.star-rating label:hover ~ label {
+.star-rating-1 label:hover,
+.star-rating-1 label:hover ~ label {
   color:#fc0;
 }
 
+.star-rating-2 {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating-2 input {
+  display:none;
+}
+
+.star-rating-2 label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating-2 :checked ~ label {
+  color:#f90;
+}
+
+.star-rating-2 label:hover,
+.star-rating-2 label:hover ~ label {
+  color:#fc0;
+}
+
+.star-rating-3 {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating-3 input {
+  display:none;
+}
+
+.star-rating-3 label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating-3 :checked ~ label {
+  color:#f90;
+}
+
+.star-rating-3 label:hover,
+.star-rating-3 label:hover ~ label {
+  color:#fc0;
+}
 /* explanation */
 
 article {
@@ -408,7 +396,5 @@ article {
   box-sizing: border-box;
   border: 1px solid #e0e0e0;
 }
-/*.position{*/
-/*  position: center;*/
-/*}*/
+
 </style>

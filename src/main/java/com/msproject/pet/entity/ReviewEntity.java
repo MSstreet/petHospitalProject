@@ -33,12 +33,19 @@ public class ReviewEntity{
     //@OnDelete(action= OnDeleteAction.CASCADE)
     private UserEntity userEntity;
     private String content;
-    private float score;
 
+    private int priceScore;
+
+    private int kindnessScore;
+
+    private int effectScore;
+    private float score;
     private float tmpScore;
 
     private String hospitalName;
     private String fileName;
+
+    private String originalFileName;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -52,13 +59,17 @@ public class ReviewEntity{
     @ColumnDefault("false")
     private boolean approveYn;
 
-    public void changeReview(String content, float score,String fileName, LocalDateTime updatedAt){
+    public void changeReview(String content, float score,String fileName, LocalDateTime updatedAt,String originalFileName, int priceScore, int kindnessScore, int effectScore){
         this.content = content;
         this.score = 0;
         this.tmpScore = score;
         this.fileName = fileName;
         this.updatedAt = updatedAt;
+        this.originalFileName = originalFileName;
         this.approveYn = false;
+        this.priceScore = priceScore;
+        this.kindnessScore = kindnessScore;
+        this.effectScore = effectScore;
     }
 
     public void changeDeleteState() {

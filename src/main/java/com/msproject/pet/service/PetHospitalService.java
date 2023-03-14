@@ -154,6 +154,7 @@ public class PetHospitalService {
                 dtos.add(dto);
             //}
         }
+
         Pagination pagination = new Pagination(
                 (int) hospitalEntities.getTotalElements()
                 , pageable.getPageNumber() + 1

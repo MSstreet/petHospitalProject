@@ -1,18 +1,17 @@
 <template>
   <div class="mt-5 mb-3 pt-3 ">
 
+
     <div class="boarder">
-
-
       <div class="row px-3">
-
         <div class="col-12 px-3 pt-3 pb-0 mb-3" style="text-align: center; border-right: solid 1px #e9e9e9; background-color: #f8f8f8">
+
           <div style="letter-spacing: -1.05px; text-align: center; color: #9b9b9b; font-size: 18px" class="mb-2">
             평점 {{hos_score}}
           </div>
 
           <span v-if="hos_score < 0.5">
-           <i class="fa-regular fa-star fa-lg"></i>
+            <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
@@ -20,7 +19,7 @@
           </span>
 
           <span v-if="(hos_score >= 0.5 && hos_score < 1)">
-           <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            <i class="fa-solid fa-star-half-stroke fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
             <i class="fa-regular fa-star fa-lg"></i>
@@ -57,7 +56,6 @@
               <i class="fa-solid fa-star-half-stroke fa-lg"></i>
               <i class="fa-regular fa-star fa-lg"></i>
               <i class="fa-regular fa-star fa-lg"></i>
-
           </span>
 
           <span v-if="(hos_score >= 3 && hos_score < 3.5)">
@@ -100,200 +98,289 @@
              <i class="fa-solid fa-star fa-lg"></i>
          </span>
 
-
-
-
-        </div>
-
-
-        <div v-if="hos_score < 1.5">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                 <div class=" p-0">
-<!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                   <i class="fa-solid fa-star-half-stroke"></i>-->
-                 </div>
-                </div>
-              </div>
+        <div class="row mt-3">
+          <div class="col-4">
+            <div>
+              가격 평점
             </div>
-        </div>
+            <div v-if="avg_price_score < 0.5">
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
 
-        <div v-if="(hos_score >= 1.5 && hos_score < 2)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
+            <div v-if="(avg_price_score >= 0.5 && avg_price_score < 1)">
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 1 && avg_price_score < 1.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 1.5 && avg_price_score < 2)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 2 && avg_price_score < 2.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 2.5 && avg_price_score < 3)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 3 && avg_price_score < 3.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 3.5 && avg_price_score < 4)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 4 && avg_price_score < 4.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 4.5 && avg_price_score < 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_price_score >= 4.8 && avg_price_score <= 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+            </div>
+
+          </div>
+
+          <div class="col-4">
+            <div>
+              친절 평점
+            </div>
+            <div v-if="avg_kindness_score < 0.5">
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 0.5 && avg_kindness_score < 1)">
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 1 && avg_kindness_score < 1.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 1.5 && avg_kindness_score < 2)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 2 && avg_kindness_score < 2.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 2.5 && avg_kindness_score < 3)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 3 && avg_kindness_score < 3.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 3.5 && avg_kindness_score < 4)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 4 && avg_kindness_score < 4.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 4.5 && avg_kindness_score < 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_kindness_score >= 4.8 && avg_kindness_score <= 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div>
+              효과 평점
+            </div>
+            <div v-if="avg_effect_score < 0.5">
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 0.5 && avg_effect_score < 1)">
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 1 && avg_effect_score < 1.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 1.5 && avg_effect_score < 2)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 2 && avg_effect_score < 2.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 2.5 && avg_effect_score < 3)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 3 && avg_effect_score < 3.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 3.5 && avg_effect_score < 4)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 4 && avg_effect_score < 4.5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-regular fa-star fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 4.5 && avg_effect_score < 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star-half-stroke fa-lg"></i>
+            </div>
+
+            <div v-if="(avg_effect_score >= 4.8 && avg_effect_score <= 5)">
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
+              <i class="fa-solid fa-star fa-lg"></i>
             </div>
           </div>
         </div>
-
-        <div v-if="(hos_score >= 2 && hos_score < 2.5)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle " >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <div v-if="(hos_score >= 2.5 && hos_score < 3)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="(hos_score >= 3 && hos_score < 3.5)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="(hos_score >= 3.5 && hos_score < 4)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Half-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="(hos_score >= 4 && hos_score < 4.5)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="(hos_score >= 4.5 && hos_score < 5)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="(hos_score >= 4.8 && hos_score <= 5)">
-          <div class="col-6 mr-3">
-            <div class="align-items-center justify-content-between  flex-colum">
-              <div class="row my-1 ">
-                <div class=" p-0">
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle star-size" >-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-<!--                  <i class="fa-solid fa-star-half-stroke"></i>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         </div>
     </div>
@@ -340,6 +427,7 @@
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Full-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
                   <img src="https://d23zwvh2kbhdec.cloudfront.net/static_22_11_25/img/mdd_event/Star-Empty-icon.svg" alt="Responsive image" class="star-image-middle">
+
                 </div>
               </div>
             </div>
@@ -377,8 +465,6 @@
 
         <div class="col-7 position_re ">
           <div class="row fw-semibold">
-
-
             <div class="col-3 mb-2" style="background-color: #4c1192;  border-radius: 15px; color: white"><i class="fa-solid fa-check fa-lg"></i> 영수증 인증</div>
             <div class="col-8 text-end">{{row.created_at}}</div>
           </div>
@@ -386,10 +472,8 @@
             <p>{{row.content}}</p>
           </div>
           <div>
-
           </div>
           <div class="text-end mb-5">
-
             <div>
               <button class="me-2 mb-5 btn btn-success" v-if="row.user_num == log_id" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>
               <button class="mb-5 me-5 btn btn-success" v-if="row.user_num == log_id" v-on:click="fnUpdate(`${this.idx}`,`${row.review_id}`)">수정</button>
@@ -397,46 +481,8 @@
 
           </div>
         </div>
-<!--      <div class="row">-->
-<!--        <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">-->
-<!--          <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>-->
-<!--        </div>-->
-<!--        <div class="col-2 mt-4 text-end" v-if="log_id == row.user_num">-->
-<!--          <button class="btn btn-success" v-on:click="fnDelete(`${row.review_id}`)">삭제</button>-->
-<!--        </div>-->
-<!--      </div>-->
       </div>
-
-<!--    <div class="position-re">-->
-<!--      <div >-->
-<!--        <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">-->
-<!--        <span class="center">-->
-<!--          <ul class="pagination">-->
-<!--            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>-->
-
-<!--            &lt;!&ndash;             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>&ndash;&gt;-->
-<!--            <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
-<!--            <template v-for=" (n,index) in paginavigation()">-->
-<!--                <template v-if="paging.page==n">-->
-<!--                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>-->
-<!--                </template>-->
-
-<!--                <template v-else>-->
-<!--                   <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>-->
-<!--                </template>-->
-<!--            </template>-->
-
-<!--             <a href="javascript:;" class="page-link" v-if="paging.total_page_cnt > paging.end_page"-->
-<!--                @click="fnPage(`${paging.end_page+1}`)">&gt;</a>-->
-<!--            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>-->
-<!--          </ul>-->
-<!--        </span>-->
-<!--        </nav>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
-
-
   <div class="test-position">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
@@ -466,36 +512,6 @@
       </nav>
     </div>
   </div>
-
-<!--  <div style="position: center">-->
-<!--    <div >-->
-<!--      <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">-->
-<!--        <span class="center">-->
-<!--          <ul class="pagination">-->
-<!--            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>-->
-
-<!--            &lt;!&ndash;             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>&ndash;&gt;-->
-<!--            <a href="javascript:;" class="page-link"  @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
-<!--            <template v-for=" (n,index) in paginavigation()">-->
-<!--                <template v-if="paging.page==n">-->
-<!--                  <li class="page-item" :key="index"> <a class="page-link"> {{ n }}</a> </li>-->
-<!--                </template>-->
-
-<!--                <template v-else>-->
-<!--                   <li class="page-item"> <a class="page-link" href="javascript:;" @click="fnPage(`${n}`)" :key="index"> {{ n }} </a> </li>-->
-<!--                </template>-->
-<!--            </template>-->
-
-<!--             <a href="javascript:;" class="page-link" v-if="paging.total_page_cnt > paging.end_page"-->
-<!--                @click="fnPage(`${paging.end_page+1}`)">&gt;</a>-->
-<!--            <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)">&gt;&gt;</a></li>-->
-<!--          </ul>-->
-<!--        </span>-->
-<!--      </nav>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
 </template>
 
 <script>
@@ -512,6 +528,13 @@ export default {
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
+
+      avg_price_score:'',
+
+      avg_kindness_score:'',
+
+      avg_effect_score:'',
+
 
       paging: {
         block: 0,
@@ -552,7 +575,6 @@ export default {
       if (this.page !== n) {
         this.page = n
       }
-
       this.fnGetList()
     }
     ,fnGetList() {
@@ -562,7 +584,6 @@ export default {
         page: this.page,
         size: this.size
       }
-
       this.$axios.get(this.$serverUrl + '/review/list/'+ this.idx, {
         params: this.requestBody,
         headers: {}
@@ -574,6 +595,45 @@ export default {
         }
         console.log(res.data.pagination);
         console.log(res.data.data);
+
+        const k_sum = res.data.data.reduce((acc,obj) => {
+          if(obj.hasOwnProperty("kindness_score")){
+            return acc + obj.kindness_score;
+          }else{
+            return acc;
+          }
+        },0);
+        const k_count = res.data.data.filter(obj => obj.hasOwnProperty("kindness_score")).length;
+        this.avg_kindness_score = k_sum / k_count
+
+        const p_sum = res.data.data.reduce((acc,obj) => {
+          if(obj.hasOwnProperty("price_score")){
+            return acc + obj.price_score;
+          }else{
+            return acc;
+          }
+        },0);
+        const p_count = res.data.data.filter(obj => obj.hasOwnProperty("price_score")).length;
+        this.avg_price_score = p_sum / p_count
+
+        const e_sum = res.data.data.reduce((acc,obj) => {
+          if(obj.hasOwnProperty("effect_score")){
+            return acc + obj.effect_score;
+          }else{
+            return acc;
+          }
+        },0);
+        const e_count = res.data.data.filter(obj => obj.hasOwnProperty("effect_score")).length;
+        this.avg_effect_score = e_sum / e_count
+
+        this.avg_effect_score = this.avg_effect_score.toFixed(1)
+        this.avg_kindness_score = this.avg_kindness_score.toFixed(1)
+        this.avg_price_score = this.avg_price_score.toFixed(1)
+
+        console.log("친절평균!!!" + this.avg_kindness_score)
+        console.log("가격평균!!!" + this.avg_price_score)
+        console.log("효과평균!!!" + this.avg_effect_score)
+
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

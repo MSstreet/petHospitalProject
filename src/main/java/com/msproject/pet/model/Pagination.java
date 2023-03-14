@@ -27,8 +27,6 @@ public class Pagination {
     //총 페이지 수
     int totalPageCnt;
 
-
-
     //총 블럭 수
     int totalBlockCnt;
 

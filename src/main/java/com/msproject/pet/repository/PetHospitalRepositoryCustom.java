@@ -4,7 +4,10 @@ import com.msproject.pet.entity.PetHospitalEntity;
 import com.msproject.pet.model.SearchCondition;
 import com.msproject.pet.web.dtos.PetHospitalListReviewCountDto;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.SubQueryExpression;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -33,22 +36,14 @@ public class PetHospitalRepositoryCustom {
         query.where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"));
         query.groupBy(petHospitalEntity);
 
-//        JPAQuery<Double> score = queryFactory.select(reviewEntity.score.avg()).where(reviewEntity.deleteYn.eq(false), reviewEntity.approveYn.eq(true)).from(reviewEntity);
-//        double score1 = score.fetchOne();
-
         long total = query.stream().count();
-        //System.out.println("total : " + total);
+
         List<PetHospitalEntity> results = query
                 .where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),petHospitalEntity.operState.contains("정상"))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                //.orderBy(petHospitalEntity.hospitalId.desc())
                 .orderBy(reviewEntity.score.avg().desc())
-                //.orderBy(score1.desc())
-                //.orderBy(reviewEntity.score.avg().when(reviewEntity.deleteYn.eq(false)))
                 .fetch();
-
-        //System.out.println("resultSize : " + results.size());
 
         JPAQuery<PetHospitalListReviewCountDto> dtoJPAQuery = query.select(Projections.bean(PetHospitalListReviewCountDto.class,
         petHospitalEntity.hospitalId,

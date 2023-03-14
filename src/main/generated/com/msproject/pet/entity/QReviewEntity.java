@@ -30,11 +30,19 @@ public class QReviewEntity extends EntityPathBase<ReviewEntity> {
 
     public final BooleanPath deleteYn = createBoolean("deleteYn");
 
+    public final NumberPath<Integer> effectScore = createNumber("effectScore", Integer.class);
+
     public final StringPath fileName = createString("fileName");
 
     public final StringPath hospitalName = createString("hospitalName");
 
+    public final NumberPath<Integer> kindnessScore = createNumber("kindnessScore", Integer.class);
+
+    public final StringPath originalFileName = createString("originalFileName");
+
     public final QPetHospitalEntity petHospitalEntity;
+
+    public final NumberPath<Integer> priceScore = createNumber("priceScore", Integer.class);
 
     public final NumberPath<Long> reviewId = createNumber("reviewId", Long.class);
 

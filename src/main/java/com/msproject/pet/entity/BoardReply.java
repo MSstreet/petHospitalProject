@@ -8,6 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,6 +36,14 @@ public class BoardReply {
 
     @ColumnDefault("false")
     private boolean deleteYn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private BoardReply parent;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    private List<BoardReply> children = new ArrayList<>();
 
     public void changeReply(String contents, LocalDateTime now) {
         this.contents = contents;

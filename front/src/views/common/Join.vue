@@ -114,7 +114,7 @@ export default {
     ...mapActions(['join']),     //vuex/actions에 있는 login 함수
 
     async fnJoin() {       //async 함수로 변경
-
+      console.log("@@@@@@@@@@@@@@@" + this.extra_address)
       this.submitCheck()
 
       if(!(this.check)){
@@ -144,10 +144,11 @@ export default {
           phone_num: this.user_num,
           zip_code: this.postcode,
           addr:this.address,
-          detail_address:this.extra_address
+          detail_addr:this.extra_address
         })
         if (joinResult) {
           this.goToPages1()
+          alert("가입이 완료되었습니다!")
         }
       }
       catch (err) {
@@ -286,11 +287,11 @@ export default {
     }
     //이름 유효성 검사
     ,validNameCheck(){
-      const nameCheck = new RegExp("^[|가-힣]{3,20}");
+      const nameCheck = new RegExp("^[|가-힣]{2,20}");
       if (this.user_name !== '' && !nameCheck.test(this.user_name)) {
-        alert('이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.')
+        alert('이름은 한글 입력로 최소 2자리 최대 20자리까지 입력 가능합니다.')
         document.getElementById('nameCheck').style.color="red"
-        document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.";
+        document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 2자리 최대 20자리까지 입력 가능합니다.";
         this.check = false
         return
       } else{
@@ -324,7 +325,7 @@ export default {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
       const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
       const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
-      const nameCheck = new RegExp("^[|가-힣]{3,20}")
+      const nameCheck = new RegExp("^[|가-힣]{2,20}")
 
       // if (this.user_id !== '' && (this.user_id.length <= 5 || this.user_id.length >= 20)) {
       //   alert('ID는 5자 이상 20자리 이하로 입력해주세요"')
@@ -384,8 +385,8 @@ export default {
 
       if (this.user_name !== '' && !nameCheck.test(this.user_name)) {
         document.getElementById('nameCheck').style.color="red"
-        document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.";
-        alert('이름은 한글 입력로 최소 3자리 최대 20자리까지 입력 가능합니다.')
+        document.getElementById('nameCheck').innerHTML = " 이름은 한글 입력로 최소 2자리 최대 20자리까지 입력 가능합니다.";
+        alert('이름은 한글 입력로 최소 2자리 최대 20자리까지 입력 가능합니다.')
         this.check = false
         return
       } else{
@@ -481,7 +482,7 @@ export default {
           if (this.extra_address !== "") {
             this.extra_address = "";
           }
-          // console.log("화깅!!!"+data.userSelectedType)
+
           if (data.userSelectedType === "R") {
             // 사용자가 도로명 주소를 선택했을 경우
             this.address = data.roadAddress;

@@ -1,6 +1,9 @@
 <template>
 
   <div class="board-detail">
+    <div class=" text-center fs-1 fw-bold mt-5 mb-2">
+      <b style="color: black;">공지사항</b>
+    </div>
 
     <div class="board-contents">
 
@@ -10,7 +13,7 @@
     </div>
 
     <div class="board-contents pt-5 pb-5" >
-      <span>{{ contents }}</span>
+      <div v-html="contents"></div>
     </div>
 
     <div class="common-buttons pt-5">
@@ -53,7 +56,7 @@ export default {
       }).then((res) => {
         this.title = res.data.title
         //this.author = res.data.author
-        this.contents = res.data.contents
+        this.contents = res.data.contents.replace(/\n/g, '<br/>')
         this.created_at = res.data.created_at
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {

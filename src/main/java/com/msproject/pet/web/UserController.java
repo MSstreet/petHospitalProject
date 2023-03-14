@@ -52,9 +52,6 @@ public class UserController {
     @PostMapping("/find")
     public String findId(@RequestBody FindUserIdDto findUserIdDto){
 
-        System.out.println(findUserIdDto.getUserName());
-        System.out.println(findUserIdDto.getEmail());
-
         UserEntity user = userService.findId(findUserIdDto);
 
         if(user == null){
@@ -88,15 +85,11 @@ public class UserController {
 
         UserDetails loginUser = userService.loadUserByUsername(userId); //userId로 정보 가져오기
 
-
         Authentication authentication = authenticationManager.authenticate(     //가져온 정보와 입력한 비밀번호로 검증
                 new UsernamePasswordAuthenticationToken(loginUser, userPw)
         );
 
-
         SecurityContextHolder.getContext().setAuthentication(authentication);   // 검증 통과 후 authentication 세팅
-
-
         String accessToken = jwtUtil.createToken(loginUser.getUsername(), loginUser.getUsername());     //accessToken 생성
 
 

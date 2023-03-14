@@ -37,7 +37,7 @@ public class ReviewController {
         String extension =  originalFilename.substring(originalFilename.lastIndexOf("."));
         String savedName = uuid + extension;
         reviewDto.setFileName(savedName);
-
+        reviewDto.setOriginalFileName(originalFilename);
         try {
             reviewDto.getFile().transferTo(new File(path + savedName));
             return reviewService.ReviewCreate(reviewDto);
@@ -105,7 +105,7 @@ public class ReviewController {
         String savedName = uuid + extension;
 
         reviewDto.setFileName(savedName);
-
+        reviewDto.setOriginalFileName(originalFilename);
         try {
             reviewDto.getFile().transferTo(new File(path + savedName));
             return reviewService.update(reviewDto);

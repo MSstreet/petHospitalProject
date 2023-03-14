@@ -1,7 +1,5 @@
 package com.msproject.pet.service;
 
-
-
 import com.msproject.pet.entity.*;
 
 import com.msproject.pet.model.Header;
@@ -9,7 +7,7 @@ import com.msproject.pet.model.Pagination;
 import com.msproject.pet.repository.BoardReplyRepository;
 import com.msproject.pet.repository.BoardReplyRepositoryCustom;
 import com.msproject.pet.web.dtos.BoardReplyDto;
-import com.msproject.pet.web.dtos.ReviewDto;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -43,27 +41,37 @@ public class BoardReplyService {
         Optional<UserEntity> userEntity = userRepository.findById(boardReplyDto.getUserIdx());
         UserEntity user = userEntity.orElseThrow();
 
-        BoardReply boardReply = BoardReply.builder()
-                .boardEntity(board)
-                .userEntity(user)
-                .contents(boardReplyDto.getContents())
-                .createdAt(LocalDateTime.now())
-                .updatedAt(LocalDateTime.now())
-                .build();
+        if(boardReplyDto.getParent() != null){
+            Optional<BoardReply> tmpBoardReply = boardReplyRepository.findById(boardReplyDto.getParent());
+            BoardReply parent = tmpBoardReply.orElseThrow();
 
-        return boardReplyRepository.save(boardReply);
+            BoardReply boardReply = BoardReply.builder()
+                    .boardEntity(board)
+                    .userEntity(user)
+                    .contents(boardReplyDto.getContents())
+                    .parent(parent)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build();
+            return boardReplyRepository.save(boardReply);
+        }else{
+            BoardReply boardReply = BoardReply.builder()
+                    .boardEntity(board)
+                    .userEntity(user)
+                    .contents(boardReplyDto.getContents())
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build();
+            return boardReplyRepository.save(boardReply);
+        }
     }
-
 
     public Header<List<BoardReplyDto>> getReplyList(Pageable pageable, Long id) {
 
         List<BoardReplyDto> dtos = new ArrayList<>();
-
         Page<BoardReply> boardReplies = boardReplyRepositoryCustom.findAllBySearchCondition(pageable, id);
 
-
         for (BoardReply entity : boardReplies) {
-
             BoardReplyDto dto = BoardReplyDto.builder()
                     .replyIdx(entity.getReplyIdx())
                     .boardIdx(entity.getBoardEntity().getIdx())
@@ -74,17 +82,14 @@ public class BoardReplyService {
                     .userName(entity.getUserEntity().getUserName())
                     .userId(entity.getUserEntity().getUserId())
                     .build();
-
             dtos.add(dto);
         }
-
         Pagination pagination = new Pagination(
                 (int) boardReplies.getTotalElements()
                 , pageable.getPageNumber() + 1
                 , pageable.getPageSize()
                 , 10
         );
-
         return Header.OK(dtos, pagination);
     }
 

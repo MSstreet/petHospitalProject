@@ -30,5 +30,5 @@ public class BoardReplyDto {
 
     private String userId;
 
-
+    private Long parent;
 }

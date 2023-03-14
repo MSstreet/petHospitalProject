@@ -95,7 +95,7 @@
             <label for="exampleInputEmail1" class="mb-1">ID</label>
             <input type="text" maxlength="50" class="form-control" id="exampleInputEmail1" placeholder="Enter Id" v-model="user_id">
 
-            <small id="emailHelp" class="form-text text-muted">We'll never share your id with anyone else.</small>
+<!--            <small id="emailHelp" class="form-text text-muted">We'll never share your id with anyone else.</small>-->
           </div>
 
           <div class="form-group">
@@ -231,7 +231,7 @@ export default {
 
         if (loginResult) {
            this.goToPages()
-           // alert('로그인 결과 : ' + loginResult)
+           alert(this.user_id + "님 환영합니다.")
         }
 
       } catch (err) {

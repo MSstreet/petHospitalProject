@@ -1,6 +1,8 @@
 <template>
 
-
+  <div class="mt-5 mb-5 text-center fs-1 fw-bold mb-2">
+    <b style="color: #4c1192;">게시글 작성</b>
+  </div>
   <div class="board-detail">
 <!--    <div class="mb-3">-->
 <!--      <label for="title">제목</label>-->
@@ -11,6 +13,7 @@
 <!--      <label for="reg_id">작성자</label>-->
 <!--      <input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">-->
 <!--    </div>-->
+
 
     <div class="board-contents">
 

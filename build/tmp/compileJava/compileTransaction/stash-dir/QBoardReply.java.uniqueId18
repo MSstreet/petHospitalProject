@@ -24,15 +24,11 @@ public class QBoardReply extends EntityPathBase<BoardReply> {
 
     public final QBoardEntity boardEntity;
 
-    public final ListPath<BoardReply, QBoardReply> children = this.<BoardReply, QBoardReply>createList("children", BoardReply.class, QBoardReply.class, PathInits.DIRECT2);
-
     public final StringPath contents = createString("contents");
 
     public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
 
     public final BooleanPath deleteYn = createBoolean("deleteYn");
-
-    public final QBoardReply parent;
 
     public final NumberPath<Long> replyIdx = createNumber("replyIdx", Long.class);
 
@@ -59,7 +55,6 @@ public class QBoardReply extends EntityPathBase<BoardReply> {
     public QBoardReply(Class<? extends BoardReply> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.boardEntity = inits.isInitialized("boardEntity") ? new QBoardEntity(forProperty("boardEntity"), inits.get("boardEntity")) : null;
-        this.parent = inits.isInitialized("parent") ? new QBoardReply(forProperty("parent"), inits.get("parent")) : null;
         this.userEntity = inits.isInitialized("userEntity") ? new QUserEntity(forProperty("userEntity")) : null;
     }
 

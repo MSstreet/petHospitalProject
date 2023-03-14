@@ -83,8 +83,8 @@ export default {
         //return store.getters.getIsUserIdx
     },
 
-    async join (store, {user_id, user_pw, user_name, phone_num, zip_code,addr,detail_address,email}) {
-        let joinResponse = await joinAPI.doJoin(user_id, user_pw, user_name,phone_num, zip_code,addr,detail_address,email)
+    async join (store, {user_id, user_pw, user_name, phone_num, zip_code,addr,detail_addr,email}) {
+        let joinResponse = await joinAPI.doJoin(user_id, user_pw, user_name,phone_num, zip_code,addr,detail_addr,email)
         processResponse1(store,joinResponse)
         // console.log("페크!!!!!!!")
         return store.getters.getIsAuth  // 회원가입 결과 리턴
