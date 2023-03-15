@@ -76,16 +76,6 @@ public class ReviewController {
         return reviewService.getUserReviewList(pageable, searchCondition, id);
     }
 
-//    @GetMapping("/review/avg/{id}")
-//    public float getReviewAvg(@PathVariable Long id){
-//        System.out.println(id);
-//        System.out.println("들어오는지 확인");
-//
-//        //float avg = reviewService.getReviewAvg(id);
-//        //avg = Math.round(avg*10) / 10;
-//
-//        return reviewService.getReviewAvg(id);
-//    }
 
     @GetMapping("/review/{id}")
     public ReviewDto getReview(@PathVariable Long id){

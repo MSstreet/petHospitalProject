@@ -26,26 +26,12 @@ public class WishController {
     @PostMapping("/wish")
     public WishEntity createWish(@RequestBody WishDto wishDto){
 
-        System.out.println(wishDto.getUserNum());
-        System.out.println(wishDto.getPetHospitalNum());
-        System.out.println(wishDto.getWishState1());
-        System.out.println("111111111111111111111111111111일로오지");
-
-//        if(getWish1(wishDto.getUserNum(),wishDto.getPetHospitalNum()) != null){
-//
-//            System.out.println("일로오지");
-//            return update(wishDto);
-//        }
-
         if(checkId(wishDto.getUserNum(),wishDto.getPetHospitalNum())){
             return wishService.wishCreate(wishDto);
         }else{
-            System.out.println("여기로온다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             return update(wishDto);
         }
-
-        //return wishService.wishCreate(wishDto);
     }
 
     @GetMapping("/wish/check/{uid}/{hid}")
@@ -53,21 +39,6 @@ public class WishController {
 
         return wishService.checkWish(uid,hid);
     }
-
-
-//    @GetMapping("/wish/{id}")
-//    public WishDto getWish(@PathVariable Long id){
-//        return wishService.();
-//    }
-
-//    @GetMapping("/wish/list/{uid}/{hid}")
-//    public Header<List<ReviewDto>> reviewList(@PathVariable Long uid,
-//                                              @PathVariable Long hid,
-//                                              @PageableDefault(sort = {"idx"}) Pageable pageable,
-//                                              SearchCondition searchCondition)
-//    {
-//        return wishService.get(pageable, searchCondition, id);
-//    }
 
     @PatchMapping("/wish")
     public WishEntity update(@RequestBody WishDto wishDto){
@@ -79,14 +50,6 @@ public class WishController {
         wishService.delete(id);
     }
 
-//    @GetMapping("/wish/list/{uid}/{hid}")
-//    public Header<List<WishDto>> wishList(@PathVariable Long uid,
-//                                          @PathVariable Long hid,
-//                                              @PageableDefault(sort = {"idx"}) Pageable pageable,
-//                                              SearchCondition searchCondition)
-//    {
-//        return wishService.getWishList(pageable,uid,hid);
-//    }
 
     @GetMapping("/wish/list/{uid}")
     public Header<List<WishDto>> wishList(@PathVariable Long uid,
@@ -103,10 +66,7 @@ public class WishController {
     @GetMapping("/wish/one/{uid}/{hid}")
     public WishDto getWish1(@PathVariable Long uid,@PathVariable Long hid){
 
-        System.out.println("들어오는건가???!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return wishService.getWish1(uid,hid);
-
-
     }
 
     @GetMapping("/wish/change/{wid}")

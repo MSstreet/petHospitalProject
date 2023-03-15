@@ -6,7 +6,6 @@
       <h1  class="tt mt-5 mb-5 fs-1 fw-bold" style="text-align: center" @click="fnReload">자유게시판</h1>
     </div>
 
-<!--    <div class="board-list">-->
     <div class="card mb-4 text-center">
       <div class="card-header">
 
@@ -40,9 +39,8 @@
             <th>글번호</th>
             <th>제목</th>
             <th>작성자</th>
-<!--            <th>조회수</th>-->
             <th>작성일</th>
-<!--            <th>수정일</th>-->
+
           </tr>
           </thead>
 
@@ -54,19 +52,15 @@
 
             <td width="10%">{{ row.idx }}</td>
             <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`,`${row.user_id}`)">{{ row.title }}&nbsp({{row.reply_count}})</a></td>
-<!--            <td class="t"><a v-on:click="fnView(`${row.idx}`,`${row.user_idx}`)">{{ row.title }}</a></td>-->
+
             <td>{{ row.user_id }}</td>
             <td width="20%">{{row.created_at1}}</td>
-<!--            <td>{{ row.updated_at }}</td>-->
+
           </tr>
           </tbody>
         </table>
 
       </div>
-
-<!--      <div>-->
-<!--        <a class="btn btn-primary float-end me-3 mb-3" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>-->
-<!--      </div>-->
 
       <div class="test-position">
         <nav aria-label="Page navigation example" v-if="paging.total_list_cnt> 0">
@@ -102,7 +96,7 @@
     </div>
 
     </div>
-<!--  </div>-->
+
 </template>
 <script>
 export default {

@@ -33,7 +33,6 @@ public class UserController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
 
-    //private final PasswordEncoder passwordEncoder;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     //아이디 중복 체크
@@ -101,7 +100,6 @@ public class UserController {
         result.put("user_role", loginUser.getAuthorities().stream().findFirst().get().getAuthority());
 
         result.put("user_idx",userService.getUser(userId).getIdx());
-        //result.put("user_pw",userService.getUser(userId).getUserPw());
 
         return ResponseEntity.ok(result);
     }
@@ -121,21 +119,9 @@ public class UserController {
         userService.delete(id);
     }
 
-//    @GetMapping("/checkpw/{id}")
-//    public String checkPw(@PathVariable Long id, @RequestParam String beforePw){
-//
-//        passwordEncoder.encode(beforePw);
-//
-//        String encodePw = userService.getUser(id).getUserPw();
-
-//    }
     @PatchMapping("/change-pw")
     public Boolean updatePw(@RequestBody UserPwChangeDto userPwChangeDto){
-        System.out.println(userPwChangeDto.getPassword());
-        System.out.println(userPwChangeDto.getNewPassword());
         return userService.updatePw(userPwChangeDto);
-
-
     }
 
 

@@ -8,7 +8,7 @@
         <div class="form-group has-success">
           <label class="form-label mt-4" for="inputValid">현재 비밀번호</label>
           <input type="password" class="form-control" id="inputValid" maxlength="20" v-model="password" >
-<!--          <div class="valid-feedback"></div>-->
+
         </div>
 
           <div class="form-group has-success">
@@ -22,10 +22,6 @@
             <input type="password" class="form-control" id="inputInvalid" maxlength="20" v-model="new_check" @change="validSamePasswordCheck">
             <div id="doubleCheckPwd" class="mt-1"></div>
           </div>
-
-<!--      <div class="d-grid gap-2 mt-5">-->
-<!--        <router-link to="/mypage" class="btn btn-success" v-on:click="fnUpdate" role="button">저장</router-link>-->
-<!--      </div>-->
 
       <div>
         <a class="btn btn-success float-end me-2 mt-3" v-on:click="fnUpdate"><i class="fas fa-edit"></i> Confirm</a>
@@ -91,9 +87,6 @@ export default {
     ,validPasswordCheck(){
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
       if (this.new_password !== '' && !pwCheck.test(this.new_password)) {
-        //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
-        // document.getElementById('checkPwd').style.color="red"
-        // document.getElementById('checkPwd').innerHTML = "최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.";
         alert("10~ 20, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.")
         this.check = false
         return
@@ -107,15 +100,10 @@ export default {
     //비밀번호 확인 체크
     ,validSamePasswordCheck(){
       if (this.new_password !== '' && this.new_check !== '' && this.new_password !== this.new_check) {
-        //alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
-        // document.getElementById('doubleCheckPwd').style.color="red"
-        // document.getElementById('doubleCheckPwd').innerHTML = " 비밀번호와 비밀번호 확인이 서로 맞지 않습니다.";
         alert("비밀번호와 비밀번호 확인이 서로 맞지 않습니다.")
         this.check = false
         return
       }else{
-        // document.getElementById('doubleCheckPwd').style.color="black"
-        // document.getElementById('doubleCheckPwd').innerHTML = "";
         this.check = true
         return
       }
@@ -124,9 +112,6 @@ export default {
       const pwCheck = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{10,}$");
 
       if (this.new_password !== '' && !pwCheck.test(this.new_password)) {
-        //alert('비밀번호 정규식에 맞지 않습니다.\n 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.')
-        // document.getElementById('checkPwd').style.color="red"
-        // document.getElementById('checkPwd').innerHTML = " 최소 8 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.";
         alert(" 10~20자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 포함되어야 합니다.")
         this.check = false
         return
@@ -137,9 +122,6 @@ export default {
       }
 
       if (this.new_password !== '' && this.new_check !== '' && this.new_password !== this.new_check) {
-        //alert('비밀번호와 비밀번호 확인이 서로 맞지 않습니다.')
-        // document.getElementById('doubleCheckPwd').style.color="red"
-        // document.getElementById('doubleCheckPwd').innerHTML = "비밀번호와 비밀번호 확인이 서로 맞지 않습니다.";
         alert("비밀번호와 비밀번호 확인이 서로 맞지 않습니다.")
         this.check = false
         return
@@ -156,31 +138,6 @@ export default {
         query: this.requestBody
       })
     }
-    // ,CheckPassword(){
-    //   let apiUrl = this.$serverUrl + '/user/check?userId=' + this.user_id
-    //
-    //   this.$axios.get(apiUrl, {
-    //     params:{
-    //       user_id:this.user_id
-    //     }
-    //   }).then((res) => {
-    //     //console.log(res.data)
-    //     if(res.data === true){
-    //       document.getElementById('checkId').style.color="red"
-    //       document.getElementById('checkId').innerHTML = "중복된 ID 입니다.";
-    //       this.duplicated_id_check = false
-    //       console.log("아이디 중복 확인 :" + this.check)
-    //     }else{
-    //       document.getElementById('checkId').style.color="black"
-    //       document.getElementById('checkId').innerHTML = "";
-    //       this.duplicated_id_check = true
-    //     }
-    //   }).catch((err) => {
-    //     if (err.message.indexOf('Network Error') > -1){
-    //       alert('네크워크가 원활하지 않습니다. \n잠시 후 다시 시도해주세요.')
-    //     }
-    //   })
-    // }
   }
 }
 </script>

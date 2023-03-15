@@ -59,12 +59,6 @@ public class UserService implements UserDetailsService {
         UserEntity userEntity = userRepository.findByUserId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
 
-        //UserEntity userEntity = userRepositoryCustom.findByUserId(username);
-
-//        if(userEntity.isDeleteYn()){
-//            throw new WithdrawalException();
-//        }
-
         if (userEntity.getUserId().equals(username)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         }
@@ -247,13 +241,6 @@ public class UserService implements UserDetailsService {
         return dto;
     }
 
-//    public void updatePassword(String str, String userEmail){
-//        String memberPassword = str;
-//
-//        Long memberId = mr.findByMemberEmail(userEmail).getId();
-//        mmr.updatePassword(memberId,memberPassword);
-//    }
-
     private String getTempPassword() {
 
         char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
@@ -288,7 +275,6 @@ public class UserService implements UserDetailsService {
 
         if(passwordEncoder.matches(userPwChangeDto.getPassword(),userEntity.getUserPw())){
             userEntity.changePw(passwordEncoder.encode(userPwChangeDto.getNewPassword()));
-
             userRepository.save(userEntity);
 
             return true;

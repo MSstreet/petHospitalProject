@@ -22,22 +22,11 @@ public class BoardController {
 
     private final BoardService boardService;
 
-//    @GetMapping("/board/list")
-//    public List<BoardDto> boardList() { return boardService.getBoardList(); }
-
-//    @GetMapping("/board/list")
-//    public Header<List<BoardDto>> boardList(
-//            @PageableDefault(sort = {"idx"}) Pageable pageable
-//    ) {
-//        return boardService.getBoardList(pageable);
-//    }
-
     @GetMapping("/board/list")
     public Header<List<BoardListWithReplyCountDto>> boardList(
             @PageableDefault(sort = {"idx"}) Pageable pageable,
             SearchCondition searchCondition)
     {
-        //return boardService.getBoardList(pageable, searchCondition);
         return boardService.getBoardListWithReplyCount(pageable,searchCondition);
     }
 

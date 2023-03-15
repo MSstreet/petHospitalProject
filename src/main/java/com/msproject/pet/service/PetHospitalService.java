@@ -48,13 +48,6 @@ public class PetHospitalService {
                //.petHospitalScore(petHospitalDto.getHospitalScore())
                .build();
 
-//        PetHospitalEntity entity = PetHospitalEntity.builder()
-//                .sigunName(petHospitalDto.getSigunName())
-//                .hospitalName(petHospitalDto.getHospitalName())
-//                .hospitalNum(petHospitalDto.getHospitalNum())
-//                .hospitalAddr(petHospitalDto.getHospitalAddr())
-//                .build();
-
         return petHospitalRepository.save(entity);
     }
 
@@ -89,24 +82,10 @@ public class PetHospitalService {
     public PetHospitalListReviewCountDto getPetHospitalWithReviewCount(Long id) {
 
         PetHospitalListReviewCountDto petHospitalListReviewCountDto = petHospitalRepositoryCustom.findWithReviewCountById(id);
-
-        System.out.println("0나올걸?!"+petHospitalListReviewCountDto.getHospitalScore());
-
-
         Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(id);
 
         PetHospitalEntity result = petHospitalEntity.orElseThrow();
-
         List<ReviewEntity> reviewEntities = reviewRepository.findByPetHospitalEntity(result);
-//
-//        float sum = 0;
-//        System.out.println("확인한다!!!!!!!!!!!!" + reviewEntities.size());
-
-
-//        for(int i = 0; i < reviewEntities.size(); i ++){
-//            sum = reviewEntities.get(i).getScore();
-//            System.out.println(sum);
-//        }
 
         if (reviewEntities.size() == 0) {
             petHospitalListReviewCountDto.setHospitalScore(0);
@@ -169,8 +148,6 @@ public class PetHospitalService {
 
         Page<PetHospitalEntity> hospitalEntities = petHospitalRepositoryCustom.findAllBySearchCondition(pageable, searchCondition);
 
-//        System.out.println(hospitalEntities.getTotalElements());
-
         for (PetHospitalEntity entity : hospitalEntities) {
 
             PetHospitalDto dto = PetHospitalDto.builder()
@@ -231,31 +208,4 @@ public class PetHospitalService {
 
         return Header.OK(dtos, pagination);
     }
-
-//    public void SavePetHospital() throws Exception {
-//
-//        File stocks = new File(Paths.get("").toAbsolutePath() + "/src/main/java/숙제20211207/Stocks.xml");
-//
-//        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//        Document doc = dBuilder.parse(stocks);
-//        doc.getDocumentElement().normalize();
-//        System.out.println("파일출력");
-//
-//        // 읽어들인 파일 불러오기
-//        NodeList nodes = doc.getElementsByTagName("stock");
-//
-//        for (int k = 0; k < nodes.getLength(); k++) {
-//            Node node = nodes.item(k);
-//
-//            if (node.getNodeType() == Node.ELEMENT_NODE) {
-//                Element element = (Element) node;
-//                System.out.println("Stock Symbol: " + getValue("symbol", element));
-//                System.out.println("Stock Price: " + getValue("price", element));
-//                System.out.println("Stock Quantity: " + getValue("quantity", element));
-//
-//            }
-//        }
-//    }
-
 }

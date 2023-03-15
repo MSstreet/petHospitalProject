@@ -27,6 +27,7 @@
                               data-bs-dismiss="modal" @click="fnComentUpdate()">확인</button>
                       <button type="button" class=" col-5 btn btn-secondary bg-gradient-primary my-4 mb-2" data-bs-dismiss="modal">닫기</button>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -36,33 +37,34 @@
       </div>
     </div>
 
-  <div id="findPw1" class="modal fade" ref="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-login">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="container my-auto">
-            <div class="row">
-              <div class="card z-index-0 fadeIn3 fadeInBottom">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                    <h4 class="text-black font-weight-bolder text-center mt-2 mb-0">댓글에 답글</h4>
-                  </div>
-                </div>
-
-                <div class="card-body text-center">
-                  <div class="mb-2 form-group">
-                    <label class="mb-1 fw-semibold" for="comment">Comment</label>
-                    <textarea v-model="update_coments" class="form-control" id="comment" rows="3"></textarea>
+    <div id="findPw1" class="modal fade" ref="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-login">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container my-auto">
+              <div class="row">
+                <div class="card z-index-0 fadeIn3 fadeInBottom">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                      <h4 class="text-black font-weight-bolder text-center mt-2 mb-0">댓글에 답글</h4>
+                    </div>
                   </div>
 
-                  <div>
-                    <input type="hidden" v-model="m_reply_idx">
-                  </div>
+                  <div class="card-body text-center">
+                    <div class="mb-2 form-group">
+                      <label class="mb-1 fw-semibold" for="comment">Comment</label>
+                      <textarea v-model="update_coments" class="form-control" id="comment" rows="3"></textarea>
+                    </div>
 
-                  <div class="row text-center test-position">
-                    <button type="button" class="me-1 text-center col-5 btn btn-secondary bg-gradient-primary my-4 mb-2" id="m_reply_idx"
-                            data-bs-dismiss="modal" @click="fnComentUpdate()">확인</button>
-                    <button type="button" class=" col-5 btn btn-secondary bg-gradient-primary my-4 mb-2" data-bs-dismiss="modal">닫기</button>
+                    <div>
+                      <input type="hidden" v-model="m_reply_idx">
+                    </div>
+
+                    <div class="row text-center test-position">
+                      <button type="button" class="me-1 text-center col-5 btn btn-secondary bg-gradient-primary my-4 mb-2" id="m_reply_idx"
+                              data-bs-dismiss="modal" @click="fnComentUpdate()">확인</button>
+                      <button type="button" class=" col-5 btn btn-secondary bg-gradient-primary my-4 mb-2" data-bs-dismiss="modal">닫기</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -71,7 +73,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <div class="mt-5 text-center fs-1 fw-bold mb-2">
     <b style="color: #4c1192;">게시글 조회</b>
@@ -92,10 +93,10 @@
         <span class="my-3 ms-2 mb-2" style="font-weight: bold">작성일 : {{ created_at }}</span>
       </div>
     </div>
+
     <div  class="board-contents pt-5 pb-5" >
      <div v-html="contents" ></div>
     </div>
-
 
       <div class="ms-1 row justify-content-center mt-5">
             <div class="card-body">
@@ -109,7 +110,6 @@
 
     <label v-if="list.length != 0" class="mt-3 mb-2 ms-2 fw-semibold" for="comment">Comment List&nbsp({{paging.total_list_cnt}})</label>
       <div class="  row" v-for="(row, idx) in list" :key="idx">
-
         <div class="col-12 mt-3 mb-2">
             <div class="ms-3  " style="word-break: break-all">
               <div class="row fs-5 mb-1">
@@ -123,11 +123,11 @@
               </div>
 
               <div>
-              <div v-html="row.contents"></div>
-             </div>
+                <div v-html="row.contents"></div>
+              </div>
 
               <div>
-                <button style="font-size: smaller;" class="text-start btn btn-link"  data-bs-toggle="modal" data-bs-target="#findPw1" @click="testUpdate(`${row.reply_idx}`)">답글</button>
+                <button style="font-size: smaller; text-align: left" class="text-start btn btn-link" data-bs-toggle="modal" data-bs-target="#findPw1" @click="testUpdate(`${row.reply_idx}`)">답글</button>
               </div>
             </div>
         </div>
@@ -140,7 +140,6 @@
           <ul class="pagination">
             <li class="page-item"><a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a></li>
 
-            <!--             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>-->
             <a href="javascript:;" class="page-link" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)">&lt;</a>
 
             <template v-for=" (n,index) in paginavigation()">
@@ -164,8 +163,6 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
@@ -179,7 +176,6 @@ export default {
       logged_idx: this.$store.state.userIdx,
       writer_idx:this.$route.query.userIdx,
       writer_id:this.$route.query.userId,
-      /////boardData
 
       title: '',
       author: '',
@@ -277,12 +273,11 @@ export default {
         alert("댓글을 입력해주세요")
         return false
       }
-
       console.log("!!!!!!"+this.idx)
       console.log("@@@@@"+this.logged_idx)
-
       let apiUrl = this.$serverUrl + '/reply/join'
       this.form = {
+
         "board_idx": this.idx,
         "user_idx": this.logged_idx,
         "contents": this.coments.replace(/\n/g, '<br/>')
@@ -332,12 +327,6 @@ export default {
     }
     ,fnComentUpdate(){
       const input = document.getElementById("m_reply_idx").value
-      //console.log("확인" + input.value)
-
-      // if(this.update_coments == ''){
-      //   alert("댓글을 입력해주세요")
-      //   return false
-      // }
 
       this.reply_idx = input
       console.log("확인한다규~" +  this.reply_idx)

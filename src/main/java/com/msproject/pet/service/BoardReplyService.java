@@ -55,6 +55,7 @@ public class BoardReplyService {
                     .build();
             return boardReplyRepository.save(boardReply);
         }else{
+
             BoardReply boardReply = BoardReply.builder()
                     .boardEntity(board)
                     .userEntity(user)
@@ -62,6 +63,7 @@ public class BoardReplyService {
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
                     .build();
+
             return boardReplyRepository.save(boardReply);
         }
     }
@@ -127,8 +129,8 @@ public class BoardReplyService {
 
         //boardReply.changeDeleteState();
         //boardReply.isDeleteYn();
-
         //boardReplyRepository.save(boardReply);
+
         boardReplyRepository.delete(boardReply);
 
     }

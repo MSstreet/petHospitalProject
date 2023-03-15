@@ -35,7 +35,7 @@ public class WishService {
 
     public WishEntity wishCreate(WishDto wishDto){
 
-        //WishEntity wishEntity = modelMapper.map(wishDto, WishEntity.class);
+
 
         Optional<PetHospitalEntity> petHospitalEntity = petHospitalRepository.findById(wishDto.getPetHospitalNum());
         PetHospitalEntity pet = petHospitalEntity.orElseThrow();
@@ -43,7 +43,6 @@ public class WishService {
         Optional<UserEntity> userEntity = userRepository.findById(wishDto.getUserNum());
         UserEntity user = userEntity.orElseThrow();
 
-        //wishEntity.setUserEntity(user);
 
         WishEntity wishEntity = WishEntity.builder()
                 .petHospitalEntity(pet)
@@ -60,7 +59,6 @@ public class WishService {
 
     public WishEntity update(WishDto wishDto) {
 
-        //WishEntity entity = wishRepository.findById(wishDto.getWishId()).orElseThrow(()-> new RuntimeException("존재하지 않는 리뷰입니다."));
         WishEntity entity = wishRepositoryCustom.findOneReview(wishDto.getUserNum(),wishDto.getPetHospitalNum());
 
         entity.changeWishState(wishDto.getWishState1());

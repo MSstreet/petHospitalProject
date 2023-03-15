@@ -4,40 +4,20 @@
     <b style="color: #4c1192;">게시글 작성</b>
   </div>
   <div class="board-detail">
-<!--    <div class="mb-3">-->
-<!--      <label for="title">제목</label>-->
-<!--      <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">-->
-<!--    </div>-->
-
-<!--    <div class="mb-3">-->
-<!--      <label for="reg_id">작성자</label>-->
-<!--      <input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이름을 입력해 주세요">-->
-<!--    </div>-->
 
 
     <div class="board-contents">
-
 
       <div class="mb-3">
         <label for="title">제목</label>
         <input type="text" maxlength="200" v-model="title" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요(200자 이내).">
       </div>
 
-<!--      <div class="mb-3" v-if="idx === undefined">
-        <label for="reg_id">작성자</label>
-        <input type="text" class="form-control" v-model="author" name="reg_id" id="reg_id" placeholder="작성자를 입력해주세요." >
-      </div>-->
-
       <div class="mb-3">
         <label for="content">내용</label>
         <textarea class="form-control" maxlength="3000" v-model="contents" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요(3000자 이내)"></textarea>
 
       </div>
-<!--      <input type="text" v-model="author" class="w3-input w3-border" placeholder="작성자를 입력해주세요." v-if="idx === undefined">-->
-<!--      <div class="board-contents">-->
-<!--      <textarea id="" cols="30" rows="10" v-model="contents" class="w3-input w3-border" style="resize: none;">-->
-<!--      </textarea>-->
-<!--      </div>-->
     </div>
 
     <div class="common-buttons">

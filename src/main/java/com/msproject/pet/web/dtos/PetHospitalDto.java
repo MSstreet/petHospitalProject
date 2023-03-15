@@ -25,17 +25,6 @@ public class PetHospitalDto {
 
     private String hospitalAddr; // 도로명 주소
 
-    //private float hospitalScore;
-
-    //private String operationYn;
-
-    //private String hospitalZip;
-
-    //private String hospitalStreetZip;
-
-    //private String hospitalAddr; // 지번 주소
-
-    //private String hospitalId;
 
     private BigDecimal hosLatitude ;
 
