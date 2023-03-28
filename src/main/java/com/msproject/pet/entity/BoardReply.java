@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,11 +40,14 @@ public class BoardReply {
     @ColumnDefault("false")
     private boolean deleteYn;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private BoardReply parent;
 
+
     @Builder.Default
+    @JsonManagedReference
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
     private List<BoardReply> children = new ArrayList<>();
 

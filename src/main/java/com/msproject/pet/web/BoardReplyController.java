@@ -42,6 +42,13 @@ public class BoardReplyController {
         return boardReplyService.getReplyList(pageable, id);
     }
 
+    @GetMapping("/reply/list1/{id}")
+    public Header<List<BoardReplyDto>> reviewList1(@PathVariable Long id,
+                                                  @PageableDefault(sort = "reply_idx") Pageable pageable)
+    {
+        return boardReplyService.getReplyList1(pageable, id);
+    }
+
     @GetMapping("/reply/{id}")
     public BoardReplyDto getReply(@PathVariable Long id){
         return boardReplyService.getReply(id);
@@ -51,7 +58,6 @@ public class BoardReplyController {
     public BoardReply update(@RequestBody BoardReplyDto boardReplyDto) {
         System.out.println("들어오는지 확인해보기");
         System.out.println(boardReplyDto.getReplyIdx());
-
         return boardReplyService.update(boardReplyDto);
     }
 

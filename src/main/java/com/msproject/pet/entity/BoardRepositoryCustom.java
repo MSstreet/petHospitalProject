@@ -50,11 +50,9 @@ public class BoardRepositoryCustom {
                 .leftJoin(boardReply).on(boardReply.boardEntity.eq(boardEntity));
 
         query.where(searchKeywords(searchCondition.getSk(), searchCondition.getSv()),boardEntity.deleteYn.eq(false));
-
         query.groupBy(boardEntity);
 
         long total = query.stream().count();
-
         //System.out.println("total : " + total);
 
         List<BoardEntity> results = query
@@ -65,8 +63,6 @@ public class BoardRepositoryCustom {
                 .orderBy(boardEntity.idx.desc())
                 //.orderBy(reviewEntity.score.avg().when(reviewEntity.deleteYn.eq(false)))
                 .fetch();
-
-        //System.out.println("resultSize : " + results.size());
 
         JPAQuery<BoardListWithReplyCountDto> dtoJPAQuery = query.select(Projections.bean(BoardListWithReplyCountDto.class,
                 boardEntity.idx,

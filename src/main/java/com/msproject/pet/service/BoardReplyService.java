@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -134,4 +136,33 @@ public class BoardReplyService {
         boardReplyRepository.delete(boardReply);
 
     }
+
+    public Header<List<BoardReplyDto>> getReplyList1(Pageable pageable, Long id) {
+
+        List<BoardReplyDto> dtos = new ArrayList<>();
+        Page<BoardReply> boardReplies = boardReplyRepositoryCustom.findAllBySearchCondition1(pageable, id);
+
+        for (BoardReply entity : boardReplies) {
+            BoardReplyDto dto = BoardReplyDto.builder()
+                    .replyIdx(entity.getReplyIdx())
+                    .boardIdx(entity.getBoardEntity().getIdx())
+                    .userIdx(entity.getUserEntity().getIdx()) // 수정 0207
+                    .contents(entity.getContents())
+                    .parent(entity.getParent().getReplyIdx())
+                    .createdAt(entity.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .updatedAt(entity.getUpdatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")))
+                    .userName(entity.getUserEntity().getUserName())
+                    .userId(entity.getUserEntity().getUserId())
+                    .build();
+            dtos.add(dto);
+        }
+        Pagination pagination = new Pagination(
+                (int) boardReplies.getTotalElements()
+                , pageable.getPageNumber() + 1
+                , pageable.getPageSize()
+                , 10
+        );
+        return Header.OK(dtos, pagination);
+    }
+
 }

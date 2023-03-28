@@ -8,7 +8,6 @@
 
     <div class="card mb-4 text-center">
       <div class="card-header">
-
         <div class="input-group input-group-sm search-pos" >
           <select v-model="search_key">
             <option value="title">제목</option>
@@ -18,7 +17,6 @@
           <input style="border-width: 1px;" type="text" maxlength="50"  placeholder="검색어 입력" aria-label="search"
                  aria-describedby="button-addon2" class="ms-1" v-model="search_value" @keyup.enter="fnPage()">
           <button @click="fnPage()" class="btn btn-success ms-1" id="button-addon2">검색</button>
-
         </div>
 
       </div>
@@ -26,7 +24,6 @@
       <div>
         <a class="btn btn-primary float-end me-2 mt-2" v-on:click="fnWrite"><i class="fas fa-edit"></i>  글 작성</a>
       </div>
-
 
       <div class="card-body">
         <div class="mb-3 test-position" v-if="list.length==0">
@@ -43,10 +40,7 @@
 
           </tr>
           </thead>
-
           <tbody>
-
-
 
           <tr class="t1" v-for="(row, idx) in list" :key="idx">
 
@@ -94,7 +88,6 @@
       </div>
 
     </div>
-
     </div>
 
 </template>
