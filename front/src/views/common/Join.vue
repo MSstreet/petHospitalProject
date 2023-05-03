@@ -1,8 +1,8 @@
 <template>
   <!--  배경색-->
 
-  <section class="bg-light">
-    <div class="container py-4">
+  <div class="bg-light">
+    <div class="container py-4 ">
 
       <h1 class="fs-1 fw-bold text-center mb-3"><b style="color: #4c1192">JOIN</b> </h1>
 
@@ -74,14 +74,12 @@
           <!--          <div id="addrCheck" class=""></div>-->
         </div>
 
-
-
         <div class="d-grid gap-2">
           <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
         </div>
       </form>
     </div>
-  </section>
+  </div>
 </template>
 <script>
 import {mapActions, mapGetters} from 'vuex'   //vuex 추가
@@ -326,15 +324,6 @@ export default {
       const emailCheck = new RegExp("^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
       const numCheck = new RegExp("^(?:(010\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$")
       const nameCheck = new RegExp("^[|가-힣]{2,20}")
-
-      // if (this.user_id !== '' && (this.user_id.length <= 5 || this.user_id.length >= 20)) {
-      //   alert('ID는 5자 이상 20자리 이하로 입력해주세요"')
-      //   this.check = false
-      //   return
-      // }else{
-      //   this.check = true
-      //   console.log("1" + this.check)
-      // }
 
       if (this.user_id !== '' && !idCheck.test(this.user_id)) {
         document.getElementById('checkId').style.color="red"

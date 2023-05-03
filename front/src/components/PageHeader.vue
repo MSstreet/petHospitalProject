@@ -18,10 +18,10 @@
 <!--      <router-link to="/join" v-if="!this.$store.state.isLogin">회원가입</router-link>-->
 <!--    </div>-->
 <div id="topheader">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary"  style="background-color: #008080;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="border-bottom: 1px solid gray">
       <div class="container-fluid">
 
-        <router-link to="/" class="navbar-brand fw-bold text-light fs-2"><i class="fa-solid fa-shield-cat me-2"></i>AnimalH</router-link>
+        <router-link to="/" class="navbar-brand fw-bold text-light fs-2" ><span style="color: gray"><i class="fa-solid fa-shield-cat me-2"></i>AnimalH</span></router-link>
         <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,15 +30,15 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             <li class="nav-item ">
-              <router-link to="/board/list" class="nav-link text-light  fs-5 fw-bold" aria-current="page">게시판</router-link>
+              <router-link to="/board/list" class="nav-link text-light  fs-5 fw-bold" aria-current="page"><span style="color: black">게시판</span></router-link>
             </li>
 
             <li class="nav-item active">
-              <router-link to="/hospital/list" class="nav-link text-light fs-5 fw-bold">동물병원</router-link>
+              <router-link to="/hospital/list" class="nav-link text-light fs-5 fw-bold"><span style="color: black">동물병원</span></router-link>
             </li>
 
             <li class="nav-item ">
-              <router-link to="/notice/list" class="nav-link text-light fs-5 fw-bold" aria-current="page">공지사항</router-link>
+              <router-link to="/notice/list" class="nav-link text-light fs-5 fw-bold" aria-current="page"><span style="color: black">공지사항</span></router-link>
             </li>
 
           </ul>
@@ -53,7 +53,7 @@
 <!--         <ul class="mt-2">-->
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item mt-1">
-              <router-link to="/login"  class="nav-link text-light fs-3 fw-bold" v-if="!this.$store.state.isLogin">Login </router-link>
+              <router-link to="/login"  class="nav-link text-light fs-3 fw-bold" v-if="!this.$store.state.isLogin"><span style="color: gray">Login </span></router-link>
             </li>
 
 <!--            <li class="nav-item">-->
@@ -65,7 +65,7 @@
 <!--            </li>-->
 
             <li class="nav-item mt-1 me-3" >
-              <router-link to="/join" class="nav-link text-light fs-3 fw-bold" v-if="!this.$store.state.isLogin">Join</router-link>
+              <router-link to="/join" class="nav-link text-light fs-3 fw-bold" v-if="!this.$store.state.isLogin"><span style="color: gray">Join</span></router-link>
             </li>
           </ul>
 

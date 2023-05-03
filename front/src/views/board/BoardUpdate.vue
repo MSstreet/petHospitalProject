@@ -1,6 +1,4 @@
 <template>
-
-
   <div class="board-detail">
 
     <div class="mt-5 mb-3 text-center fs-1 fw-bold mb-2">

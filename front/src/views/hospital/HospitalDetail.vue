@@ -41,19 +41,7 @@
             </a>
           </div>
         </div>
-
-<!--        <div class="text-left info-pos">-->
-<!--          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">-->
-<!--            여기다가 주소를 입력하면 되겠어-->
-<!--          </div>-->
-<!--          <div class="color49 mt-3" style="font-size: 14px; font-weight: 40; letter-spacing: -0.6px;">-->
-<!--            여기다가 전화번호 입력하면 되겠어-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
-
-
-
     </div>
 
     <div class="row border px-3 middle-tab" style="top:72px !important;">
@@ -173,7 +161,7 @@ export default {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
-      //
+
       // this.$axios.post(this.$serverUrl + '/wish/check/' + this.user_idx + this.idx)
       //     .then((res) => {
       //       this.wish_state = res.data.wish_state

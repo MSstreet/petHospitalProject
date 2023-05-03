@@ -1,7 +1,7 @@
 <!-- PageHome.vue -->
 <template>
 
-
+<section class="bg-light">
   <div class="container text-center mt-5 " >
     <i class="fa-regular fa-hospital fa-2xl mb-4"></i>
     <h3 class=" fs-1 fw-bold text-center  mb-5"><b style="color: #4c1192;">솔직한</b> 동물 병원 후기</h3>
@@ -42,7 +42,7 @@
   <!--    </div>-->
   <!--  </div>-->
 
-  <div class="container-fluid mt-3 pt-3" style="text-align: center">
+  <div class="container-fluid mt-3 pt-3 bg-light" style="text-align: center">
     <!--    <img alt="Vue logo" src="../assets/logo.png">-->
 
     <div style="width: 960px; display: inline-block">
@@ -435,7 +435,7 @@
       </div>
     </div>
   </div>
-
+</section>
 </template>
 
 <script>

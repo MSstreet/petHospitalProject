@@ -7,10 +7,6 @@
     </div>
 
     <div class="container py-4">
-
-
-
-
         <div class="form-group">
           <label for="exampleInputName" class="form-label mt-4">이름</label>
                     <input type="text" class="form-control" id="exampleInputName"
@@ -52,7 +48,6 @@
           <label for="exampleInputAddr" class="form-label mt-4">상세주소</label>
           <input type="text" class="form-control mb-4" id="exampleInputAddr" v-model="extra_address">
         </div>
-
 
         <div class="d-grid gap-2 mt-5">
           <router-link to="/myinfo_edit" class="btn btn-success" v-on:click="fnUpdate" role="button">저장</router-link>
@@ -178,7 +173,6 @@ export default {
         return false
       }
 
-
       this.form = {
         "user_id": this.user_id,
         "user_name":this.user_name,
@@ -248,7 +242,6 @@ export default {
       } else{
         this.check = true
       }
-
 
       if (this.user_num !== '' && !numCheck.test(this.user_num)) {
         alert('올바른 전화번호 형식이 아닙니다. 예와 같이 입력해주세요.\u00a0\u00a0\u00a0\u00a0\u00a0 ex)\u00a000011112222')

@@ -60,9 +60,6 @@ spring:
 #            redirect_uri: http://localhost:8080/login/oauth2/code/kakao
 #            client-name: kakao
 
-
-
-
 jwt:
     secret: AAAABBBBCCCCDDDDEEEEFFFFGGGG123!@#
 

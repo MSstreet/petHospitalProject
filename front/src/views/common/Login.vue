@@ -77,25 +77,13 @@
 
   <section class="bg-light">
     <div class="mt-10">
-
-<!--      <h2>Please Log In</h2>-->
-
       <div class="container py-4">
-
-<!--        <div class="row align-items-center justify-content-between">-->
-<!--          <a class="navbar-brand h1 text-center" href="index.do">-->
-<!--            <span class="text-dark h4">도시</span> <span class="text-primary h4">거북</span>-->
-<!--          </a>-->
-<!--        </div>-->
         <h1 class="fs-1 fw-bold text-center mb-5"><b style="color: #4c1192">LOGIN</b> </h1>
 
         <form @submit.prevent="fnLogin">
-
           <div class="form-group">
             <label for="exampleInputEmail1" class="mb-1">ID</label>
             <input type="text" maxlength="50" class="form-control" id="exampleInputEmail1" placeholder="Enter Id" v-model="user_id">
-
-<!--            <small id="emailHelp" class="form-text text-muted">We'll never share your id with anyone else.</small>-->
           </div>
 
           <div class="form-group">
@@ -110,86 +98,20 @@
 
           <div class="d-grid gap-2 mt-2 col-6">
             <router-link to="/join" type="button" class="btn btn-success mt-3 fw-bold">Join</router-link>
-<!--            <button type="submit" class="btn btn-success mt-3">Join</button>-->
           </div>
-
-<!--          <div>-->
-<!--            <a href="/oauth2/authorization/kakao">KAKAO</a>-->
-<!--          </div>-->
 
           <div class="mt-2 ">
             <span type="button" class="btn btn-link a" data-bs-toggle="modal"
                   data-bs-target="#findId">ID를 잊으셨나요?</span>
-<!--            <span><router-link class="a" to="/id-find">ID를 잊으셨나요?&nbsp&nbsp&nbsp</router-link></span>-->
            <span type="button" class="btn btn-link a" data-bs-toggle="modal"
                  data-bs-target="#findPw">비밀번호를 잊으셨나요?</span>
           </div>
-
-<!--          <button type="button" class="btn btn-link" data-bs-toggle="modal"-->
-<!--                  data-bs-target="#findPw">비밀번호를 잊으셨나요?</button>-->
         </div>
-<!--          <p>-->
-<!--            <input class="w3-input" name="uid" placeholder="Enter your ID" v-model="user_id"><br>-->
-<!--          </p>-->
-
-<!--          <p>-->
-<!--            <input name="password" class="w3-input" placeholder="Enter your password" v-model="user_pw" type="password">-->
-<!--          </p>-->
-
         </form>
       </div>
     </div>
   </section>
 </template>
-
-<!--<script>-->
-<!--import {mapActions, mapGetters} from 'vuex'   //vuex 추가-->
-
-<!--export default {-->
-<!--  data() {-->
-<!--    return {-->
-<!--      user_id: '',-->
-<!--      user_pw: ''-->
-<!--    }-->
-<!--  },-->
-<!--  methods: {-->
-<!--    ...mapActions(['login']),     //vuex/actions에 있는 login 함수-->
-
-<!--    async fnLogin() {       //async 함수로 변경-->
-<!--      if (this.user_id === '') {-->
-<!--        alert('ID를 입력하세요.')-->
-<!--        return-->
-<!--      }-->
-
-<!--      if (this.user_pw === '') {-->
-<!--        alert('비밀번호를 입력하세요.')-->
-<!--        return-->
-<!--      }-->
-
-<!--      //로그인 API 호출-->
-<!--      try {-->
-<!--        let loginResult = await this.login({user_id: this.user_id, user_pw: this.user_pw})-->
-<!--        if (loginResult) alert('로그인 결과 : ' + loginResult)-->
-<!--      } catch (err) {-->
-<!--        if (err.message.indexOf('Network Error') > -1) {-->
-<!--          alert('서버에 접속할 수 없습니다. 상태를 확인해주세요.')-->
-<!--        } else {-->
-<!--          alert('로그인 정보를 확인할 수 없습니다.')-->
-<!--        }-->
-<!--      }-->
-<!--    }-->
-<!--  },-->
-
-
-<!--  computed: {-->
-<!--    ...mapGetters({-->
-<!--      errorState: 'getErrorState'-->
-<!--    })-->
-<!--  }-->
-<!--}-->
-<!--</script>-->
-
-
 
 <script>
 import {mapActions, mapGetters} from 'vuex'   //vuex 추가
@@ -270,25 +192,6 @@ export default {
             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
           }
         })
-
-      // this.form = {
-      //   // "user_name": this.user_name,
-      //   "email":this.email,
-      // }
-      // this.$axios.post(apiUrl, this.form)
-      //     .then((res) => {
-      //        console.log(res.data)
-      //       if(res.data == '') {
-      //         alert('일치하는 정보가 없습니다.')
-      //       }else{
-      //         alert("회원님의 Email로 임시 비밀번호를 전송하였습니다.")
-      //       }
-      //
-      //     }).catch((err) => {
-      //   if (err.message.indexOf('Network Error') > -1) {
-      //     alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
-      //   }
-      // })
     }
     , fnFind(){
       let apiUrl = this.$serverUrl + '/user/find'
@@ -304,8 +207,6 @@ export default {
       //UPDATE
       this.$axios.post(apiUrl, this.form)
           .then((res) => {
-            // alert('아이디 찾았다.')
-            //this.fnView(res.data.idx)
             console.log(res.data)
             if(res.data == '') {
               alert('일치하는 정보가 없습니다.')
@@ -319,11 +220,8 @@ export default {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
-
     }
-
   },
-
 
   computed: {
     ...mapGetters({

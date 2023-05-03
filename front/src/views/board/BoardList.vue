@@ -1,9 +1,9 @@
 <template>
 
-  <div class="container-fluid px-4">
+  <div class="container-fluid px-4 bg-light">
 
     <div >
-      <h1  class="tt mt-5 mb-5 fs-1 fw-bold" style="text-align: center" @click="fnReload">자유게시판</h1>
+      <h1  class="tt mt-5 mb-5 fs-1 fw-bold " style="text-align: center" @click="fnReload">자유게시판</h1>
     </div>
 
     <div class="card mb-4 text-center">
@@ -235,16 +235,10 @@ export default {
 }
 
 .t1:hover{
-  /*background-color: blanchedalmond;*/
   background-color: beige;
 }
 
 .tt:hover{
-  /*text-decoration: underline;*/
-  /*text-decoration-thickness: 1px;*/
-  /*text-decoration-color: #ff9900;*/
-  /*color:#ff9900;*/
-  /*color:blue;*/
   cursor: pointer
 }
 

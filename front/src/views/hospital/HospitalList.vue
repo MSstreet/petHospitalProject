@@ -1,6 +1,6 @@
 <template>
 
-
+<section>
 <div class="container text-center mb-5">
   <div >
     <h1  class="tt mt-3 fs-1 fw-bold" style="text-align: center; " @click="fnReload()"><i class="fa-solid fa-hippo"  ></i>Animal Hospital List<i class="fa-solid fa-otter" ></i></h1>
@@ -45,11 +45,7 @@
    </div>
   </div>
 
-
-
 </div>
-
-
   <div class="test-position">
     <div >
       <nav aria-label="Page navigation example" v-if="paging.total_list_cnt > 0">
@@ -83,7 +79,7 @@
       </nav>
     </div>
   </div>
-
+</section>
 </template>
 
 <script>

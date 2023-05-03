@@ -1,5 +1,4 @@
 <template>
-
   <div class="mt-5 mb-5 text-center fs-1 fw-bold mb-2">
     <b style="color: #4c1192;">게시글 작성</b>
   </div>
