@@ -1,18 +1,26 @@
 package com.msproject.pet.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @RequiredArgsConstructor
 @CrossOrigin
-@RequestMapping("/oauth")
 @RestController
 public class OAuthController {
 
-    @ResponseBody
-    @GetMapping("/kakao")
-    public void kakaoCallback(@RequestParam String code){
-        System.out.println(code);
+    @GetMapping("/loginSuccess")
+    public Map<String, Object> getUserInfo(OAuth2AuthenticationToken authentication) {
+        Map<String, Object> userDetails = authentication.getPrincipal().getAttributes();
+        System.out.println("카카오 사용자 정보: " + userDetails);
+        return userDetails; // 사용자 정보 JSON 반환
+    }
+
+    @GetMapping("/loginFailure")
+    public String loginFailure() {
+        return "로그인 실패";
     }
 }
