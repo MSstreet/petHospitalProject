@@ -15,8 +15,8 @@ spring:
             client-id: 409b3fb04dd78999f86c8dbc4a19372a  # 카카오 REST API 키
             client-authentication-method: POST
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8080/oauth/kakao/callback"
-            scope: "account_email profile"
+            redirect-uri: "http://localhost:8081/oauth/kakao/callback"
+            scope: profile_image
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
@@ -71,25 +71,6 @@ spring:
     properties:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true
-
-#  security:
-#    oauth2:
-#      client:
-#        provider:
-#          kakao:
-#            token-uri: https://kauth.kakao.com/oauth/token
-#            user-name-attribute: id
-#            user-info-uri: https://kapi.kakao.com/v2/user/me
-#            authorization-uri: https://kauth.kakao.com/oauth/authorize
-#        registration:
-#          kakao:
-#            authorization-grant-type: authorization_code
-#            client-id: a63368a2d9119acd7a01e8b35f2d654c
-#            client-secret: TlWjXuzN03BOx01TJG2UjoCqCBfIqHcu
-#            scope: profile_nickname,account_email
-#            client-authentication-method: POST
-#            redirect_uri: http://localhost:8080/login/oauth2/code/kakao
-#            client-name: kakao
 
 jwt:
     secret: AAAABBBBCCCCDDDDEEEEFFFFGGGG123!@#
