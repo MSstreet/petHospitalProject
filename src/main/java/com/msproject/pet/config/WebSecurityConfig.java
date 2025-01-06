@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 
     //private final UserService userService;
 
-    private final TokenRequestFilter tokenRequestFilter;
+    //private final TokenRequestFilter tokenRequestFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -52,8 +52,8 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and() // form 기반의 로그인에 대해 비활성화 한다.
                 .formLogin()
-                .disable()
-                .addFilterBefore(tokenRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .disable();
+                //.addFilterBefore(tokenRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.cors();
 
